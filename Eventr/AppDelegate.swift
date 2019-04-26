@@ -16,7 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let viewController = self.window?.rootViewController as! ViewController
+        viewController.events = loadTestEvents()
+        
         return true
+    }
+    
+    func loadTestEvents() -> [Event] {
+        var events : [Event] = []
+        events.append( Event(name: "LakeFest") )
+        events.append( Event(name: "FunFest") )
+        events.append( Event(name: "SharkFest") )
+        return events
+  
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
