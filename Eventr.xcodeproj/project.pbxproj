@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F62733022273873D00FDA681 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733012273873D00FDA681 /* Event.swift */; };
+		F62733042273944500FDA681 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733032273944500FDA681 /* EventViewController.swift */; };
 		F65368852272618100861E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368842272618100861E0D /* AppDelegate.swift */; };
 		F65368872272618100861E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368862272618100861E0D /* ViewController.swift */; };
 		F653688A2272618100861E0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F65368882272618100861E0D /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		F62733012273873D00FDA681 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		F62733032273944500FDA681 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		F65368812272618000861E0D /* Eventr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65368842272618100861E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F65368862272618100861E0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				F65368842272618100861E0D /* AppDelegate.swift */,
 				F65368862272618100861E0D /* ViewController.swift */,
 				F65368882272618100861E0D /* Main.storyboard */,
+				F62733032273944500FDA681 /* EventViewController.swift */,
 				F653688B2272618200861E0D /* Assets.xcassets */,
 				F653688D2272618200861E0D /* LaunchScreen.storyboard */,
 				F65368902272618200861E0D /* Info.plist */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F62733042273944500FDA681 /* EventViewController.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,
 				F65368872272618100861E0D /* ViewController.swift in Sources */,
 				F65368852272618100861E0D /* AppDelegate.swift in Sources */,
