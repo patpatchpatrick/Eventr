@@ -22,7 +22,7 @@
                                 <rect key="frame" x="74" y="54" width="301" height="45"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="0.0" y="0.0" width="231.00000000000006" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="231" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="231" id="VCf-ry-UaG"/>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
@@ -51,7 +51,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="60"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KqC-1n-CwP">
-                                                <rect key="frame" x="-31" y="0.0" width="545" height="60"/>
+                                                <rect key="frame" x="-31" y="0.0" width="293" height="60"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jaL-nW-XPE">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -68,20 +68,20 @@
                                                         </constraints>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xNB-eU-zlH">
-                                                        <rect key="frame" x="130" y="0.0" width="100" height="60"/>
+                                                        <rect key="frame" x="130" y="0.0" width="16" height="60"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="tob-zc-OJD">
-                                                        <rect key="frame" x="235" y="0.0" width="100" height="60"/>
+                                                        <rect key="frame" x="151" y="0.0" width="16" height="60"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jBu-kx-dm0">
-                                                        <rect key="frame" x="340" y="0.0" width="100" height="60"/>
+                                                        <rect key="frame" x="172" y="0.0" width="100" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="Mze-rY-R3i"/>
                                                             <constraint firstAttribute="height" constant="60" id="gjS-S8-BfO"/>
                                                         </constraints>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="WSs-P4-fl3">
-                                                        <rect key="frame" x="445" y="0.0" width="100" height="60"/>
+                                                        <rect key="frame" x="277" y="0.0" width="16" height="60"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -173,6 +173,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addCategoryImage" destination="N7n-KT-twc" id="W0o-mK-zLy"/>
+                        <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                     </connections>
                 </viewController>
@@ -196,10 +198,24 @@
                                     <action selector="returnButton:" destination="4hp-pR-aFR" eventType="touchUpInside" id="z91-wQ-LiF"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yDY-YZ-XMc">
+                                <rect key="frame" x="140" y="550" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Umg-9E-SV3"/>
+                                    <constraint firstAttribute="height" constant="128" id="t0X-y7-udm"/>
+                                </constraints>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uhh-Iw-S8A" firstAttribute="bottom" secondItem="yDY-YZ-XMc" secondAttribute="bottom" constant="100" id="Gda-FS-lLc"/>
+                            <constraint firstItem="yDY-YZ-XMc" firstAttribute="trailing" secondItem="uhh-Iw-S8A" secondAttribute="trailing" constant="5" id="ifh-pB-meO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uhh-Iw-S8A"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="yDY-YZ-XMc" id="5kl-U0-TVV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k16-HN-CvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

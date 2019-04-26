@@ -25,9 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loadTestEvents() -> [Event] {
         var events : [Event] = []
-        events.append( Event(name: "LakeFest") )
-        events.append( Event(name: "FunFest") )
-        events.append( Event(name: "SharkFest") )
+        events.append( Event(name: "Alder", address: "220 10th Ave.  Seattle, WA.  98122") )
+        events.append( Event(name: "AZ Home", address: "6231 E Vista Dr") )
+        events.append( Event(name: "Ardmore Park", address: "Ardmore Park, Singapore") )
         return events
   
     }

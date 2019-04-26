@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class EventViewController: UIViewController {
 
@@ -14,6 +15,47 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        initializeMapKitView()
+    }
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
+    
+    func initializeMapKitView(){
+        
+        getCoordinates(forAddress: selectedEvent.address) {
+            (location) in
+            guard let location = location else {
+                //Handle geolocation error
+                return
+            }
+            let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+            let regionRadius: CLLocationDistance = 1000
+            let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate,
+                                                      latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+            // show marker on map
+            let annotiation = MKPointAnnotation()
+            annotiation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            self.mapView.addAnnotation(annotiation)
+            self.mapView.setRegion(coordinateRegion, animated: true)
+        }
+        
+    }
+    
+    func getCoordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) {
+            (placemarks, error) in
+            guard error == nil else {
+                print("Geocoding error: \(error!)")
+                completion(nil)
+                return
+            }
+            completion(placemarks?.first?.location?.coordinate)
+        }
     }
     
     
