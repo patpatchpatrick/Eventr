@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", address: "", details: "")
@@ -15,6 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //List of events to display in tableView
     var events: [Event]!
+    let categoryDropDown = DropDown()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func setUpAddCategoryImage(){
+        
+        //Set up category selection dropdown menu
+        categoryDropDown.anchorView = addCategoryImage
+        categoryDropDown.dataSource = userUnselectedEventCategoriesString()
+        categoryDropDown.cellConfiguration = { (index, item) in return "\(item)" }
+        
         addCategoryImage.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(categoryImageTapped))
         tapGestureRecognizer.numberOfTapsRequired = 1
@@ -33,12 +41,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @objc func categoryImageTapped(_ sender: UITapGestureRecognizer) {
         //When the 'Add Category' image is tapped, add selected category to the StackView
         //Image View
+        
+        categoryDropDown.selectionAction = { (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)") }
+        categoryDropDown.width = 140
+        categoryDropDown.bottomOffset = CGPoint(x: 0, y:(categoryDropDown.anchorView?.plainView.bounds.height)!)
+        categoryDropDown.show()
+        
+        /*
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.blue
         imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
         imageView.image = UIImage(named: "plusIcon")
         categoriesStackView.addArrangedSubview(imageView)
+ */
         
     }
 
@@ -53,17 +70,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let imageView = UIImageView()
             imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
             imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
-            switch eventCategory {
-            case .all:
-                imageView.image = UIImage(named: "catIconAll")
-            case .business:
-                imageView.image = UIImage(named: "catIconBusiness")
-            case .music:
-                imageView.image = UIImage(named: "catIconMusic")
-            case .sports:
-                imageView.image = UIImage(named: "catIconSports")
-                
-            }
+            imageView.image = eventCategory.image()
             categoriesStackView.addArrangedSubview(imageView)
         }
         
