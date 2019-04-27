@@ -25,9 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loadTestEvents() -> [Event] {
         var events : [Event] = []
-        events.append( Event(name: "Alder", address: "220 10th Ave.  Seattle, WA.  98122") )
-        events.append( Event(name: "AZ Home", address: "6231 E Vista Dr") )
-        events.append( Event(name: "Ardmore Park", address: "Ardmore Park, Singapore") )
+        events.append( Event(name: "Alder", address: "220 10th Ave.  Seattle, WA.  98122", details: "Teresa decided to leave Iran. She lived in a convent in Rome for the rest of her life, devoting her time to charity and religion. As a pious Christian, and because of her love for her husband, Teresa had Shirley's remains transported to Rome from Isfahan and reburied; on the headstone of their mutual grave she mentions their travels and refers to her noble Circassian origins.") )
+        events.append( Event(name: "AZ Home", address: "6231 E Vista Dr", details: "Teresa decided to leave Iran. She lived in a convent in Rome for the rest of her life, devoting her time to charity and religion. As a pious Christian, and because of her love for her husband, Teresa had Shirley's remains transported to Rome from Isfahan and reburied; on the headstone of their mutual grave she mentions their travels and refers to her noble Circassian origins.") )
+        events.append( Event(name: "Ardmore Park", address: "Ardmore Park, Singapore", details: "Teresa decided to leave Iran. She lived in a convent in Rome for the rest of her life, devoting her time to charity and religion. As a pious Christian, and because of her love for her husband, Teresa had Shirley's remains transported to Rome from Isfahan and reburied; on the headstone of their mutual grave she mentions their travels and refers to her noble Circassian origins.") )
         return events
   
     }

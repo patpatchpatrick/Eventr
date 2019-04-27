@@ -19,12 +19,22 @@ class EventViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         initializeMapKitView()
+        eventName.text = selectedEvent.name
+        eventDetails.text = selectedEvent.details
     }
+    
+    
+    @IBOutlet weak var eventName: UILabel!
+    
+    
+    @IBOutlet weak var eventDetails: UITextView!
     
     @IBOutlet weak var mapView: MKMapView!
     
     
     func initializeMapKitView(){
+        
+        //Initialize map kit view to display location of event 
         
         getCoordinates(forAddress: selectedEvent.address) {
             (location) in

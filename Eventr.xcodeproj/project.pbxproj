@@ -15,6 +15,7 @@
 		F653688C2272618200861E0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F653688B2272618200861E0D /* Assets.xcassets */; };
 		F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F653688D2272618200861E0D /* LaunchScreen.storyboard */; };
 		F65368972272678C00861E0D /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368962272678C00861E0D /* UtilityViews.swift */; };
+		F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* UserPreferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F653688E2272618200861E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F65368902272618200861E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F65368962272678C00861E0D /* UtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
+		F6ADA4C72273CBA000948B7D /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				F65368902272618200861E0D /* Info.plist */,
 				F65368962272678C00861E0D /* UtilityViews.swift */,
 				F62733012273873D00FDA681 /* Event.swift */,
+				F6ADA4C72273CBA000948B7D /* UserPreferences.swift */,
 			);
 			path = Eventr;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F62733042273944500FDA681 /* EventViewController.swift in Sources */,
+				F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,
 				F65368872272618100861E0D /* ViewController.swift in Sources */,
 				F65368852272618100861E0D /* AppDelegate.swift in Sources */,

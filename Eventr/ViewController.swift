@@ -9,7 +9,7 @@
 import UIKit
 
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", address: "")
+var selectedEvent: Event = Event(name: "", address: "", details: "")
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpCategoryStackView()
         setUpAddCategoryImage()
         // Do any additional setup after loading the view.
     }
@@ -44,6 +45,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var addCategoryImage: UIImageView!
     
     @IBOutlet weak var categoriesStackView: UIStackView!
+    
+    func setUpCategoryStackView(){
+        
+        //Add all user selected categories to the stackview of category images that can be selected
+        for eventCategory in userEventCategories {
+            let imageView = UIImageView()
+            imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+            imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
+            switch eventCategory {
+            case .all:
+                imageView.image = UIImage(named: "catIconAll")
+            case .business:
+                imageView.image = UIImage(named: "catIconBusiness")
+            case .music:
+                imageView.image = UIImage(named: "catIconMusic")
+            case .sports:
+                imageView.image = UIImage(named: "catIconSports")
+                
+            }
+            categoriesStackView.addArrangedSubview(imageView)
+        }
+        
+        
+    }
     
     @IBOutlet weak var eventTableView: UITableView!
     
