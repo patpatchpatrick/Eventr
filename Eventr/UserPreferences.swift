@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+//Event Categories
+// The Event Category struct is used to represent categories of events
+// It uses the eventCategory enum as a set list of events
+
 enum eventCategory {
     case all
     case sports
@@ -19,7 +23,20 @@ enum eventCategory {
     case food
 }
 
-public struct EventCategory {
+func stringToEventCategory(string: String) -> EventCategory {
+    switch string{
+    case "All": return EventCategory(category: .all)
+    case "Sports" : return EventCategory(category: .sports)
+    case "Music" : return EventCategory(category: .music)
+    case "Business" : return EventCategory(category: .business)
+    case "Art" : return EventCategory(category: .art)
+    case "Friends" : return EventCategory(category: .friends)
+    case "Food" : return EventCategory(category: .food)
+    default: return EventCategory(category: .all)
+    }
+}
+
+public struct EventCategory : Hashable {
     
     var category : eventCategory
     
@@ -60,13 +77,36 @@ public struct EventCategory {
     
 }
 
-var userEventCategories: [EventCategory] = [EventCategory(category: .all), EventCategory(category: .sports), EventCategory(category: .music), EventCategory(category: .business)]
-var userUnselectedEventCategories: [EventCategory] = [EventCategory(category: .art), EventCategory(category: .friends), EventCategory(category: .food)]
-
-func userUnselectedEventCategoriesString() -> [String] {
-    var catList : [String] = []
-    for category in userUnselectedEventCategories {
-        catList.append(category.text())
+class EventCategorySet {
+    
+    var set : Set<EventCategory> = []
+    
+    init(set: Set<EventCategory>) {
+        self.set = set
     }
-    return catList
+    
+    func add(eventCategory: EventCategory){
+        set.update(with: eventCategory)
+    }
+    
+    func remove(eventCategory: EventCategory){
+        set.remove(eventCategory)
+    }
+    
+    func strings() -> [String]{
+        var catList : [String] = []
+        for category in set{
+            catList.append(category.text())
+        }
+        return catList
+    }
+    
+    func containsCategory(eventCategory: EventCategory) -> Bool {
+        return set.contains(eventCategory)
+    }
+    
 }
+
+//Lists representing which categories that user has selected to display (and which categories are still unselected)
+var userSelectedEventCategories: EventCategorySet = EventCategorySet(set: [])
+var userUnselectedEventCategories: EventCategorySet = EventCategorySet(set: [])

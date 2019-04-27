@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //Set up category selection dropdown menu
         categoryDropDown.anchorView = addCategoryImage
-        categoryDropDown.dataSource = userUnselectedEventCategoriesString()
+        categoryDropDown.dataSource = userUnselectedEventCategories.strings()
         categoryDropDown.cellConfiguration = { (index, item) in return "\(item)" }
         
         addCategoryImage.isUserInteractionEnabled = true
@@ -39,24 +39,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @objc func categoryImageTapped(_ sender: UITapGestureRecognizer) {
-        //When the 'Add Category' image is tapped, add selected category to the StackView
-        //Image View
+        //When the 'Add Category' image is tapped, show dropDown menu for user to select categories
+        // to add to categories stackview
+        // Add the user selected category to the StackView
         
         categoryDropDown.selectionAction = { (index: Int, item: String) in
-            print("Selected item: \(item) at index: \(index)") }
+            addImageToCategoriesStackView(for: item)
+        }
         categoryDropDown.width = 140
         categoryDropDown.bottomOffset = CGPoint(x: 0, y:(categoryDropDown.anchorView?.plainView.bounds.height)!)
         categoryDropDown.show()
         
-        /*
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
-        imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
-        imageView.image = UIImage(named: "plusIcon")
-        categoriesStackView.addArrangedSubview(imageView)
- */
         
+        func addImageToCategoriesStackView(for categoryName: String){
+            
+            //If a category is selected from the dropdown menu, add the category to the categories stack view
+            //Only add the category if it isn't already in the stackview (i.e. userSelectedEventCategories)
+            //After adding the category, remove it from the userUnselectedEventCategories
+            //Update the dropDown list data to include the changes
+            
+            let eventCat = stringToEventCategory(string: categoryName)
+            
+            if(!userSelectedEventCategories.containsCategory(eventCategory: eventCat)){
+                
+                let imageView = UIImageView()
+                imageView.backgroundColor = UIColor.blue
+                imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+                imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
+                imageView.image = eventCat.image()
+                categoriesStackView.addArrangedSubview(imageView)
+                userSelectedEventCategories.add(eventCategory: eventCat)
+                userUnselectedEventCategories.remove(eventCategory: eventCat)
+                categoryDropDown.dataSource = userUnselectedEventCategories.strings()
+            }
+            
+        }
+  
     }
 
     @IBOutlet weak var addCategoryImage: UIImageView!
@@ -66,7 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func setUpCategoryStackView(){
         
         //Add all user selected categories to the stackview of category images that can be selected
-        for eventCategory in userEventCategories {
+        for eventCategory in userSelectedEventCategories.set {
             let imageView = UIImageView()
             imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
             imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
