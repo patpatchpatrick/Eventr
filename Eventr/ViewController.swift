@@ -124,15 +124,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.upvoteArrow?.isUserInteractionEnabled = true
         cell.upvoteArrow?.addGestureRecognizer(tapGestureRecognizer)
         cell.upvoteArrow?.tag = indexPath.row
+        cell.upvoteCount?.text = String(event.upvoteCount)
         return cell
     }
     
-    // method to run when upvote imageview is tapped
+    // Method to run when upvote imageview is tapped
     @objc func upvoteTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let imgView = tapGestureRecognizer.view as! UIImageView
-        print("your taped image view tag is : \(imgView.tag)")
-        if (imgView.tag == 0) //Give your image View tag
+        let upvoteImage = tapGestureRecognizer.view as! UIImageView
+        //If an upvote arrow was clicked, upvote the event
+        events[upvoteImage.tag].upvote()
+        eventTableView.reloadData()
+        print(events[upvoteImage.tag].name)
+        if (upvoteImage.tag == 0) //Give your image View tag
         {
             //navigate to next view
         }
