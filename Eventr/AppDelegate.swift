@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        let viewController = self.window?.rootViewController as! ViewController
-        viewController.events = loadTestEvents()
+        events = loadTestEvents()
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .all))
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .business))
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .sports))

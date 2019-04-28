@@ -11,11 +11,11 @@ import DropDown
 
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", address: "", details: "")
+var events: [Event]!
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //List of events to display in tableView
-    var events: [Event]!
     let categoryDropDown = DropDown()
 
     override func viewDidLoad() {
