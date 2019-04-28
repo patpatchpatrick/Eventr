@@ -106,12 +106,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = eventTableView.dequeueReusableCell(withIdentifier: "cellEvent", for: indexPath)
+        let cell = eventTableView.dequeueReusableCell(withIdentifier: "cellEvent", for: indexPath) as! CustomEventCell
         
         let event = events[indexPath.row]
-        cell.textLabel?.text = event.name
+        cell.eventName?.text = event.name
+        if event.paid {
+            cell.paidEvent?.image = UIImage(named: "eventIconDollar")
+        } else {
+            cell.paidEvent?.image = nil
+        }
         
+        //Add tap gesture recognizer for upvote arrow
+        //When upvote arrow is tapped, run the upvoteTapped method
+        //to update event upvotes
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(upvoteTapped(tapGestureRecognizer:)))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        cell.upvoteArrow?.isUserInteractionEnabled = true
+        cell.upvoteArrow?.addGestureRecognizer(tapGestureRecognizer)
+        cell.upvoteArrow?.tag = indexPath.row
         return cell
+    }
+    
+    // method to run when upvote imageview is tapped
+    @objc func upvoteTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let imgView = tapGestureRecognizer.view as! UIImageView
+        print("your taped image view tag is : \(imgView.tag)")
+        if (imgView.tag == 0) //Give your image View tag
+        {
+            //navigate to next view
+        }
+        else{
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

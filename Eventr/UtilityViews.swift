@@ -18,3 +18,14 @@ class HairlineView: UIView {
         self.backgroundColor = UIColor.clear
     }
 }
+
+class CustomEventCell: UITableViewCell {
+    
+    //Custom cell for event table view
+    
+    @IBOutlet weak var paidEvent: UIImageView!
+    @IBOutlet weak var upvoteArrow: UIImageView!
+    @IBOutlet weak var eventName: UILabel!
+    
+    
+}

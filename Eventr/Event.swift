@@ -14,6 +14,7 @@ class Event : CustomStringConvertible {
     var name: String
     var address: String
     var details: String
+    var paid: Bool = false
     
     
     init(name: String, address: String, details: String) {
