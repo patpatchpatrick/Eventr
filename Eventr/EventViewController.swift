@@ -50,7 +50,7 @@ class EventViewController: UIViewController {
             let annotiation = MKPointAnnotation()
             annotiation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             self.mapView.addAnnotation(annotiation)
-            self.mapView.setRegion(coordinateRegion, animated: true)
+            self.mapView.setRegion(coordinateRegion, animated: false)
         }
         
     }
