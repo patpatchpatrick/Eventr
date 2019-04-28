@@ -5,6 +5,8 @@ target 'Eventr' do
   use_frameworks!
 
 pod 'DropDown'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
 
   # Pods for Eventr
 
