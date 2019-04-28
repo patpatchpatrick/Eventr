@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    //If user is already logged in then go straight to the home activity
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "homeSegue", sender: nil)
+        }
+    }
+    
+    
     
     
     @IBAction func continueAsGuest(_ sender: UIButton) {

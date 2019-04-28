@@ -70,17 +70,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VDx-xb-Ug2">
-                                <rect key="frame" x="46.5" y="30" width="301" height="45"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="45"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z3D-bz-Ebe">
+                                        <rect key="frame" x="0.0" y="5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="8US-JO-qDK"/>
+                                            <constraint firstAttribute="height" constant="40" id="kPK-CH-VNK"/>
+                                        </constraints>
+                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="0.0" y="0.0" width="231.00000000000006" height="45"/>
+                                        <rect key="frame" x="70" y="0.0" width="180.00000000000006" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="231" id="VCf-ry-UaG"/>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nmg-bi-XUI">
-                                        <rect key="frame" x="261" y="5" width="40" height="40"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plusIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nmg-bi-XUI">
+                                        <rect key="frame" x="280" y="5" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="v0U-e6-h5J"/>
                                             <constraint firstAttribute="height" constant="40" id="y2B-JD-Fl0"/>
@@ -216,14 +223,15 @@
                             <constraint firstItem="1es-1h-yhM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BlD-cA-fbN"/>
                             <constraint firstItem="1es-1h-yhM" firstAttribute="top" secondItem="dI4-Fy-ey3" secondAttribute="bottom" id="ChE-Hx-h0s"/>
                             <constraint firstAttribute="trailing" secondItem="anO-4j-n8B" secondAttribute="trailing" id="E9w-Sx-2VR"/>
+                            <constraint firstItem="VDx-xb-Ug2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HHY-YO-vIR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3Rh-7E-hkr" secondAttribute="bottom" id="HSB-7e-xc6"/>
                             <constraint firstItem="3Rh-7E-hkr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="I6w-y1-xBE"/>
+                            <constraint firstAttribute="trailing" secondItem="VDx-xb-Ug2" secondAttribute="trailing" id="MIg-hU-akv"/>
                             <constraint firstItem="dI4-Fy-ey3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SHL-Xd-9z4"/>
                             <constraint firstItem="anO-4j-n8B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="e5w-lh-E0R"/>
                             <constraint firstItem="dI4-Fy-ey3" firstAttribute="top" secondItem="VDx-xb-Ug2" secondAttribute="bottom" constant="8" symbolic="YES" id="f5R-cd-x3i"/>
                             <constraint firstItem="VDx-xb-Ug2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="kzA-Hl-uRz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Rh-7E-hkr" secondAttribute="trailing" id="lj9-yI-eEr"/>
-                            <constraint firstItem="VDx-xb-Ug2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="37" id="nHm-fh-u7y"/>
                             <constraint firstItem="3Rh-7E-hkr" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" constant="5" id="p92-O4-5Og"/>
                             <constraint firstAttribute="trailing" secondItem="1es-1h-yhM" secondAttribute="trailing" id="pxK-CY-kyF"/>
                             <constraint firstItem="anO-4j-n8B" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" id="q5U-P9-g6R"/>
@@ -487,6 +495,6 @@
         <image name="upvoteArrow" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wqm-YJ-0hk"/>
+        <segue reference="5Xk-fX-i4s"/>
     </inferredMetricsTieBreakers>
 </document>
