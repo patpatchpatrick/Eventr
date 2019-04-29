@@ -14,6 +14,7 @@ class Event : CustomStringConvertible {
     var name: String
     var address: String
     var details: String
+    var favorite: Bool = false
     var paid: Bool = false
     var upvoteCount: Int = 0
     
@@ -27,6 +28,10 @@ class Event : CustomStringConvertible {
     
     func upvote(){
         upvoteCount += 1
+    }
+    
+    func markFavorite(){
+        favorite = !favorite
     }
     
 }

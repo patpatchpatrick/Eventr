@@ -21,6 +21,16 @@ class EventViewController: UIViewController {
         initializeMapKitView()
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
+        locationDetails.text = selectedEvent.address
+        updateFavoriteIcon()
+    }
+    
+    func updateFavoriteIcon(){
+        if selectedEvent.favorite {
+            favoriteButton.setImage(UIImage(named: "iconSelectedStar"), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
+        }
     }
     
     
@@ -28,6 +38,18 @@ class EventViewController: UIViewController {
     
     
     @IBOutlet weak var eventDetails: UITextView!
+    
+    
+    @IBOutlet weak var locationDetails: UITextView!
+    
+    
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    @IBAction func eventFavorited(_ sender: UIButton) {
+        //Favorite button pushed
+        selectedEvent.markFavorite()
+        updateFavoriteIcon()
+    }
     
     @IBOutlet weak var mapView: MKMapView!
     
