@@ -217,7 +217,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="70" y="0.0" width="180.00000000000006" height="45"/>
+                                        <rect key="frame" x="70" y="0.0" width="180" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
@@ -242,7 +242,7 @@
                                 <rect key="frame" x="0.0" y="20" width="50" height="548"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sidemenucurved" translatesAutoresizingMaskIntoConstraints="NO" id="Z6t-Dc-Eeb">
-                                        <rect key="frame" x="0.0" y="-1" width="97" height="550"/>
+                                        <rect key="frame" x="0.0" y="266" width="97" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="97" id="tvf-jG-gLd"/>
                                         </constraints>
