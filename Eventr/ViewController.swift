@@ -8,6 +8,8 @@
 
 import UIKit
 import DropDown
+import Firebase
+import FirebaseAuth
 
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", address: "", details: "")
@@ -21,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpAccountSettingsImage()
+        setUpLogOutIcon()
         setUpCategoryStackView()
         setUpAddCategoryImage()
         // Do any additional setup after loading the view.
@@ -32,20 +35,59 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var sideMenuShade: UIButton!
     
     func showSideMenu(){
-        sideMenu.isHidden = false
-        sideMenuShade.isHidden = false
+        UIView.animate(withDuration: 0.4, animations: {
+            self.sideMenu.alpha = 1
+            self.sideMenuShade.alpha = 0.75
+            
+        })
     }
     
     func hideSideMenu(){
-        sideMenu.isHidden = true
-        sideMenuShade.isHidden = true
+        UIView.animate(withDuration: 0.4, animations: {
+            self.sideMenu.alpha = 0
+            self.sideMenuShade.alpha = 0
+            
+        })
     }
+    
     
     @IBAction func sideMenuShadeTouched(_ sender: UIButton) {
         
         hideSideMenu()
     }
     
+    
+    @IBOutlet weak var logOutIcon: UIImageView!
+    
+    func setUpLogOutIcon(){
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(logOutIconTapped(tapGestureRecognizer:)))
+        
+        logOutIcon.isUserInteractionEnabled = true
+        logOutIcon.addGestureRecognizer(tapGestureRecognizer)
+        
+    }
+    
+    @objc func logOutIconTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        //Show the side menu with the account/settings button is tapped
+        logOut()
+    }
+    
+    func logOut(){
+        
+        do {
+            try Auth.auth().signOut()
+        }
+        catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initial = storyboard.instantiateInitialViewController()
+        UIApplication.shared.keyWindow?.rootViewController = initial
+        
+    }
     
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     

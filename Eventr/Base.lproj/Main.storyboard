@@ -283,6 +283,7 @@
                         <outlet property="addCategoryImage" destination="N7n-KT-twc" id="W0o-mK-zLy"/>
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
+                        <outlet property="logOutIcon" destination="Muw-pa-QyG" id="WLZ-8B-nWQ"/>
                         <outlet property="sideMenu" destination="K1r-ii-eaL" id="0OE-pH-nRo"/>
                         <outlet property="sideMenuShade" destination="sjr-ur-GUf" id="1rG-Mo-qSt"/>
                     </connections>
