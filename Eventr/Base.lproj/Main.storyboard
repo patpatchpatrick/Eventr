@@ -81,10 +81,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bmb-I1-ic2">
-                                                    <rect key="frame" x="275" y="3" width="35" height="43.5"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5X-Tg-WLB" userLabel="favoriteIcon">
+                                                    <rect key="frame" x="260" y="3" width="50" height="43.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="35" id="FCo-b1-jZq"/>
+                                                        <constraint firstAttribute="width" constant="50" id="k0y-21-56n"/>
+                                                    </constraints>
+                                                    <state key="normal" image="iconUnselectedStar"/>
+                                                    <connections>
+                                                        <action selector="eventFavorited:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PiS-g1-1uw"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bmb-I1-ic2">
+                                                    <rect key="frame" x="200" y="3" width="50" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="FCo-b1-jZq"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTK-xp-DYK">
@@ -113,12 +123,15 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Bmb-I1-ic2" secondAttribute="trailing" constant="10" id="548-wP-Cz7"/>
                                                 <constraint firstAttribute="bottom" secondItem="8k6-yo-BrG" secondAttribute="bottom" id="AVv-py-dCU"/>
                                                 <constraint firstItem="fTK-xp-DYK" firstAttribute="leading" secondItem="8k6-yo-BrG" secondAttribute="trailing" constant="10" id="CJq-TC-YOe"/>
                                                 <constraint firstItem="8k6-yo-BrG" firstAttribute="leading" secondItem="PO2-Mo-xv4" secondAttribute="leading" constant="10" id="GLJ-dI-9VY"/>
+                                                <constraint firstAttribute="bottom" secondItem="u5X-Tg-WLB" secondAttribute="bottom" constant="3" id="Uqp-9Z-vhx"/>
                                                 <constraint firstItem="Bmb-I1-ic2" firstAttribute="top" secondItem="PO2-Mo-xv4" secondAttribute="top" constant="3" id="XNu-px-uRa"/>
+                                                <constraint firstAttribute="trailing" secondItem="u5X-Tg-WLB" secondAttribute="trailing" constant="10" id="bzK-Dw-GD2"/>
                                                 <constraint firstItem="8k6-yo-BrG" firstAttribute="top" secondItem="PO2-Mo-xv4" secondAttribute="top" id="d0D-sz-qFg"/>
+                                                <constraint firstItem="u5X-Tg-WLB" firstAttribute="top" secondItem="PO2-Mo-xv4" secondAttribute="top" constant="3" id="gKx-AT-d6O"/>
+                                                <constraint firstItem="u5X-Tg-WLB" firstAttribute="leading" secondItem="Bmb-I1-ic2" secondAttribute="trailing" constant="10" id="gX3-oa-uNz"/>
                                                 <constraint firstAttribute="bottom" secondItem="Bmb-I1-ic2" secondAttribute="bottom" constant="3" id="mfn-n3-PPT"/>
                                                 <constraint firstAttribute="bottom" secondItem="fTK-xp-DYK" secondAttribute="bottom" constant="13" id="wad-e9-gwl"/>
                                                 <constraint firstItem="fTK-xp-DYK" firstAttribute="top" secondItem="PO2-Mo-xv4" secondAttribute="top" constant="10" id="wcS-xU-iEE"/>
@@ -126,6 +139,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventName" destination="fTK-xp-DYK" id="JAj-p8-0LD"/>
+                                            <outlet property="favoriteIcon" destination="u5X-Tg-WLB" id="3Cx-RA-r0N"/>
                                             <outlet property="paidEvent" destination="Bmb-I1-ic2" id="o4T-vt-TLp"/>
                                             <outlet property="upvoteArrow" destination="mHs-nw-52Z" id="VH6-c1-EvG"/>
                                             <outlet property="upvoteCount" destination="SDC-6e-F5T" id="lJn-LU-K9b"/>
@@ -433,7 +447,7 @@
                                 <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jxa-Xj-4av">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="383.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="527"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0i-SM-9kK">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
@@ -447,8 +461,16 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbc-QI-oda">
+                                                <rect key="frame" x="0.0" y="123" width="350" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="3Eh-1R-IMo"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Tickets" image="iconTickets"/>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loc:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PF-Su-0Uc">
-                                                <rect key="frame" x="0.0" y="123" width="350" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="173" width="350" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20.5" id="hH7-G3-Cbo"/>
                                                 </constraints>
@@ -457,7 +479,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DgF-zs-BsV">
-                                                <rect key="frame" x="0.0" y="163.5" width="350" height="50"/>
+                                                <rect key="frame" x="0.0" y="213.5" width="350" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="fe9-6n-3va"/>
@@ -466,17 +488,32 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yDY-YZ-XMc">
-                                                <rect key="frame" x="0.0" y="233.5" width="350" height="150"/>
+                                                <rect key="frame" x="0.0" y="283.5" width="350" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="0e1-EG-NuK"/>
                                                     <constraint firstAttribute="width" constant="350" id="lbC-v3-F2j"/>
                                                 </constraints>
                                             </mapView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aft-fq-N1g">
+                                                <rect key="frame" x="0.0" y="453.5" width="350" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="um1-Qk-dRT">
+                                                <rect key="frame" x="0.0" y="494" width="350" height="33"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="yDY-YZ-XMc" firstAttribute="top" secondItem="DgF-zs-BsV" secondAttribute="bottom" constant="20" id="7mK-Tk-GQf"/>
+                                            <constraint firstItem="um1-Qk-dRT" firstAttribute="top" secondItem="Aft-fq-N1g" secondAttribute="bottom" constant="20" id="80Q-61-kTO"/>
                                             <constraint firstAttribute="trailing" secondItem="DgF-zs-BsV" secondAttribute="trailing" id="8lA-IL-3ul"/>
+                                            <constraint firstItem="Kbc-QI-oda" firstAttribute="top" secondItem="GGi-50-2Kr" secondAttribute="bottom" constant="20" id="AUz-IK-y2g"/>
                                             <constraint firstAttribute="trailing" secondItem="8PF-Su-0Uc" secondAttribute="trailing" id="DYK-qF-Hxv"/>
+                                            <constraint firstItem="8PF-Su-0Uc" firstAttribute="top" secondItem="Kbc-QI-oda" secondAttribute="bottom" constant="20" id="Hz9-9a-PEb"/>
                                             <constraint firstItem="DgF-zs-BsV" firstAttribute="leading" secondItem="jxa-Xj-4av" secondAttribute="leading" id="KmQ-3l-FON"/>
                                             <constraint firstAttribute="trailing" secondItem="GGi-50-2Kr" secondAttribute="trailing" id="ToU-FI-ACz"/>
                                             <constraint firstItem="GGi-50-2Kr" firstAttribute="leading" secondItem="jxa-Xj-4av" secondAttribute="leading" id="UXU-Vx-VHs"/>
@@ -485,8 +522,8 @@
                                             <constraint firstAttribute="trailing" secondItem="G0i-SM-9kK" secondAttribute="trailing" id="oOu-gz-A9A"/>
                                             <constraint firstItem="yDY-YZ-XMc" firstAttribute="leading" secondItem="jxa-Xj-4av" secondAttribute="leading" id="pgs-wo-tJQ"/>
                                             <constraint firstItem="8PF-Su-0Uc" firstAttribute="leading" secondItem="jxa-Xj-4av" secondAttribute="leading" id="rG0-yy-Tgb"/>
+                                            <constraint firstItem="Aft-fq-N1g" firstAttribute="top" secondItem="yDY-YZ-XMc" secondAttribute="bottom" constant="20" id="sG7-el-va1"/>
                                             <constraint firstItem="DgF-zs-BsV" firstAttribute="top" secondItem="8PF-Su-0Uc" secondAttribute="bottom" constant="20" id="thd-Fo-FJp"/>
-                                            <constraint firstItem="8PF-Su-0Uc" firstAttribute="top" secondItem="GGi-50-2Kr" secondAttribute="bottom" constant="20" id="vhc-Fh-vSd"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -511,6 +548,7 @@
                         <viewLayoutGuide key="safeArea" id="uhh-Iw-S8A"/>
                     </view>
                     <connections>
+                        <outlet property="contactDetails" destination="um1-Qk-dRT" id="fOD-2B-vdP"/>
                         <outlet property="eventDetails" destination="GGi-50-2Kr" id="aeB-1x-Pap"/>
                         <outlet property="eventName" destination="G0i-SM-9kK" id="Rm8-Hh-zIh"/>
                         <outlet property="favoriteButton" destination="ZHy-x3-gfa" id="Kyf-Yt-rJ2"/>
@@ -605,6 +643,7 @@
         <image name="accountIcon" width="100" height="100"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconLogOut" width="52" height="52"/>
+        <image name="iconTickets" width="100" height="100"/>
         <image name="iconUnselectedStar" width="100" height="100"/>
         <image name="plusIcon" width="52" height="52"/>
         <image name="sidemenucurved" width="100" height="550"/>

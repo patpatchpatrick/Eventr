@@ -12,8 +12,10 @@ import Firebase
 import FirebaseAuth
 
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", address: "", details: "")
+var selectedEvent: Event = Event(name: "", address: "", details: "", contact: "")
 var events: [Event]!
+
+
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -30,8 +32,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
     }
     
-    //Views for the side menu
-    //Side menu shows account/settings info
+    override func viewDidAppear(_ animated: Bool) {
+        //Reload tableview whenever view appears
+        eventTableView.reloadData()
+    }
+    
+    //Views for the side menu    //Side menu shows account/settings info
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
     @IBOutlet weak var sideMenuCurveImage: UIImageView!
@@ -205,6 +211,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.paidEvent?.image = nil
         }
         
+        
+        if event.favorite {
+            cell.favoriteIcon?.setImage(UIImage(named: "iconSelectedStar"), for: .normal)
+        } else {
+            cell.favoriteIcon?.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
+        }
         //Add tap gesture recognizer for upvote arrow
         //When upvote arrow is tapped, run the upvoteTapped method
         //to update event upvotes
@@ -212,6 +224,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tapGestureRecognizer.numberOfTapsRequired = 1
         cell.upvoteArrow?.isUserInteractionEnabled = true
         cell.upvoteArrow?.addGestureRecognizer(tapGestureRecognizer)
+        cell.favoriteIcon?.tag = indexPath.row
         cell.upvoteArrow?.tag = indexPath.row
         cell.upvoteCount?.text = String(event.upvoteCount)
         return cell
@@ -233,6 +246,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         }
     }
+    
+    
+    @IBAction func eventFavorited(_ sender: UIButton) {
+        //Favorite icon (star) is tapped for a table row
+        //Mark the event as a favorite and reload the data
+        events[sender.tag].markFavorite()
+        eventTableView.reloadData()
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedEvent = events[indexPath.row]

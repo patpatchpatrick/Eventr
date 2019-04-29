@@ -22,6 +22,7 @@ class HairlineView: UIView {
 class CustomEventCell: UITableViewCell {
     
     //Custom cell for event table view
+    @IBOutlet weak var favoriteIcon: UIButton!
     
     @IBOutlet weak var paidEvent: UIImageView!
     @IBOutlet weak var upvoteArrow: UIImageView!

@@ -14,16 +14,18 @@ class Event : CustomStringConvertible {
     var name: String
     var address: String
     var details: String
+    var contact: String
     var favorite: Bool = false
     var paid: Bool = false
     var upvoteCount: Int = 0
     
     
-    init(name: String, address: String, details: String) {
+    init(name: String, address: String, details: String, contact: String) {
         self.name = name
         self.address = address
         self.description = name
         self.details = details
+        self.contact = contact
     }
     
     func upvote(){

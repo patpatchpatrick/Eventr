@@ -22,6 +22,7 @@ class EventViewController: UIViewController {
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
         locationDetails.text = selectedEvent.address
+        contactDetails.text = selectedEvent.contact
         updateFavoriteIcon()
     }
     
@@ -41,6 +42,9 @@ class EventViewController: UIViewController {
     
     
     @IBOutlet weak var locationDetails: UITextView!
+    
+    
+    @IBOutlet weak var contactDetails: UITextView!
     
     
     @IBOutlet weak var favoriteButton: UIButton!
