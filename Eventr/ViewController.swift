@@ -20,9 +20,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpAccountSettingsImage()
         setUpCategoryStackView()
         setUpAddCategoryImage()
         // Do any additional setup after loading the view.
+    }
+    
+    //Views for the side menu
+    //Side menu shows account/settings info
+    @IBOutlet weak var sideMenu: UIView!
+    @IBOutlet weak var sideMenuShade: UIButton!
+    
+    func showSideMenu(){
+        sideMenu.isHidden = false
+        sideMenuShade.isHidden = false
+    }
+    
+    func hideSideMenu(){
+        sideMenu.isHidden = true
+        sideMenuShade.isHidden = true
+    }
+    
+    @IBAction func sideMenuShadeTouched(_ sender: UIButton) {
+        
+        hideSideMenu()
+    }
+    
+    
+    @IBOutlet weak var accountSettingsIcon: UIImageView!
+    
+    func setUpAccountSettingsImage(){
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountSettingsIconTapped(tapGestureRecognizer:)))
+        
+        accountSettingsIcon.isUserInteractionEnabled = true
+        accountSettingsIcon.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func accountSettingsIconTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+       //Show the side menu with the account/settings button is tapped
+       showSideMenu()
     }
     
     func setUpAddCategoryImage(){
