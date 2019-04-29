@@ -26,13 +26,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpLogOutIcon()
         setUpCategoryStackView()
         setUpAddCategoryImage()
-        // Do any additional setup after loading the view.
+        hideSideMenu()
+  
     }
     
     //Views for the side menu
     //Side menu shows account/settings info
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
+    @IBOutlet weak var sideMenuCurveImage: UIImageView!
     
     func showSideMenu(){
         UIView.animate(withDuration: 0.4, animations: {
@@ -40,6 +42,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.sideMenuShade.alpha = 0.75
             
         })
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+            self.sideMenuCurveImage.transform = .identity
+        })
+        
     }
     
     func hideSideMenu(){
@@ -47,6 +53,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.sideMenu.alpha = 0
             self.sideMenuShade.alpha = 0
             
+        })
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+            self.sideMenuCurveImage.transform = CGAffineTransform(translationX: -self.sideMenuCurveImage.frame.width, y: 0)
         })
     }
     
