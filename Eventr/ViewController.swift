@@ -13,7 +13,7 @@ import Firebase
 import FirebaseAuth
 
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", address: "", details: "", contact: "")
+var selectedEvent: Event = Event(name: "", address: "", details: "", contact: "", ticketURL: "", eventURL: "", tags: "")
 var events: [Event]!
 var currentLocation: CLLocation!
 

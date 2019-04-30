@@ -8,24 +8,29 @@
 
 import Foundation
 
-class Event : CustomStringConvertible {
+class Event {
     
-    var description: String
+    
     var name: String
     var address: String
     var details: String
     var contact: String
+    var ticketURL: String = ""
+    var eventURL: String = ""
+    var tags: String = ""
     var favorite: Bool = false
     var paid: Bool = false
     var upvoteCount: Int = 0
     
     
-    init(name: String, address: String, details: String, contact: String) {
+    init(name: String, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tags: String) {
         self.name = name
         self.address = address
-        self.description = name
         self.details = details
         self.contact = contact
+        self.ticketURL = ticketURL
+        self.eventURL = eventURL
+        self.tags = tags
     }
     
     func upvote(){

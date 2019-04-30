@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import MapKit
 
 class CreateEventViewController: UIViewController {
     
@@ -59,27 +60,15 @@ class CreateEventViewController: UIViewController {
     
     @IBAction func createEvent(_ sender: UIButton) {
         
-        ref = Database.database().reference()
-        if Auth.auth().currentUser != nil {
-            let eventData = [
-                "name":  eventName.text.trimmingCharacters(in: .whitespacesAndNewlines),
-                "description": eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines),
-                "location":   eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines),
-                "ticketURL":   eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines),
-                "eventURL":   eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines),
-                "contact":   eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines),
-                "tags":   eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines)
-            ]
-            ref.child("Events").childByAutoId().setValue(eventData, withCompletionBlock: { (error, snapshot) in
-                if error != nil {
-                    print("Error writing event to Firebase")
-                } else {
-                    self.performSegueToReturnBack()
-                }
-            })
+        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tags: eventTags.text.trimmingCharacters(in: .whitespacesAndNewlines))
         
-        }
+        createFirebaseEvent(event: newEvent)
+        
+        print("EVENT CREATED SUCCESSFULLY")
+        
+        
 
     }
+    
     
 }

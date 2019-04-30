@@ -66,7 +66,7 @@ class EventViewController: UIViewController {
         
         //Initialize map kit view to display location of event 
         
-        getCoordinates(forAddress: selectedEvent.address) {
+        getMapCoordinates(forAddress: selectedEvent.address) {
             (location) in
             guard let location = location else {
                 //Handle geolocation error
@@ -85,7 +85,7 @@ class EventViewController: UIViewController {
         
     }
     
-    func getCoordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+    func getMapCoordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) {
             (placemarks, error) in
@@ -112,16 +112,6 @@ class EventViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
