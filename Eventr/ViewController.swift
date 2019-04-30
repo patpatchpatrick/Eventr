@@ -146,6 +146,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let latitude: CLLocationDegrees = 47.6219
         let longitude: CLLocationDegrees = 122.3517
         
+        performSegue(withIdentifier: "createEventSegue", sender: self)
+        
         //queryFirebaseEventsInRadius(centerLocation: CLLocation(latitude: latitude, longitude: longitude), radius: 2.0)
         
         /*

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3EF991852444668B617BB6D3 /* Pods_Eventr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A6523D5DB2C1D293FCBE23 /* Pods_Eventr.framework */; };
+		F603C0FE2278BCD700EE8798 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */; };
 		F6113F4522764FD900CAD961 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6113F4422764FD900CAD961 /* GoogleService-Info.plist */; };
 		F6113F47227654D200CAD961 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6113F46227654D200CAD961 /* StartViewController.swift */; };
 		F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6113F482276589400CAD961 /* SignUpViewController.swift */; };
@@ -28,6 +29,7 @@
 		42A6523D5DB2C1D293FCBE23 /* Pods_Eventr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BACA90D8E42A7D2F6F33E825 /* Pods-Eventr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.release.xcconfig"; path = "Target Support Files/Pods-Eventr/Pods-Eventr.release.xcconfig"; sourceTree = "<group>"; };
 		C7A54BFFEEECA5E876D9B033 /* Pods-Eventr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.debug.xcconfig"; path = "Target Support Files/Pods-Eventr/Pods-Eventr.debug.xcconfig"; sourceTree = "<group>"; };
+		F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F6113F4422764FD900CAD961 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6113F46227654D200CAD961 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		F6113F482276589400CAD961 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				F65368842272618100861E0D /* AppDelegate.swift */,
 				F65368862272618100861E0D /* ViewController.swift */,
 				F65368882272618100861E0D /* Main.storyboard */,
+				F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */,
 				F6113F4A227660A900CAD961 /* LoginViewController.swift */,
 				F62733032273944500FDA681 /* EventViewController.swift */,
 				F653688B2272618200861E0D /* Assets.xcassets */,
@@ -259,6 +262,7 @@
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,
 				F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,
+				F603C0FE2278BCD700EE8798 /* CreateEventViewController.swift in Sources */,
 				F65368872272618100861E0D /* ViewController.swift in Sources */,
 				F65368852272618100861E0D /* AppDelegate.swift in Sources */,
 				F65368972272678C00861E0D /* UtilityViews.swift in Sources */,
