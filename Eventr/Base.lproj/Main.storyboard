@@ -161,6 +161,9 @@
                                             <constraint firstAttribute="width" constant="30" id="bU2-8X-Hug"/>
                                         </constraints>
                                         <state key="normal" image="iconLocation"/>
+                                        <connections>
+                                            <action selector="getCurrentLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dTw-0d-mEZ"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWU-Ct-tSG">
                                         <rect key="frame" x="50" y="0.0" width="65" height="30"/>
@@ -354,6 +357,7 @@
                         <outlet property="addCategoryImage" destination="N7n-KT-twc" id="W0o-mK-zLy"/>
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
+                        <outlet property="locationEntryField" destination="GWU-Ct-tSG" id="mAe-Wi-zBj"/>
                         <outlet property="logOutIcon" destination="Muw-pa-QyG" id="WLZ-8B-nWQ"/>
                         <outlet property="sideMenu" destination="K1r-ii-eaL" id="0OE-pH-nRo"/>
                         <outlet property="sideMenuCurveImage" destination="Z6t-Dc-Eeb" id="MIm-L2-EsO"/>

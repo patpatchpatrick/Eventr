@@ -15,16 +15,23 @@ import FirebaseAuth
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", address: "", details: "", contact: "")
 var events: [Event]!
+var currentLocation: CLLocation!
 
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     //List of events to display in tableView
     let categoryDropDown = DropDown()
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Request location authorizations
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        
         setUpAccountSettingsImage()
         setUpLogOutIcon()
         setUpCategoryStackView()
@@ -204,6 +211,45 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
     }
+    
+    //Get current location button tapped
+    //Get the user's location.  The locationManager function will be called after retrieved
+    @IBAction func getCurrentLocation(_ sender: UIButton) {
+        
+        if currentLocation == nil {
+            //Get user's current location
+            DispatchQueue.global(qos: .userInteractive).async {
+                if CLLocationManager.locationServicesEnabled() {
+                    self.locationManager.delegate = self
+                    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                    self.locationManager.startUpdatingLocation()
+                }
+            }
+        } else {
+            useCurrentLocation()
+        }
+        
+        
+    }
+    
+    //User's location returned
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        currentLocation = manager.location
+        
+        DispatchQueue.main.async {
+            self.useCurrentLocation()
+        }
+    }
+    
+    func useCurrentLocation(){
+        locationEntryField.text = "Current Location"
+        locationEntryField.endEditing(true)
+    }
+    
+    
+    @IBOutlet weak var locationEntryField: UITextField!
     
     @IBOutlet weak var eventTableView: UITableView!
     
