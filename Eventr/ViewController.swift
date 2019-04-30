@@ -142,11 +142,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     //Create Event Icon was tapped
+    //If user is not logged in, display alert, otherwise segue to createEvent screen
     @IBAction func createEvent(_ sender: UIButton) {
         let latitude: CLLocationDegrees = 47.6219
         let longitude: CLLocationDegrees = 122.3517
-        
-        performSegue(withIdentifier: "createEventSegue", sender: self)
+        if Auth.auth().currentUser == nil {
+            let alert = UIAlertController(title: "Must Be Logged In to Create Event", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            }))
+            self.present(alert, animated: true)
+        } else {
+            performSegue(withIdentifier: "createEventSegue", sender: self)
+        }
         
         //queryFirebaseEventsInRadius(centerLocation: CLLocation(latitude: latitude, longitude: longitude), radius: 2.0)
         

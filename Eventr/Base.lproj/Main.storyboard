@@ -259,7 +259,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="70" y="0.0" width="180.00000000000006" height="45"/>
+                                        <rect key="frame" x="70" y="0.0" width="180" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
@@ -879,6 +879,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-ya-6gN">
                                                         <rect key="frame" x="0.0" y="374.5" width="368" height="30"/>
                                                         <state key="normal" title="Create Event"/>
+                                                        <connections>
+                                                            <action selector="createEvent:" destination="cy9-2J-sdg" eventType="touchUpInside" id="hbi-sp-cG2"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -905,6 +908,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ly1-xo-dpm"/>
                     </view>
+                    <connections>
+                        <outlet property="eventContactInfo" destination="dwq-yQ-BWN" id="OJN-mz-FNj"/>
+                        <outlet property="eventDescription" destination="d8G-QA-bbR" id="HIO-22-gGm"/>
+                        <outlet property="eventLocation" destination="UsO-g7-EtX" id="SJh-0L-cmn"/>
+                        <outlet property="eventName" destination="6SQ-3j-RYP" id="exE-gh-x6N"/>
+                        <outlet property="eventTags" destination="sWv-9N-b2h" id="hwu-sz-gRV"/>
+                        <outlet property="eventTicketURL" destination="RKs-T8-3EI" id="sXn-PG-DfL"/>
+                        <outlet property="eventURL" destination="GLy-IO-trK" id="i9T-aI-Rmk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3O-d4-9pC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
