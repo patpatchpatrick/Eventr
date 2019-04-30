@@ -222,13 +222,17 @@
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plusIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nmg-bi-XUI">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lX2-UO-7ir">
                                         <rect key="frame" x="280" y="5" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="v0U-e6-h5J"/>
-                                            <constraint firstAttribute="height" constant="40" id="y2B-JD-Fl0"/>
+                                            <constraint firstAttribute="width" constant="40" id="Jjm-Fe-KSp"/>
+                                            <constraint firstAttribute="height" constant="40" id="oNv-Ah-rWM"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" image="plusIcon"/>
+                                        <connections>
+                                            <action selector="createEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GNK-Ur-a7g"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjr-ur-GUf">

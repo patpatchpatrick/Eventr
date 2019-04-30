@@ -21,6 +21,7 @@
 		F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F653688D2272618200861E0D /* LaunchScreen.storyboard */; };
 		F65368972272678C00861E0D /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368962272678C00861E0D /* UtilityViews.swift */; };
 		F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* UserPreferences.swift */; };
+		F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F65368902272618200861E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F65368962272678C00861E0D /* UtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
 		F6ADA4C72273CBA000948B7D /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommunication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		F65368832272618000861E0D /* Eventr */ = {
 			isa = PBXGroup;
 			children = (
+				F6D13E522277BF1000104CFF /* Network */,
 				F6113F4422764FD900CAD961 /* GoogleService-Info.plist */,
 				F65368842272618100861E0D /* AppDelegate.swift */,
 				F65368862272618100861E0D /* ViewController.swift */,
@@ -110,6 +113,14 @@
 				F6113F482276589400CAD961 /* SignUpViewController.swift */,
 			);
 			path = Eventr;
+			sourceTree = "<group>";
+		};
+		F6D13E522277BF1000104CFF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +205,7 @@
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -203,6 +215,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6113F4B227660A900CAD961 /* LoginViewController.swift in Sources */,
+				F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */,
 				F62733042273944500FDA681 /* EventViewController.swift in Sources */,
 				F6113F47227654D200CAD961 /* StartViewController.swift in Sources */,
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,

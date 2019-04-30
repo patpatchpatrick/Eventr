@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import DropDown
 import Firebase
 import FirebaseAuth
@@ -118,6 +119,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     {
        //Show the side menu with the account/settings button is tapped
        showSideMenu()
+    }
+    
+    //Create Event Icon was tapped
+    @IBAction func createEvent(_ sender: UIButton) {
+        let latitude: CLLocationDegrees = 47.6219
+        let longitude: CLLocationDegrees = 122.3517
+        
+        queryFirebaseEventsInRadius(centerLocation: CLLocation(latitude: latitude, longitude: longitude), radius: 2.0)
+        
+        /*
+        let latitude: CLLocationDegrees = 1.287063
+        let longitude: CLLocationDegrees = 103.85455
+        insertFirebaseEvent(location: CLLocation(latitude: latitude, longitude: longitude), eventID: "Singapore Merlion")
+ */
     }
     
     func setUpAddCategoryImage(){
