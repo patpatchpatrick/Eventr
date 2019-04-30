@@ -55,6 +55,10 @@ class EventViewController: UIViewController {
         updateFavoriteIcon()
     }
     
+    
+    
+    @IBOutlet weak var linksStackView: UIStackView!
+    
     @IBOutlet weak var mapView: MKMapView!
     
     

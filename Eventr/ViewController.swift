@@ -37,6 +37,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpCategoryStackView()
         setUpAddCategoryImage()
         hideSideMenu()
+        setUpUser()
+        
   
     }
     
@@ -77,6 +79,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func sideMenuShadeTouched(_ sender: UIButton) {
         
         hideSideMenu()
+    }
+    
+    
+    @IBOutlet weak var sideMenuUserName: UILabel!
+    
+    //Set up user details in the side menu
+    func setUpUser(){
+        let userEmail = Auth.auth().currentUser?.email
+        if userEmail != nil {
+            sideMenuUserName.text = userEmail
+        }
     }
     
     
@@ -133,7 +146,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let latitude: CLLocationDegrees = 47.6219
         let longitude: CLLocationDegrees = 122.3517
         
-        queryFirebaseEventsInRadius(centerLocation: CLLocation(latitude: latitude, longitude: longitude), radius: 2.0)
+        //queryFirebaseEventsInRadius(centerLocation: CLLocation(latitude: latitude, longitude: longitude), radius: 2.0)
         
         /*
         let latitude: CLLocationDegrees = 1.287063
