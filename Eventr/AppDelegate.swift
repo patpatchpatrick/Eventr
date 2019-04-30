@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        events = loadTestEvents()
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .all))
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .business))
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .sports))
@@ -30,12 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .music))
         
         return true
-    }
-    
-    func loadTestEvents() -> [Event] {
-        var events : [Event] = []
-        return events
-  
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -33,6 +33,16 @@ class Event {
         self.tags = tags
     }
     
+    init(dict: NSDictionary){
+        self.name = dict.value(forKey: "name") as! String
+        self.address = dict.value(forKey: "location") as! String
+        self.details = dict.value(forKey: "description") as! String
+        self.ticketURL = dict.value(forKey: "ticketURL") as! String
+        self.eventURL = dict.value(forKey: "eventURL") as! String
+        self.contact = dict.value(forKey: "contact") as! String
+        self.tags = dict.value(forKey: "tags") as! String
+    }
+    
     func upvote(){
         upvoteCount += 1
     }

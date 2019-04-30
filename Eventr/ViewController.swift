@@ -14,7 +14,7 @@ import FirebaseAuth
 
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", address: "", details: "", contact: "", ticketURL: "", eventURL: "", tags: "")
-var events: [Event]!
+var events: [Event] = []
 var currentLocation: CLLocation!
 
 
@@ -144,8 +144,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Create Event Icon was tapped
     //If user is not logged in, display alert, otherwise segue to createEvent screen
     @IBAction func createEvent(_ sender: UIButton) {
-        let latitude: CLLocationDegrees = 47.6219
-        let longitude: CLLocationDegrees = 122.3517
         if Auth.auth().currentUser == nil {
             let alert = UIAlertController(title: "Must Be Logged In to Create Event", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
@@ -155,13 +153,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             performSegue(withIdentifier: "createEventSegue", sender: self)
         }
         
-        //queryFirebaseEventsInRadius(centerLocation: CLLocation(latitude: latitude, longitude: longitude), radius: 2.0)
-        
-        /*
-        let latitude: CLLocationDegrees = 1.287063
-        let longitude: CLLocationDegrees = 103.85455
-        insertFirebaseEvent(location: CLLocation(latitude: latitude, longitude: longitude), eventID: "Singapore Merlion")
- */
     }
     
     func setUpAddCategoryImage(){
@@ -342,6 +333,45 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedEvent = events[indexPath.row]
         performSegue(withIdentifier: "eventSegue", sender: self)
+    }
+    
+    
+    //Query firebase event data and update tableview with events
+    @IBAction func search(_ sender: UIButton) {
+        
+        //Query event data from firebase for tableview
+        //Get address location either as user's currenty location or from the location entry textfield
+        //Query events within radius(km) of the location from firebase
+        
+        let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if addressText == "Current Location" {
+            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: 50.0, callback: {
+                bool in
+                print(bool)
+                if bool {
+                    self.eventTableView.reloadData()
+                }
+            })
+        } else {
+            getCoordinates(forAddress: addressText!) {
+                (location) in
+                guard let location = location else {
+                    //Handle geolocation error
+                    return
+                }
+                let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: 50.0, callback: {
+                    bool in
+                    print(bool)
+                    if bool {
+                        self.eventTableView.reloadData()
+                    }
+                })
+            }
+        }
+        
+        
+        
     }
     
     

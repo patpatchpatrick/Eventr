@@ -57,14 +57,24 @@ class CreateEventViewController: UIViewController {
         }
     }
     
-    
+    //Create a new event and write to firebase
+    //If created successfully, segue to previous screen will be run
+    //If error occurs, alert will fire
     @IBAction func createEvent(_ sender: UIButton) {
         
         let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tags: eventTags.text.trimmingCharacters(in: .whitespacesAndNewlines))
         
-        createFirebaseEvent(event: newEvent)
-        
-        print("EVENT CREATED SUCCESSFULLY")
+        createFirebaseEvent(event: newEvent, callback: {
+            bool in
+            if bool {
+                print("EVENT CREATED SUCCESSFULLY")
+                self.performSegueToReturnBack()
+            } else {
+                let createEventFailAlert = UIAlertController(title: "Event unable to be created. Ensure network connection is established or retry later", message: nil, preferredStyle: .alert)
+                createEventFailAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                }))
+                self.present(createEventFailAlert, animated: true)
+            }})
         
         
 
