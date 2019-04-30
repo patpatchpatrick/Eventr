@@ -31,3 +31,26 @@ class CustomEventCell: UITableViewCell {
     
     
 }
+
+//Class used for event tags
+@IBDesignable
+class CustomLabel: UILabel {
+    
+    @IBInspectable var borderColor: UIColor = UIColor.black {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat = 2.0 {
+        didSet {
+            layer.borderWidth = borderWidth
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
+}
