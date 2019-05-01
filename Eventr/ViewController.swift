@@ -275,6 +275,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 1
     }
     
+    //Set up the cells in the table view using the event data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = eventTableView.dequeueReusableCell(withIdentifier: "cellEvent", for: indexPath) as! CustomEventCell
         
@@ -292,6 +293,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             cell.favoriteIcon?.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
         }
+        
+        cell.categoryIcon.image = event.category.image()
+        
         //Add tap gesture recognizer for upvote arrow
         //When upvote arrow is tapped, run the upvoteTapped method
         //to update event upvotes
