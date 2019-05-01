@@ -21,6 +21,7 @@ enum eventCategory {
     case art
     case friends
     case food
+    case misc
 }
 
 func stringToEventCategory(string: String) -> EventCategory {
@@ -32,7 +33,8 @@ func stringToEventCategory(string: String) -> EventCategory {
     case "Art" : return EventCategory(category: .art)
     case "Friends" : return EventCategory(category: .friends)
     case "Food" : return EventCategory(category: .food)
-    default: return EventCategory(category: .all)
+    case "Misc" : return EventCategory(category: .misc)
+    default: return EventCategory(category: .misc)
     }
 }
 
@@ -53,6 +55,7 @@ public struct EventCategory : Hashable {
         case .art: return "Art"
         case .friends: return "Friends"
         case .food: return "Food"
+        case .misc: return "Misc"
         }
     }
     
@@ -72,6 +75,8 @@ public struct EventCategory : Hashable {
             return UIImage(named: "catIconFriends")
         case .food:
             return UIImage(named: "catIconFood")
+        case .misc:
+            return UIImage(named: "catIconMisc")
         }
     }
     
@@ -110,3 +115,4 @@ class EventCategorySet {
 //Lists representing which categories that user has selected to display (and which categories are still unselected)
 var userSelectedEventCategories: EventCategorySet = EventCategorySet(set: [])
 var userUnselectedEventCategories: EventCategorySet = EventCategorySet(set: [])
+var allEventCategories: EventCategorySet = EventCategorySet(set: [])

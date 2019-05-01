@@ -13,6 +13,7 @@ class Event {
     
     var name: String = ""
     var id: String = ""
+    var category: EventCategory = EventCategory(category: .misc)
     var address: String = ""
     var details: String = ""
     var contact: String = ""
@@ -24,7 +25,7 @@ class Event {
     var upvoteCount: Int = 0
     
     
-    init(name: String, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tags: String) {
+    init(name: String, category: EventCategory, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tags: String, paid: Bool) {
         self.name = name
         self.address = address
         self.details = details
@@ -32,6 +33,8 @@ class Event {
         self.ticketURL = ticketURL
         self.eventURL = eventURL
         self.tags = tags
+        self.category = category
+        self.paid = paid
     }
     
     //Initialize an event from a dictionary retreived from Firebase
@@ -40,7 +43,11 @@ class Event {
             self.name = dict.value(forKey: "name") as! String
         }
         self.id = idKey
-        if dict["address"] != nil {
+        if dict["category"] != nil {
+            let categoryString = dict.value(forKey: "category") as! String
+            self.category = stringToEventCategory(string: categoryString)
+        }
+        if dict["location"] != nil {
             self.address = dict.value(forKey: "location") as! String
         }
         if dict["description"] != nil {
@@ -61,6 +68,10 @@ class Event {
         if dict["upvotes"] != nil {
             let stringUpvoteCount = dict.value(forKey: "upvotes") as! String
             self.upvoteCount = Int(stringUpvoteCount)!
+        }
+        if dict["paid"] != nil {
+            let stringPaid = dict.value(forKey: "paid") as! String
+            self.paid = (stringPaid == "1") ? true : false
         }
     }
     

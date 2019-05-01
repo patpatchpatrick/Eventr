@@ -9,10 +9,12 @@
 import UIKit
 import Firebase
 import MapKit
+import DropDown
 
 class CreateEventViewController: UIViewController {
     
     var ref: DatabaseReference!
+    let categoryDropDown = DropDown()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,33 @@ class CreateEventViewController: UIViewController {
     
     @IBOutlet weak var eventTags: UITextView!
     
-
+    @IBOutlet weak var selectCategoryButton: UIButton!
+   
+    @IBOutlet weak var paidSwitch: UISwitch!
+    
+    @IBAction func selectCategory(_ sender: UIButton) {
+      
+    
+        
+        //Set up category selection dropdown menu
+        categoryDropDown.anchorView = selectCategoryButton
+        categoryDropDown.dataSource = allEventCategories.strings()
+        categoryDropDown.cellConfiguration = { (index, item) in return "\(item)" }
+        
+        categoryDropDown.selectionAction = { (index: Int, item: String) in
+            self.selectCategoryButton.titleLabel?.text = item
+        }
+        categoryDropDown.width = 140
+        categoryDropDown.bottomOffset = CGPoint(x: 0, y:(categoryDropDown.anchorView?.plainView.bounds.height)!)
+        categoryDropDown.show()
+        
+       
+    }
+    
+    
+    
+    
+    
     //If previous screen button is pushed, show discard data alert
     @IBAction func previousScreen(_ sender: UIButton) {
         
@@ -62,7 +90,10 @@ class CreateEventViewController: UIViewController {
     //If error occurs, alert will fire
     @IBAction func createEvent(_ sender: UIButton) {
         
-        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tags: eventTags.text.trimmingCharacters(in: .whitespacesAndNewlines))
+        let categoryString = selectCategoryButton.titleLabel?.text
+        let category = stringToEventCategory(string: categoryString!)
+        
+        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tags: eventTags.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
         
         createFirebaseEvent(event: newEvent, callback: {
             bool in

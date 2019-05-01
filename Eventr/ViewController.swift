@@ -13,7 +13,7 @@ import Firebase
 import FirebaseAuth
 
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", address: "", details: "", contact: "", ticketURL: "", eventURL: "", tags: "")
+var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), address: "", details: "", contact: "", ticketURL: "", eventURL: "", tags: "", paid: false)
 var events: [Event] = []
 var currentLocation: CLLocation!
 var searchDistance: Double = 5.0 //search distance in miles

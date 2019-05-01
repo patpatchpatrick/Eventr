@@ -20,15 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        setUpEventCategories()
+        
+        return true
+    }
+    
+    func setUpEventCategories(){
+        
+        allEventCategories.add(eventCategory: EventCategory(category: .business))
+        allEventCategories.add(eventCategory: EventCategory(category: .sports))
+        allEventCategories.add(eventCategory: EventCategory(category: .food))
+        allEventCategories.add(eventCategory: EventCategory(category: .art))
+        allEventCategories.add(eventCategory: EventCategory(category: .friends))
+        allEventCategories.add(eventCategory: EventCategory(category: .music))
+        allEventCategories.add(eventCategory: EventCategory(category: .misc))
+        
+        
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .all))
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .business))
         userSelectedEventCategories.add(eventCategory: EventCategory(category: .sports))
+        userSelectedEventCategories.add(eventCategory: EventCategory(category: .misc))
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .food))
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .art))
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .friends))
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .music))
-        
-        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

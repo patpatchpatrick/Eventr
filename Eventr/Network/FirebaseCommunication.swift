@@ -24,7 +24,7 @@ let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, callback: ((Bool) -> Void)?){
     events.removeAll()
     _ = geoFire.query(at: centerLocation, withRadius: radius).observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        firebaseDatabaseRef.child("Events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+        firebaseDatabaseRef.child("events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get dictionary of event data
             let value = snapshot.value as? NSDictionary
             if value != nil {
@@ -44,17 +44,20 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, cal
 //Then, it will create an event in the GeoFire child of firebase so it can be searched by location
 func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
     if Auth.auth().currentUser != nil {
+        let paidString = (event.paid) ? "1" : "0"
         let eventData = [
             "name":  event.name,
+            "category": event.category.text(),
             "description": event.details,
             "location":   event.address,
             "ticketURL":   event.ticketURL,
             "eventURL":   event.eventURL,
             "contact":   event.contact,
             "tags":   event.tags,
-            "upvotes": String(event.upvoteCount)
+            "upvotes": String(event.upvoteCount),
+            "paid" : paidString
         ]
-        let firebaseEvent = firebaseDatabaseRef.child("Events").childByAutoId()
+        let firebaseEvent = firebaseDatabaseRef.child("events").childByAutoId()
         let eventKey = firebaseEvent.key
         if eventKey != nil {
             event.id = eventKey!
@@ -86,14 +89,14 @@ func upvoteFirebaseEvent(event: Event){
     if Auth.auth().currentUser != nil {
         print("USER AUTHed")
         print(event.id)
-        firebaseDatabaseRef.child("Events").child(event.id).observeSingleEvent(of: .value, with: {
+        firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
             (snapshot) in
             let dict = snapshot.value as? NSDictionary
             if dict!["upvotes"] != nil {
                 let upvoteCountString = dict!["upvotes"] as! String
                 var upvoteCount = Int(upvoteCountString)!
                 upvoteCount += 1
-                firebaseDatabaseRef.child("Events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
+                firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
             }
             
         })

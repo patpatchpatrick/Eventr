@@ -272,7 +272,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="70" y="0.0" width="180" height="45"/>
+                                        <rect key="frame" x="70" y="0.0" width="180.00000000000006" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
@@ -802,7 +802,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="10" y="10" width="368" height="404.5"/>
+                                                <rect key="frame" x="10" y="10" width="368" height="435.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Ct-K0T">
                                                         <rect key="frame" x="0.0" y="0.0" width="368" height="20.5"/>
@@ -828,69 +828,90 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSw-xc-4Uf">
-                                                        <rect key="frame" x="0.0" y="107" width="368" height="20.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FcY-eP-cMg">
+                                                        <rect key="frame" x="0.0" y="107" width="368" height="31"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-72-To4">
+                                                                <rect key="frame" x="0.0" y="0.0" width="230" height="31"/>
+                                                                <state key="normal" title="Select Category"/>
+                                                                <connections>
+                                                                    <action selector="selectCategory:" destination="cy9-2J-sdg" eventType="touchUpInside" id="S5g-4c-X0L"/>
+                                                                </connections>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid Event?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohc-iE-dSP">
+                                                                <rect key="frame" x="230" y="0.0" width="89" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rmz-v0-rvR">
+                                                                <rect key="frame" x="319" y="0.0" width="51" height="31"/>
+                                                            </switch>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSw-xc-4Uf">
+                                                        <rect key="frame" x="0.0" y="138" width="368" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-g7-EtX">
-                                                        <rect key="frame" x="0.0" y="127.5" width="368" height="33"/>
+                                                        <rect key="frame" x="0.0" y="158.5" width="368" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <dataDetectorType key="dataDetectorTypes" address="YES"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tickets URL:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBU-pr-lR1">
-                                                        <rect key="frame" x="0.0" y="160.5" width="368" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="191.5" width="368" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RKs-T8-3EI">
-                                                        <rect key="frame" x="0.0" y="181" width="368" height="33"/>
+                                                        <rect key="frame" x="0.0" y="212" width="368" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event URL:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnk-es-5LS">
-                                                        <rect key="frame" x="0.0" y="214" width="368" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="245" width="368" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GLy-IO-trK">
-                                                        <rect key="frame" x="0.0" y="234.5" width="368" height="33"/>
+                                                        <rect key="frame" x="0.0" y="265.5" width="368" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBo-Q8-449">
-                                                        <rect key="frame" x="0.0" y="267.5" width="368" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="298.5" width="368" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dwq-yQ-BWN">
-                                                        <rect key="frame" x="0.0" y="288" width="368" height="33"/>
+                                                        <rect key="frame" x="0.0" y="319" width="368" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags - Please enter 3 tags separated by a space" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-yO-bbL">
-                                                        <rect key="frame" x="0.0" y="321" width="368" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="352" width="368" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-9N-b2h">
-                                                        <rect key="frame" x="0.0" y="341.5" width="368" height="33"/>
+                                                        <rect key="frame" x="0.0" y="372.5" width="368" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-ya-6gN">
-                                                        <rect key="frame" x="0.0" y="374.5" width="368" height="30"/>
+                                                        <rect key="frame" x="0.0" y="405.5" width="368" height="30"/>
                                                         <state key="normal" title="Create Event"/>
                                                         <connections>
                                                             <action selector="createEvent:" destination="cy9-2J-sdg" eventType="touchUpInside" id="hbi-sp-cG2"/>
@@ -929,6 +950,8 @@
                         <outlet property="eventTags" destination="sWv-9N-b2h" id="hwu-sz-gRV"/>
                         <outlet property="eventTicketURL" destination="RKs-T8-3EI" id="sXn-PG-DfL"/>
                         <outlet property="eventURL" destination="GLy-IO-trK" id="i9T-aI-Rmk"/>
+                        <outlet property="paidSwitch" destination="rmz-v0-rvR" id="joV-7f-tG1"/>
+                        <outlet property="selectCategoryButton" destination="1Xu-72-To4" id="veA-JU-S5R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3O-d4-9pC" userLabel="First Responder" sceneMemberID="firstResponder"/>
