@@ -16,6 +16,7 @@ import FirebaseAuth
 var selectedEvent: Event = Event(name: "", address: "", details: "", contact: "", ticketURL: "", eventURL: "", tags: "")
 var events: [Event] = []
 var currentLocation: CLLocation!
+var searchDistance: Double = 5.0 //search distance in miles
 
 
 
@@ -336,6 +337,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    //When search distance segmented control is clicked, change the search distance value
+    @IBAction func distanceRadius(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            searchDistance = 5.0
+        case 1:
+            searchDistance = 20.0
+        case 2:
+            searchDistance = 100.0
+        default:
+            break;
+        }
+    }
+    
     //Query firebase event data and update tableview with events
     @IBAction func search(_ sender: UIButton) {
         
@@ -343,9 +358,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Get address location either as user's currenty location or from the location entry textfield
         //Query events within radius(km) of the location from firebase
         
+        //Convert search distance from miles to km
+        let searchDistanceKm = searchDistance * 1.60934
+        
         let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if addressText == "Current Location" {
-            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: 50.0, callback: {
+            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm, callback: {
                 bool in
                 print(bool)
                 if bool {
@@ -360,7 +378,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     return
                 }
                 let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: 50.0, callback: {
+                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm, callback: {
                     bool in
                     print(bool)
                     if bool {

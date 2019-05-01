@@ -11,10 +11,11 @@ import Foundation
 class Event {
     
     
-    var name: String
-    var address: String
-    var details: String
-    var contact: String
+    var name: String = ""
+    var id: String = ""
+    var address: String = ""
+    var details: String = ""
+    var contact: String = ""
     var ticketURL: String = ""
     var eventURL: String = ""
     var tags: String = ""
@@ -33,18 +34,40 @@ class Event {
         self.tags = tags
     }
     
-    init(dict: NSDictionary){
-        self.name = dict.value(forKey: "name") as! String
-        self.address = dict.value(forKey: "location") as! String
-        self.details = dict.value(forKey: "description") as! String
-        self.ticketURL = dict.value(forKey: "ticketURL") as! String
-        self.eventURL = dict.value(forKey: "eventURL") as! String
-        self.contact = dict.value(forKey: "contact") as! String
-        self.tags = dict.value(forKey: "tags") as! String
+    //Initialize an event from a dictionary retreived from Firebase
+    init(dict: NSDictionary, idKey: String){
+        if dict["name"] != nil {
+            self.name = dict.value(forKey: "name") as! String
+        }
+        self.id = idKey
+        if dict["address"] != nil {
+            self.address = dict.value(forKey: "location") as! String
+        }
+        if dict["description"] != nil {
+            self.details = dict.value(forKey: "description") as! String
+        }
+        if dict["ticketURL"] != nil {
+            self.ticketURL = dict.value(forKey: "ticketURL") as! String
+        }
+        if dict["eventURL"] != nil {
+            self.eventURL = dict.value(forKey: "eventURL") as! String
+        }
+        if dict["contact"] != nil {
+             self.contact = dict.value(forKey: "contact") as! String
+        }
+        if dict["tags"] != nil {
+            self.tags = dict.value(forKey: "tags") as! String
+        }
+        if dict["upvotes"] != nil {
+            let stringUpvoteCount = dict.value(forKey: "upvotes") as! String
+            self.upvoteCount = Int(stringUpvoteCount)!
+        }
     }
     
     func upvote(){
+        //Upvote the event.  Increase the count by 1 in Firebase.
         upvoteCount += 1
+        upvoteFirebaseEvent(event: self)
     }
     
     func markFavorite(){

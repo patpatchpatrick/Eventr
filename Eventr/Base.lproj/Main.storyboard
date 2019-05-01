@@ -191,6 +191,9 @@
                                             <segment title="20 mi"/>
                                             <segment title="100 mi"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="distanceRadius:" destination="BYZ-38-t0r" eventType="valueChanged" id="0En-Al-BbL"/>
+                                        </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCh-8n-wQW">
                                         <rect key="frame" x="290" y="0.0" width="30" height="30"/>

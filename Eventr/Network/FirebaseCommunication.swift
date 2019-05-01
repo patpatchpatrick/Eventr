@@ -20,21 +20,19 @@ let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 //Query list of events within a certain radius (km) of a location
 //Get the keys(eventIDs) of the events within the specified radius
 //Query firebase for event data for each of the keys and build events
-//Return list of events
+//Append events list with the new events and reload the tableview
 func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, callback: ((Bool) -> Void)?){
     events.removeAll()
     _ = geoFire.query(at: centerLocation, withRadius: radius).observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        print("KEY" + key)
         firebaseDatabaseRef.child("Events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get dictionary of event data
             let value = snapshot.value as? NSDictionary
-            print("DICT: " + value!.description)
             if value != nil {
-                events.append(Event(dict: value!))
+                events.append(Event(dict: value!, idKey: key))
                 callback!(true)
             }
         }) { (error) in
-            print("TESTERROR" + error.localizedDescription)
+            print("FB Query Error" + error.localizedDescription)
         }
     })
     
@@ -53,10 +51,14 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
             "ticketURL":   event.ticketURL,
             "eventURL":   event.eventURL,
             "contact":   event.contact,
-            "tags":   event.tags
+            "tags":   event.tags,
+            "upvotes": String(event.upvoteCount)
         ]
         let firebaseEvent = firebaseDatabaseRef.child("Events").childByAutoId()
         let eventKey = firebaseEvent.key
+        if eventKey != nil {
+            event.id = eventKey!
+        }
             firebaseEvent.setValue(eventData, withCompletionBlock: { (error, snapshot) in
             if error != nil {
                 print("Error writing event to Firebase")
@@ -74,6 +76,26 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
                     }
                 }
             }
+        })
+        
+    }
+}
+
+//Increase number of upvotes for a particular event in Firebase
+func upvoteFirebaseEvent(event: Event){
+    if Auth.auth().currentUser != nil {
+        print("USER AUTHed")
+        print(event.id)
+        firebaseDatabaseRef.child("Events").child(event.id).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let dict = snapshot.value as? NSDictionary
+            if dict!["upvotes"] != nil {
+                let upvoteCountString = dict!["upvotes"] as! String
+                var upvoteCount = Int(upvoteCountString)!
+                upvoteCount += 1
+                firebaseDatabaseRef.child("Events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
+            }
+            
         })
         
     }
