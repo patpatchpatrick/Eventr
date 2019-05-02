@@ -8,21 +8,57 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
 
     var window: UIWindow?
-
+    let userDefaults = UserDefaults()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
         
+        //Initialize google sign in
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
         setUpEventCategories()
         
         return true
+    }
+    
+    //Google sign-in method
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print("SIGN IN CALLED")
+        if let error = error {
+            //Sign-in error occurred
+            print(error.localizedDescription)
+            return
+        } else {
+            //Authenticate user in google
+            googleUser = user
+            guard let authentication = user.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            //Authenticate the user in Firebase
+            Auth.auth().signInAndRetrieveData(with: credential, completion: {(result, error) in
+                if error == nil {
+                    self.window?.rootViewController?.performSegue(withIdentifier: "homeSegue", sender: nil)
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+            
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url,
+                                                 sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                 annotation: [:])
     }
     
     func setUpEventCategories(){

@@ -33,7 +33,11 @@ class CreateEventViewController: UIViewController {
     
     @IBOutlet weak var eventContactInfo: UITextView!
     
-    @IBOutlet weak var eventTags: UITextView!
+    @IBOutlet weak var eventTag1: UITextView!
+    
+    @IBOutlet weak var eventTag2: UITextView!
+    
+    @IBOutlet weak var eventTag3: UITextView!
     
     @IBOutlet weak var selectCategoryButton: UIButton!
    
@@ -93,7 +97,7 @@ class CreateEventViewController: UIViewController {
         let categoryString = selectCategoryButton.titleLabel?.text
         let category = stringToEventCategory(string: categoryString!)
         
-        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tags: eventTags.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
+        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
         
         createFirebaseEvent(event: newEvent, callback: {
             bool in

@@ -11,12 +11,14 @@ import MapKit
 import DropDown
 import Firebase
 import FirebaseAuth
+import GoogleSignIn
 
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), address: "", details: "", contact: "", ticketURL: "", eventURL: "", tags: "", paid: false)
+var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), address: "", details: "", contact: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 var events: [Event] = []
 var currentLocation: CLLocation!
 var searchDistance: Double = 5.0 //search distance in miles
+var googleUser: GIDGoogleUser?
 
 
 
@@ -52,6 +54,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
     @IBOutlet weak var sideMenuCurveImage: UIImageView!
+    @IBOutlet weak var sideMenuAccountButton: UIButton!
+    
     
     func showSideMenu(){
         UIView.animate(withDuration: 0.4, animations: {
@@ -115,6 +119,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         do {
             try Auth.auth().signOut()
+            try GIDSignIn.sharedInstance()?.signOut()
         }
         catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
@@ -129,6 +134,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     
     func setUpAccountSettingsImage(){
+        
+        //Set the profile photo of the logged in user if they have one
+        if Auth.auth().currentUser?.photoURL != nil {
+            let pic = Auth.auth().currentUser?.photoURL
+            if pic != nil {
+                let data = try? Data(contentsOf: pic!)
+                
+                if let imageData = data {
+                    let image = UIImage(data: imageData)
+                    accountSettingsIcon.image = image
+                    sideMenuAccountButton.setImage(image, for: .normal)
+                }
+            }
+        }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountSettingsIconTapped(tapGestureRecognizer:)))
         

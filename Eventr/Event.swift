@@ -19,20 +19,24 @@ class Event {
     var contact: String = ""
     var ticketURL: String = ""
     var eventURL: String = ""
-    var tags: String = ""
+    var tag1: String = ""
+    var tag2: String = ""
+    var tag3: String = ""
     var favorite: Bool = false
     var paid: Bool = false
     var upvoteCount: Int = 0
     
     
-    init(name: String, category: EventCategory, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tags: String, paid: Bool) {
+    init(name: String, category: EventCategory, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
         self.name = name
         self.address = address
         self.details = details
         self.contact = contact
         self.ticketURL = ticketURL
         self.eventURL = eventURL
-        self.tags = tags
+        self.tag1 = tag1
+        self.tag2 = tag2
+        self.tag3 = tag3
         self.category = category
         self.paid = paid
     }
@@ -62,8 +66,14 @@ class Event {
         if dict["contact"] != nil {
              self.contact = dict.value(forKey: "contact") as! String
         }
-        if dict["tags"] != nil {
-            self.tags = dict.value(forKey: "tags") as! String
+        if dict["tag1"] != nil {
+            self.tag1 = dict.value(forKey: "tag1") as! String
+        }
+        if dict["tag2"] != nil {
+            self.tag2 = dict.value(forKey: "tag2") as! String
+        }
+        if dict["tag3"] != nil {
+            self.tag3 = dict.value(forKey: "tag3") as! String
         }
         if dict["upvotes"] != nil {
             let stringUpvoteCount = dict.value(forKey: "upvotes") as! String

@@ -53,7 +53,9 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
             "ticketURL":   event.ticketURL,
             "eventURL":   event.eventURL,
             "contact":   event.contact,
-            "tags":   event.tags,
+            "tag1":   event.tag1,
+            "tag2":   event.tag2,
+            "tag3":   event.tag3,
             "upvotes": String(event.upvoteCount),
             "paid" : paidString
         ]
