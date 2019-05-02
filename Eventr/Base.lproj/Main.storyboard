@@ -295,7 +295,7 @@
                                 </constraints>
                             </view>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VDx-xb-Ug2">
-                                <rect key="frame" x="0.0" y="30" width="320" height="45"/>
+                                <rect key="frame" x="5" y="30" width="310" height="45"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z3D-bz-Ebe">
                                         <rect key="frame" x="0.0" y="5" width="40" height="40"/>
@@ -305,13 +305,13 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="70" y="0.0" width="180.00000000000006" height="45"/>
+                                        <rect key="frame" x="70" y="0.0" width="170" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lX2-UO-7ir" userLabel="createEvent">
-                                        <rect key="frame" x="280" y="5" width="40" height="40"/>
+                                        <rect key="frame" x="270" y="5" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Jjm-Fe-KSp"/>
                                             <constraint firstAttribute="height" constant="40" id="oNv-Ah-rWM"/>
@@ -364,11 +364,11 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hbp-aq-n7U">
                                                 <rect key="frame" x="0.0" y="488" width="50" height="60"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="iconLogOut" translatesAutoresizingMaskIntoConstraints="NO" id="Muw-pa-QyG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="52"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="745" image="iconLogOut" translatesAutoresizingMaskIntoConstraints="NO" id="Muw-pa-QyG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="48"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Log Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-5q-xGB">
-                                                        <rect key="frame" x="0.0" y="52" width="50" height="8"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Log Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-5q-xGB">
+                                                        <rect key="frame" x="0.0" y="48" width="50" height="12"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -408,10 +408,10 @@
                             <constraint firstAttribute="trailing" secondItem="anO-4j-n8B" secondAttribute="trailing" id="E9w-Sx-2VR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JNM-0r-0co" secondAttribute="trailing" id="F9b-VJ-EEo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="K1r-ii-eaL" secondAttribute="bottom" id="Fi4-qH-w8e"/>
-                            <constraint firstItem="VDx-xb-Ug2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HHY-YO-vIR"/>
+                            <constraint firstItem="VDx-xb-Ug2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="HHY-YO-vIR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3Rh-7E-hkr" secondAttribute="bottom" id="HSB-7e-xc6"/>
                             <constraint firstItem="3Rh-7E-hkr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="I6w-y1-xBE"/>
-                            <constraint firstAttribute="trailing" secondItem="VDx-xb-Ug2" secondAttribute="trailing" id="MIg-hU-akv"/>
+                            <constraint firstAttribute="trailing" secondItem="VDx-xb-Ug2" secondAttribute="trailing" constant="5" id="MIg-hU-akv"/>
                             <constraint firstItem="dI4-Fy-ey3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SHL-Xd-9z4"/>
                             <constraint firstItem="Z6t-Dc-Eeb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ae2-73-BbJ"/>
                             <constraint firstItem="K1r-ii-eaL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bab-jl-uQR"/>

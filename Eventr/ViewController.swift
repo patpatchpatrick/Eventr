@@ -144,7 +144,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 if let imageData = data {
                     let image = UIImage(data: imageData)
                     accountSettingsIcon.image = image
+                    accountSettingsIcon.layer.cornerRadius = 20.0
+                    accountSettingsIcon.clipsToBounds = true
+                    sideMenuAccountButton.clipsToBounds = true
                     sideMenuAccountButton.setImage(image, for: .normal)
+                    sideMenuAccountButton.layer.cornerRadius = 20.0
+                    sideMenuAccountButton.clipsToBounds = true
                 }
             }
         }
@@ -386,7 +391,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if addressText == "Current Location" {
-            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm, callback: {
+            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm, eventsQueriedCallback: {
                 bool in
                 print(bool)
                 if bool {
@@ -401,7 +406,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     return
                 }
                 let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm, callback: {
+                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm, eventsQueriedCallback: {
                     bool in
                     print(bool)
                     if bool {

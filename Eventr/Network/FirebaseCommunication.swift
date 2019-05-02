@@ -20,21 +20,34 @@ let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 //Query list of events within a certain radius (km) of a location
 //Get the keys(eventIDs) of the events within the specified radius
 //Query firebase for event data for each of the keys and build events
-//Append events list with the new events and reload the tableview
-func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, callback: ((Bool) -> Void)?){
+//Set the events list to include the queried events data and reload the tableview
+func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, eventsQueriedCallback: ((Bool) -> Void)?){
     events.removeAll()
-    _ = geoFire.query(at: centerLocation, withRadius: radius).observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        firebaseDatabaseRef.child("events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get dictionary of event data
-            let value = snapshot.value as? NSDictionary
-            if value != nil {
-                events.append(Event(dict: value!, idKey: key))
-                callback!(true)
-            }
-        }) { (error) in
-            print("FB Query Error" + error.localizedDescription)
-        }
+    var keyList: [String] = []
+    
+    //Query to find all keys(event IDs) within radius of location
+    let gQuery = geoFire.query(at: centerLocation, withRadius: radius)
+        gQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+        keyList.append(key)
     })
+    
+    //Method called when the query is finished and all keys(event IDs) are loaded
+    gQuery.observeReady {
+        for key in keyList {
+            firebaseDatabaseRef.child("events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get dictionary of event data
+                let value = snapshot.value as? NSDictionary
+                if value != nil {
+                    events.append(Event(dict: value!, idKey: key))
+                    eventsQueriedCallback!(true)
+                }
+            }) { (error) in
+                print("FB Query Error" + error.localizedDescription)
+            }
+        }
+    }
+
+    
     
 }
 
