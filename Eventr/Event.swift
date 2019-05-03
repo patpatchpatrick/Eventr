@@ -25,6 +25,7 @@ class Event {
     var favorite: Bool = false
     var paid: Bool = false
     var upvoteCount: Int = 0
+    var upvoted: Bool = false
     
     
     init(name: String, category: EventCategory, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
@@ -87,7 +88,6 @@ class Event {
     
     func upvote(){
         //Upvote the event.  Increase the count by 1 in Firebase.
-        upvoteCount += 1
         upvoteFirebaseEvent(event: self)
     }
     

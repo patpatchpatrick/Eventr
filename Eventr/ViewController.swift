@@ -330,6 +330,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.upvoteArrow?.addGestureRecognizer(tapGestureRecognizer)
         cell.favoriteIcon?.tag = indexPath.row
         cell.upvoteArrow?.tag = indexPath.row
+        if event.upvoted {
+            print("CHANGE TINT TO RED!")
+            cell.upvoteArrow.tintColor = UIColor.red
+        } else {
+            cell.upvoteArrow.tintColor = UIColor.black
+        }
         cell.upvoteCount?.text = String(event.upvoteCount)
         return cell
     }
@@ -392,7 +398,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if addressText == "Current Location" {
-            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm, eventsQueriedCallback: {
+            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm, eventsQueriedCallbackToReloadTable: {
                 bool in
                 print(bool)
                 if bool {
@@ -407,7 +413,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     return
                 }
                 let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm, eventsQueriedCallback: {
+                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm, eventsQueriedCallbackToReloadTable: {
                     bool in
                     print(bool)
                     if bool {

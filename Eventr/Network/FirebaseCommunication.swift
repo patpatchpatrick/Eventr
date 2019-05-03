@@ -21,7 +21,7 @@ let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 //Get the keys(eventIDs) of the events within the specified radius
 //Query firebase for event data for each of the keys and build events
 //Set the events list to include the queried events data and reload the tableview
-func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, eventsQueriedCallback: ((Bool) -> Void)?){
+func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, eventsQueriedCallbackToReloadTable: ((Bool) -> Void)?){
     events.removeAll()
     var keyList: [String] = []
     
@@ -34,12 +34,40 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, eve
     //Method called when the query is finished and all keys(event IDs) are loaded
     gQuery.observeReady {
         for key in keyList {
+            let eventID = key
             firebaseDatabaseRef.child("events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get dictionary of event data
                 let value = snapshot.value as? NSDictionary
                 if value != nil {
-                    events.append(Event(dict: value!, idKey: key))
-                    eventsQueriedCallback!(true)
+                    //Check if event has already been upvoted by user
+                    let event = Event(dict: value!, idKey: eventID)
+                    checkIfUpvoted: if Auth.auth().currentUser != nil {
+                        guard let userID = Auth.auth().currentUser?.uid else {
+                            break checkIfUpvoted
+                        }
+                        firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
+                            (snapshot) in
+                            guard let dict = snapshot.value as? NSDictionary else {
+                                return
+                            }
+                            
+                            _ = dict.allValues.contains { element in
+                                if case element as! String = eventID {
+                                    print("QUERY UPVOTED")
+                                    event.upvoted = true
+                                    eventsQueriedCallbackToReloadTable!(true)
+                                    return true
+                                } else {
+                                    event.upvoted = false
+                                    eventsQueriedCallbackToReloadTable!(true)
+                                    return false
+                                }
+                            }
+                        })
+                    }
+                    //Add event to table view events list and update table
+                    events.append(event)
+                    eventsQueriedCallbackToReloadTable!(true)
                 }
             }) { (error) in
                 print("FB Query Error" + error.localizedDescription)
@@ -102,17 +130,42 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
 //Increase number of upvotes for a particular event in Firebase
 func upvoteFirebaseEvent(event: Event){
     if Auth.auth().currentUser != nil {
-        print("USER AUTHed")
-        print(event.id)
-        firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
             (snapshot) in
             let dict = snapshot.value as? NSDictionary
-            if dict!["upvotes"] != nil {
-                let upvoteCountString = dict!["upvotes"] as! String
-                var upvoteCount = Int(upvoteCountString)!
-                upvoteCount += 1
-                firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
+            //Check if event has already been upvoted
+            let eventAlreadyUpvoted = dict?.allValues.contains { element in
+                if case element as! String = event.id {
+                    return true
+                } else {
+                    return false
+                }
             }
+            //Event was not yet upvoted, so upvote the event
+            if eventAlreadyUpvoted == nil || !eventAlreadyUpvoted! {
+                //Increment the overall upvote count of the event in the events section of firebase
+                //Also add the event to the users section of firebase so it can't be upvoted again
+                firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
+                    (snapshot) in
+                    let dict = snapshot.value as? NSDictionary
+                    if dict!["upvotes"] != nil {
+                        let upvoteCountString = dict!["upvotes"] as! String
+                        var upvoteCount = Int(upvoteCountString)!
+                        upvoteCount += 1
+                        firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
+                        firebaseDatabaseRef.child("users").child(userID).child("upvoted").childByAutoId().setValue(event.id)
+                    }
+                    
+                })
+                
+            } else {
+                //Event was already upvoted so return
+                return
+            }
+    
             
         })
         
