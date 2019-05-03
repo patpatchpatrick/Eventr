@@ -627,6 +627,9 @@
                                                         <color key="backgroundColor" red="0.32208877800000002" green="0.31609678270000002" blue="0.37647825480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="Tickets"/>
+                                                        <connections>
+                                                            <action selector="ticketLinkOpened:" destination="4hp-pR-aFR" eventType="touchUpInside" id="ZdH-vd-xwt"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w92-9i-HxU">
                                                         <rect key="frame" x="210" y="0.0" width="110" height="30"/>
@@ -634,6 +637,9 @@
                                                         <state key="normal" title="Link">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="eventLinkOpened:" destination="4hp-pR-aFR" eventType="touchUpInside" id="GIj-8d-FKQ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="0.31609923624431324" blue="0.89351916810013221" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>

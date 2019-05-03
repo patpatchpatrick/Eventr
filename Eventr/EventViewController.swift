@@ -59,6 +59,46 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var linksStackView: UIStackView!
     
+    
+    @IBAction func ticketLinkOpened(_ sender: UIButton) {
+        
+        //Ensure URL is properly formatted before opening
+        if(!selectedEvent.ticketURL.hasPrefix("http://") && !selectedEvent.ticketURL.hasPrefix("https://")){
+            selectedEvent.ticketURL = "http://" + selectedEvent.ticketURL
+        }
+        
+        guard let url = URL(string: selectedEvent.ticketURL) else {
+            return //Return if URL is no good
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+        
+    }
+    
+    
+    @IBAction func eventLinkOpened(_ sender: UIButton) {
+        
+        //Ensure URL is properly formatted before opening
+        if(!selectedEvent.eventURL.hasPrefix("http://") && !selectedEvent.eventURL.hasPrefix("https://")){
+            selectedEvent.eventURL = "http://" + selectedEvent.eventURL
+        }
+        
+        guard let url = URL(string: selectedEvent.ticketURL) else {
+            return //Return if URL is no good
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    
     @IBOutlet weak var mapView: MKMapView!
     
     
