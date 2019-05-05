@@ -47,7 +47,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidAppear(_ animated: Bool) {
         //Reload tableview whenever view appears
+        //Add a notfication observer to reload tableview whenever data is changed via other classes (i.e. Firebase queries)
         eventTableView.reloadData()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updated_event_data),
+                                               name:Notification.Name("UPDATED_EVENT_DATA"),
+                                               object: nil)//register for notification
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func updated_event_data(notification:Notification) -> Void{
+        eventTableView.reloadData() // when event data is updated, reload the tableview
     }
     
     //Views for the side menu    //Side menu shows account/settings info
@@ -331,7 +344,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.favoriteIcon?.tag = indexPath.row
         cell.upvoteArrow?.tag = indexPath.row
         if event.upvoted {
-            print("CHANGE TINT TO RED!")
             cell.upvoteArrow.tintColor = UIColor.red
         } else {
             cell.upvoteArrow.tintColor = UIColor.black
@@ -398,13 +410,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if addressText == "Current Location" {
-            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm, eventsQueriedCallbackToReloadTable: {
-                bool in
-                print(bool)
-                if bool {
-                    self.eventTableView.reloadData()
-                }
-            })
+            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm)
         } else {
             getCoordinates(forAddress: addressText!) {
                 (location) in
@@ -413,13 +419,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     return
                 }
                 let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm, eventsQueriedCallbackToReloadTable: {
-                    bool in
-                    print(bool)
-                    if bool {
-                        self.eventTableView.reloadData()
-                    }
-                })
+                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
             }
         }
         

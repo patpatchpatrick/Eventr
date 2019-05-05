@@ -21,7 +21,7 @@ let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 //Get the keys(eventIDs) of the events within the specified radius
 //Query firebase for event data for each of the keys and build events
 //Set the events list to include the queried events data and reload the tableview
-func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, eventsQueriedCallbackToReloadTable: ((Bool) -> Void)?){
+func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
     events.removeAll()
     var keyList: [String] = []
     
@@ -55,11 +55,13 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, eve
                                 if case element as! String = eventID {
                                     print("QUERY UPVOTED")
                                     event.upvoted = true
-                                    eventsQueriedCallbackToReloadTable!(true)
+                                    //Notify the tableview to relaod
+                                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
                                     return true
                                 } else {
                                     event.upvoted = false
-                                    eventsQueriedCallbackToReloadTable!(true)
+                                    //Notify the tableview to relaod
+                                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
                                     return false
                                 }
                             }
@@ -67,7 +69,8 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double, eve
                     }
                     //Add event to table view events list and update table
                     events.append(event)
-                    eventsQueriedCallbackToReloadTable!(true)
+                    //Notify the tableview to relaod
+                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
                 }
             }) { (error) in
                 print("FB Query Error" + error.localizedDescription)
@@ -157,6 +160,11 @@ func upvoteFirebaseEvent(event: Event){
                         upvoteCount += 1
                         firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
                         firebaseDatabaseRef.child("users").child(userID).child("upvoted").childByAutoId().setValue(event.id)
+                        
+                        event.upvoted = true
+                        event.upvoteCount += 1
+                        //Notify the tableview to relaod
+                        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
                     }
                     
                 })
