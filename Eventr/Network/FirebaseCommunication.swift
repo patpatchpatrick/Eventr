@@ -53,7 +53,6 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
                             
                             _ = dict.allValues.contains { element in
                                 if case element as! String = eventID {
-                                    print("QUERY UPVOTED")
                                     event.upvoted = true
                                     //Notify the tableview to relaod
                                     NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
@@ -174,6 +173,66 @@ func upvoteFirebaseEvent(event: Event){
                 return
             }
     
+            
+        })
+        
+    }
+}
+
+//Remove an upvote for a particular event in Firebase
+//This method is called if an event has already been upvoted by a user and they want to remove their upvote
+func downvoteFirebaseEvent(event: Event){
+    if Auth.auth().currentUser != nil {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let dict = snapshot.value as? NSDictionary
+            //Check if event has already been upvoted
+            let eventAlreadyUpvoted = dict?.allValues.contains { element in
+                if case element as! String = event.id {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            //Ensure that event was already upvoted by user, and if so, lower the upvote cuont by 1
+            if eventAlreadyUpvoted != nil && eventAlreadyUpvoted! {
+                //Decrement the overall upvote count of the event in the events section of firebase
+                //Also remove the event from the users section of firebase so it can't be upvoted again
+                firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
+                    (snapshot) in
+                    let dict = snapshot.value as? NSDictionary
+                    if dict!["upvotes"] != nil {
+                        let upvoteCountString = dict!["upvotes"] as! String
+                        var upvoteCount = Int(upvoteCountString)!
+                        upvoteCount -= 1
+                        firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
+                       
+                        firebaseDatabaseRef.child("users").child(userID).child("upvoted").queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
+                            for result in querySnapshot.children {
+                                let resultSnapshot = result as! DataSnapshot
+                                let eventKey = resultSnapshot.key
+                            firebaseDatabaseRef.child("users").child(userID).child("upvoted").child(eventKey).removeValue()
+                            }
+                        }
+                        
+                    
+                        
+                        event.upvoted = false
+                        event.upvoteCount -= 1
+                        //Notify the tableview to reload
+                        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                    }
+                    
+                })
+                
+            } else {
+                //Event was already upvoted so return
+                return
+            }
+            
             
         })
         

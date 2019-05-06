@@ -87,8 +87,13 @@ class Event {
     }
     
     func upvote(){
-        //Upvote the event.  Increase the count by 1 in Firebase.
-        upvoteFirebaseEvent(event: self)
+        //If the event was already upvoted by user and they click the upvote button, downvote the event
+        //If event was not upvoted, upvoted the event
+        if upvoted {
+            downvoteFirebaseEvent(event: self)
+        } else {
+            upvoteFirebaseEvent(event: self)
+        }
     }
     
     func markFavorite(){
