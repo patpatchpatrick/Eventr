@@ -263,7 +263,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-    //Get current location button tapped
+    //"Get current location" button tapped
     //Get the user's location.  The locationManager function will be called after retrieved
     @IBAction func getCurrentLocation(_ sender: UIButton) {
         
@@ -277,7 +277,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             }
         } else {
-            useCurrentLocation()
+            currentLocationRetrieved()
         }
         
         
@@ -290,11 +290,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         currentLocation = manager.location
         
         DispatchQueue.main.async {
-            self.useCurrentLocation()
+            self.currentLocationRetrieved()
         }
     }
     
-    func useCurrentLocation(){
+    func currentLocationRetrieved(){
         locationEntryField.text = "Current Location"
         locationEntryField.endEditing(true)
     }
@@ -355,7 +355,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Method to run when upvote imageview is tapped
     @objc func upvoteTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let upvoteImage = tapGestureRecognizer.view as! UIImageView
+        guard let upvoteImage = tapGestureRecognizer.view as? UIImageView else {return}
         //If an upvote arrow was clicked, upvote the event
         events[upvoteImage.tag].upvote()
         eventTableView.reloadData()

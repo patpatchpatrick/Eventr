@@ -90,7 +90,7 @@ class Event {
         //If the event was already upvoted by user and they click the upvote button, downvote the event
         //If event was not upvoted, upvoted the event
         if upvoted {
-            downvoteFirebaseEvent(event: self)
+            removeUpvoteFromFirebaseEvent(event: self)
         } else {
             upvoteFirebaseEvent(event: self)
         }
