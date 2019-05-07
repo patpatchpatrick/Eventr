@@ -97,7 +97,14 @@ class Event {
     }
     
     func markFavorite(){
+        //If event is marked as a favorite update the event's bool value and the firebase database
         favorite = !favorite
+        if favorite {
+            favoriteFirebaseEvent(event: self)
+        } else {
+            unfavoriteFirebaseEvent(event: self)
+        }
+       
     }
     
 }

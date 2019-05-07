@@ -41,6 +41,7 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
                 if value != nil {
                     //Check if event has already been upvoted by user
                     let event = Event(dict: value!, idKey: eventID)
+                    queryIfFirebaseEventIsFavorited(event: event)
                     checkIfUpvoted: if Auth.auth().currentUser != nil {
                         guard let userID = Auth.auth().currentUser?.uid else {
                             break checkIfUpvoted
@@ -237,6 +238,99 @@ func downvoteFirebaseEvent(event: Event){
         })
         
     }
+}
+
+//Mark a particular event in Firebase as a "favorite"
+func favoriteFirebaseEvent(event: Event){
+    if Auth.auth().currentUser != nil {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let dict = snapshot.value as? NSDictionary
+            //Check if event has already been favorited
+            let eventAlreadyFavorited = dict?.allValues.contains { element in
+                if case element as! String = event.id {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            //Event was not yet favorited, so favorite the event
+            if eventAlreadyFavorited == nil || !eventAlreadyFavorited! {
+                firebaseDatabaseRef.child("favorited").child(userID).childByAutoId().setValue(event.id)
+            }
+            
+        })
+        
+    }}
+
+//Unmark a particular event in Firebase as a "favorite"
+func unfavoriteFirebaseEvent(event: Event){
+    if Auth.auth().currentUser != nil {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let dict = snapshot.value as? NSDictionary
+            //Check if event has already been favorited
+            let eventAlreadyFavorited = dict?.allValues.contains { element in
+                if case element as! String = event.id {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            //Ensure event is marked favorite, if so, unmark event as favorite in firebase
+            if eventAlreadyFavorited != nil && eventAlreadyFavorited! {
+                firebaseDatabaseRef.child("favorited").child(userID).queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
+                    for result in querySnapshot.children {
+                        let resultSnapshot = result as! DataSnapshot
+                        let eventKey = resultSnapshot.key
+                        firebaseDatabaseRef.child("favorited").child(userID).child(eventKey).removeValue()
+                        
+                        event.favorite = false
+                        
+                        //Notify the tableview to reload
+                        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                    }
+                }
+            }
+            
+        })
+        
+    }}
+    
+
+//Query a firebase event to determine if it was favorited
+func queryIfFirebaseEventIsFavorited(event: Event){
+    if Auth.auth().currentUser != nil {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let dict = snapshot.value as? NSDictionary
+            //Check if event has already been favorited
+            let eventAlreadyFavorited = dict?.allValues.contains { element in
+                if case element as! String = event.id {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            //If event was marked as favorite, set the event's favorited variable to true
+            if eventAlreadyFavorited != nil && eventAlreadyFavorited! {
+                event.favorite = true
+                NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+            }
+            
+        })
+        
+    }
+    
 }
 
 //Get coordinates for event address so they can be provided to GeoFire when event is created
