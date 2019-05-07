@@ -844,7 +844,7 @@
             </objects>
             <point key="canvasLocation" x="-566" y="-733"/>
         </scene>
-        <!--Create Event View Controller-->
+        <!--Ib Calendar Data Source-->
         <scene sceneID="dzT-u0-gbb">
             <objects>
                 <viewController id="cy9-2J-sdg" customClass="CreateEventViewController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
@@ -884,7 +884,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="10" y="10" width="300" height="664.5"/>
+                                                <rect key="frame" x="10" y="10" width="300" height="866.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Ct-K0T">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
@@ -904,8 +904,63 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="33v-bp-D3g" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                                        <rect key="frame" x="0.0" y="80" width="300" height="200"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="drP-9T-PJg"/>
+                                                        </constraints>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="u9I-Og-005">
+                                                            <size key="itemSize" width="50" height="50"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CalendarCell" id="6XF-dg-3RY" customClass="CalendarCell" customModule="Eventr" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BnF-9l-jCQ">
+                                                                            <rect key="frame" x="-95" y="-39" width="240" height="128"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <color key="backgroundColor" red="1" green="0.31609923620000002" blue="0.89351916809999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                    <integer key="value" value="20"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </view>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nu-CU-azq">
+                                                                            <rect key="frame" x="4" y="14" width="42" height="21"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </view>
+                                                                <connections>
+                                                                    <outlet property="dateLabel" destination="4nu-CU-azq" id="0nO-mj-8wl"/>
+                                                                    <outlet property="selectedView" destination="BnF-9l-jCQ" id="YfV-jF-P75"/>
+                                                                </connections>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cellSize">
+                                                                <integer key="value" value="50"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="ibCalendarDataSource" destination="cy9-2J-sdg" id="tPd-bo-PwR"/>
+                                                            <outlet property="ibCalendarDelegate" destination="cy9-2J-sdg" id="dKW-9m-nyn"/>
+                                                        </connections>
+                                                    </collectionView>
                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fMP-0d-C5z">
-                                                        <rect key="frame" x="0.0" y="80" width="300" height="75"/>
+                                                        <rect key="frame" x="0.0" y="282" width="300" height="75"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="75" id="XF7-a6-GNJ"/>
                                                         </constraints>
@@ -914,13 +969,13 @@
                                                         </date>
                                                     </datePicker>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPK-96-Kxl">
-                                                        <rect key="frame" x="0.0" y="157" width="300" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="359" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rb2-OM-jeN">
-                                                        <rect key="frame" x="0.0" y="179.5" width="300" height="75"/>
+                                                        <rect key="frame" x="0.0" y="381.5" width="300" height="75"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="75" id="dG3-QP-64s"/>
                                                         </constraints>
@@ -929,19 +984,19 @@
                                                         </date>
                                                     </datePicker>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJi-e1-wEf">
-                                                        <rect key="frame" x="0.0" y="256.5" width="300" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="458.5" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d8G-QA-bbR">
-                                                        <rect key="frame" x="0.0" y="279" width="300" height="33"/>
+                                                        <rect key="frame" x="0.0" y="481" width="300" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FcY-eP-cMg">
-                                                        <rect key="frame" x="0.0" y="314" width="300" height="31"/>
+                                                        <rect key="frame" x="0.0" y="516" width="300" height="31"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-72-To4">
                                                                 <rect key="frame" x="0.0" y="0.0" width="162" height="31"/>
@@ -962,62 +1017,62 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSw-xc-4Uf">
-                                                        <rect key="frame" x="0.0" y="347" width="300" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="549" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-g7-EtX">
-                                                        <rect key="frame" x="0.0" y="369.5" width="300" height="33"/>
+                                                        <rect key="frame" x="0.0" y="571.5" width="300" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <dataDetectorType key="dataDetectorTypes" address="YES"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tickets URL:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBU-pr-lR1">
-                                                        <rect key="frame" x="0.0" y="404.5" width="300" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="606.5" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RKs-T8-3EI">
-                                                        <rect key="frame" x="0.0" y="427" width="300" height="33"/>
+                                                        <rect key="frame" x="0.0" y="629" width="300" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event URL:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnk-es-5LS">
-                                                        <rect key="frame" x="0.0" y="462" width="300" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="664" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GLy-IO-trK">
-                                                        <rect key="frame" x="0.0" y="484.5" width="300" height="33"/>
+                                                        <rect key="frame" x="0.0" y="686.5" width="300" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBo-Q8-449">
-                                                        <rect key="frame" x="0.0" y="519.5" width="300" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="721.5" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dwq-yQ-BWN">
-                                                        <rect key="frame" x="0.0" y="542" width="300" height="33"/>
+                                                        <rect key="frame" x="0.0" y="744" width="300" height="33"/>
                                                         <color key="backgroundColor" red="0.84373017130000005" green="0.84373017130000005" blue="0.84373017130000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags - (up to 3)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-yO-bbL">
-                                                        <rect key="frame" x="0.0" y="577" width="300" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="779" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RS7-M6-4Wu">
-                                                        <rect key="frame" x="0.0" y="599.5" width="300" height="33"/>
+                                                        <rect key="frame" x="0.0" y="801.5" width="300" height="33"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-9N-b2h">
                                                                 <rect key="frame" x="0.0" y="0.0" width="98.5" height="33"/>
@@ -1040,7 +1095,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-ya-6gN">
-                                                        <rect key="frame" x="0.0" y="634.5" width="300" height="30"/>
+                                                        <rect key="frame" x="0.0" y="836.5" width="300" height="30"/>
                                                         <state key="normal" title="Create Event"/>
                                                         <connections>
                                                             <action selector="createEvent:" destination="cy9-2J-sdg" eventType="touchUpInside" id="hbi-sp-cG2"/>
@@ -1073,6 +1128,7 @@
                         <viewLayoutGuide key="safeArea" id="Ly1-xo-dpm"/>
                     </view>
                     <connections>
+                        <outlet property="calendarView" destination="33v-bp-D3g" id="Kr1-un-3cP"/>
                         <outlet property="eventContactInfo" destination="dwq-yQ-BWN" id="OJN-mz-FNj"/>
                         <outlet property="eventDescription" destination="d8G-QA-bbR" id="HIO-22-gGm"/>
                         <outlet property="eventLocation" destination="UsO-g7-EtX" id="SJh-0L-cmn"/>

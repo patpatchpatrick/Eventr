@@ -10,6 +10,8 @@
 		3EF991852444668B617BB6D3 /* Pods_Eventr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A6523D5DB2C1D293FCBE23 /* Pods_Eventr.framework */; };
 		F603C0FE2278BCD700EE8798 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */; };
 		F6103065228204C800E6D5CE /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6103064228204C800E6D5CE /* ViewControllerExtension.swift */; };
+		F61030672282141C00E6D5CE /* CreateEventViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */; };
+		F610306B228226D300E6D5CE /* CalendarSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F610306A228226D300E6D5CE /* CalendarSectionHeaderView.xib */; };
 		F6113F4522764FD900CAD961 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6113F4422764FD900CAD961 /* GoogleService-Info.plist */; };
 		F6113F47227654D200CAD961 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6113F46227654D200CAD961 /* StartViewController.swift */; };
 		F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6113F482276589400CAD961 /* SignUpViewController.swift */; };
@@ -32,6 +34,8 @@
 		C7A54BFFEEECA5E876D9B033 /* Pods-Eventr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.debug.xcconfig"; path = "Target Support Files/Pods-Eventr/Pods-Eventr.debug.xcconfig"; sourceTree = "<group>"; };
 		F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F6103064228204C800E6D5CE /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewControllerExtension.swift; sourceTree = "<group>"; };
+		F610306A228226D300E6D5CE /* CalendarSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarSectionHeaderView.xib; sourceTree = "<group>"; };
 		F6113F4422764FD900CAD961 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6113F46227654D200CAD961 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		F6113F482276589400CAD961 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				F6DAC876228111420009959D /* Storyboards */,
 				F65368962272678C00861E0D /* UtilityViews.swift */,
 				F6DAC875228110CD0009959D /* Controllers */,
+				F610306A228226D300E6D5CE /* CalendarSectionHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				F62733032273944500FDA681 /* EventViewController.swift */,
 				F65368862272618100861E0D /* ViewController.swift */,
 				F6103064228204C800E6D5CE /* ViewControllerExtension.swift */,
+				F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F610306B228226D300E6D5CE /* CalendarSectionHeaderView.xib in Resources */,
 				F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */,
 				F6113F4522764FD900CAD961 /* GoogleService-Info.plist in Resources */,
 				F653688C2272618200861E0D /* Assets.xcassets in Resources */,
@@ -259,6 +266,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -270,6 +278,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -310,6 +319,7 @@
 				F6113F4B227660A900CAD961 /* LoginViewController.swift in Sources */,
 				F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */,
 				F62733042273944500FDA681 /* EventViewController.swift in Sources */,
+				F61030672282141C00E6D5CE /* CreateEventViewControllerExtension.swift in Sources */,
 				F6113F47227654D200CAD961 /* StartViewController.swift in Sources */,
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,
 				F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */,

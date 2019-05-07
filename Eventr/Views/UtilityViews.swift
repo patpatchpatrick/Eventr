@@ -8,8 +8,11 @@
 
 import Foundation
 import UIKit
+import JTAppleCalendar
 
+//Class for custom views
 
+//1 pixel colored line
 class HairlineView: UIView {
     override func awakeFromNib() {
         guard let backgroundColor = self.backgroundColor?.cgColor else { return }
@@ -19,11 +22,10 @@ class HairlineView: UIView {
     }
 }
 
+//Custom cell for event table view
 class CustomEventCell: UITableViewCell {
     
-    //Custom cell for event table view
     @IBOutlet weak var favoriteIcon: UIButton!
-    
     @IBOutlet weak var categoryIcon: UIImageView!
     @IBOutlet weak var paidEvent: UIImageView!
     @IBOutlet weak var upvoteArrow: UIImageView!
@@ -55,3 +57,18 @@ class CustomLabel: UILabel {
         }
     }
 }
+
+//Custom calendar cell
+class CalendarCell: JTAppleCell {
+    
+    @IBOutlet weak var selectedView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+}
+
+class CalendarSectionHeaderView: JTAppleCollectionReusableView {
+    
+    @IBOutlet weak var title: UILabel!
+    
+}
+

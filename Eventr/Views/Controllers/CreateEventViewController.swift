@@ -10,38 +10,33 @@ import UIKit
 import Firebase
 import MapKit
 import DropDown
+import JTAppleCalendar
 
 class CreateEventViewController: UIViewController {
     
+    
     var ref: DatabaseReference!
     let categoryDropDown = DropDown()
+    let formatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureCalendarView()
     }
     
     @IBOutlet weak var eventName: UITextView!
-    
     @IBOutlet weak var eventDescription: UITextView!
-    
     @IBOutlet weak var eventLocation: UITextView!
-    
     @IBOutlet weak var eventTicketURL: UITextView!
-    
     @IBOutlet weak var eventURL: UITextView!
-    
     @IBOutlet weak var eventContactInfo: UITextView!
-    
     @IBOutlet weak var eventTag1: UITextView!
-    
     @IBOutlet weak var eventTag2: UITextView!
-    
     @IBOutlet weak var eventTag3: UITextView!
-    
     @IBOutlet weak var selectCategoryButton: UIButton!
-   
     @IBOutlet weak var paidSwitch: UISwitch!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    
     
     @IBAction func selectCategory(_ sender: UIButton) {
       
