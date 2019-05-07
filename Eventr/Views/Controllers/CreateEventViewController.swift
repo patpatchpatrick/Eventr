@@ -19,6 +19,7 @@ class CreateEventViewController: UIViewController {
     let categoryDropDown = DropDown()
     let formatter = DateFormatter()
     var dateWasSelected: Bool = false
+    var timeWasSelected: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +40,14 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var calendarContainer: UIView!
     @IBOutlet weak var selectEventDateButton: UIButton!
-    
+    @IBOutlet weak var selectEventTimeButton: UIButton!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var timePickerContainer: UIView!
     
     @IBAction func selectEventDate(_ sender: UIButton) {
         calendarContainer.isHidden = false
         
     }
-    
     
     @IBAction func previousMonth(_ sender: UIButton) {
         calendarView.scrollToSegment(.previous)
@@ -69,6 +71,33 @@ class CreateEventViewController: UIViewController {
         calendarView.selectDates([Date()])
     }
     
+    
+    @IBAction func selectEventTime(_ sender: UIButton) {
+        timePickerContainer.isHidden = false
+    }
+    
+    @IBAction func timeChanged(_ sender: UIDatePicker) {
+        let date = sender.date
+        let calendar = Calendar.current
+        let comp = calendar.dateComponents([.hour, .minute], from: date)
+        let df = DateFormatter()
+        df.timeStyle = .short
+        let timeString = df.string(from: date)
+        selectEventTimeButton.setTitle(timeString, for: .normal)
+    }
+    
+    
+    @IBAction func timeDiscarded(_ sender: Any) {
+        selectEventTimeButton.setTitle("Event Time:", for: .normal)
+        timeWasSelected = false
+        timePickerContainer.isHidden = true
+    }
+    
+    
+    @IBAction func timeSelected(_ sender: UIButton) {
+        timePickerContainer.isHidden = true
+        timeWasSelected = true
+    }
     
     
     @IBAction func selectCategory(_ sender: UIButton) {
