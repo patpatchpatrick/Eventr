@@ -98,22 +98,14 @@
 		F65368832272618000861E0D /* Eventr */ = {
 			isa = PBXGroup;
 			children = (
+				F6DAC8742281108A0009959D /* Views */,
 				F6D13E522277BF1000104CFF /* Network */,
 				F6113F4422764FD900CAD961 /* GoogleService-Info.plist */,
 				F65368842272618100861E0D /* AppDelegate.swift */,
-				F65368862272618100861E0D /* ViewController.swift */,
-				F65368882272618100861E0D /* Main.storyboard */,
-				F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */,
-				F6113F4A227660A900CAD961 /* LoginViewController.swift */,
-				F62733032273944500FDA681 /* EventViewController.swift */,
 				F653688B2272618200861E0D /* Assets.xcassets */,
-				F653688D2272618200861E0D /* LaunchScreen.storyboard */,
 				F65368902272618200861E0D /* Info.plist */,
-				F65368962272678C00861E0D /* UtilityViews.swift */,
 				F62733012273873D00FDA681 /* Event.swift */,
 				F6ADA4C72273CBA000948B7D /* UserPreferences.swift */,
-				F6113F46227654D200CAD961 /* StartViewController.swift */,
-				F6113F482276589400CAD961 /* SignUpViewController.swift */,
 			);
 			path = Eventr;
 			sourceTree = "<group>";
@@ -124,6 +116,38 @@
 				F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F6DAC8742281108A0009959D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F6DAC876228111420009959D /* Storyboards */,
+				F65368962272678C00861E0D /* UtilityViews.swift */,
+				F6DAC875228110CD0009959D /* Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F6DAC875228110CD0009959D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F6113F46227654D200CAD961 /* StartViewController.swift */,
+				F6113F482276589400CAD961 /* SignUpViewController.swift */,
+				F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */,
+				F6113F4A227660A900CAD961 /* LoginViewController.swift */,
+				F62733032273944500FDA681 /* EventViewController.swift */,
+				F65368862272618100861E0D /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F6DAC876228111420009959D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F65368882272618100861E0D /* Main.storyboard */,
+				F653688D2272618200861E0D /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

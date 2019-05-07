@@ -37,39 +37,15 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
             let eventID = key
             firebaseDatabaseRef.child("events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get dictionary of event data
-                let value = snapshot.value as? NSDictionary
-                if value != nil {
-                    //Check if event has already been upvoted by user
-                    let event = Event(dict: value!, idKey: eventID)
+                if let value = snapshot.value as? NSDictionary {
+                    let event = Event(dict: value, idKey: eventID)
+                    //Check if event has been favorited by user
                     queryIfFirebaseEventIsFavorited(event: event)
-                    checkIfUpvoted: if Auth.auth().currentUser != nil {
-                        guard let userID = Auth.auth().currentUser?.uid else {
-                            break checkIfUpvoted
-                        }
-                        firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
-                            (snapshot) in
-                            guard let dict = snapshot.value as? NSDictionary else {
-                                return
-                            }
-                            
-                            _ = dict.allValues.contains { element in
-                                if case element as! String = eventID {
-                                    event.upvoted = true
-                                    //Notify the tableview to relaod
-                                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
-                                    return true
-                                } else {
-                                    event.upvoted = false
-                                    //Notify the tableview to relaod
-                                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
-                                    return false
-                                }
-                            }
-                        })
-                    }
+                    //Check if event has been upvoted by user
+                    queryIfFirebaseEventIsUpvoted(event: event)
                     //Add event to table view events list and update table
                     events.append(event)
-                    //Notify the tableview to relaod
+                    //Notify the tableview to reload
                     NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
                 }
             }) { (error) in
@@ -84,8 +60,8 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
 
 //Create a firebase event
 //This method will write all necessary data to firebase for an event when a new event is created
-//First it will create an event in the Events child of firebase
-//Then, it will create an event in the GeoFire child of firebase so it can be searched by location
+//First it will create an event in the Events section of the database
+//Then, it will create an event in the GeoFire section of the database so the event can be searched by location
 func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
     if Auth.auth().currentUser != nil {
         let paidString = (event.paid) ? "1" : "0"
@@ -103,11 +79,12 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
             "upvotes": String(event.upvoteCount),
             "paid" : paidString
         ]
+        //Add the event to the "events" section of firebase
         let firebaseEvent = firebaseDatabaseRef.child("events").childByAutoId()
-        let eventKey = firebaseEvent.key
-        if eventKey != nil {
-            event.id = eventKey!
+        guard let eventKey = firebaseEvent.key else {
+            return
         }
+        event.id = eventKey
             firebaseEvent.setValue(eventData, withCompletionBlock: { (error, snapshot) in
             if error != nil {
                 print("Error writing event to Firebase")
@@ -120,13 +97,42 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
                         return
                     }
                     let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                    if eventKey != nil {
-                        insertGeofireEvent(location: initialLocation, eventID: eventKey!, callback: callback)
-                    }
+                        insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
+                    
                 }
             }
         })
         
+    }
+}
+
+func queryIfFirebaseEventIsUpvoted(event: Event){
+   if Auth.auth().currentUser != nil {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+
+    firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            guard let dict = snapshot.value as? NSDictionary else {
+                return
+            }
+        
+        //Check to see if the event is marked as upvoted in firebase and update the event data and tableview accordingly
+            _ = dict.allValues.contains { element in
+                if case element as! String = event.id {
+                    event.upvoted = true
+                    //Notify the tableview to reload
+                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                    return true
+                } else {
+                    event.upvoted = false
+                    //Notify the tableview to relaod
+                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                    return false
+                }
+            }
+        })
     }
 }
 
