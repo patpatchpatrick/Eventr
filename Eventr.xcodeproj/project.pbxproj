@@ -83,6 +83,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F6103DF122824DF900137171 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				F65368962272678C00861E0D /* UtilityViews.swift */,
+				F610306A228226D300E6D5CE /* CalendarSectionHeaderView.xib */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		F65368782272618000861E0D = {
 			isa = PBXGroup;
 			children = (
@@ -127,10 +136,9 @@
 		F6DAC8742281108A0009959D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F6103DF122824DF900137171 /* Custom Views */,
 				F6DAC876228111420009959D /* Storyboards */,
-				F65368962272678C00861E0D /* UtilityViews.swift */,
 				F6DAC875228110CD0009959D /* Controllers */,
-				F610306A228226D300E6D5CE /* CalendarSectionHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";

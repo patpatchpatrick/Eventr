@@ -18,6 +18,7 @@ class CreateEventViewController: UIViewController {
     var ref: DatabaseReference!
     let categoryDropDown = DropDown()
     let formatter = DateFormatter()
+    var dateWasSelected: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,38 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var selectCategoryButton: UIButton!
     @IBOutlet weak var paidSwitch: UISwitch!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var calendarContainer: UIView!
+    @IBOutlet weak var selectEventDateButton: UIButton!
+    
+    
+    @IBAction func selectEventDate(_ sender: UIButton) {
+        calendarContainer.isHidden = false
+        
+    }
+    
+    
+    @IBAction func previousMonth(_ sender: UIButton) {
+        calendarView.scrollToSegment(.previous)
+    }
+    
+    
+    @IBAction func nextMonth(_ sender: UIButton) {
+        calendarView.scrollToSegment(.next)
+    }
+    
+    @IBAction func dateSelected(_ sender: UIButton) {
+        dateWasSelected = true
+        calendarContainer.isHidden = true
+    }
+    
+    
+    @IBAction func dateDiscarded(_ sender: UIButton) {
+        calendarContainer.isHidden = true
+        dateWasSelected = false
+        selectEventDateButton.setTitle("Event Date:", for: .normal)
+        calendarView.selectDates([Date()])
+    }
+    
     
     
     @IBAction func selectCategory(_ sender: UIButton) {

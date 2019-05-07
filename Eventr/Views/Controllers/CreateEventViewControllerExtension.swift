@@ -16,7 +16,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         calendarView.minimumInteritemSpacing = 0
         
         calendarView.register(UINib(nibName: "CalendarSectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CalendarSectionHeaderView")
-        calendarView.scrollToDate(Date(), animateScroll: false)
+        //calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates([Date()])
     }
     
@@ -76,11 +76,14 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         calendar.scrollingMode = .stopAtEachSection
+        calendar.scrollDirection = .horizontal
+        let today = Date()
+        let startDate = today
+        let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+        var endDate = cal!.date(byAdding: NSCalendar.Unit.year, value: 3, to: today, options: NSCalendar.Options.matchLast)
+        if endDate == nil { endDate = today}
         
-        let startDate = formatter.date(from: "01 01 19")!
-        let endDate = formatter.date(from: "31 12 20")!
-        
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 6, calendar: Calendar.current, generateInDates: .forAllMonths, generateOutDates: .tillEndOfRow, firstDayOfWeek: .sunday, hasStrictBoundaries: true)
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate!, numberOfRows: 6, calendar: Calendar.current, generateInDates: .forAllMonths, generateOutDates: .off, firstDayOfWeek: .sunday, hasStrictBoundaries: true)
         
         return parameters
         
@@ -88,6 +91,13 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(cell: cell, cellState: cellState)
+        //Display selected date in button text
+        if !calendarContainer.isHidden {
+            let df = DateFormatter()
+            df.dateFormat = "MMM dd YYYY"
+            let dateString = df.string(from: date)
+            selectEventDateButton.setTitle(dateString, for: .normal)
+        }
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -106,5 +116,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
         return MonthSize(defaultSize: 40)
     }
+    
+    
     
 }
