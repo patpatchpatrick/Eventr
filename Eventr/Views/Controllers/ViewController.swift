@@ -12,6 +12,7 @@ import DropDown
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
+import JTAppleCalendar
 
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), address: "", details: "", contact: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
@@ -24,6 +25,7 @@ var googleUser: GIDGoogleUser?
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
+    var searchDate: Date = Date()
     let categoryDropDown = DropDown()
     let locationManager = CLLocationManager()
     @IBOutlet weak var sideMenu: UIView!
@@ -37,8 +39,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var categoriesStackView: UIStackView!
     @IBOutlet weak var locationEntryField: UITextField!
     @IBOutlet weak var eventTableView: UITableView!
-
-
+    @IBOutlet weak var calendarContainer: UIView!
+    @IBOutlet weak var selectSearchDate: UIButton!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +56,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpAddCategoryImage()
         hideSideMenu()
         setUpUser()
-        
+        configureCalendarView()
   
     }
     
@@ -85,6 +89,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @objc func logOutIconTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         logOut()
+    }
+    
+    
+    @IBAction func selectSearchDate(_ sender: UIButton) {
+        
+        calendarContainer.isHidden = false
+    
     }
     
     //Create Event Icon was tapped

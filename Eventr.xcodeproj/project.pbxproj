@@ -16,6 +16,7 @@
 		F6113F47227654D200CAD961 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6113F46227654D200CAD961 /* StartViewController.swift */; };
 		F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6113F482276589400CAD961 /* SignUpViewController.swift */; };
 		F6113F4B227660A900CAD961 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6113F4A227660A900CAD961 /* LoginViewController.swift */; };
+		F611F52E228352F400CB02DE /* ViewControllerCalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */; };
 		F62733022273873D00FDA681 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733012273873D00FDA681 /* Event.swift */; };
 		F62733042273944500FDA681 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733032273944500FDA681 /* EventViewController.swift */; };
 		F65368852272618100861E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368842272618100861E0D /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 		F6113F46227654D200CAD961 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		F6113F482276589400CAD961 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F6113F4A227660A900CAD961 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCalendarExtension.swift; sourceTree = "<group>"; };
 		F62733012273873D00FDA681 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F62733032273944500FDA681 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		F65368812272618000861E0D /* Eventr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +159,7 @@
 				F65368862272618100861E0D /* ViewController.swift */,
 				F6103064228204C800E6D5CE /* ViewControllerExtension.swift */,
 				F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */,
+				F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				F62733042273944500FDA681 /* EventViewController.swift in Sources */,
 				F61030672282141C00E6D5CE /* CreateEventViewControllerExtension.swift in Sources */,
 				F6113F47227654D200CAD961 /* StartViewController.swift in Sources */,
+				F611F52E228352F400CB02DE /* ViewControllerCalendarExtension.swift in Sources */,
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,
 				F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,
