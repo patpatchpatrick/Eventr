@@ -25,6 +25,7 @@
 		F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F653688D2272618200861E0D /* LaunchScreen.storyboard */; };
 		F65368972272678C00861E0D /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368962272678C00861E0D /* UtilityViews.swift */; };
 		F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* UserPreferences.swift */; };
+		F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */; };
 		F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		F65368902272618200861E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F65368962272678C00861E0D /* UtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
 		F6ADA4C72273CBA000948B7D /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommunication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 				F65368902272618200861E0D /* Info.plist */,
 				F62733012273873D00FDA681 /* Event.swift */,
 				F6ADA4C72273CBA000948B7D /* UserPreferences.swift */,
+				F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */,
 			);
 			path = Eventr;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */,
 				F6113F4B227660A900CAD961 /* LoginViewController.swift in Sources */,
 				F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */,
 				F62733042273944500FDA681 /* EventViewController.swift in Sources */,

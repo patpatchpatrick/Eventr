@@ -18,6 +18,9 @@ class CreateEventViewController: UIViewController {
     var ref: DatabaseReference!
     let categoryDropDown = DropDown()
     let formatter = DateFormatter()
+    
+    var eventDate = Date()
+    var eventTime = Date()
     var dateWasSelected: Bool = false
     var timeWasSelected: Bool = false
 
@@ -77,13 +80,10 @@ class CreateEventViewController: UIViewController {
     }
     
     @IBAction func timeChanged(_ sender: UIDatePicker) {
-        let date = sender.date
-        let calendar = Calendar.current
-        let comp = calendar.dateComponents([.hour, .minute], from: date)
-        let df = DateFormatter()
-        df.timeStyle = .short
-        let timeString = df.string(from: date)
-        selectEventTimeButton.setTitle(timeString, for: .normal)
+        
+        eventTime = sender.date
+        setCalendarButtonTitleToBeSelectedTime()
+        
     }
     
     
@@ -95,8 +95,35 @@ class CreateEventViewController: UIViewController {
     
     
     @IBAction func timeSelected(_ sender: UIButton) {
+        
+        setCalendarButtonTitleToBeSelectedTime()
         timePickerContainer.isHidden = true
         timeWasSelected = true
+    }
+    
+    func setCalendarButtonTitleToBeSelectedTime(){
+        //Format and set time to be title of the "Event Time:" button
+        let df = DateFormatter()
+        df.timeStyle = .short
+        let timeString = df.string(from: eventTime)
+        selectEventTimeButton.setTitle(timeString, for: .normal)
+    }
+    
+    func getFirebaseDate() -> Date? {
+        if dateWasSelected && timeWasSelected {
+            let calendar = Calendar.current
+            let comp = calendar.dateComponents([.hour, .minute], from: eventTime)
+            let hour = comp.hour
+            let minute = comp.minute
+            let firebaseDate = Calendar.current.date(bySettingHour: hour!, minute: minute!, second: 0, of: eventDate)!
+            let printFormatter = DateFormatter()
+            printFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            printFormatter.timeZone = Calendar.current.timeZone
+            printFormatter.locale = Calendar.current.locale
+            print("fbdate:" + printFormatter.string(from: firebaseDate))
+            return firebaseDate
+        }
+        return nil
     }
     
     

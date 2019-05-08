@@ -16,7 +16,6 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         calendarView.minimumInteritemSpacing = 0
         
         calendarView.register(UINib(nibName: "CalendarSectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CalendarSectionHeaderView")
-        //calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates([Date()])
     }
     
@@ -72,11 +71,10 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
-        formatter.dateFormat = "dd MM yy"
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
         calendar.scrollingMode = .stopAtEachSection
         calendar.scrollDirection = .horizontal
+        
+
         let today = Date()
         let startDate = today
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
@@ -91,6 +89,8 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(cell: cell, cellState: cellState)
+        eventDate = date
+        
         //Display selected date in button text
         if !calendarContainer.isHidden {
             let df = DateFormatter()

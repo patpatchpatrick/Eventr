@@ -330,7 +330,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="70" y="0.0" width="170.00000000000006" height="45"/>
+                                        <rect key="frame" x="70" y="0.0" width="170" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
@@ -844,10 +844,10 @@
             </objects>
             <point key="canvasLocation" x="-566" y="-733"/>
         </scene>
-        <!--Ib Calendar Data Source-->
+        <!--Create Event View Controller-->
         <scene sceneID="dzT-u0-gbb">
             <objects>
-                <viewController id="cy9-2J-sdg" customClass="CreateEventViewController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cy9-2J-sdg" userLabel="Create Event View Controller" customClass="CreateEventViewController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="08l-Wt-5YV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
