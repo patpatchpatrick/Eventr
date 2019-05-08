@@ -117,6 +117,40 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         return MonthSize(defaultSize: 40)
     }
     
+    func displayDateErrorNotification(){
+        let getDateFailAlert = UIAlertController(title: "Unable to retrieve Event Date. Ensure date and time are entered correctly.", message: nil, preferredStyle: .alert)
+        getDateFailAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+        }))
+        self.present(getDateFailAlert, animated: true)
+    }
+    
+    func getFirebaseDate() -> Date? {
+        //Return the event date in firebase format (GMT)
+        //Create the firebase date by adding together the selected date and selected time and converting the date to (GMT)
+        if dateWasSelected && timeWasSelected {
+            let calendar = Calendar.current
+            let comp = calendar.dateComponents([.hour, .minute], from: eventTime)
+            let hour = comp.hour
+            let minute = comp.minute
+            let firebaseDate = Calendar.current.date(bySettingHour: hour!, minute: minute!, second: 0, of: eventDate)!
+            let convertedFirebaseDate = firebaseDate.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!)
+            let printFormatter = DateFormatter()
+            printFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            printFormatter.timeZone = Calendar.current.timeZone
+            printFormatter.locale = Calendar.current.locale
+            print("fbdate:" + printFormatter.string(from: firebaseDate))
+            print("convertedfbdate:" + printFormatter.string(from: convertedFirebaseDate))
+            return convertedFirebaseDate
+        }
+        return nil
+    }
     
     
+    func setCalendarButtonTitleToBeSelectedTime(){
+        //Format and set time to be title of the "Event Time:" button
+        let df = DateFormatter()
+        df.timeStyle = .short
+        let timeString = df.string(from: eventTime)
+        selectEventTimeButton.setTitle(timeString, for: .normal)
+    }
 }

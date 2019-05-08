@@ -68,6 +68,7 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
     let eventData = [
         "name":  event.name,
         "category": event.category.text(),
+        "date": String(event.date.timeIntervalSince1970),
         "description": event.details,
         "location":   event.address,
         "ticketURL":   event.ticketURL,

@@ -14,6 +14,7 @@ class Event {
     var name: String = ""
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
+    var date: Date = Date()
     var address: String = ""
     var details: String = ""
     var contact: String = ""
@@ -28,9 +29,10 @@ class Event {
     var upvoted: Bool = false
     
     
-    init(name: String, category: EventCategory, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
+    init(name: String, category: EventCategory, date: Date, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
         self.name = name
         self.address = address
+        self.date = date
         self.details = details
         self.contact = contact
         self.ticketURL = ticketURL

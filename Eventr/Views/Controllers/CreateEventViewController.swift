@@ -49,7 +49,6 @@ class CreateEventViewController: UIViewController {
     
     @IBAction func selectEventDate(_ sender: UIButton) {
         calendarContainer.isHidden = false
-        
     }
     
     @IBAction func previousMonth(_ sender: UIButton) {
@@ -80,10 +79,8 @@ class CreateEventViewController: UIViewController {
     }
     
     @IBAction func timeChanged(_ sender: UIDatePicker) {
-        
         eventTime = sender.date
         setCalendarButtonTitleToBeSelectedTime()
-        
     }
     
     
@@ -95,42 +92,13 @@ class CreateEventViewController: UIViewController {
     
     
     @IBAction func timeSelected(_ sender: UIButton) {
-        
         setCalendarButtonTitleToBeSelectedTime()
         timePickerContainer.isHidden = true
         timeWasSelected = true
-    }
-    
-    func setCalendarButtonTitleToBeSelectedTime(){
-        //Format and set time to be title of the "Event Time:" button
-        let df = DateFormatter()
-        df.timeStyle = .short
-        let timeString = df.string(from: eventTime)
-        selectEventTimeButton.setTitle(timeString, for: .normal)
-    }
-    
-    func getFirebaseDate() -> Date? {
-        if dateWasSelected && timeWasSelected {
-            let calendar = Calendar.current
-            let comp = calendar.dateComponents([.hour, .minute], from: eventTime)
-            let hour = comp.hour
-            let minute = comp.minute
-            let firebaseDate = Calendar.current.date(bySettingHour: hour!, minute: minute!, second: 0, of: eventDate)!
-            let printFormatter = DateFormatter()
-            printFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            printFormatter.timeZone = Calendar.current.timeZone
-            printFormatter.locale = Calendar.current.locale
-            print("fbdate:" + printFormatter.string(from: firebaseDate))
-            return firebaseDate
-        }
-        return nil
-    }
-    
+    }    
     
     @IBAction func selectCategory(_ sender: UIButton) {
       
-    
-        
         //Set up category selection dropdown menu
         categoryDropDown.anchorView = selectCategoryButton
         categoryDropDown.dataSource = allEventCategories.strings()
@@ -145,9 +113,6 @@ class CreateEventViewController: UIViewController {
         
        
     }
-    
-    
-    
     
     
     //If previous screen button is pushed, show discard data alert
@@ -180,8 +145,11 @@ class CreateEventViewController: UIViewController {
         
         let categoryString = selectCategoryButton.titleLabel?.text
         let category = stringToEventCategory(string: categoryString!)
-        
-        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
+        guard let eventDate = getFirebaseDate() else {
+            displayDateErrorNotification()
+            return
+        }
+        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
         
         createFirebaseEvent(event: newEvent, callback: {
             bool in
@@ -195,8 +163,6 @@ class CreateEventViewController: UIViewController {
                 self.present(createEventFailAlert, animated: true)
             }})
         
-        
-
     }
     
     
