@@ -62,7 +62,7 @@ public struct EventCategory : Hashable {
     func image() -> UIImage? {
         switch category {
         case .all:
-            return UIImage(named: "catIconAll")
+            return UIImage(named: "catIconFavorite")
         case .business:
             return UIImage(named: "catIconBusiness")
         case .music:

@@ -72,10 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         allEventCategories.add(eventCategory: EventCategory(category: .misc))
         
         
-        userSelectedEventCategories.add(eventCategory: EventCategory(category: .all))
-        userSelectedEventCategories.add(eventCategory: EventCategory(category: .business))
-        userSelectedEventCategories.add(eventCategory: EventCategory(category: .sports))
-        userSelectedEventCategories.add(eventCategory: EventCategory(category: .misc))
+        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .all))
+        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .business))
+        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .sports))
+        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .misc))
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .food))
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .art))
         userUnselectedEventCategories.add(eventCategory: EventCategory(category: .friends))

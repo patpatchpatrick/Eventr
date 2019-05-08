@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var logOutIcon: UIImageView!
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var addCategoryImage: UIImageView!
+    @IBOutlet weak var allCategoriesButton: UIButton!
     @IBOutlet weak var categoriesStackView: UIStackView!
     @IBOutlet weak var locationEntryField: UITextField!
     @IBOutlet weak var eventTableView: UITableView!

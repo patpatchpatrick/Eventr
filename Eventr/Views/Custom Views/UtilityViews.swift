@@ -16,9 +16,9 @@ import JTAppleCalendar
 class HairlineView: UIView {
     override func awakeFromNib() {
         guard let backgroundColor = self.backgroundColor?.cgColor else { return }
-        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = (1.0 / UIScreen.main.scale) / 2;
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.white
     }
 }
 

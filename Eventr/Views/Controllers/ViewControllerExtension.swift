@@ -67,11 +67,15 @@ extension ViewController{
     
     func setUpCategoryStackView(){
         
+        //Add action to all categories button (permanent button)
+         allCategoriesButton.addTarget(self, action: #selector(testButtonAction), for: .touchUpInside)
+        
         //Add all user selected categories to the stackview of category images that can be selected
         for eventCategory in userSelectedEventCategories.set {
             let imageView = UIImageView()
-            imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
-            imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
+            imageView.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+            imageView.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+            imageView.alpha = 0.5
             imageView.image = eventCategory.image()
             categoriesStackView.addArrangedSubview(imageView)
         }
@@ -134,6 +138,8 @@ extension ViewController{
         categoryDropDown.selectionAction = { (index: Int, item: String) in
             addImageToCategoriesStackView(for: item)
         }
+        categoryDropDown.backgroundColor = UIColor(red: 106/255.0, green: 138/255.0, blue: 244/255.0, alpha: 1.00)
+        categoryDropDown.textColor = UIColor.white
         categoryDropDown.width = 140
         categoryDropDown.bottomOffset = CGPoint(x: 0, y:(categoryDropDown.anchorView?.plainView.bounds.height)!)
         categoryDropDown.show()
@@ -150,12 +156,35 @@ extension ViewController{
             
             if(!userSelectedEventCategories.containsCategory(eventCategory: eventCat)){
                 
+                let button = UIButton()
+                button.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+                button.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+                button.alpha = 0.5
+                button.setImage(eventCat.image(), for: .normal)
+                button.addTarget(self, action: #selector(testButtonAction), for: .touchUpInside)
+                button.isHidden = true
+                button.frame.size.width = 0
+                categoriesStackView.addArrangedSubview(button)
+                UIView.animate(withDuration: 0.5){
+                    button.isHidden = false
+                    button.frame.size.width = 30.0
+                }
+                
+                /*
                 let imageView = UIImageView()
-                imageView.backgroundColor = UIColor.blue
+                //imageView.backgroundColor = UIColor.blue
                 imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
                 imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
                 imageView.image = eventCat.image()
+                imageView.isHidden = true
+                imageView.frame.size.width = 0
                 categoriesStackView.addArrangedSubview(imageView)
+                UIView.animate(withDuration: 0.5){
+                    imageView.isHidden = false
+                    imageView.frame.size.width = 60.0
+                }
+ */
+                
                 userSelectedEventCategories.add(eventCategory: eventCat)
                 userUnselectedEventCategories.remove(eventCategory: eventCat)
                 categoryDropDown.dataSource = userUnselectedEventCategories.strings()
@@ -163,6 +192,15 @@ extension ViewController{
             
         }
         
+    }
+    
+    @objc func testButtonAction(sender: UIButton!) {
+        for subview in categoriesStackView.arrangedSubviews{
+            subview.alpha = 0.5
+        }
+        UIView.animate(withDuration: 0.5){
+            sender.alpha = 1.0
+        }
     }
     
     //User's location returned
