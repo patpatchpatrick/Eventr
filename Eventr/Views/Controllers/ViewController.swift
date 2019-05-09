@@ -23,6 +23,7 @@ var googleUser: GIDGoogleUser?
 //Date range to query events
 var fromDate: Date = Date()
 var toDate: Date = Date().addingTimeInterval(604800) //toDate is 1 week from now by default
+var hideDate: Date = Date().addingTimeInterval(-86400) //date before which to hide calendar cells.  This date is equal to yesterday
 
 
 
@@ -133,6 +134,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Start date button pushed in the main UI
     @IBAction func selectFromDate(_ sender: UIButton) {
         fromDateWasSelected = true
+        hideDate = Date().addingTimeInterval(-86400)
+        calendarView.reloadData()
         calendarView.deselectAllDates()
         calendarView.selectDates([fromDate])
         calendarView.scrollToDate(fromDate)
@@ -155,6 +158,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         calendarContainer.isHidden = true
         selectToDate.isEnabled = true
         selectFromDate.isEnabled = true
+        if fromDate > toDate {
+            resetCalendarToDate()
+        }
     }
     
     
@@ -172,6 +178,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //End date button pushed in the main UI
     @IBAction func selectToDate(_ sender: UIButton) {
         fromDateWasSelected = false
+        hideDate = fromDate
+        calendarView.reloadData()
         calendarView.deselectAllDates()
         calendarView.selectDates([toDate])
         calendarView.scrollToDate(toDate)

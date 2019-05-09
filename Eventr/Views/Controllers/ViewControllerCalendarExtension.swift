@@ -32,7 +32,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         currentCell.dateLabel.text = cellState.text
         configureSelectedStateFor(cell: currentCell, cellState: cellState)
         configureTextColorFor(cell: currentCell, cellState: cellState)
-        let cellHidden = cellState.dateBelongsTo != .thisMonth
+        let cellHidden = cellState.date < hideDate
         currentCell.isHidden = cellHidden
         
     }
@@ -89,11 +89,6 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendar.scrollingMode = .stopAtEachSection
         calendar.scrollDirection = .horizontal
         var startDate = Date()
-        if fromDateWasSelected{
-            startDate = fromDate
-        } else {
-            startDate = toDate
-        }
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
         var endDate = cal!.date(byAdding: NSCalendar.Unit.year, value: 3, to: startDate, options: NSCalendar.Options.matchLast)
         if endDate == nil { endDate = startDate}
@@ -168,7 +163,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     func resetCalendarToDate(){
         let df = DateFormatter()
         df.dateFormat = "MMM dd YYYY"
-        toDate = Date().addingTimeInterval(604800)
+        toDate = fromDate.addingTimeInterval(604800)
         let toDateString = df.string(from: toDate)
         selectToDate.setTitle(toDateString, for: .normal)
         
