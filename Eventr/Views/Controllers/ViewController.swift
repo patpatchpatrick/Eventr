@@ -161,11 +161,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func discardDate(_ sender: UIButton) {
         calendarContainer.isHidden = true
         if fromDateWasSelected{
-            selectFromDate.setTitle("From Date:", for: .normal)
-            fromDate = Date() //reset date
+            resetCalendarFromDate()
         } else {
-            selectToDate.setTitle("To Date:", for: .normal)
-            toDate = Date() //reset date
+            resetCalendarToDate()
         }
         selectToDate.isEnabled = true
         selectFromDate.isEnabled = true

@@ -16,6 +16,11 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
         
+        //Display the initial dates on the calendar from and to date buttons
+        resetCalendarToDate()
+        resetCalendarFromDate()
+        
+        
         calendarView.register(UINib(nibName: "CalendarSectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CalendarSectionHeaderView")
 
     }
@@ -149,6 +154,24 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
         return MonthSize(defaultSize: 40)
+    }
+    
+    func resetCalendarFromDate(){
+        let df = DateFormatter()
+        df.dateFormat = "MMM dd YYYY"
+        fromDate = Date()
+        let fromDateString = df.string(from: fromDate)
+        selectFromDate.setTitle(fromDateString, for: .normal)
+        
+    }
+    
+    func resetCalendarToDate(){
+        let df = DateFormatter()
+        df.dateFormat = "MMM dd YYYY"
+        toDate = Date().addingTimeInterval(604800)
+        let toDateString = df.string(from: toDate)
+        selectToDate.setTitle(toDateString, for: .normal)
+        
     }
     
 
