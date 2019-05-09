@@ -378,21 +378,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-ok-I6D">
-                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="30"/>
-                                                <state key="normal" title="Today's Date"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="30"/>
+                                                <state key="normal" title="From Date:"/>
                                                 <connections>
                                                     <action selector="selectFromDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7wi-76-42C"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3k-gN-v4r">
-                                                <rect key="frame" x="89.5" y="0.0" width="107" height="30"/>
+                                                <rect key="frame" x="82.5" y="0.0" width="175.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mk-9T-DWa">
-                                                <rect key="frame" x="196.5" y="0.0" width="123.5" height="30"/>
-                                                <state key="normal" title="1 Week From Now"/>
+                                                <rect key="frame" x="258" y="0.0" width="62" height="30"/>
+                                                <state key="normal" title="To Date:"/>
                                                 <connections>
                                                     <action selector="selectToDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6bO-Qt-VbM"/>
                                                 </connections>

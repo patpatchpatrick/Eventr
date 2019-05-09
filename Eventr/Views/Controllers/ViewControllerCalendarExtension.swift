@@ -17,7 +17,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendarView.minimumInteritemSpacing = 0
         
         calendarView.register(UINib(nibName: "CalendarSectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CalendarSectionHeaderView")
-        calendarView.selectDates([Date()])
+
     }
     
     func configureCell(cell: JTAppleCell?, cellState: CellState) {
