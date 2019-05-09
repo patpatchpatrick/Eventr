@@ -51,59 +51,91 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         guard let currentCell = cell as? CalendarCell else {
             return
         }
+        
         if cellState.isSelected{
             currentCell.selectedView.isHidden = false
         } else {
             currentCell.selectedView.isHidden = true
         }
+ 
     }
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarSearchCell", for: indexPath)
         configureCell(cell: cell, cellState: cellState)
+ 
+    
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarSearchCell", for: indexPath) as! CalendarCell
         configureCell(cell: cell, cellState: cellState)
         return cell
+ 
+      
     }
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
+        
+        
         calendar.scrollingMode = .stopAtEachSection
         calendar.scrollDirection = .horizontal
-        
-        
-        let today = Date()
-        let startDate = today
+        var startDate = Date()
+        if fromDateWasSelected{
+            startDate = fromDate
+        } else {
+            startDate = toDate
+        }
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-        var endDate = cal!.date(byAdding: NSCalendar.Unit.year, value: 3, to: today, options: NSCalendar.Options.matchLast)
-        if endDate == nil { endDate = today}
+        var endDate = cal!.date(byAdding: NSCalendar.Unit.year, value: 3, to: startDate, options: NSCalendar.Options.matchLast)
+        if endDate == nil { endDate = startDate}
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate!, numberOfRows: 6, calendar: Calendar.current, generateInDates: .forAllMonths, generateOutDates: .off, firstDayOfWeek: .sunday, hasStrictBoundaries: true)
         
         return parameters
+ 
+     
         
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        
+        //When calendar date is selected, set the appropriate date ('from date' or 'to date') depending on whether user is selecting from date or to date
+        //Set the date text on the appropriate button
+        
         configureCell(cell: cell, cellState: cellState)
-        searchDate = date
+        if fromDateWasSelected {
+            fromDate = date
+        } else {
+            toDate = date
+        }
         
         //Display selected date in button text
         if !calendarContainer.isHidden {
             let df = DateFormatter()
             df.dateFormat = "MMM dd YYYY"
             let dateString = df.string(from: date)
-            selectSearchDate.setTitle(dateString, for: .normal)
+            if fromDateWasSelected{
+               selectFromDate.setTitle(dateString, for: .normal)
+            } else {
+                selectToDate.setTitle(dateString, for: .normal)
+            }
         }
+ 
+       
+ 
+        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        
         configureCell(cell: cell, cellState: cellState)
+ 
     }
+    
     
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
         let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "CalendarSectionHeaderView", for: indexPath)
@@ -113,6 +145,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         (header as! CalendarSectionHeaderView).title.text = formatter.string(from: date)
         return header
     }
+ 
     
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
         return MonthSize(defaultSize: 40)

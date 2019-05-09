@@ -206,6 +206,9 @@
                                                             <constraint firstAttribute="height" constant="25" id="DSD-bF-CLb"/>
                                                         </constraints>
                                                         <state key="normal" image="iconBack"/>
+                                                        <connections>
+                                                            <action selector="previousMonth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsW-La-cXq"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW6-td-jkt">
                                                         <rect key="frame" x="295" y="0.0" width="25" height="25"/>
@@ -214,6 +217,9 @@
                                                             <constraint firstAttribute="height" constant="25" id="rMa-4i-kOi"/>
                                                         </constraints>
                                                         <state key="normal" image="iconForward"/>
+                                                        <connections>
+                                                            <action selector="nextMonth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFE-w0-mmN"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -232,6 +238,9 @@
                                                     <constraint firstAttribute="width" constant="25" id="gAF-cR-W8U"/>
                                                 </constraints>
                                                 <state key="normal" image="iconCheckMark"/>
+                                                <connections>
+                                                    <action selector="confirmDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rz9-Ve-atr"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-ns-vbu">
                                                 <rect key="frame" x="100" y="295" width="25" height="25"/>
@@ -240,6 +249,9 @@
                                                     <constraint firstAttribute="width" constant="25" id="sYr-VF-aqI"/>
                                                 </constraints>
                                                 <state key="normal" image="iconDiscard"/>
+                                                <connections>
+                                                    <action selector="discardDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cSm-YP-dfS"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -369,7 +381,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="89.5" height="30"/>
                                                 <state key="normal" title="Today's Date"/>
                                                 <connections>
-                                                    <action selector="selectSearchDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7wi-76-42C"/>
+                                                    <action selector="selectFromDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7wi-76-42C"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3k-gN-v4r">
@@ -381,6 +393,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mk-9T-DWa">
                                                 <rect key="frame" x="196.5" y="0.0" width="123.5" height="30"/>
                                                 <state key="normal" title="1 Week From Now"/>
+                                                <connections>
+                                                    <action selector="selectToDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6bO-Qt-VbM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -660,7 +675,8 @@
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                         <outlet property="locationEntryField" destination="GWU-Ct-tSG" id="mAe-Wi-zBj"/>
                         <outlet property="logOutIcon" destination="Muw-pa-QyG" id="WLZ-8B-nWQ"/>
-                        <outlet property="selectSearchDate" destination="1KE-ok-I6D" id="Qva-Y3-SJp"/>
+                        <outlet property="selectFromDate" destination="1KE-ok-I6D" id="Qva-Y3-SJp"/>
+                        <outlet property="selectToDate" destination="0mk-9T-DWa" id="fXs-Z9-ZiJ"/>
                         <outlet property="sideMenu" destination="K1r-ii-eaL" id="0OE-pH-nRo"/>
                         <outlet property="sideMenuAccountButton" destination="5oj-Gh-uCt" id="KL3-Ei-Ayb"/>
                         <outlet property="sideMenuCurveImage" destination="Z6t-Dc-Eeb" id="MIm-L2-EsO"/>
@@ -1544,6 +1560,6 @@
         <image name="upvoteArrow" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S6u-EE-Q3h"/>
+        <segue reference="wqm-YJ-0hk"/>
     </inferredMetricsTieBreakers>
 </document>

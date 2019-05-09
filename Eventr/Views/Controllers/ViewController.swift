@@ -25,7 +25,9 @@ var googleUser: GIDGoogleUser?
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
-    var searchDate: Date = Date()
+    var fromDate: Date = Date()
+    var toDate: Date = Date().addingTimeInterval(604800) //toDate is 1 week from now by default
+    var fromDateWasSelected: Bool = false //Bool to know which calendar button was selected (from or to)
     let categoryDropDown = DropDown()
     let locationManager = CLLocationManager()
     @IBOutlet weak var sideMenu: UIView!
@@ -41,8 +43,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var locationEntryField: UITextField!
     @IBOutlet weak var eventTableView: UITableView!
     @IBOutlet weak var calendarContainer: UIView!
-    @IBOutlet weak var selectSearchDate: UIButton!
+    @IBOutlet weak var selectFromDate: UIButton!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var selectToDate: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,13 +95,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         logOut()
     }
     
-    
-    @IBAction func selectSearchDate(_ sender: UIButton) {
-        
-        calendarContainer.isHidden = false
-    
-    }
-    
     //Create Event Icon was tapped
     //If user is not logged in, display alert, otherwise segue to createEvent screen
     @IBAction func createEvent(_ sender: UIButton) {
@@ -132,6 +128,59 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
     }
+    
+    //Start date button pushed in the main UI
+    @IBAction func selectFromDate(_ sender: UIButton) {
+        fromDateWasSelected = true
+        calendarView.deselectAllDates()
+        calendarView.selectDates([fromDate])
+        calendarView.scrollToDate(fromDate)
+        calendarContainer.isHidden = false
+        selectToDate.isEnabled = false //ensure both from and to buttons aren't pressed at same time
+        
+    }
+    
+    @IBAction func previousMonth(_ sender: UIButton) {
+        calendarView.scrollToSegment(.previous)
+    }
+    
+    
+    @IBAction func nextMonth(_ sender: UIButton) {
+        calendarView.scrollToSegment(.next)
+    }
+    
+    //Start date selecton confirmed in the calendarView
+    @IBAction func confirmDate(_ sender: UIButton) {
+        calendarContainer.isHidden = true
+        selectToDate.isEnabled = true
+        selectFromDate.isEnabled = true
+    }
+    
+    
+    @IBAction func discardDate(_ sender: UIButton) {
+        calendarContainer.isHidden = true
+        if fromDateWasSelected{
+            selectFromDate.setTitle("Start Date:", for: .normal)
+            fromDate = Date() //reset date
+        } else {
+            selectToDate.setTitle("End Date:", for: .normal)
+            toDate = Date() //reset date
+        }
+        selectToDate.isEnabled = true
+        selectFromDate.isEnabled = true
+    }
+    
+    //End date button pushed in the main UI
+    @IBAction func selectToDate(_ sender: UIButton) {
+        fromDateWasSelected = false
+        calendarView.deselectAllDates()
+        calendarView.selectDates([toDate])
+        calendarView.scrollToDate(toDate)
+        calendarContainer.isHidden = false
+        selectFromDate.isEnabled = false //ensure both from and to buttons aren't pressed at same time
+
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count

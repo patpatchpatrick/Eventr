@@ -68,7 +68,7 @@ extension ViewController{
     func setUpCategoryStackView(){
         
         //Add action to all categories button (permanent button)
-         allCategoriesButton.addTarget(self, action: #selector(testButtonAction), for: .touchUpInside)
+         allCategoriesButton.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
         
         //Add all user selected categories to the stackview of category images that can be selected
         for eventCategory in userSelectedEventCategories.set {
@@ -158,32 +158,26 @@ extension ViewController{
                 
                 let button = UIButton()
                 button.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
-                button.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+                button.widthAnchor.constraint(equalToConstant: 500.0).isActive = true
+                button.contentMode = .scaleAspectFit
+                button.contentHorizontalAlignment = .right
                 button.alpha = 0.5
-                button.setImage(eventCat.image(), for: .normal)
-                button.addTarget(self, action: #selector(testButtonAction), for: .touchUpInside)
-                button.isHidden = true
-                button.frame.size.width = 0
+                let imageView = UIImageView()
+                imageView.image = eventCat.image()
+                imageView.contentMode = .scaleAspectFit
+                imageView.frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0 )
+                button.addSubview(imageView)
+                button.bringSubviewToFront(button.imageView!)
+                
+                //button.setImage(eventCat.image(), for: .normal)
+                button.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
+                
                 categoriesStackView.addArrangedSubview(button)
                 UIView.animate(withDuration: 0.5){
-                    button.isHidden = false
-                    button.frame.size.width = 30.0
+                    button.layoutIfNeeded()
+                    button.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
                 }
                 
-                /*
-                let imageView = UIImageView()
-                //imageView.backgroundColor = UIColor.blue
-                imageView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
-                imageView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
-                imageView.image = eventCat.image()
-                imageView.isHidden = true
-                imageView.frame.size.width = 0
-                categoriesStackView.addArrangedSubview(imageView)
-                UIView.animate(withDuration: 0.5){
-                    imageView.isHidden = false
-                    imageView.frame.size.width = 60.0
-                }
- */
                 
                 userSelectedEventCategories.add(eventCategory: eventCat)
                 userUnselectedEventCategories.remove(eventCategory: eventCat)
@@ -194,7 +188,8 @@ extension ViewController{
         
     }
     
-    @objc func testButtonAction(sender: UIButton!) {
+    @objc func selectCategory(sender: UIButton!) {
+        //Select category from category toolbar and make all other categories have 50% opacity so that the selected category stands out
         for subview in categoriesStackView.arrangedSubviews{
             subview.alpha = 0.5
         }
