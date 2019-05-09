@@ -25,7 +25,7 @@
 		F653688C2272618200861E0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F653688B2272618200861E0D /* Assets.xcassets */; };
 		F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F653688D2272618200861E0D /* LaunchScreen.storyboard */; };
 		F65368972272678C00861E0D /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368962272678C00861E0D /* UtilityViews.swift */; };
-		F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* UserPreferences.swift */; };
+		F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* EventCategories.swift */; };
 		F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */; };
 		F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +53,7 @@
 		F653688E2272618200861E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F65368902272618200861E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F65368962272678C00861E0D /* UtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
-		F6ADA4C72273CBA000948B7D /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		F6ADA4C72273CBA000948B7D /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommunication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +124,7 @@
 				F653688B2272618200861E0D /* Assets.xcassets */,
 				F65368902272618200861E0D /* Info.plist */,
 				F62733012273873D00FDA681 /* Event.swift */,
-				F6ADA4C72273CBA000948B7D /* UserPreferences.swift */,
+				F6ADA4C72273CBA000948B7D /* EventCategories.swift */,
 				F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */,
 			);
 			path = Eventr;
@@ -338,7 +338,7 @@
 				F6113F47227654D200CAD961 /* StartViewController.swift in Sources */,
 				F611F52E228352F400CB02DE /* ViewControllerCalendarExtension.swift in Sources */,
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,
-				F6ADA4C82273CBA000948B7D /* UserPreferences.swift in Sources */,
+				F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,
 				F603C0FE2278BCD700EE8798 /* CreateEventViewController.swift in Sources */,
 				F6103065228204C800E6D5CE /* ViewControllerExtension.swift in Sources */,

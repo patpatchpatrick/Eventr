@@ -80,6 +80,27 @@ public struct EventCategory : Hashable {
         }
     }
     
+    func index() -> Int {
+        switch category {
+        case .all:
+            return 0
+        case .business:
+            return 1
+        case .music:
+            return 2
+        case .sports:
+            return 3
+        case .art:
+            return 4
+        case .friends:
+            return 5
+        case .food:
+            return 6
+        case .misc:
+            return 7
+        }
+    }
+    
 }
 
 class EventCategorySet {

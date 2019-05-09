@@ -44,13 +44,15 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
                     //Check if event has been upvoted by user
                     queryIfFirebaseEventIsUpvoted(event: event)
                     
-                    //Check if event meets search criteria
+                    //Check if event meets search criteria (date and category)
                     //If so, add event to table view events list and update table
                     if let eventDate = event.date{
                         if eventDate > fromDate && eventDate < toDate {
-                            events.append(event)
-                            //Notify the tableview to reload
-                            NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                            if selectedCategory == 0 || event.category.index() == selectedCategory {
+                                events.append(event)
+                                //Notify the tableview to reload
+                                NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                            }
                         }
                     }
                 }

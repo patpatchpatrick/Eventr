@@ -168,8 +168,8 @@ extension ViewController{
                 imageView.frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0 )
                 button.addSubview(imageView)
                 button.bringSubviewToFront(button.imageView!)
-                
-                //button.setImage(eventCat.image(), for: .normal)
+                button.tag = eventCat.index()
+
                 button.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
                 
                 categoriesStackView.addArrangedSubview(button)
@@ -196,6 +196,7 @@ extension ViewController{
         UIView.animate(withDuration: 0.5){
             sender.alpha = 1.0
         }
+        selectedCategory = sender.tag //The tag of the sending button matches the index of whichever category was selected 
     }
     
     //User's location returned
