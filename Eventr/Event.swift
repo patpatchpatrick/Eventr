@@ -14,7 +14,7 @@ class Event {
     var name: String = ""
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
-    var date: Date = Date()
+    var date: Date?
     var address: String = ""
     var details: String = ""
     var contact: String = ""
@@ -53,6 +53,15 @@ class Event {
         if dict["category"] != nil {
             let categoryString = dict.value(forKey: "category") as! String
             self.category = stringToEventCategory(string: categoryString)
+        }
+        if dict["date"] != nil {
+            let dateString = dict.value(forKey: "date") as! String
+            if let dateDouble = Double(dateString) {
+                //Date is stored in GMT time in unix time
+                //Convert from unix GMT time to current calendar time zone
+                let gmtDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
+                self.date = gmtDate.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0)!, timeZone: Calendar.current.timeZone)
+            }
         }
         if dict["location"] != nil {
             self.address = dict.value(forKey: "location") as! String

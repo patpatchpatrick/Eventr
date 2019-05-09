@@ -43,10 +43,16 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
                     queryIfFirebaseEventIsFavorited(event: event)
                     //Check if event has been upvoted by user
                     queryIfFirebaseEventIsUpvoted(event: event)
-                    //Add event to table view events list and update table
-                    events.append(event)
-                    //Notify the tableview to reload
-                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                    
+                    //Check if event meets search criteria
+                    //If so, add event to table view events list and update table
+                    if let eventDate = event.date{
+                        if eventDate > fromDate && eventDate < toDate {
+                            events.append(event)
+                            //Notify the tableview to reload
+                            NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                        }
+                    }
                 }
             }) { (error) in
                 print("FB Query Error" + error.localizedDescription)
@@ -64,11 +70,12 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
 //Then, it will create an event in the GeoFire section of the database so the event can be searched by location
 func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
     guard Auth.auth().currentUser != nil else { return }
+    guard let eventDate = event.date else {return}
     let paidString = (event.paid) ? "1" : "0"
     let eventData = [
         "name":  event.name,
         "category": event.category.text(),
-        "date": String(event.date.timeIntervalSince1970),
+        "date": String(eventDate.timeIntervalSince1970),
         "description": event.details,
         "location":   event.address,
         "ticketURL":   event.ticketURL,

@@ -20,13 +20,14 @@ var events: [Event] = [] //List of events in tableview
 var currentLocation: CLLocation!
 var searchDistanceMiles: Double = 5.0 //search distance in miles
 var googleUser: GIDGoogleUser?
+//Date range to query events
+var fromDate: Date = Date()
+var toDate: Date = Date().addingTimeInterval(604800) //toDate is 1 week from now by default
 
 
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
-    var fromDate: Date = Date()
-    var toDate: Date = Date().addingTimeInterval(604800) //toDate is 1 week from now by default
     var fromDateWasSelected: Bool = false //Bool to know which calendar button was selected (from or to)
     let categoryDropDown = DropDown()
     let locationManager = CLLocationManager()
