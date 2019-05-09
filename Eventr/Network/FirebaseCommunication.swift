@@ -240,6 +240,8 @@ func favoriteFirebaseEvent(event: Event){
         if !eventAlreadyFavorited {
             firebaseDatabaseRef.child("favorited").child(userID).childByAutoId().setValue(event.id)
         }
+        //Notify the tableview to reload
+        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
         
     })
     
@@ -268,11 +270,11 @@ func unfavoriteFirebaseEvent(event: Event){
                     
                     event.favorite = false
                     
-                    //Notify the tableview to reload
-                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
                 }
             }
         }
+        //Notify the tableview to reload
+        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
         
     })
     

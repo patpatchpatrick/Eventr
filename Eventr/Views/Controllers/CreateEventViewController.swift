@@ -27,7 +27,9 @@ class CreateEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCalendarView()
+        self.hideKeyboardWhenTappedAround()
     }
+    
     
     @IBOutlet weak var eventName: UITextView!
     @IBOutlet weak var eventDescription: UITextView!
