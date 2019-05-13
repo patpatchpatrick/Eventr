@@ -519,14 +519,27 @@
                                             <constraint firstItem="KqC-1n-CwP" firstAttribute="top" secondItem="gy5-3d-Pgz" secondAttribute="top" id="uvN-hz-1R8"/>
                                         </constraints>
                                     </scrollView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plusIcon" translatesAutoresizingMaskIntoConstraints="NO" id="N7n-KT-twc">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mSU-Ih-0na">
                                         <rect key="frame" x="290" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.41723582149999999" green="0.54063099619999999" blue="0.9558613896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plusIcon" translatesAutoresizingMaskIntoConstraints="NO" id="N7n-KT-twc">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="15"/>
+                                                <color key="backgroundColor" red="0.41723582149999999" green="0.54063099619999999" blue="0.9558613896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="4UN-RW-3j9"/>
+                                                    <constraint firstAttribute="width" constant="30" id="ff0-YY-fif"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconMinus" translatesAutoresizingMaskIntoConstraints="NO" id="16P-xq-ity">
+                                                <rect key="frame" x="0.0" y="15" width="30" height="15"/>
+                                                <color key="backgroundColor" red="0.41723582149999999" green="0.54063099619999999" blue="0.9558613896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="4UN-RW-3j9"/>
-                                            <constraint firstAttribute="width" constant="30" id="ff0-YY-fif"/>
+                                            <constraint firstAttribute="height" constant="30" id="2aj-aY-B1u"/>
+                                            <constraint firstAttribute="width" constant="30" id="k7X-ca-dte"/>
                                         </constraints>
-                                    </imageView>
+                                    </stackView>
                                 </subviews>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
@@ -729,6 +742,7 @@
                         <outlet property="sideMenuCurveImage" destination="Z6t-Dc-Eeb" id="MIm-L2-EsO"/>
                         <outlet property="sideMenuShade" destination="sjr-ur-GUf" id="1rG-Mo-qSt"/>
                         <outlet property="sideMenuUserName" destination="diS-Lb-udw" id="88T-w9-gOF"/>
+                        <outlet property="subtractCategoryImage" destination="16P-xq-ity" id="87O-za-C9O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1605,6 +1619,7 @@
         <image name="iconForward" width="52" height="52"/>
         <image name="iconLocation" width="100" height="100"/>
         <image name="iconLogOut" width="52" height="52"/>
+        <image name="iconMinus" width="52" height="52"/>
         <image name="iconMyEvents" width="96" height="96"/>
         <image name="iconRightArrow" width="96" height="96"/>
         <image name="iconSearch" width="100" height="100"/>

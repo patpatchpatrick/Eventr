@@ -32,7 +32,8 @@ var fromDate: Date = Date()
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var fromDateWasSelected: Bool = false //Bool to know which calendar button was selected (from or to)
-    let categoryDropDown = DropDown()
+    let addCategoryDropDown = DropDown()
+    let subtractCategoryDropDown = DropDown()
     let locationManager = CLLocationManager()
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
@@ -42,6 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var logOutIcon: UIImageView!
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var addCategoryImage: UIImageView!
+    @IBOutlet weak var subtractCategoryImage: UIImageView!
     @IBOutlet weak var allCategoriesButton: UIButton!
     @IBOutlet weak var categoriesStackView: UIStackView!
     @IBOutlet weak var locationEntryField: UITextField!
@@ -62,6 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpLogOutIcon()
         setUpCategoryStackView()
         setUpAddCategoryImage()
+        setUpSubtractCategoryImage()
         hideSideMenu()
         setUpUser()
         configureCalendarView()

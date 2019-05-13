@@ -19,8 +19,9 @@ enum eventCategory {
     case music
     case business
     case art
-    case friends
+    case social
     case food
+    case outdoors
     case misc
 }
 
@@ -28,10 +29,11 @@ func stringToEventCategory(string: String) -> EventCategory {
     switch string{
     case "All": return EventCategory(category: .all)
     case "Sports" : return EventCategory(category: .sports)
+    case "Outdoors" : return EventCategory(category: .outdoors)
     case "Music" : return EventCategory(category: .music)
     case "Business" : return EventCategory(category: .business)
     case "Art" : return EventCategory(category: .art)
-    case "Friends" : return EventCategory(category: .friends)
+    case "Social" : return EventCategory(category: .social)
     case "Food" : return EventCategory(category: .food)
     case "Misc" : return EventCategory(category: .misc)
     default: return EventCategory(category: .misc)
@@ -50,10 +52,11 @@ public struct EventCategory : Hashable {
         switch category{
         case .all: return "All"
         case .sports: return "Sports"
+        case .outdoors: return "Outdoors"
         case .music: return "Music"
         case .business: return "Business"
         case .art: return "Art"
-        case .friends: return "Friends"
+        case .social: return "Social"
         case .food: return "Food"
         case .misc: return "Misc"
         }
@@ -69,9 +72,11 @@ public struct EventCategory : Hashable {
             return UIImage(named: "catIconMusic")
         case .sports:
             return UIImage(named: "catIconSports")
+        case .outdoors:
+            return UIImage(named: "catIconOutdoors")
         case .art:
             return UIImage(named: "catIconArt")
-        case .friends:
+        case .social:
             return UIImage(named: "catIconFriends")
         case .food:
             return UIImage(named: "catIconFood")
@@ -84,20 +89,22 @@ public struct EventCategory : Hashable {
         switch category {
         case .all:
             return 0
-        case .business:
+        case .social:
             return 1
         case .music:
             return 2
         case .sports:
             return 3
-        case .art:
+        case .outdoors:
             return 4
-        case .friends:
+        case .business:
             return 5
         case .food:
             return 6
-        case .misc:
+        case .art:
             return 7
+        case .misc:
+            return 8
         }
     }
     
@@ -137,3 +144,4 @@ class EventCategorySet {
 var userSelectedEventCategories: EventCategorySet = EventCategorySet(set: [])
 var userUnselectedEventCategories: EventCategorySet = EventCategorySet(set: [])
 var allEventCategories: EventCategorySet = EventCategorySet(set: [])
+var categoryViewsInStackView: [Int : UIView] = [:] //Map the category toolbar views to the index int of the category that represents them

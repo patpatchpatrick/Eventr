@@ -65,21 +65,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         allEventCategories.add(eventCategory: EventCategory(category: .business))
         allEventCategories.add(eventCategory: EventCategory(category: .sports))
+        allEventCategories.add(eventCategory: EventCategory(category: .outdoors))
         allEventCategories.add(eventCategory: EventCategory(category: .food))
         allEventCategories.add(eventCategory: EventCategory(category: .art))
-        allEventCategories.add(eventCategory: EventCategory(category: .friends))
+        allEventCategories.add(eventCategory: EventCategory(category: .social))
         allEventCategories.add(eventCategory: EventCategory(category: .music))
         allEventCategories.add(eventCategory: EventCategory(category: .misc))
         
+        //Obtain the user's default categories to load into the toolbar
+        let prefs = UserDefaults.standard
+        for category in allEventCategories.set {
+            if prefs.object(forKey: category.text()) != nil {
+                if prefs.bool(forKey: category.text()) {
+                    userSelectedEventCategories.add(eventCategory: category)
+                }
+            }
+        }
         
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .all))
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .business))
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .sports))
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .misc))
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .food))
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .art))
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .friends))
-        userUnselectedEventCategories.add(eventCategory: EventCategory(category: .music))
+        //Populate the user unselected categories list (will contain all categories that are not in the userSelectedCategories set)
+        for category in allEventCategories.set{
+            if !userSelectedEventCategories.containsCategory(eventCategory: category) {
+                userUnselectedEventCategories.add(eventCategory: category)
+            }
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
