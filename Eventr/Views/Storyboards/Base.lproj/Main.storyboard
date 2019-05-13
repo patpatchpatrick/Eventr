@@ -607,6 +607,42 @@
                                                     <constraint firstAttribute="height" constant="60" id="U0t-yQ-ez8"/>
                                                 </constraints>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QqO-66-0KE">
+                                                <rect key="frame" x="0.0" y="162.5" width="50" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPJ-Mm-Ghc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="48"/>
+                                                        <state key="normal" image="iconMyEvents"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="My Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXT-ir-IDQ">
+                                                        <rect key="frame" x="0.0" y="48" width="50" height="12"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="cW2-kZ-9L1"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6uV-14-iIV">
+                                                <rect key="frame" x="0.0" y="325.5" width="50" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-vw-qpz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="48"/>
+                                                        <state key="normal" image="iconSelectedStar"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Favorited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKx-fG-uPU">
+                                                        <rect key="frame" x="0.0" y="48" width="50" height="12"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="wTD-fn-FfF"/>
+                                                </constraints>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hbp-aq-n7U">
                                                 <rect key="frame" x="0.0" y="488" width="50" height="60"/>
                                                 <subviews>
@@ -1121,9 +1157,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="10" y="10" width="300" height="529.5"/>
+                                                <rect key="frame" x="10" y="10" width="300" height="545"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Ct-K0T">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name*:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Ct-K0T">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -1137,7 +1173,7 @@
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzp-Rv-j0C">
                                                         <rect key="frame" x="0.0" y="57.5" width="300" height="30"/>
-                                                        <state key="normal" title="Event Date:"/>
+                                                        <state key="normal" title="Event Date*:"/>
                                                         <connections>
                                                             <action selector="selectEventDate:" destination="cy9-2J-sdg" eventType="touchUpInside" id="YNM-iW-OlF"/>
                                                         </connections>
@@ -1325,7 +1361,7 @@
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFc-4s-lpO">
                                                         <rect key="frame" x="0.0" y="89.5" width="300" height="30"/>
-                                                        <state key="normal" title="Event Time:"/>
+                                                        <state key="normal" title="Event Time*:"/>
                                                         <connections>
                                                             <action selector="selectEventTime:" destination="cy9-2J-sdg" eventType="touchUpInside" id="He3-nn-ltW"/>
                                                         </connections>
@@ -1380,7 +1416,7 @@
                                                             <constraint firstItem="rb2-OM-jeN" firstAttribute="leading" secondItem="EZv-xF-we9" secondAttribute="leading" id="kSN-05-c5f"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJi-e1-wEf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description*:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJi-e1-wEf">
                                                         <rect key="frame" x="0.0" y="121.5" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -1397,7 +1433,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-72-To4">
                                                                 <rect key="frame" x="0.0" y="0.0" width="162" height="31"/>
-                                                                <state key="normal" title="Select Category"/>
+                                                                <state key="normal" title="Select Category*"/>
                                                                 <connections>
                                                                     <action selector="selectCategory:" destination="cy9-2J-sdg" eventType="touchUpInside" id="S5g-4c-X0L"/>
                                                                 </connections>
@@ -1413,7 +1449,7 @@
                                                             </switch>
                                                         </subviews>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSw-xc-4Uf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address*:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSw-xc-4Uf">
                                                         <rect key="frame" x="0.0" y="212" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -1450,7 +1486,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBo-Q8-449">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info*:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBo-Q8-449">
                                                         <rect key="frame" x="0.0" y="384.5" width="300" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -1491,8 +1527,14 @@
                                                             </textView>
                                                         </subviews>
                                                     </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* - Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ta1-Ru-Q21">
+                                                        <rect key="frame" x="0.0" y="499.5" width="300" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-ya-6gN">
-                                                        <rect key="frame" x="0.0" y="499.5" width="300" height="30"/>
+                                                        <rect key="frame" x="0.0" y="515" width="300" height="30"/>
                                                         <state key="normal" title="Create Event"/>
                                                         <connections>
                                                             <action selector="createEvent:" destination="cy9-2J-sdg" eventType="touchUpInside" id="hbi-sp-cG2"/>
@@ -1563,8 +1605,10 @@
         <image name="iconForward" width="52" height="52"/>
         <image name="iconLocation" width="100" height="100"/>
         <image name="iconLogOut" width="52" height="52"/>
+        <image name="iconMyEvents" width="96" height="96"/>
         <image name="iconRightArrow" width="96" height="96"/>
         <image name="iconSearch" width="100" height="100"/>
+        <image name="iconSelectedStar" width="100" height="100"/>
         <image name="iconUnselectedStar" width="100" height="100"/>
         <image name="plusIcon" width="52" height="52"/>
         <image name="sidemenucurved" width="100" height="550"/>

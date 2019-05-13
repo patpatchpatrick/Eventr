@@ -15,7 +15,7 @@ class StartViewController: UIViewController, GIDSignInUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         GIDSignIn.sharedInstance()?.uiDelegate = self
 
     }

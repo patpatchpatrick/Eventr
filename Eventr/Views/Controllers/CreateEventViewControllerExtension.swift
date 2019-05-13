@@ -153,4 +153,23 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         let timeString = df.string(from: eventTime)
         selectEventTimeButton.setTitle(timeString, for: .normal)
     }
+    
+    //Display alert if required fields are missing data
+    func requiredFieldsAreMissingData() -> Bool {
+        guard let categoryString = selectCategoryButton.titleLabel?.text else {
+            return false
+        }
+        if eventName.text.isEmpty || eventDescription.text.isEmpty || eventLocation.text.isEmpty || eventContactInfo.text.isEmpty || categoryString.isEmpty || !dateWasSelected || !timeWasSelected {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func displayRequiredFieldsEmptyAlert(){
+        let emptyFieldsAlert = UIAlertController(title: "Please Enter All Required Fields", message: nil, preferredStyle: .alert)
+        emptyFieldsAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        }))
+        self.present(emptyFieldsAlert, animated: true)
+    }
 }

@@ -49,6 +49,7 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var timePickerContainer: UIView!
     
+    
     @IBAction func selectEventDate(_ sender: UIButton) {
         calendarContainer.isHidden = false
     }
@@ -144,6 +145,11 @@ class CreateEventViewController: UIViewController {
     //If created successfully, segue to previous screen will be run
     //If error occurs, alert will fire
     @IBAction func createEvent(_ sender: UIButton) {
+        
+        if requiredFieldsAreMissingData() {
+            displayRequiredFieldsEmptyAlert()
+            return
+        }
         
         let categoryString = selectCategoryButton.titleLabel?.text
         let category = stringToEventCategory(string: categoryString!)
