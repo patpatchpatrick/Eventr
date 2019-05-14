@@ -163,7 +163,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     func resetCalendarToDate(){
         let df = DateFormatter()
         df.dateFormat = "MMM dd YYYY"
-        toDate = fromDate.addingTimeInterval(604800)
+        toDate = fromDate.addingTimeInterval(ONE_WEEK)
         let toDateString = df.string(from: toDate)
         selectToDate.setTitle(toDateString, for: .normal)
         

@@ -39,6 +39,7 @@ class EventViewController: UIViewController {
         updateFavoriteIcon()
     }
     
+    //Hide URL buttons if URLs are empty
     func setUpURLButtons(){
         if selectedEvent.ticketURL.isEmpty || selectedEvent.ticketURL == "" {
             ticketLinkButton.isHidden = true
@@ -52,6 +53,7 @@ class EventViewController: UIViewController {
         }
     }
     
+    //Show favorite icon as a filled in star if event was favorited
     func updateFavoriteIcon(){
         if selectedEvent.favorite {
             favoriteButton.setImage(UIImage(named: "iconSelectedStar"), for: .normal)
@@ -59,6 +61,7 @@ class EventViewController: UIViewController {
             favoriteButton.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
         }
     }
+    
     
     @IBAction func eventFavorited(_ sender: UIButton) {
         //Favorite button pushed

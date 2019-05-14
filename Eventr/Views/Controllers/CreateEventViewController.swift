@@ -21,7 +21,6 @@ class CreateEventViewController: UIViewController {
     
     var eventDate = Date()
     var eventTime = Date()
-    var dateWasSelected: Bool = false
     var timeWasSelected: Bool = false
 
     override func viewDidLoad() {
@@ -63,16 +62,18 @@ class CreateEventViewController: UIViewController {
         calendarView.scrollToSegment(.next)
     }
     
+    //Calendar date selected checkmark tapped
     @IBAction func dateSelected(_ sender: UIButton) {
-        dateWasSelected = true
         calendarContainer.isHidden = true
     }
     
-    
+    //Calendar date discarded "X" tapped
     @IBAction func dateDiscarded(_ sender: UIButton) {
         calendarContainer.isHidden = true
-        dateWasSelected = false
-        selectEventDateButton.setTitle("Event Date:", for: .normal)
+        let df = DateFormatter()
+        df.dateFormat = "MMM dd YYYY"
+        let dateString = df.string(from: Date())
+        selectEventDateButton.setTitle(dateString, for: .normal)
         calendarView.selectDates([Date()])
     }
     
@@ -86,7 +87,7 @@ class CreateEventViewController: UIViewController {
         setCalendarButtonTitleToBeSelectedTime()
     }
     
-    
+     //Calendar time discarded "X" tapped
     @IBAction func timeDiscarded(_ sender: Any) {
         selectEventTimeButton.setTitle("Event Time:", for: .normal)
         timeWasSelected = false
@@ -94,6 +95,7 @@ class CreateEventViewController: UIViewController {
     }
     
     
+    //Calendar time selected checkmark tapped
     @IBAction func timeSelected(_ sender: UIButton) {
         setCalendarButtonTitleToBeSelectedTime()
         timePickerContainer.isHidden = true
@@ -159,10 +161,16 @@ class CreateEventViewController: UIViewController {
         }
         let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
         
+        let dailyMaxEventsReached = checkIfUserDefaultsDailyEventMaximumReached()
+        if dailyMaxEventsReached {
+            displayMaxDailyEventsReachedAlert()
+            return
+        }
         createFirebaseEvent(event: newEvent, callback: {
             bool in
             if bool {
                 print("EVENT CREATED SUCCESSFULLY")
+                self.incrementUserDefaultsDailyEventCount()
                 self.performSegueToReturnBack()
             } else {
                 let createEventFailAlert = UIAlertController(title: "Event unable to be created. Ensure network connection is established or retry later", message: nil, preferredStyle: .alert)

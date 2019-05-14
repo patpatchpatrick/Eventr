@@ -22,8 +22,8 @@ var currentLocation: CLLocation!
 var searchDistanceMiles: Double = 5.0 //search distance in miles
 var googleUser: GIDGoogleUser?
 //Date range to query events
-var hideDate: Date = Date().addingTimeInterval(-86400) //date before which to hide calendar cells.  This date is equal to yesterday
-var toDate: Date = Date().addingTimeInterval(604800)//toDate is 1 week from now by default
+var hideDate: Date = Date().addingTimeInterval(-ONE_DAY) //date before which to hide calendar cells.  This date is equal to yesterday
+var toDate: Date = Date().addingTimeInterval(ONE_WEEK)//toDate is 1 week from now by default
 var fromDate: Date = Date()
 
 

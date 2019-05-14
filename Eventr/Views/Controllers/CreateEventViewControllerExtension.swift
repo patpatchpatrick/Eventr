@@ -15,6 +15,11 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
         
+        let df = DateFormatter()
+        df.dateFormat = "MMM dd YYYY"
+        let dateString = df.string(from: Date())
+        selectEventDateButton.setTitle(dateString, for: .normal)
+        
         calendarView.register(UINib(nibName: "CalendarSectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CalendarSectionHeaderView")
         calendarView.selectDates([Date()])
     }
@@ -127,7 +132,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     func getFirebaseDate() -> Date? {
         //Return the event date in firebase format (GMT)
         //Create the firebase date by adding together the selected date and selected time and converting the date to (GMT)
-        if dateWasSelected && timeWasSelected {
+        if timeWasSelected {
             let calendar = Calendar.current
             let comp = calendar.dateComponents([.hour, .minute], from: eventTime)
             let hour = comp.hour
@@ -159,7 +164,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         guard let categoryString = selectCategoryButton.titleLabel?.text else {
             return false
         }
-        if eventName.text.isEmpty || eventDescription.text.isEmpty || eventLocation.text.isEmpty || eventContactInfo.text.isEmpty || categoryString.isEmpty || !dateWasSelected || !timeWasSelected {
+        if eventName.text.isEmpty || eventDescription.text.isEmpty || eventLocation.text.isEmpty || eventContactInfo.text.isEmpty || categoryString.isEmpty || !timeWasSelected {
             return true
         } else {
             return false
@@ -171,5 +176,53 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         emptyFieldsAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
         }))
         self.present(emptyFieldsAlert, animated: true)
+    }
+    
+    //Increment user daily allotted max # of events
+    func incrementUserDefaultsDailyEventCount(){
+        
+        let prefs = UserDefaults.standard
+        if let date = prefs.object(forKey: dailyMaximumDateKey) as? Date {
+            if  Double(date.timeIntervalSinceNow) < -ONE_DAY {
+                prefs.set(Date(), forKey: dailyMaximumDateKey)
+                prefs.set(1, forKey: dailyMaximumNumberKey)
+            } else {
+                var dailyEventCount = prefs.object(forKey: dailyMaximumNumberKey) as? Int
+                if dailyEventCount != nil {
+                    dailyEventCount! += 1
+                    prefs.set(dailyEventCount, forKey: dailyMaximumNumberKey)
+                }
+            }
+            
+        } else {
+            prefs.set(Date(), forKey: dailyMaximumDateKey)
+            prefs.set(1, forKey: dailyMaximumNumberKey)
+        }
+        
+    }
+    
+    //Check if user surpassed daily allotted max # of events
+    func checkIfUserDefaultsDailyEventMaximumReached() -> Bool {
+        let prefs = UserDefaults.standard
+        guard let date = prefs.object(forKey: dailyMaximumDateKey) as? Date else {
+            return false
+        }
+        
+        if Double(date.timeIntervalSinceNow) > -ONE_DAY {
+            let dailyCount = prefs.object(forKey: dailyMaximumNumberKey) as? Int
+            if dailyCount != nil && dailyCount! >= 5 {
+                return true
+            }
+        }
+        return false
+    }
+    
+    //If user surpassed daily allotted max # of events, display alert
+    func displayMaxDailyEventsReachedAlert(){
+        let maxDailyEventsAlert = UIAlertController(title: "Daily Event Maximum Reached (5 Events in 24 Hours)", message: nil, preferredStyle: .alert)
+        maxDailyEventsAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        }))
+        
+        self.present(maxDailyEventsAlert, animated: true)
     }
 }
