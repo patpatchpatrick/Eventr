@@ -28,7 +28,18 @@
 		F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* EventCategories.swift */; };
 		F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */; };
 		F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */; };
+		F6FD35C6228A4D1D000DF12B /* EventrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD35C5228A4D1D000DF12B /* EventrUITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6FD35C8228A4D1D000DF12B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F65368792272618000861E0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F65368802272618000861E0D;
+			remoteInfo = Eventr;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		42A6523D5DB2C1D293FCBE23 /* Pods_Eventr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +67,9 @@
 		F6ADA4C72273CBA000948B7D /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommunication.swift; sourceTree = "<group>"; };
+		F6FD35C3228A4D1D000DF12B /* EventrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6FD35C5228A4D1D000DF12B /* EventrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventrUITests.swift; sourceTree = "<group>"; };
+		F6FD35C7228A4D1D000DF12B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +78,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EF991852444668B617BB6D3 /* Pods_Eventr.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FD35C0228A4D1D000DF12B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				F65368832272618000861E0D /* Eventr */,
+				F6FD35C4228A4D1D000DF12B /* EventrUITests */,
 				F65368822272618000861E0D /* Products */,
 				BBB7927FAE220CA7C138B346 /* Pods */,
 				3871AE982D85A4AB4FE00799 /* Frameworks */,
@@ -110,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				F65368812272618000861E0D /* Eventr.app */,
+				F6FD35C3228A4D1D000DF12B /* EventrUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +196,15 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		F6FD35C4228A4D1D000DF12B /* EventrUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F6FD35C5228A4D1D000DF12B /* EventrUITests.swift */,
+				F6FD35C7228A4D1D000DF12B /* Info.plist */,
+			);
+			path = EventrUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,6 +228,24 @@
 			productReference = F65368812272618000861E0D /* Eventr.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F6FD35C2228A4D1D000DF12B /* EventrUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6FD35CC228A4D1D000DF12B /* Build configuration list for PBXNativeTarget "EventrUITests" */;
+			buildPhases = (
+				F6FD35BF228A4D1D000DF12B /* Sources */,
+				F6FD35C0228A4D1D000DF12B /* Frameworks */,
+				F6FD35C1228A4D1D000DF12B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6FD35C9228A4D1D000DF12B /* PBXTargetDependency */,
+			);
+			name = EventrUITests;
+			productName = EventrUITests;
+			productReference = F6FD35C3228A4D1D000DF12B /* EventrUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -208,6 +258,10 @@
 				TargetAttributes = {
 					F65368802272618000861E0D = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					F6FD35C2228A4D1D000DF12B = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = F65368802272618000861E0D;
 					};
 				};
 			};
@@ -225,6 +279,7 @@
 			projectRoot = "";
 			targets = (
 				F65368802272618000861E0D /* Eventr */,
+				F6FD35C2228A4D1D000DF12B /* EventrUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,6 +294,13 @@
 				F6113F4522764FD900CAD961 /* GoogleService-Info.plist in Resources */,
 				F653688C2272618200861E0D /* Assets.xcassets in Resources */,
 				F653688A2272618100861E0D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6FD35C1228A4D1D000DF12B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +410,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F6FD35BF228A4D1D000DF12B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FD35C6228A4D1D000DF12B /* EventrUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F6FD35C9228A4D1D000DF12B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F65368802272618000861E0D /* Eventr */;
+			targetProxy = F6FD35C8228A4D1D000DF12B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F65368882272618100861E0D /* Main.storyboard */ = {
@@ -524,6 +602,44 @@
 			};
 			name = Release;
 		};
+		F6FD35CA228A4D1D000DF12B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = EventrUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.EventrUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Eventr;
+			};
+			name = Debug;
+		};
+		F6FD35CB228A4D1D000DF12B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = EventrUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.EventrUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Eventr;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -541,6 +657,15 @@
 			buildConfigurations = (
 				F65368942272618200861E0D /* Debug */,
 				F65368952272618200861E0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6FD35CC228A4D1D000DF12B /* Build configuration list for PBXNativeTarget "EventrUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6FD35CA228A4D1D000DF12B /* Debug */,
+				F6FD35CB228A4D1D000DF12B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
