@@ -18,13 +18,38 @@ class EventViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var eventDetails: UITextView!
+    @IBOutlet weak var locationDetails: UITextView!
+    @IBOutlet weak var contactDetails: UITextView!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var linksStackView: UIStackView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var ticketLinkButton: UIButton!
+    @IBOutlet weak var eventLinkButton: UIButton!
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         initializeMapKitView()
+        setUpURLButtons()
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
         locationDetails.text = selectedEvent.address
         contactDetails.text = selectedEvent.contact
         updateFavoriteIcon()
+    }
+    
+    func setUpURLButtons(){
+        if selectedEvent.ticketURL.isEmpty || selectedEvent.ticketURL == "" {
+            ticketLinkButton.isHidden = true
+        } else {
+            ticketLinkButton.isHidden = false
+        }
+        if selectedEvent.eventURL.isEmpty || selectedEvent.eventURL == "" {
+            eventLinkButton.isHidden = true
+        } else {
+            eventLinkButton.isHidden = false
+        }
     }
     
     func updateFavoriteIcon(){
@@ -35,31 +60,11 @@ class EventViewController: UIViewController {
         }
     }
     
-    
-    @IBOutlet weak var eventName: UILabel!
-    
-    
-    @IBOutlet weak var eventDetails: UITextView!
-    
-    
-    @IBOutlet weak var locationDetails: UITextView!
-    
-    
-    @IBOutlet weak var contactDetails: UITextView!
-    
-    
-    @IBOutlet weak var favoriteButton: UIButton!
-    
     @IBAction func eventFavorited(_ sender: UIButton) {
         //Favorite button pushed
         selectedEvent.markFavorite()
         updateFavoriteIcon()
     }
-    
-    
-    
-    @IBOutlet weak var linksStackView: UIStackView!
-    
     
     @IBAction func ticketLinkOpened(_ sender: UIButton) {
         
@@ -98,9 +103,6 @@ class EventViewController: UIViewController {
             UIApplication.shared.openURL(url)
         }
     }
-    
-    
-    @IBOutlet weak var mapView: MKMapView!
     
     
     func initializeMapKitView(){

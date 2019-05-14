@@ -562,7 +562,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                        <rect key="frame" x="70" y="5" width="170" height="45"/>
+                                        <rect key="frame" x="70" y="5" width="170.00000000000006" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                         </constraints>
@@ -942,6 +942,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w92-9i-HxU">
                                                         <rect key="frame" x="210" y="0.0" width="110" height="30"/>
                                                         <color key="backgroundColor" red="0.32208877800000002" green="0.31609678270000002" blue="0.37647825480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <state key="normal" title="Link">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -1062,11 +1063,13 @@
                     <connections>
                         <outlet property="contactDetails" destination="um1-Qk-dRT" id="fOD-2B-vdP"/>
                         <outlet property="eventDetails" destination="GGi-50-2Kr" id="aeB-1x-Pap"/>
+                        <outlet property="eventLinkButton" destination="w92-9i-HxU" id="awI-oy-Qkt"/>
                         <outlet property="eventName" destination="G0i-SM-9kK" id="Rm8-Hh-zIh"/>
                         <outlet property="favoriteButton" destination="ZHy-x3-gfa" id="Kyf-Yt-rJ2"/>
                         <outlet property="linksStackView" destination="He1-HM-0rb" id="OKX-mO-ZWz"/>
                         <outlet property="locationDetails" destination="DgF-zs-BsV" id="uDR-sC-s92"/>
                         <outlet property="mapView" destination="yDY-YZ-XMc" id="5kl-U0-TVV"/>
+                        <outlet property="ticketLinkButton" destination="Kbc-QI-oda" id="enW-nw-Ip6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k16-HN-CvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
