@@ -622,7 +622,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QqO-66-0KE">
-                                                <rect key="frame" x="0.0" y="162.5" width="50" height="60"/>
+                                                <rect key="frame" x="0.0" y="122" width="50" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPJ-Mm-Ghc">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="48"/>
@@ -640,7 +640,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6uV-14-iIV">
-                                                <rect key="frame" x="0.0" y="325.5" width="50" height="60"/>
+                                                <rect key="frame" x="0.0" y="244" width="50" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-vw-qpz">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="48"/>
@@ -655,6 +655,24 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="wTD-fn-FfF"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8Mi-03-1nP">
+                                                <rect key="frame" x="0.0" y="366" width="50" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6j-Ah-URB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="48"/>
+                                                        <state key="normal" image="iconSettings"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7D-hg-7Ae">
+                                                        <rect key="frame" x="0.0" y="48" width="50" height="12"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="9nz-rH-VIw"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hbp-aq-n7U">
@@ -735,14 +753,21 @@
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                         <outlet property="locationEntryField" destination="GWU-Ct-tSG" id="mAe-Wi-zBj"/>
-                        <outlet property="logOutIcon" destination="Muw-pa-QyG" id="WLZ-8B-nWQ"/>
                         <outlet property="selectFromDate" destination="1KE-ok-I6D" id="Qva-Y3-SJp"/>
                         <outlet property="selectToDate" destination="0mk-9T-DWa" id="fXs-Z9-ZiJ"/>
                         <outlet property="sideMenu" destination="K1r-ii-eaL" id="0OE-pH-nRo"/>
                         <outlet property="sideMenuAccountButton" destination="5oj-Gh-uCt" id="KL3-Ei-Ayb"/>
+                        <outlet property="sideMenuAccountButtonLabel" destination="diS-Lb-udw" id="88T-w9-gOF"/>
                         <outlet property="sideMenuCurveImage" destination="Z6t-Dc-Eeb" id="MIm-L2-EsO"/>
+                        <outlet property="sideMenuFavoritedButton" destination="W6b-vw-qpz" id="gK3-xi-T4f"/>
+                        <outlet property="sideMenuFavoritedButtonLabel" destination="UKx-fG-uPU" id="X3I-Ic-2Hm"/>
+                        <outlet property="sideMenuLogOutIcon" destination="Muw-pa-QyG" id="WLZ-8B-nWQ"/>
+                        <outlet property="sideMenuLogOutIconLabel" destination="sd3-5q-xGB" id="yWv-2s-huN"/>
+                        <outlet property="sideMenuMyEventsButton" destination="qPJ-Mm-Ghc" id="wo9-Bd-WTg"/>
+                        <outlet property="sideMenuMyEventsButtonLabel" destination="YXT-ir-IDQ" id="ce3-ku-AnT"/>
+                        <outlet property="sideMenuSettingsButton" destination="A6j-Ah-URB" id="sqE-CM-FZm"/>
+                        <outlet property="sideMenuSettingsButtonLabel" destination="C7D-hg-7Ae" id="AQu-Pz-4th"/>
                         <outlet property="sideMenuShade" destination="sjr-ur-GUf" id="1rG-Mo-qSt"/>
-                        <outlet property="sideMenuUserName" destination="diS-Lb-udw" id="88T-w9-gOF"/>
                         <outlet property="subtractCategoryImage" destination="16P-xq-ity" id="87O-za-C9O"/>
                     </connections>
                 </viewController>
@@ -1627,6 +1652,7 @@
         <image name="iconRightArrow" width="96" height="96"/>
         <image name="iconSearch" width="100" height="100"/>
         <image name="iconSelectedStar" width="100" height="100"/>
+        <image name="iconSettings" width="100" height="100"/>
         <image name="iconUnselectedStar" width="100" height="100"/>
         <image name="plusIcon" width="52" height="52"/>
         <image name="sidemenucurved" width="100" height="550"/>

@@ -47,8 +47,8 @@ extension ViewController{
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(logOutIconTapped(tapGestureRecognizer:)))
         
-        logOutIcon.isUserInteractionEnabled = true
-        logOutIcon.addGestureRecognizer(tapGestureRecognizer)
+        sideMenuLogOutIcon.isUserInteractionEnabled = true
+        sideMenuLogOutIcon.addGestureRecognizer(tapGestureRecognizer)
         
     }
     
@@ -92,14 +92,34 @@ extension ViewController{
     }
     
     func hideSideMenu(){
+        //Animated side menu
+        //All icons move horizontally out of the menu in curved fashion
+        //The outer icons move more quickly than the inner icons
         UIView.animate(withDuration: 0.4, animations: {
-            self.sideMenu.alpha = 0
             self.sideMenuShade.alpha = 0
             
         })
-        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
-            self.sideMenuCurveImage.transform = CGAffineTransform(translationX: -self.sideMenuCurveImage.frame.width, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.sideMenuAccountButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuAccountButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuLogOutIcon.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuLogOutIconLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         })
+        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.sideMenuMyEventsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuMyEventsButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuSettingsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuSettingsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+        })
+        UIView.animate(withDuration: 0.4, delay: 0.2, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.sideMenuFavoritedButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuFavoritedButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+        })
+        UIView.animate(withDuration: 0.4, delay: 0.2, options: .curveEaseOut, animations: {
+            self.sideMenuCurveImage.transform = CGAffineTransform(translationX: -self.sideMenuCurveImage.frame.width, y: 0)
+        }) { success in
+            self.sideMenu.isHidden = true
+        }
     }
     
     //Set up user details in the side menu
@@ -107,19 +127,41 @@ extension ViewController{
         guard let userEmail = Auth.auth().currentUser?.email else {
             return
         }
-        sideMenuUserName.text = userEmail
+        sideMenuAccountButtonLabel.text = userEmail
     }
     
     func showSideMenu(){
+        //Animated side menu
+        //All icons move horizontally into the menu in curved fashion
+        //The outer icons move more slowly than the inner icons
+        sideMenu.isHidden = false
         UIView.animate(withDuration: 0.4, animations: {
-            self.sideMenu.alpha = 1
             self.sideMenuShade.alpha = 0.75
             
         })
+        
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.sideMenuCurveImage.transform = .identity
         })
         
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.sideMenuFavoritedButton.transform = .identity
+            self.sideMenuFavoritedButtonLabel.transform = .identity
+        })
+
+        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.sideMenuMyEventsButton.transform = .identity
+            self.sideMenuMyEventsButtonLabel.transform = .identity
+            self.sideMenuSettingsButton.transform = .identity
+            self.sideMenuSettingsButton.transform = .identity
+        })
+
+        UIView.animate(withDuration: 0.4, delay: 0.2, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.sideMenuAccountButton.transform = .identity
+            self.sideMenuAccountButtonLabel.transform = .identity
+            self.sideMenuLogOutIcon.transform = .identity
+            self.sideMenuLogOutIconLabel.transform = .identity
+        })
     }
     
     func logOut(){

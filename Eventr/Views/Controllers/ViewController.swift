@@ -39,8 +39,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var sideMenuShade: UIButton!
     @IBOutlet weak var sideMenuCurveImage: UIImageView!
     @IBOutlet weak var sideMenuAccountButton: UIButton!
-    @IBOutlet weak var sideMenuUserName: UILabel!
-    @IBOutlet weak var logOutIcon: UIImageView!
+    @IBOutlet weak var sideMenuAccountButtonLabel: UILabel!
+    @IBOutlet weak var sideMenuMyEventsButton: UIButton!
+    @IBOutlet weak var sideMenuMyEventsButtonLabel: UILabel!
+    @IBOutlet weak var sideMenuFavoritedButton: UIButton!
+    @IBOutlet weak var sideMenuFavoritedButtonLabel: UILabel!
+    @IBOutlet weak var sideMenuSettingsButton: UIButton!
+    @IBOutlet weak var sideMenuSettingsButtonLabel: UILabel!
+    @IBOutlet weak var sideMenuLogOutIcon: UIImageView!
+    @IBOutlet weak var sideMenuLogOutIconLabel: UILabel!
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var addCategoryImage: UIImageView!
     @IBOutlet weak var subtractCategoryImage: UIImageView!
