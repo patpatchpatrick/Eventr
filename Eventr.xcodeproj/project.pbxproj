@@ -147,6 +147,7 @@
 		F6174C13228C9F5F001EF6F9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				F653688B2272618200861E0D /* Assets.xcassets */,
 				F6174C14228C9F6F001EF6F9 /* Fonts */,
 			);
 			path = Assets;
@@ -196,7 +197,6 @@
 				F6D13E522277BF1000104CFF /* Network */,
 				F6113F4422764FD900CAD961 /* GoogleService-Info.plist */,
 				F65368842272618100861E0D /* AppDelegate.swift */,
-				F653688B2272618200861E0D /* Assets.xcassets */,
 				F65368902272618200861E0D /* Info.plist */,
 			);
 			path = Eventr;

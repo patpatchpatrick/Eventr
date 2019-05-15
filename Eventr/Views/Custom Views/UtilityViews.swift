@@ -53,6 +53,22 @@ class CustomLabel: UILabel {
     
 }
 
+//Class used for event tags
+@IBDesignable
+class RoundedButton: UIButton {
+    
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+    
+}
+
 
 //Custom calendar cell
 class CalendarCell: JTAppleCell {

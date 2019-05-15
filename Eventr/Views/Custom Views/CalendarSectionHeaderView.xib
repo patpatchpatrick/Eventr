@@ -21,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="361" height="59"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1Z-py-Xtm">
-                    <rect key="frame" x="0.0" y="15.5" width="361" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1Z-py-Xtm">
+                    <rect key="frame" x="5" y="15.5" width="356" height="28"/>
                     <fontDescription key="fontDescription" name="Heebo-Medium" family="Heebo Medium" pointSize="19"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
             <constraints>
                 <constraint firstItem="b1Z-py-Xtm" firstAttribute="centerY" secondItem="gif-Pd-y0F" secondAttribute="centerY" id="0n3-PF-YsY"/>
                 <constraint firstItem="dLJ-aN-FOc" firstAttribute="trailing" secondItem="b1Z-py-Xtm" secondAttribute="trailing" id="R7y-Zv-zzw"/>
-                <constraint firstItem="b1Z-py-Xtm" firstAttribute="leading" secondItem="dLJ-aN-FOc" secondAttribute="leading" id="wtT-cj-wRL"/>
+                <constraint firstItem="b1Z-py-Xtm" firstAttribute="leading" secondItem="dLJ-aN-FOc" secondAttribute="leading" constant="5" id="wtT-cj-wRL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="dLJ-aN-FOc"/>
