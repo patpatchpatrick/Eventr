@@ -7,10 +7,10 @@
 //
 
 import Foundation
+import Firebase
 
-class Event {
-    
-    
+class Event : Comparable {
+
     var name: String = ""
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
@@ -98,24 +98,51 @@ class Event {
     }
     
     func upvote(){
+        if userIsNotLoggedIn() {return}
+        
         //If the event was already upvoted by user and they click the upvote button, downvote the event
         //If event was not upvoted, upvoted the event
         if upvoted {
+            //Update UI
+            upvoted = false
+            upvoteCount -= 1
+            reloadEventTableView()
             removeUpvoteFromFirebaseEvent(event: self)
         } else {
+            //Update UI
+            upvoted = true
+            upvoteCount += 1
+            reloadEventTableView()
+            //Update Firebase
             upvoteFirebaseEvent(event: self)
         }
+        
     }
     
     func markFavorite(){
-        //If event is marked as a favorite update the event's bool value and the firebase database
+        if userIsNotLoggedIn() {return}
+        
+        //Update the UI to account for icon changes
         favorite = !favorite
+        reloadEventTableView()
+        
+        //Update firebase
         if favorite {
             favoriteFirebaseEvent(event: self)
         } else {
             unfavoriteFirebaseEvent(event: self)
         }
        
+    }
+    
+    //Comparable protocol stub
+    static func < (lhs: Event, rhs: Event) -> Bool {
+        return lhs.upvoteCount < rhs.upvoteCount
+    }
+    
+    //Comparable protocol stub
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        return lhs.upvoteCount == rhs.upvoteCount
     }
     
 }

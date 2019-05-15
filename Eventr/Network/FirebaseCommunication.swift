@@ -33,12 +33,11 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
     
     //Method called when the query is finished and all keys(event IDs) are loaded
     gQuery.observeReady {
-        for key in keyList {
-            let eventID = key
-            firebaseDatabaseRef.child("events").child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+        for eventIDKey in keyList {
+            firebaseDatabaseRef.child("events").child(eventIDKey).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get dictionary of event data
                 if let value = snapshot.value as? NSDictionary {
-                    let event = Event(dict: value, idKey: eventID)
+                    let event = Event(dict: value, idKey: eventIDKey)
                     //Check if event has been favorited by user
                     queryIfFirebaseEventIsFavorited(event: event)
                     //Check if event has been upvoted by user
@@ -49,9 +48,9 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
                     if let eventDate = event.date{
                         if eventDate > fromDate && eventDate < toDate {
                             if selectedCategory == 0 || event.category.index() == selectedCategory {
-                                events.append(event)
-                                //Notify the tableview to reload
-                                NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                                let index = events.insertionIndexOf(elem: event, isOrderedBefore: >)
+                                events.insert(event, at: index)
+                                reloadEventTableView()
                             }
                         }
                     }
@@ -60,6 +59,7 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
                 print("FB Query Error" + error.localizedDescription)
             }
         }
+        
     }
     
     
@@ -71,7 +71,7 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
 //First it will create an event in the Events section of the database
 //Then, it will create an event in the GeoFire section of the database so the event can be searched by location
 func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
-    guard Auth.auth().currentUser != nil else { return }
+    if userIsNotLoggedIn() {return}
     guard let eventDate = event.date else {return}
     let paidString = (event.paid) ? "1" : "0"
     let eventData = [
@@ -116,7 +116,7 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
 
 //Check to see if the event is marked as upvoted in firebase and update the event data and tableview accordingly
 func queryIfFirebaseEventIsUpvoted(event: Event){
-    guard Auth.auth().currentUser != nil else { return }
+
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
@@ -125,13 +125,11 @@ func queryIfFirebaseEventIsUpvoted(event: Event){
         _ = dict.allValues.contains { element in
             if case element as! String = event.id {
                 event.upvoted = true
-                //Notify the tableview to reload
-                NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                reloadEventTableView()
                 return true
             } else {
                 event.upvoted = false
-                //Notify the tableview to relaod
-                NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+                reloadEventTableView()
                 return false
             }
         }
@@ -141,35 +139,35 @@ func queryIfFirebaseEventIsUpvoted(event: Event){
 
 //Increase number of upvotes for a particular event in Firebase
 func upvoteFirebaseEvent(event: Event){
-    guard Auth.auth().currentUser != nil else { return }
+    
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Check if event has already been upvoted
     firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
         (snapshot) in
-        guard let dict = snapshot.value as? NSDictionary else { return }
-        let eventAlreadyUpvoted = dict.allValues.contains { element in
-            if case element as! String = event.id { return true } else { return false}
+        var eventAlreadyUpvoted = false
+        let dict = snapshot.value as? NSDictionary
+        if dict != nil {
+            eventAlreadyUpvoted = dict!.allValues.contains { element in
+                if case element as! String = event.id { return true } else { return false}
+            }
         }
         
-        //Upvote the event
+        //If event has not been upvoted, upvote the event
         //Increment the overall upvote count of the event in Firebase
         //Add event to user's "upvoted" section of Firebase
         if !eventAlreadyUpvoted {
+            
+            //Update the upvotes in Firebase
             firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 guard let dict = snapshot.value as? NSDictionary else { return }
                 guard let upvoteCountString = dict["upvotes"] as? String else { return }
                 guard var upvoteCount = Int(upvoteCountString) else { return }
                 upvoteCount += 1
-                event.upvoted = true
-                event.upvoteCount += 1
                 firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
             firebaseDatabaseRef.child("users").child(userID).child("upvoted").childByAutoId().setValue(event.id)
-                
-                    //Notify the tableview to reload
-                    NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
-                
+               
             })
         }
     })
@@ -179,7 +177,7 @@ func upvoteFirebaseEvent(event: Event){
 
 //Remove an upvote for event in Firebase
 func removeUpvoteFromFirebaseEvent(event: Event){
-    guard Auth.auth().currentUser != nil else { return }
+
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Check if event has already been upvoted
@@ -194,14 +192,14 @@ func removeUpvoteFromFirebaseEvent(event: Event){
         //Decrement the overall upvote count of the event in firebase
         //Remove event from the users "upvoted events" section of firebase
         if eventAlreadyUpvoted {
+            
+            //Update Firebase
             firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 guard let dict = snapshot.value as? NSDictionary else { return }
                 guard let upvoteCountString = dict["upvotes"] as? String else { return }
                 guard var upvoteCount = Int(upvoteCountString) else { return }
                 upvoteCount -= 1
-                event.upvoted = false
-                event.upvoteCount -= 1
                 firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
                 
                 firebaseDatabaseRef.child("users").child(userID).child("upvoted").queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
@@ -211,9 +209,6 @@ func removeUpvoteFromFirebaseEvent(event: Event){
                         firebaseDatabaseRef.child("users").child(userID).child("upvoted").child(eventKey).removeValue()
                     }
                 }
-                
-                //Notify the tableview to reload
-                NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
                 
             })
         }
@@ -225,23 +220,24 @@ func removeUpvoteFromFirebaseEvent(event: Event){
 
 //Mark a particular event in Firebase as a "favorite"
 func favoriteFirebaseEvent(event: Event){
-    guard Auth.auth().currentUser != nil else { return }
+
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Check if event has already been favorited
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
-        guard let dict = snapshot.value as? NSDictionary else { return }
-        let eventAlreadyFavorited = dict.allValues.contains { element in
-            if case element as! String = event.id { return true } else { return false }
+        var eventAlreadyFavorited = false
+        let dict = snapshot.value as? NSDictionary
+        if dict != nil {
+                eventAlreadyFavorited = dict!.allValues.contains { element in
+                if case element as! String = event.id { return true } else { return false }
+            }
         }
         
-        //Mark the event as "favorite" in Firebase
+        //If not favorited, mark the event as "favorite" in Firebase
         if !eventAlreadyFavorited {
             firebaseDatabaseRef.child("favorited").child(userID).childByAutoId().setValue(event.id)
         }
-        //Notify the tableview to reload
-        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
         
     })
     
@@ -249,7 +245,7 @@ func favoriteFirebaseEvent(event: Event){
 
 //Unmark an event as "favorite" in Firebase
 func unfavoriteFirebaseEvent(event: Event){
-    guard Auth.auth().currentUser != nil else { return }
+  
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Check if event has already been favorited
@@ -260,7 +256,7 @@ func unfavoriteFirebaseEvent(event: Event){
             if case element as! String = event.id { return true } else { return false }
         }
         
-        //Unmark the event as "favorite" in firebase
+        //If favorited, unmark the event as "favorite" in firebase
         if eventAlreadyFavorited {
             firebaseDatabaseRef.child("favorited").child(userID).queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
                 for result in querySnapshot.children {
@@ -273,8 +269,6 @@ func unfavoriteFirebaseEvent(event: Event){
                 }
             }
         }
-        //Notify the tableview to reload
-        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
         
     })
     
@@ -283,7 +277,7 @@ func unfavoriteFirebaseEvent(event: Event){
 
 //Query a firebase event to determine if it was favorited
 func queryIfFirebaseEventIsFavorited(event: Event){
-    guard Auth.auth().currentUser != nil else { return }
+    
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
      //Check if event has already been favorited
@@ -297,7 +291,7 @@ func queryIfFirebaseEventIsFavorited(event: Event){
         //If event was marked as favorite, set the event's favorited variable to true
         if eventAlreadyFavorited {
             event.favorite = true
-            NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
+            reloadEventTableView()
         }
         
     })
@@ -332,6 +326,11 @@ func insertGeofireEvent(location: CLLocation, eventID: String, callback: ((Bool)
             callback!(true)
         }
     }
+}
+
+func userIsNotLoggedIn() -> Bool{
+    guard Auth.auth().currentUser?.uid != nil else { return true }
+    return false
 }
 
 
