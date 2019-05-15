@@ -51,18 +51,26 @@ class CustomLabel: UILabel {
         }
     }
     
-    @IBInspectable var cornerRadius: CGFloat = 0.0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-        }
-    }
 }
+
 
 //Custom calendar cell
 class CalendarCell: JTAppleCell {
     
     @IBOutlet weak var selectedView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    
+    
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+ 
     
 }
 

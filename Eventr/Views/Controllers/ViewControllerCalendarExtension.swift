@@ -15,6 +15,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     func configureCalendarView(){
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
+        calendarView.layer.cornerRadius = 20.0
         
         //Display the initial dates on the calendar from and to date buttons
         resetCalendarToDate()
@@ -45,9 +46,9 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             currentCell.dateLabel.textColor = UIColor.black
         } else {
             if cellState.dateBelongsTo == .thisMonth && cellState.date > Date() {
-                currentCell.dateLabel.textColor = UIColor.blue
+                currentCell.dateLabel.textColor = UIColor.black
             } else {
-                currentCell.dateLabel.textColor = UIColor.purple
+                currentCell.dateLabel.textColor = UIColor.lightGray
             }
         }
     }
@@ -87,7 +88,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         
         
         calendar.scrollingMode = .stopAtEachSection
-        calendar.scrollDirection = .horizontal
+        calendar.scrollDirection = .vertical
         var startDate = Date()
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
         var endDate = cal!.date(byAdding: NSCalendar.Unit.year, value: 3, to: startDate, options: NSCalendar.Options.matchLast)
@@ -148,7 +149,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
  
     
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
-        return MonthSize(defaultSize: 40)
+        return MonthSize(defaultSize: 50)
     }
     
     func resetCalendarFromDate(){
@@ -168,6 +169,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         selectToDate.setTitle(toDateString, for: .normal)
         
     }
+    
     
 
 }

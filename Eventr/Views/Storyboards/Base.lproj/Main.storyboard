@@ -9,11 +9,19 @@
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Heebo-Regular.ttf">
+            <string>Heebo-Regular</string>
+        </array>
+        <array key="Heebo-Thin.ttf">
+            <string>Heebo-Thin</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--homeSegue-->
+        <!--Home Screen-->
         <scene sceneID="wmY-KE-Q1l">
             <objects>
-                <viewController title="homeSegue" id="ztE-UI-nvD" customClass="StartViewController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="homeSegue" id="ztE-UI-nvD" userLabel="Home Screen" customClass="StartViewController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="88I-fE-IVT"/>
                         <viewControllerLayoutGuide type="bottom" id="Uqm-oE-C8L"/>
@@ -95,44 +103,53 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SgA-y4-taH" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                                <rect key="frame" x="10" y="0.0" width="300" height="300"/>
+                                                <rect key="frame" x="30" y="20" width="260" height="290"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="XHi-yf-rXO"/>
+                                                    <constraint firstAttribute="height" constant="290" id="XHi-yf-rXO"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MLX-K2-EJ4">
-                                                    <size key="itemSize" width="50" height="50"/>
+                                                    <size key="itemSize" width="60" height="60"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarSearchCell" id="qOB-kx-F4k" customClass="CalendarCell" customModule="Eventr" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFe-EX-d1W">
-                                                                    <rect key="frame" x="-95" y="-39" width="240" height="128"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="backgroundColor" red="1" green="0.31609923620000002" blue="0.89351916809999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                            <integer key="value" value="20"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFe-EX-d1W">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                    <color key="backgroundColor" red="0.47240690011475661" green="0.57781307677560734" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="tintColor" red="0.41723582149999999" green="0.54063099619999999" blue="0.9558613896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
-                                                                    <rect key="frame" x="4" y="14" width="42" height="21"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
+                                                                    <rect key="frame" x="9" y="17.5" width="42" height="25"/>
+                                                                    <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </view>
+                                                        <constraints>
+                                                            <constraint firstItem="eFe-EX-d1W" firstAttribute="leading" secondItem="qOB-kx-F4k" secondAttribute="leading" id="FT6-15-kGZ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="eFe-EX-d1W" secondAttribute="trailing" id="Fn6-iZ-jPg"/>
+                                                            <constraint firstAttribute="bottom" secondItem="eFe-EX-d1W" secondAttribute="bottom" id="L29-4b-vt8"/>
+                                                            <constraint firstItem="eFe-EX-d1W" firstAttribute="centerX" secondItem="qOB-kx-F4k" secondAttribute="centerX" id="PUP-xl-Yia"/>
+                                                            <constraint firstItem="cnM-0u-RfN" firstAttribute="centerY" secondItem="qOB-kx-F4k" secondAttribute="centerY" id="XNW-eq-zua"/>
+                                                            <constraint firstItem="eFe-EX-d1W" firstAttribute="centerY" secondItem="qOB-kx-F4k" secondAttribute="centerY" id="Zg2-La-tJ9"/>
+                                                            <constraint firstItem="cnM-0u-RfN" firstAttribute="centerX" secondItem="qOB-kx-F4k" secondAttribute="centerX" id="fwf-vG-nCg"/>
+                                                            <constraint firstItem="eFe-EX-d1W" firstAttribute="top" secondItem="qOB-kx-F4k" secondAttribute="top" id="mrZ-jC-sLL"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="dateLabel" destination="cnM-0u-RfN" id="UhV-k7-2Rp"/>
                                                             <outlet property="selectedView" destination="eFe-EX-d1W" id="K7D-O6-GjF"/>
@@ -150,47 +167,47 @@
                                                 </connections>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Mr1-dF-0sL" userLabel="WeekDays">
-                                                <rect key="frame" x="0.0" y="30" width="320" height="20.5"/>
+                                                <rect key="frame" x="30" y="62.5" width="260" height="17.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTD-NC-73T">
-                                                        <rect key="frame" x="0.0" y="0.0" width="45.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTD-NC-73T">
+                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="17.5"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spA-er-WCN">
-                                                        <rect key="frame" x="45.5" y="0.0" width="46" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spA-er-WCN">
+                                                        <rect key="frame" x="37" y="0.0" width="37.5" height="17.5"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1Y-fO-LDP">
-                                                        <rect key="frame" x="91.5" y="0.0" width="45.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1Y-fO-LDP">
+                                                        <rect key="frame" x="74.5" y="0.0" width="37" height="17.5"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwD-Xf-VzK">
-                                                        <rect key="frame" x="137" y="0.0" width="46" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwD-Xf-VzK">
+                                                        <rect key="frame" x="111.5" y="0.0" width="37" height="17.5"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-Ww-osM">
-                                                        <rect key="frame" x="183" y="0.0" width="45.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-Ww-osM">
+                                                        <rect key="frame" x="148.5" y="0.0" width="37" height="17.5"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-0h-6td">
-                                                        <rect key="frame" x="228.5" y="0.0" width="46" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-0h-6td">
+                                                        <rect key="frame" x="185.5" y="0.0" width="37.5" height="17.5"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-O7-SE6">
-                                                        <rect key="frame" x="274.5" y="0.0" width="45.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-O7-SE6">
+                                                        <rect key="frame" x="223" y="0.0" width="37" height="17.5"/>
+                                                        <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -200,7 +217,7 @@
                                                 <rect key="frame" x="0.0" y="5" width="320" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POO-0L-lvc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                        <rect key="frame" x="35" y="20" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="25" id="8db-2p-3fG"/>
                                                             <constraint firstAttribute="height" constant="25" id="DSD-bF-CLb"/>
@@ -211,7 +228,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW6-td-jkt">
-                                                        <rect key="frame" x="295" y="0.0" width="25" height="25"/>
+                                                        <rect key="frame" x="260" y="20" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="25" id="keN-zs-RbX"/>
                                                             <constraint firstAttribute="height" constant="25" id="rMa-4i-kOi"/>
@@ -225,14 +242,10 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="Nf4-0b-j4d"/>
-                                                    <constraint firstItem="POO-0L-lvc" firstAttribute="leading" secondItem="eAx-kh-b81" secondAttribute="leading" id="Qxh-F5-5r1"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OW6-td-jkt" secondAttribute="trailing" id="Sgh-bF-LKT"/>
-                                                    <constraint firstItem="POO-0L-lvc" firstAttribute="centerY" secondItem="eAx-kh-b81" secondAttribute="centerY" id="Ydl-ik-WwQ"/>
-                                                    <constraint firstItem="OW6-td-jkt" firstAttribute="centerY" secondItem="eAx-kh-b81" secondAttribute="centerY" id="xwz-np-cEn"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssE-Am-Osy">
-                                                <rect key="frame" x="195" y="295" width="25" height="25"/>
+                                                <rect key="frame" x="190" y="305" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="9Pw-Vv-OSg"/>
                                                     <constraint firstAttribute="width" constant="25" id="gAF-cR-W8U"/>
@@ -243,7 +256,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-ns-vbu">
-                                                <rect key="frame" x="100" y="295" width="25" height="25"/>
+                                                <rect key="frame" x="105" y="305" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="aPD-Je-CsS"/>
                                                     <constraint firstAttribute="width" constant="25" id="sYr-VF-aqI"/>
@@ -257,19 +270,23 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="eAx-kh-b81" firstAttribute="top" secondItem="Efm-Uk-h3J" secondAttribute="top" constant="5" id="2uf-iC-As9"/>
-                                            <constraint firstItem="Kkq-ns-vbu" firstAttribute="leading" secondItem="Efm-Uk-h3J" secondAttribute="leading" constant="100" id="3dX-vs-kK9"/>
-                                            <constraint firstAttribute="trailing" secondItem="Mr1-dF-0sL" secondAttribute="trailing" id="B3A-QD-7De"/>
-                                            <constraint firstAttribute="bottom" secondItem="ssE-Am-Osy" secondAttribute="bottom" id="Dl4-Ki-Wd9"/>
-                                            <constraint firstAttribute="trailing" secondItem="SgA-y4-taH" secondAttribute="trailing" constant="10" id="Hig-fy-aaD"/>
+                                            <constraint firstItem="OW6-td-jkt" firstAttribute="trailing" secondItem="SgA-y4-taH" secondAttribute="trailing" constant="-5" id="Crc-qV-QLW"/>
+                                            <constraint firstAttribute="trailing" secondItem="SgA-y4-taH" secondAttribute="trailing" constant="30" id="Hig-fy-aaD"/>
                                             <constraint firstItem="eAx-kh-b81" firstAttribute="leading" secondItem="Efm-Uk-h3J" secondAttribute="leading" id="KNu-Sc-sdd"/>
-                                            <constraint firstAttribute="bottom" secondItem="Kkq-ns-vbu" secondAttribute="bottom" id="Prg-CU-RbQ"/>
                                             <constraint firstAttribute="height" constant="320" id="QvF-2N-Mh4"/>
-                                            <constraint firstAttribute="trailing" secondItem="ssE-Am-Osy" secondAttribute="trailing" constant="100" id="ZIo-Te-bdv"/>
-                                            <constraint firstItem="SgA-y4-taH" firstAttribute="top" secondItem="Efm-Uk-h3J" secondAttribute="top" id="esJ-aS-V0h"/>
-                                            <constraint firstItem="Mr1-dF-0sL" firstAttribute="top" secondItem="eAx-kh-b81" secondAttribute="bottom" id="hfP-07-Ngl"/>
-                                            <constraint firstItem="Mr1-dF-0sL" firstAttribute="leading" secondItem="Efm-Uk-h3J" secondAttribute="leading" id="kvm-O1-obN"/>
-                                            <constraint firstItem="SgA-y4-taH" firstAttribute="leading" secondItem="Efm-Uk-h3J" secondAttribute="leading" constant="10" id="lbw-GL-hq6"/>
+                                            <constraint firstItem="ssE-Am-Osy" firstAttribute="bottom" secondItem="SgA-y4-taH" secondAttribute="bottom" constant="20" id="San-yX-HII"/>
+                                            <constraint firstItem="POO-0L-lvc" firstAttribute="leading" secondItem="SgA-y4-taH" secondAttribute="leading" constant="5" id="VbJ-Lp-tqm"/>
+                                            <constraint firstItem="Mr1-dF-0sL" firstAttribute="trailing" secondItem="SgA-y4-taH" secondAttribute="trailing" id="dfL-Td-SLP"/>
+                                            <constraint firstItem="Mr1-dF-0sL" firstAttribute="leading" secondItem="SgA-y4-taH" secondAttribute="leading" id="dqy-lV-Nd0"/>
+                                            <constraint firstItem="SgA-y4-taH" firstAttribute="top" secondItem="Efm-Uk-h3J" secondAttribute="top" constant="20" id="esJ-aS-V0h"/>
+                                            <constraint firstItem="SgA-y4-taH" firstAttribute="top" secondItem="Mr1-dF-0sL" secondAttribute="bottom" constant="-60" id="fRa-BP-b35"/>
+                                            <constraint firstItem="POO-0L-lvc" firstAttribute="top" secondItem="SgA-y4-taH" secondAttribute="top" constant="5" id="fne-5u-27M"/>
+                                            <constraint firstItem="Kkq-ns-vbu" firstAttribute="leading" secondItem="SgA-y4-taH" secondAttribute="leading" constant="75" id="gjf-Wm-8f4"/>
+                                            <constraint firstItem="ssE-Am-Osy" firstAttribute="trailing" secondItem="SgA-y4-taH" secondAttribute="trailing" constant="-75" id="k3R-1a-r32"/>
+                                            <constraint firstItem="SgA-y4-taH" firstAttribute="leading" secondItem="Efm-Uk-h3J" secondAttribute="leading" constant="30" id="lbw-GL-hq6"/>
                                             <constraint firstAttribute="trailing" secondItem="eAx-kh-b81" secondAttribute="trailing" id="mhF-3r-ncP"/>
+                                            <constraint firstItem="Kkq-ns-vbu" firstAttribute="bottom" secondItem="SgA-y4-taH" secondAttribute="bottom" constant="20" id="okC-5Z-q8b"/>
+                                            <constraint firstItem="OW6-td-jkt" firstAttribute="top" secondItem="SgA-y4-taH" secondAttribute="top" constant="5" id="opC-ME-Uij"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-7E-hkr">
@@ -1663,6 +1680,6 @@
         <image name="upvoteArrow" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wqm-YJ-0hk"/>
+        <segue reference="S6u-EE-Q3h"/>
     </inferredMetricsTieBreakers>
 </document>
