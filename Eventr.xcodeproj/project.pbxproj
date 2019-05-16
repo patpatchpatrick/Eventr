@@ -43,6 +43,7 @@
 		F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* EventCategories.swift */; };
 		F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */; };
 		F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */; };
+		F6E1AC26228CEE09000D0D87 /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E1AC25228CEE09000D0D87 /* Theme.xcassets */; };
 		F6F2DAF0228B5D9100BB1F36 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */; };
 		F6F2DAF3228B6C8900BB1F36 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2DAF2228B6C8900BB1F36 /* Constants.swift */; };
 		F6FD35C6228A4D1D000DF12B /* EventrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD35C5228A4D1D000DF12B /* EventrUITests.swift */; };
@@ -92,6 +93,7 @@
 		F6ADA4C72273CBA000948B7D /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommunication.swift; sourceTree = "<group>"; };
+		F6E1AC25228CEE09000D0D87 /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
 		F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F6F2DAF2228B6C8900BB1F36 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F6FD35C3228A4D1D000DF12B /* EventrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 		F6174C13228C9F5F001EF6F9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				F6E1AC25228CEE09000D0D87 /* Theme.xcassets */,
 				F653688B2272618200861E0D /* Assets.xcassets */,
 				F6174C14228C9F6F001EF6F9 /* Fonts */,
 			);
@@ -368,6 +371,7 @@
 				F6174C1F228C9FAC001EF6F9 /* Heebo-Regular.ttf in Resources */,
 				F6113F4522764FD900CAD961 /* GoogleService-Info.plist in Resources */,
 				F653688C2272618200861E0D /* Assets.xcassets in Resources */,
+				F6E1AC26228CEE09000D0D87 /* Theme.xcassets in Resources */,
 				F6174C1D228C9FAC001EF6F9 /* Heebo-Thin.ttf in Resources */,
 				F653688A2272618100861E0D /* Main.storyboard in Resources */,
 			);

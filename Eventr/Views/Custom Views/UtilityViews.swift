@@ -53,9 +53,25 @@ class CustomLabel: UILabel {
     
 }
 
-//Class used for event tags
+//Class used for rounded corner buttons
 @IBDesignable
 class RoundedButton: UIButton {
+    
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+    
+}
+
+//Class used for rounded corner stackviews
+@IBDesignable
+class RoundedStackView: UIStackView {
     
     @IBInspectable
     var cornerRadius: CGFloat {

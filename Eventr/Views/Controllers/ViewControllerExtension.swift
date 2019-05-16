@@ -187,7 +187,8 @@ extension ViewController{
         button.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .right
-        button.alpha = 0.5
+        button.tintColor = UIColor.white
+        button.alpha = 0.25
         let imageView = UIImageView()
         imageView.image = eventCategory.image()
         imageView.contentMode = .scaleAspectFit
@@ -297,10 +298,12 @@ extension ViewController{
     @objc func selectCategory(sender: UIButton!) {
         //Select category from category toolbar and make all other categories have 50% opacity so that the selected category stands out
         for subview in categoriesStackView.arrangedSubviews{
-            subview.alpha = 0.5
+            subview.tintColor = UIColor.white
+            subview.alpha = 0.25
         }
         UIView.animate(withDuration: 0.5){
-            sender.alpha = 1.0
+            sender.tintColor = UIColor.white
+            sender.alpha = 0.75
         }
         selectedCategory = sender.tag //The tag of the sending button matches the index of whichever category was selected 
     }

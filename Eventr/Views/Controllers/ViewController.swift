@@ -145,14 +145,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //Start date button pushed in the main UI
     @IBAction func selectFromDate(_ sender: UIButton) {
+        
         fromDateWasSelected = true
-        hideDate = Date().addingTimeInterval(-86400)
+        hideDate = Date().addingTimeInterval(-ONE_DAY)
         calendarView.reloadData()
         calendarView.deselectAllDates()
         calendarView.selectDates([fromDate])
         calendarView.scrollToDate(fromDate)
-        calendarContainer.isHidden = false
         selectToDate.isEnabled = false //ensure both from and to buttons aren't pressed at same time
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = false
+        })
         
     }
     
@@ -167,17 +171,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //Start date selecton confirmed in the calendarView
     @IBAction func confirmDate(_ sender: UIButton) {
-        calendarContainer.isHidden = true
+        
         selectToDate.isEnabled = true
         selectFromDate.isEnabled = true
         if fromDate > toDate {
             resetCalendarToDate()
         }
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = true
+        })
     }
     
     
     @IBAction func discardDate(_ sender: UIButton) {
-        calendarContainer.isHidden = true
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = true
+        })
+        
+        //self.calendarContainer.isHidden = true
         if fromDateWasSelected{
             resetCalendarFromDate()
         } else {
@@ -189,14 +202,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //End date button pushed in the main UI
     @IBAction func selectToDate(_ sender: UIButton) {
+        
         fromDateWasSelected = false
         hideDate = fromDate
         calendarView.reloadData()
         calendarView.deselectAllDates()
         calendarView.selectDates([toDate])
         calendarView.scrollToDate(toDate)
-        calendarContainer.isHidden = false
         selectFromDate.isEnabled = false //ensure both from and to buttons aren't pressed at same time
+        
+        UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = false
+        })
 
     }
     
@@ -240,7 +257,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.favoriteIcon?.tag = indexPath.row
         cell.upvoteArrow?.tag = indexPath.row
         if event.upvoted {
-            cell.upvoteArrow.tintColor = UIColor.red
+            cell.upvoteArrow.tintColor = themeAccentSecondary
         } else {
             cell.upvoteArrow.tintColor = UIColor.black
         }
