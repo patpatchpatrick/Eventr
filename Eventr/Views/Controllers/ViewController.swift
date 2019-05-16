@@ -63,6 +63,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var selectFromDate: UIButton!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var selectToDate: UIButton!
+    @IBOutlet weak var listDescriptor: RoundUIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         
+        hideListDescriptor()
         setUpAccountSettingsImage()
         setUpLogOutIcon()
         setUpCategoryStackView()
@@ -318,8 +320,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
         
-        
-        
+    }
+    
+    
+    @IBAction func sideMenuFavoriteButtonTapped(_ sender: UIButton) {
+        loadFavoriteEvents()
     }
     
     

@@ -27,15 +27,19 @@ extension ViewController{
                 if let imageData = data {
                     let image = UIImage(data: imageData)
                     accountSettingsIcon.image = image
-                    accountSettingsIcon.layer.cornerRadius = 20.0
-                    accountSettingsIcon.clipsToBounds = true
-                    sideMenuAccountButton.clipsToBounds = true
                     sideMenuAccountButton.setImage(image, for: .normal)
-                    sideMenuAccountButton.layer.cornerRadius = 20.0
-                    sideMenuAccountButton.clipsToBounds = true
+       
                 }
             }
         }
+        
+        accountSettingsIcon.layer.cornerRadius = 20.0
+        accountSettingsIcon.layer.borderWidth = 2.0
+        accountSettingsIcon.layer.borderColor = themeAccentSecondary.cgColor
+        accountSettingsIcon.clipsToBounds = true
+        sideMenuAccountButton.clipsToBounds = true
+        sideMenuAccountButton.layer.cornerRadius = 20.0
+        sideMenuAccountButton.clipsToBounds = true
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountSettingsIconTapped(tapGestureRecognizer:)))
         
@@ -119,7 +123,7 @@ extension ViewController{
             self.sideMenuMyEventsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuMyEventsButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuSettingsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
-            self.sideMenuSettingsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuSettingsButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         })
         UIView.animate(withDuration: 0.4, delay: 0.2, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuFavoritedButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
@@ -170,7 +174,7 @@ extension ViewController{
             self.sideMenuMyEventsButton.transform = .identity
             self.sideMenuMyEventsButtonLabel.transform = .identity
             self.sideMenuSettingsButton.transform = .identity
-            self.sideMenuSettingsButton.transform = .identity
+            self.sideMenuSettingsButtonLabel.transform = .identity
         })
 
         UIView.animate(withDuration: 0.4, delay: 0.2, options: [.curveEaseOut, .allowUserInteraction], animations: {
@@ -356,6 +360,26 @@ extension ViewController{
         else{
             
         }
+    }
+    
+    func loadFavoriteEvents(){
+        hideSideMenu()
+        showListDescriptor()
+        
+    }
+    
+    //Show the list descriptor which describes the type of events being shown
+    func showListDescriptor(){
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.listDescriptor.transform = .identity
+        })
+    }
+    
+     //Hide the list descriptor which describes the type of events being shown
+    func hideListDescriptor(){
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.listDescriptor.transform = CGAffineTransform(translationX: 0, y: -self.listDescriptor.frame.height/2)
+        })
     }
     
     
