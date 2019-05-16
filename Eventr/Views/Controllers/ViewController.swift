@@ -35,6 +35,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
     let locationManager = CLLocationManager()
+    
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundViewSideBorder: UIView!
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
     @IBOutlet weak var sideMenuCurveImage: UIImageView!
@@ -243,8 +247,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Handle event favorited
         if event.favorite {
             cell.favoriteIcon?.setImage(UIImage(named: "iconSelectedStar"), for: .normal)
+            cell.favoriteIcon?.tintColor = themeAccentSecondary
         } else {
             cell.favoriteIcon?.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
+            cell.favoriteIcon?.tintColor = UIColor.black
         }
         
         cell.categoryIcon.image = event.category.image()

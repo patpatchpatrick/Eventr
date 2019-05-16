@@ -95,6 +95,11 @@ extension ViewController{
         //Animated side menu
         //All icons move horizontally out of the menu in curved fashion
         //The outer icons move more quickly than the inner icons
+        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.backgroundView.transform = .identity
+            self.backgroundViewSideBorder.transform = .identity
+        })
+        
         UIView.animate(withDuration: 0.4, animations: {
             self.sideMenuShade.alpha = 0
             
@@ -135,8 +140,15 @@ extension ViewController{
         //All icons move horizontally into the menu in curved fashion
         //The outer icons move more slowly than the inner icons
         sideMenu.isHidden = false
+        
+        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.backgroundView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width + 5, y: 0)
+             self.backgroundViewSideBorder.transform = CGAffineTransform(translationX: self.sideMenu.frame.width + 5, y: 0)
+        })
+        
+        
         UIView.animate(withDuration: 0.4, animations: {
-            self.sideMenuShade.alpha = 0.75
+            self.sideMenuShade.alpha = 0.1
             
         })
         
@@ -212,7 +224,7 @@ extension ViewController{
         addCategoryDropDown.selectionAction = { (index: Int, item: String) in
             addImageToCategoriesStackView(for: item)
         }
-        addCategoryDropDown.backgroundColor = UIColor(red: 106/255.0, green: 138/255.0, blue: 244/255.0, alpha: 1.00)
+        addCategoryDropDown.backgroundColor = themeMedium
         addCategoryDropDown.textColor = UIColor.white
         addCategoryDropDown.width = 140
         addCategoryDropDown.bottomOffset = CGPoint(x: 0, y:(addCategoryDropDown.anchorView?.plainView.bounds.height)!)
@@ -256,7 +268,7 @@ extension ViewController{
         subtractCategoryDropDown.selectionAction = { (index: Int, item: String) in
             removeImageFromCategoriesStackView(for: item)
         }
-        subtractCategoryDropDown.backgroundColor = UIColor(red: 106/255.0, green: 138/255.0, blue: 244/255.0, alpha: 1.00)
+        subtractCategoryDropDown.backgroundColor = themeMedium
         subtractCategoryDropDown.textColor = UIColor.white
         subtractCategoryDropDown.width = 140
         subtractCategoryDropDown.bottomOffset = CGPoint(x: 0, y:(addCategoryDropDown.anchorView?.plainView.bounds.height)!)

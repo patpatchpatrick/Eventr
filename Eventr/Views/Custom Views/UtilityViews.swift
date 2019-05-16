@@ -69,22 +69,6 @@ class RoundedButton: UIButton {
     
 }
 
-//Class used for rounded corner stackviews
-@IBDesignable
-class RoundedStackView: UIStackView {
-    
-    @IBInspectable
-    var cornerRadius: CGFloat {
-        get {
-            return layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-        }
-    }
-    
-}
-
 
 //Custom calendar cell
 class CalendarCell: JTAppleCell {
@@ -109,6 +93,18 @@ class CalendarCell: JTAppleCell {
 class CalendarSectionHeaderView: JTAppleCollectionReusableView {
     
     @IBOutlet weak var title: UILabel!
+    
+}
+
+@IBDesignable
+class RoundUIView: UIView {
+    
+    
+    @IBInspectable var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            self.layer.cornerRadius = cornerRadius
+        }
+    }
     
 }
 
