@@ -370,16 +370,24 @@ extension ViewController{
     
     //Show the list descriptor which describes the type of events being shown
     func showListDescriptor(){
+        listDescriptorLabel.text = "Favorited"
+        listDescriptorIcon.image = UIImage(named: "catIconFavorite")
+        listDescriptorCover.isHidden = false
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.listDescriptor.transform = .identity
+            self.listDescriptorReturnButton.transform = .identity
         })
     }
     
      //Hide the list descriptor which describes the type of events being shown
     func hideListDescriptor(){
+        events.removeAll()
+        reloadEventTableView()
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.listDescriptor.transform = CGAffineTransform(translationX: 0, y: -self.listDescriptor.frame.height/2)
+            self.listDescriptor.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width - self.listDescriptor.frame.width, y: 0)
+            self.listDescriptorReturnButton.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width - self.listDescriptor.frame.width, y: 0)
         })
+            listDescriptorCover.isHidden = true
     }
     
     

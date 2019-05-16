@@ -14,6 +14,9 @@
         <array key="Heebo-Light.ttf">
             <string>Heebo-Light</string>
         </array>
+        <array key="Heebo-Medium.ttf">
+            <string>Heebo-Medium</string>
+        </array>
         <array key="Heebo-Regular.ttf">
             <string>Heebo-Regular</string>
         </array>
@@ -428,19 +431,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-mT-FN5" userLabel="ListDescriptor" customClass="RoundUIView" customModule="Eventr" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="110" width="150" height="60"/>
-                                        <color key="backgroundColor" red="0.99973672629999999" green="0.39237946270000001" blue="0.68406987190000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="uz0-CO-MKO"/>
-                                            <constraint firstAttribute="height" constant="60" id="uzR-OI-iVm"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="30"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyP-kA-82x" userLabel="Date Selection">
                                         <rect key="frame" x="0.0" y="110" width="320" height="30"/>
                                         <subviews>
@@ -628,6 +618,61 @@
                                             <constraint firstAttribute="height" constant="1" id="DtB-RH-zfF"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-R6-dey" userLabel="ListDescriptorCover">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="90"/>
+                                        <color key="backgroundColor" name="Medium"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-mT-FN5" userLabel="ListDescriptor" customClass="RoundUIView" customModule="Eventr" customModuleProvider="target">
+                                        <rect key="frame" x="85" y="65" width="150" height="60"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="catIconFavorite" translatesAutoresizingMaskIntoConstraints="NO" id="f2p-Xp-o7b">
+                                                <rect key="frame" x="10" y="15" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="tE6-BM-KIT"/>
+                                                    <constraint firstAttribute="width" constant="30" id="yKb-kf-N9O"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B90-l6-Puq" userLabel="ListDescriptorLabel">
+                                                <rect key="frame" x="50" y="20" width="42" height="20"/>
+                                                <fontDescription key="fontDescription" name="Heebo-Medium" family="Heebo Medium" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.99973672629999999" green="0.39237946270000001" blue="0.68406987190000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="B90-l6-Puq" firstAttribute="centerY" secondItem="Ktv-mT-FN5" secondAttribute="centerY" id="IBK-Zx-I1C"/>
+                                            <constraint firstItem="f2p-Xp-o7b" firstAttribute="leading" secondItem="Ktv-mT-FN5" secondAttribute="leading" constant="10" id="coe-ee-gVm"/>
+                                            <constraint firstAttribute="width" constant="150" id="uz0-CO-MKO"/>
+                                            <constraint firstAttribute="height" constant="60" id="uzR-OI-iVm"/>
+                                            <constraint firstItem="B90-l6-Puq" firstAttribute="leading" secondItem="f2p-Xp-o7b" secondAttribute="trailing" constant="10" id="yJU-gx-4cm"/>
+                                            <constraint firstItem="f2p-Xp-o7b" firstAttribute="centerY" secondItem="Ktv-mT-FN5" secondAttribute="centerY" id="zMf-6c-2va"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zza-Cn-weC" userLabel="ListDescriptorReturnButton" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
+                                        <rect key="frame" x="245" y="75" width="40" height="40"/>
+                                        <color key="backgroundColor" name="Dark"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="sid-cq-aV0"/>
+                                            <constraint firstAttribute="width" constant="40" id="vsV-V4-DjA"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AccentPrimary"/>
+                                        <state key="normal" image="iconReturn"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="listDescriptorReturnButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gy5-41-a8v"/>
+                                        </connections>
+                                    </button>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VDx-xb-Ug2" userLabel="Header">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
@@ -666,11 +711,15 @@
                                 </subviews>
                                 <color key="backgroundColor" name="Medium"/>
                                 <constraints>
+                                    <constraint firstItem="Ktv-mT-FN5" firstAttribute="bottom" secondItem="25H-xd-yYF" secondAttribute="top" constant="-15" id="2md-pz-xHa"/>
+                                    <constraint firstItem="Zza-Cn-weC" firstAttribute="centerY" secondItem="Ktv-mT-FN5" secondAttribute="centerY" id="4AP-To-w5p"/>
+                                    <constraint firstItem="7x5-R6-dey" firstAttribute="top" secondItem="VDx-xb-Ug2" secondAttribute="bottom" id="4fg-os-Ovc"/>
                                     <constraint firstItem="dI4-Fy-ey3" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="top" id="6ju-Xo-gcG"/>
                                     <constraint firstAttribute="trailing" secondItem="iyP-kA-82x" secondAttribute="trailing" id="8mq-OG-P6c"/>
                                     <constraint firstAttribute="trailing" secondItem="VDx-xb-Ug2" secondAttribute="trailing" id="CHV-sN-occ"/>
                                     <constraint firstAttribute="trailing" secondItem="JNM-0r-0co" secondAttribute="trailing" id="Epy-ec-kjN"/>
                                     <constraint firstItem="iyP-kA-82x" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="Hho-Gq-fUb"/>
+                                    <constraint firstItem="7x5-R6-dey" firstAttribute="bottom" secondItem="25H-xd-yYF" secondAttribute="top" id="IGl-Vs-tJo"/>
                                     <constraint firstItem="25H-xd-yYF" firstAttribute="top" secondItem="iyP-kA-82x" secondAttribute="bottom" id="N7S-aS-cYJ"/>
                                     <constraint firstItem="JNM-0r-0co" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="Nwh-vP-UtY"/>
                                     <constraint firstItem="JNM-0r-0co" firstAttribute="bottom" secondItem="iyP-kA-82x" secondAttribute="top" id="P1z-dp-hlz"/>
@@ -681,7 +730,8 @@
                                     <constraint firstItem="1es-1h-yhM" firstAttribute="bottom" secondItem="JNM-0r-0co" secondAttribute="top" id="eEs-rF-xjM"/>
                                     <constraint firstItem="VDx-xb-Ug2" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="guI-kw-o8H"/>
                                     <constraint firstItem="VDx-xb-Ug2" firstAttribute="bottom" secondItem="1es-1h-yhM" secondAttribute="top" id="h50-79-THh"/>
-                                    <constraint firstItem="Ktv-mT-FN5" firstAttribute="top" secondItem="iyP-kA-82x" secondAttribute="bottom" constant="-30" id="kWw-8d-vbi"/>
+                                    <constraint firstItem="7x5-R6-dey" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="lYs-9s-or0"/>
+                                    <constraint firstItem="Zza-Cn-weC" firstAttribute="leading" secondItem="Ktv-mT-FN5" secondAttribute="trailing" constant="10" id="mVY-Ju-dIa"/>
                                     <constraint firstItem="VDx-xb-Ug2" firstAttribute="top" secondItem="9ly-4h-XTV" secondAttribute="top" id="oYX-Nd-O2g"/>
                                     <constraint firstItem="1es-1h-yhM" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="pcE-ha-39I"/>
                                     <constraint firstAttribute="trailing" secondItem="anO-4j-n8B" secondAttribute="trailing" id="pls-xF-HGF"/>
@@ -690,6 +740,7 @@
                                     <constraint firstItem="Ktv-mT-FN5" firstAttribute="centerX" secondItem="9ly-4h-XTV" secondAttribute="centerX" id="rVP-a7-dr9"/>
                                     <constraint firstItem="dI4-Fy-ey3" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="t2e-9R-MOb"/>
                                     <constraint firstAttribute="trailing" secondItem="dI4-Fy-ey3" secondAttribute="trailing" id="x6y-d9-0Yn"/>
+                                    <constraint firstAttribute="trailing" secondItem="7x5-R6-dey" secondAttribute="trailing" id="zn0-uV-icW"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjr-ur-GUf">
@@ -923,6 +974,10 @@
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                         <outlet property="listDescriptor" destination="Ktv-mT-FN5" id="366-bW-15F"/>
+                        <outlet property="listDescriptorCover" destination="7x5-R6-dey" id="7VW-OE-2A7"/>
+                        <outlet property="listDescriptorIcon" destination="f2p-Xp-o7b" id="mnw-ji-I8C"/>
+                        <outlet property="listDescriptorLabel" destination="B90-l6-Puq" id="C7Q-oj-Kf0"/>
+                        <outlet property="listDescriptorReturnButton" destination="Zza-Cn-weC" id="H1z-7D-wfp"/>
                         <outlet property="locationEntryField" destination="GWU-Ct-tSG" id="mAe-Wi-zBj"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="aie-IY-bcL"/>
                         <outlet property="selectFromDate" destination="1KE-ok-I6D" id="Qva-Y3-SJp"/>
@@ -1816,6 +1871,7 @@
     <resources>
         <image name="accountIcon" width="100" height="100"/>
         <image name="catIconAll" width="150" height="150"/>
+        <image name="catIconFavorite" width="100" height="100"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconCheckMark" width="104" height="104"/>
         <image name="iconDiscard" width="90" height="90"/>
@@ -1824,6 +1880,7 @@
         <image name="iconLogOut" width="52" height="52"/>
         <image name="iconMinus" width="52" height="52"/>
         <image name="iconMyEvents" width="96" height="96"/>
+        <image name="iconReturn" width="96" height="96"/>
         <image name="iconRightArrow" width="96" height="96"/>
         <image name="iconSearch" width="100" height="100"/>
         <image name="iconSelectedStar" width="100" height="100"/>

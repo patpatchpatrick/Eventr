@@ -64,6 +64,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var selectToDate: UIButton!
     @IBOutlet weak var listDescriptor: RoundUIView!
+    @IBOutlet weak var listDescriptorCover: UIView!//Covers up all the search options when list descriptor is out
+    @IBOutlet weak var listDescriptorIcon: UIImageView!
+    @IBOutlet weak var listDescriptorLabel: UILabel!
+    @IBOutlet weak var listDescriptorReturnButton: RoundedButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -327,6 +331,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         loadFavoriteEvents()
     }
     
+    
+    @IBAction func listDescriptorReturnButtonTapped(_ sender: Any) {
+        
+        print("RETURN BUTTON TAPPED")
+        hideListDescriptor()
+        
+    }
     
 }
 
