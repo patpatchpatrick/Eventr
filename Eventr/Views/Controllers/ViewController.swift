@@ -76,6 +76,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpCategoryStackView()
         setUpAddCategoryImage()
         setUpSubtractCategoryImage()
+        setUpLocationEntryField()
         hideSideMenu()
         setUpUser()
         configureCalendarView()
@@ -250,7 +251,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.favoriteIcon?.tintColor = themeAccentSecondary
         } else {
             cell.favoriteIcon?.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
-            cell.favoriteIcon?.tintColor = UIColor.black
+            cell.favoriteIcon?.tintColor = themeDark
         }
         
         cell.categoryIcon.image = event.category.image()
@@ -265,7 +266,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if event.upvoted {
             cell.upvoteArrow.tintColor = themeAccentSecondary
         } else {
-            cell.upvoteArrow.tintColor = UIColor.black
+            cell.upvoteArrow.tintColor = themeDark
         }
         cell.upvoteCount?.text = String(event.upvoteCount)
         return cell

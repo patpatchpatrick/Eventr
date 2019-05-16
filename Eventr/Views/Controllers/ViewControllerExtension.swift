@@ -52,6 +52,11 @@ extension ViewController{
         
     }
     
+    func setUpLocationEntryField(){
+        locationEntryField.attributedPlaceholder = NSAttributedString(string: "Enter Location",
+                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
+    
     func setUpAddCategoryImage(){
         
         //Set up category selection dropdown menu

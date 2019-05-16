@@ -43,7 +43,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             return
         }
         if cellState.isSelected{
-            currentCell.dateLabel.textColor = UIColor.black
+            currentCell.dateLabel.textColor = UIColor.white
         } else {
             if cellState.dateBelongsTo == .thisMonth && cellState.date > Date() {
                 currentCell.dateLabel.textColor = UIColor.black

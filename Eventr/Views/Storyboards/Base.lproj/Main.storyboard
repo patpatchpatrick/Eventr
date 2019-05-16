@@ -141,7 +141,7 @@
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFe-EX-d1W">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                                                    <color key="backgroundColor" red="0.47240690011475661" green="0.57781307677560734" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                    <color key="backgroundColor" name="Dark"/>
                                                                                     <color key="tintColor" red="0.41723582149999999" green="0.54063099619999999" blue="0.9558613896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
@@ -183,7 +183,7 @@
                                                                     <outlet property="ibCalendarDelegate" destination="BYZ-38-t0r" id="aJh-Tl-PqZ"/>
                                                                 </connections>
                                                             </collectionView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POO-0L-lvc">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POO-0L-lvc" userLabel="Previous">
                                                                 <rect key="frame" x="230" y="35" width="15" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="15" id="8db-2p-3fG"/>
@@ -194,7 +194,7 @@
                                                                     <action selector="previousMonth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsW-La-cXq"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW6-td-jkt">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW6-td-jkt" userLabel="Next">
                                                                 <rect key="frame" x="265" y="35" width="15" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="15" id="keN-zs-RbX"/>
@@ -252,13 +252,14 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssE-Am-Osy" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssE-Am-Osy" userLabel="Confirm" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
                                                                 <rect key="frame" x="195" y="35" width="15" height="15"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="9Pw-Vv-OSg"/>
                                                                     <constraint firstAttribute="width" constant="15" id="gAF-cR-W8U"/>
                                                                 </constraints>
+                                                                <color key="tintColor" name="AccentSecondary"/>
                                                                 <state key="normal" image="iconCheckMark"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -269,13 +270,14 @@
                                                                     <action selector="confirmDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rz9-Ve-atr"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-ns-vbu" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-ns-vbu" userLabel="Discard" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
                                                                 <rect key="frame" x="160" y="35" width="15" height="15"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="aPD-Je-CsS"/>
                                                                     <constraint firstAttribute="width" constant="15" id="sYr-VF-aqI"/>
                                                                 </constraints>
+                                                                <color key="tintColor" name="AccentSecondary"/>
                                                                 <state key="normal" image="iconDiscard"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -287,7 +289,7 @@
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="Medium"/>
                                                         <constraints>
                                                             <constraint firstItem="Kkq-ns-vbu" firstAttribute="top" secondItem="OW6-td-jkt" secondAttribute="top" id="2Fd-O0-hUc"/>
                                                             <constraint firstItem="ssE-Am-Osy" firstAttribute="top" secondItem="OW6-td-jkt" secondAttribute="top" id="2ik-2u-M7c"/>
@@ -306,10 +308,11 @@
                                                             <constraint firstItem="OW6-td-jkt" firstAttribute="top" secondItem="SgA-y4-taH" secondAttribute="top" constant="15" id="vKh-LS-Cgy"/>
                                                         </constraints>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-7E-hkr">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-7E-hkr">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="408"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="sectionIndexBackgroundColor" name="Medium"/>
+                                                        <color key="separatorColor" name="Medium"/>
+                                                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellEvent" id="r5Z-ff-b4a" customClass="CustomEventCell" customModule="Eventr" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="320" height="50"/>
@@ -342,8 +345,8 @@
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fTK-xp-DYK">
                                                                             <rect key="frame" x="55" y="5" width="181" height="31.5"/>
-                                                                            <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="14"/>
-                                                                            <nil key="textColor"/>
+                                                                            <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="14"/>
+                                                                            <color key="textColor" name="Dark"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8k6-yo-BrG">
@@ -366,7 +369,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="tintColor" name="Dark"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="bottom" secondItem="8k6-yo-BrG" secondAttribute="bottom" id="AVv-py-dCU"/>
                                                                         <constraint firstItem="fTK-xp-DYK" firstAttribute="leading" secondItem="8k6-yo-BrG" secondAttribute="trailing" constant="10" id="CJq-TC-YOe"/>
@@ -449,7 +452,7 @@
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                                                <color key="value" red="0.57878443010000002" green="0.59857422589999998" blue="0.69478151740000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
@@ -491,7 +494,7 @@
                                                     <action selector="getCurrentLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dTw-0d-mEZ"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter Location" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWU-Ct-tSG">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWU-Ct-tSG">
                                                 <rect key="frame" x="27" y="8" width="111" height="30"/>
                                                 <color key="backgroundColor" name="Dark"/>
                                                 <constraints>
@@ -1741,6 +1744,9 @@
         <image name="upvoteArrow" width="90" height="90"/>
         <namedColor name="AccentPrimary">
             <color red="0.3411764705882353" green="1" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AccentSecondary">
+            <color red="0.92549019607843142" green="0.30196078431372547" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Dark">
             <color red="0.15294117647058825" green="0.015686274509803921" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
