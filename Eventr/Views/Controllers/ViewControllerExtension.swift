@@ -365,7 +365,7 @@ extension ViewController{
     func loadFavoriteEvents(){
         hideSideMenu()
         showListDescriptor()
-        
+        queryFirebaseFavoriteEvents()
     }
     
     //Show the list descriptor which describes the type of events being shown

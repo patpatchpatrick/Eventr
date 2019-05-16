@@ -33,18 +33,46 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
     
     //Method called when the query is finished and all keys(event IDs) are loaded
     gQuery.observeReady {
-        for eventIDKey in keyList {
-            firebaseDatabaseRef.child("events").child(eventIDKey).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get dictionary of event data
-                if let value = snapshot.value as? NSDictionary {
-                    let event = Event(dict: value, idKey: eventIDKey)
-                    //Check if event has been favorited by user
-                    queryIfFirebaseEventIsFavorited(event: event)
-                    //Check if event has been upvoted by user
-                    queryIfFirebaseEventIsUpvoted(event: event)
-                    
-                    //Check if event meets search criteria (date and category)
-                    //If so, add event to table view events list and update table
+        addEventsToEventTableView(eventsList: keyList, searchCriteriaIsRequired: true)
+    }
+    
+    
+}
+
+//Query list of Firebase events that were favorited by the user and add them to the eventsTableView
+func queryFirebaseFavoriteEvents(){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return }
+    events.removeAll()
+    firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        guard let dict = snapshot.value as? NSDictionary else { return }
+        var favoriteEvents : [String] = []
+        for value in dict.allValues {
+            if let eventString = value as? String {
+                print("EVENT STRING " + eventString)
+                favoriteEvents.append(eventString)
+            }
+        }
+        addEventsToEventTableView(eventsList: favoriteEvents, searchCriteriaIsRequired: false)
+    })
+    
+}
+
+func addEventsToEventTableView(eventsList: Array<String>, searchCriteriaIsRequired: Bool){
+    for eventID in eventsList {
+        firebaseDatabaseRef.child("events").child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get dictionary of event data
+            if let value = snapshot.value as? NSDictionary {
+                let event = Event(dict: value, idKey: eventID)
+                //Check if event has been favorited by user
+                queryIfFirebaseEventIsFavorited(event: event)
+                //Check if event has been upvoted by user
+                queryIfFirebaseEventIsUpvoted(event: event)
+                
+                //Check if event meets search criteria (date and category)
+                //If so, add event to table view events list and update table
+                if searchCriteriaIsRequired{
                     if let eventDate = event.date{
                         if eventDate > fromDate && eventDate < toDate {
                             if selectedCategory == 0 || event.category.index() == selectedCategory {
@@ -54,16 +82,18 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
                             }
                         }
                     }
+                } else {
+                    //Add event to tableview without search criteria check
+                    let index = events.insertionIndexOf(elem: event, isOrderedBefore: >)
+                    events.insert(event, at: index)
+                    reloadEventTableView()
                 }
-            }) { (error) in
-                print("FB Query Error" + error.localizedDescription)
             }
+        }) { (error) in
+            print("FB Query Error" + error.localizedDescription)
         }
-        
     }
-    
-    
-    
+
 }
 
 //Create a firebase event

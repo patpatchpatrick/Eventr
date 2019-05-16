@@ -145,7 +145,7 @@
                                                                                     <color key="tintColor" red="0.41723582149999999" green="0.54063099619999999" blue="0.9558613896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
-                                                                                    <rect key="frame" x="9" y="20" width="42" height="20"/>
+                                                                                    <rect key="frame" x="9" y="17.5" width="42" height="25"/>
                                                                                     <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
