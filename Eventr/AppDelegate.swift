@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func setUpSegmentedControls(){
         
-        let attr = NSDictionary(object: UIFont(name: "Heebo-Regular", size: 12.0)!, forKey: NSAttributedString.Key.font as NSCopying)
+        let attr = NSDictionary(object: UIFont(name: "Raleway-Regular", size: 12.0)!, forKey: NSAttributedString.Key.font as NSCopying)
         UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] as [NSObject : AnyObject] as! [NSAttributedString.Key : Any] , for: .normal)
     }
 

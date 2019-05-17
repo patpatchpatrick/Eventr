@@ -124,7 +124,7 @@ class CreateEventViewController: UIViewController {
         categoryDropDown.width = 140
         categoryDropDown.backgroundColor = themeDark
         categoryDropDown.textColor = UIColor.white
-        if let dropDownFont = UIFont(name: "Heebo-Regular",
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
                                      size: 14.0) {
          categoryDropDown.textFont = dropDownFont
         }

@@ -26,6 +26,9 @@
         <array key="Heebo-Thin.ttf">
             <string>Heebo-Thin</string>
         </array>
+        <array key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Home Screen-->
@@ -117,10 +120,10 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25H-xd-yYF" userLabel="CalendarAndEventsContainer" customClass="RoundUIView" customModule="Eventr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="140" width="320" height="408"/>
+                                        <rect key="frame" x="0.0" y="182" width="320" height="366"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eof-ox-qI6" userLabel="CalendarAndEvents">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="408"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
                                                 <subviews>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efm-Uk-h3J" userLabel="Calendar">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="335"/>
@@ -214,46 +217,46 @@
                                                                 </connections>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Mr1-dF-0sL" userLabel="WeekDays">
-                                                                <rect key="frame" x="30" y="57.5" width="260" height="17.5"/>
+                                                                <rect key="frame" x="30" y="52.5" width="260" height="22.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTD-NC-73T">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spA-er-WCN">
-                                                                        <rect key="frame" x="37" y="0.0" width="37.5" height="17.5"/>
+                                                                        <rect key="frame" x="37" y="0.0" width="37.5" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1Y-fO-LDP">
-                                                                        <rect key="frame" x="74.5" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="74.5" y="0.0" width="37" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwD-Xf-VzK">
-                                                                        <rect key="frame" x="111.5" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="111.5" y="0.0" width="37" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-Ww-osM">
-                                                                        <rect key="frame" x="148.5" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="148.5" y="0.0" width="37" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-0h-6td">
-                                                                        <rect key="frame" x="185.5" y="0.0" width="37.5" height="17.5"/>
+                                                                        <rect key="frame" x="185.5" y="0.0" width="37.5" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-O7-SE6">
-                                                                        <rect key="frame" x="223" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="223" y="0.0" width="37" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -317,7 +320,7 @@
                                                         </constraints>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-7E-hkr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="408"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="separatorColor" name="Medium"/>
                                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -437,7 +440,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyP-kA-82x" userLabel="Date Selection">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="152" width="320" height="30"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="vyp-Ia-DI5">
                                                 <rect key="frame" x="25" y="10" width="270" height="20"/>
@@ -447,7 +450,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="b81-fN-Opg"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
                                                         <state key="normal" title="From Date:"/>
                                                         <connections>
                                                             <action selector="selectFromDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7wi-76-42C"/>
@@ -469,7 +472,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="lF9-v6-fde"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Heebo-Regular" family="Heebo" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
                                                         <state key="normal" title="To Date:"/>
                                                         <connections>
                                                             <action selector="selectToDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6bO-Qt-VbM"/>
@@ -489,7 +492,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNM-0r-0co" userLabel="searchOptionsView">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="122" width="320" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndK-B0-wb8">
                                                 <rect key="frame" x="5" y="13" width="20" height="20"/>
@@ -502,14 +505,14 @@
                                                     <action selector="getCurrentLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dTw-0d-mEZ"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWU-Ct-tSG">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWU-Ct-tSG">
                                                 <rect key="frame" x="27" y="8" width="111" height="30"/>
-                                                <color key="backgroundColor" name="Dark"/>
+                                                <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="111" id="WzK-p6-cjg"/>
                                                 </constraints>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="14"/>
+                                                <color key="textColor" name="Text"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V90-ZY-Hsx" userLabel="SearchButton">
@@ -553,6 +556,81 @@
                                             <constraint firstItem="V90-ZY-Hsx" firstAttribute="top" secondItem="GWU-Ct-tSG" secondAttribute="top" constant="5" id="uJu-8r-tRw"/>
                                         </constraints>
                                     </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FIU-NR-25c" userLabel="MainButtons">
+                                        <rect key="frame" x="10" y="80" width="300" height="42"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-gg-50x" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="42"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="110" id="pUi-id-cdI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
+                                                <state key="normal" title="May 15, 2019">
+                                                    <color key="titleColor" name="AccentPrimary"/>
+                                                    <color key="titleShadowColor" name="Dark"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mainDateSelectionButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r58-bd-88O"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
+                                                <rect key="frame" x="114" y="0.0" width="140" height="42"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="140" id="kwn-TE-lfL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
+                                                <state key="normal" title="Seattle Center">
+                                                    <color key="titleColor" name="AccentPrimary"/>
+                                                    <color key="titleShadowColor" name="Dark"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mainSearchSelectionButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pv6-p1-A3T"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpo-t1-7eE" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
+                                                <rect key="frame" x="258" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="42" id="a8v-sh-U2h"/>
+                                                </constraints>
+                                                <color key="tintColor" name="AccentPrimary"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" image="iconSearch">
+                                                    <color key="titleShadowColor" name="Dark"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mainSearchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L3e-7W-dff"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="REQ-xr-Xqh" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="top" id="3BN-d1-i1a"/>
+                                            <constraint firstAttribute="bottom" secondItem="REQ-xr-Xqh" secondAttribute="bottom" id="6Sw-xX-5Wa"/>
+                                            <constraint firstAttribute="bottom" secondItem="k9C-gg-50x" secondAttribute="bottom" id="MUa-gg-sc4"/>
+                                            <constraint firstItem="k9C-gg-50x" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="top" id="W3v-7f-ate"/>
+                                            <constraint firstAttribute="bottom" secondItem="jpo-t1-7eE" secondAttribute="bottom" id="okv-lv-Vbw"/>
+                                            <constraint firstAttribute="height" constant="42" id="r2p-j1-gKz"/>
+                                            <constraint firstItem="jpo-t1-7eE" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="top" id="tky-cL-2Va"/>
+                                        </constraints>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1es-1h-yhM" userLabel="CategorySelection">
                                         <rect key="frame" x="0.0" y="50" width="320" height="30"/>
                                         <subviews>
@@ -624,11 +702,11 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-R6-dey" userLabel="ListDescriptorCover">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="90"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="132"/>
                                         <color key="backgroundColor" name="Medium"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-mT-FN5" userLabel="ListDescriptor" customClass="RoundUIView" customModule="Eventr" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="65" width="150" height="60"/>
+                                        <rect key="frame" x="85" y="107" width="150" height="60"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="catIconFavorite" translatesAutoresizingMaskIntoConstraints="NO" id="f2p-Xp-o7b">
                                                 <rect key="frame" x="10" y="15" width="30" height="30"/>
@@ -638,7 +716,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B90-l6-Puq" userLabel="ListDescriptorLabel">
-                                                <rect key="frame" x="50" y="20" width="42" height="20"/>
+                                                <rect key="frame" x="50" y="17.5" width="41.5" height="25"/>
                                                 <fontDescription key="fontDescription" name="Heebo-Medium" family="Heebo Medium" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -661,7 +739,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zza-Cn-weC" userLabel="ListDescriptorReturnButton" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
-                                        <rect key="frame" x="245" y="75" width="40" height="40"/>
+                                        <rect key="frame" x="245" y="117" width="40" height="40"/>
                                         <color key="backgroundColor" name="Dark"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="sid-cq-aV0"/>
@@ -683,13 +761,15 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z3D-bz-Ebe">
                                                 <rect key="frame" x="0.0" y="10" width="40" height="40"/>
+                                                <color key="tintColor" name="AccentPrimary"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="8US-JO-qDK"/>
                                                     <constraint firstAttribute="height" constant="40" id="kPK-CH-VNK"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                                <rect key="frame" x="70" y="5" width="180" height="45"/>
+                                                <rect key="frame" x="70" y="5" width="180.00000000000006" height="45"/>
+                                                <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="eg0-Fh-18e"/>
                                                 </constraints>
@@ -730,14 +810,16 @@
                                     <constraint firstItem="JNM-0r-0co" firstAttribute="bottom" secondItem="iyP-kA-82x" secondAttribute="top" id="P1z-dp-hlz"/>
                                     <constraint firstItem="25H-xd-yYF" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="WGE-5g-E6f"/>
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Xb0-zy-JoW"/>
+                                    <constraint firstAttribute="trailing" secondItem="FIU-NR-25c" secondAttribute="trailing" constant="10" id="ZbB-2G-krb"/>
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="cxG-jg-rO6"/>
                                     <constraint firstAttribute="trailing" secondItem="25H-xd-yYF" secondAttribute="trailing" id="eCm-tv-wZK"/>
-                                    <constraint firstItem="1es-1h-yhM" firstAttribute="bottom" secondItem="JNM-0r-0co" secondAttribute="top" id="eEs-rF-xjM"/>
                                     <constraint firstItem="VDx-xb-Ug2" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="guI-kw-o8H"/>
                                     <constraint firstItem="VDx-xb-Ug2" firstAttribute="bottom" secondItem="1es-1h-yhM" secondAttribute="top" id="h50-79-THh"/>
+                                    <constraint firstItem="FIU-NR-25c" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" id="hF0-aJ-LvM"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="lYs-9s-or0"/>
                                     <constraint firstItem="Zza-Cn-weC" firstAttribute="leading" secondItem="Ktv-mT-FN5" secondAttribute="trailing" constant="10" id="mVY-Ju-dIa"/>
                                     <constraint firstItem="VDx-xb-Ug2" firstAttribute="top" secondItem="9ly-4h-XTV" secondAttribute="top" id="oYX-Nd-O2g"/>
+                                    <constraint firstItem="FIU-NR-25c" firstAttribute="bottom" secondItem="JNM-0r-0co" secondAttribute="top" id="pTQ-gi-7QO"/>
                                     <constraint firstItem="1es-1h-yhM" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="pcE-ha-39I"/>
                                     <constraint firstAttribute="trailing" secondItem="anO-4j-n8B" secondAttribute="trailing" id="pls-xF-HGF"/>
                                     <constraint firstAttribute="bottom" secondItem="25H-xd-yYF" secondAttribute="bottom" id="qCA-nS-G0q"/>
@@ -746,11 +828,13 @@
                                     <constraint firstItem="dI4-Fy-ey3" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="t2e-9R-MOb"/>
                                     <constraint firstAttribute="trailing" secondItem="dI4-Fy-ey3" secondAttribute="trailing" id="x6y-d9-0Yn"/>
                                     <constraint firstAttribute="trailing" secondItem="7x5-R6-dey" secondAttribute="trailing" id="zn0-uV-icW"/>
+                                    <constraint firstItem="FIU-NR-25c" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" constant="10" id="zpb-y1-3Li"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjr-ur-GUf">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" name="Medium"/>
+                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                 <connections>
                                     <action selector="sideMenuShadeTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QzN-pP-ckZ"/>
                                 </connections>
@@ -785,11 +869,12 @@
                                                             <constraint firstAttribute="height" constant="30" id="nln-PV-dpR"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstItem="diS-Lb-udw" firstAttribute="top" secondItem="5oj-Gh-uCt" secondAttribute="top" id="BSp-o7-D4K"/>
                                                     <constraint firstItem="diS-Lb-udw" firstAttribute="leading" secondItem="5oj-Gh-uCt" secondAttribute="trailing" id="Fk2-gc-xMy"/>
@@ -810,16 +895,17 @@
                                                         <state key="normal" image="iconMyEvents"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="My Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXT-ir-IDQ">
-                                                        <rect key="frame" x="30" y="-23" width="56.5" height="30"/>
+                                                        <rect key="frame" x="30" y="-23" width="76.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="iMB-Pp-tKB"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="16"/>
+                                                        <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="2UA-PQ-sSf"/>
                                                     <constraint firstItem="YXT-ir-IDQ" firstAttribute="leading" secondItem="qPJ-Mm-Ghc" secondAttribute="trailing" id="2jG-BU-I21"/>
@@ -843,16 +929,17 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Favorited" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKx-fG-uPU">
-                                                        <rect key="frame" x="30" y="1" width="50.5" height="30"/>
+                                                        <rect key="frame" x="30" y="1" width="69.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="2f2-up-IKN"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="16"/>
+                                                        <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstItem="UKx-fG-uPU" firstAttribute="leading" secondItem="W6b-vw-qpz" secondAttribute="trailing" id="1fj-Be-tDX"/>
                                                     <constraint firstItem="W6b-vw-qpz" firstAttribute="top" secondItem="RnS-nZ-9hP" secondAttribute="top" constant="1" id="935-CF-tjb"/>
@@ -873,16 +960,17 @@
                                                         <state key="normal" image="iconSettings"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7D-hg-7Ae">
-                                                        <rect key="frame" x="30" y="1" width="44.5" height="30"/>
+                                                        <rect key="frame" x="30" y="1" width="61.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="gcf-T4-5lo"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="16"/>
+                                                        <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstItem="A6j-Ah-URB" firstAttribute="top" secondItem="8ox-vP-G3g" secondAttribute="top" constant="1" id="4x6-CY-5ZT"/>
                                                     <constraint firstItem="C7D-hg-7Ae" firstAttribute="top" secondItem="A6j-Ah-URB" secondAttribute="top" id="Y3e-cU-cdB"/>
@@ -902,16 +990,17 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Log Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-5q-xGB">
-                                                        <rect key="frame" x="30" y="0.5" width="43.5" height="30"/>
+                                                        <rect key="frame" x="30" y="0.5" width="60.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="aHL-RF-gxh"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="16"/>
+                                                        <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstItem="sd3-5q-xGB" firstAttribute="leading" secondItem="Muw-pa-QyG" secondAttribute="trailing" id="A5z-at-jjp"/>
                                                     <constraint firstItem="sd3-5q-xGB" firstAttribute="top" secondItem="Muw-pa-QyG" secondAttribute="top" id="DH3-zN-C8S"/>
@@ -977,6 +1066,7 @@
                         <outlet property="calendarContainer" destination="Efm-Uk-h3J" id="wBZ-te-C4j"/>
                         <outlet property="calendarView" destination="SgA-y4-taH" id="SIn-nk-tGu"/>
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
+                        <outlet property="dateSelectionContainer" destination="iyP-kA-82x" id="hKC-IP-OUD"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                         <outlet property="listDescriptor" destination="Ktv-mT-FN5" id="366-bW-15F"/>
                         <outlet property="listDescriptorCover" destination="7x5-R6-dey" id="7VW-OE-2A7"/>
@@ -984,7 +1074,11 @@
                         <outlet property="listDescriptorLabel" destination="B90-l6-Puq" id="C7Q-oj-Kf0"/>
                         <outlet property="listDescriptorReturnButton" destination="Zza-Cn-weC" id="H1z-7D-wfp"/>
                         <outlet property="locationEntryField" destination="GWU-Ct-tSG" id="mAe-Wi-zBj"/>
+                        <outlet property="mainDateButton" destination="k9C-gg-50x" id="znT-wM-xba"/>
+                        <outlet property="mainLocationButton" destination="REQ-xr-Xqh" id="b8e-pE-IvC"/>
+                        <outlet property="mainSearchButton" destination="jpo-t1-7eE" id="Byu-PJ-tAg"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="aie-IY-bcL"/>
+                        <outlet property="searchSelectionContainer" destination="JNM-0r-0co" id="REa-Iw-Sr9"/>
                         <outlet property="selectFromDate" destination="1KE-ok-I6D" id="Qva-Y3-SJp"/>
                         <outlet property="selectToDate" destination="0mk-9T-DWa" id="fXs-Z9-ZiJ"/>
                         <outlet property="sideMenu" destination="K1r-ii-eaL" id="0OE-pH-nRo"/>
@@ -1436,7 +1530,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="10" y="10" width="300" height="511.5"/>
+                                                <rect key="frame" x="10" y="10" width="300" height="506.5"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-3j-RYP" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="35.5"/>
@@ -1532,46 +1626,46 @@
                                                                 </connections>
                                                             </collectionView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Y2c-Ms-cBG" userLabel="WeekDays">
-                                                                <rect key="frame" x="30" y="33" width="240" height="22.5"/>
+                                                                <rect key="frame" x="30" y="33" width="240" height="17.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBC-oJ-TXP">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="34.5" height="22.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="34.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="av4-sc-eiY">
-                                                                        <rect key="frame" x="34.5" y="0.0" width="34" height="22.5"/>
+                                                                        <rect key="frame" x="34.5" y="0.0" width="34" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhB-bZ-jHZ">
-                                                                        <rect key="frame" x="68.5" y="0.0" width="34.5" height="22.5"/>
+                                                                        <rect key="frame" x="68.5" y="0.0" width="34.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sx-gw-sgp">
-                                                                        <rect key="frame" x="103" y="0.0" width="34" height="22.5"/>
+                                                                        <rect key="frame" x="103" y="0.0" width="34" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk3-wP-bM1">
-                                                                        <rect key="frame" x="137" y="0.0" width="34.5" height="22.5"/>
+                                                                        <rect key="frame" x="137" y="0.0" width="34.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvu-rY-msE">
-                                                                        <rect key="frame" x="171.5" y="0.0" width="34" height="22.5"/>
+                                                                        <rect key="frame" x="171.5" y="0.0" width="34" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaO-II-Dlx">
-                                                                        <rect key="frame" x="205.5" y="0.0" width="34.5" height="22.5"/>
+                                                                        <rect key="frame" x="205.5" y="0.0" width="34.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Heebo-Thin" family="Heebo Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1853,7 +1947,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-ya-6gN" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="474.5" width="300" height="37"/>
+                                                        <rect key="frame" x="0.0" y="474.5" width="300" height="32"/>
                                                         <color key="backgroundColor" name="AccentSecondary"/>
                                                         <fontDescription key="fontDescription" name="Heebo-ExtraBold" family="Heebo ExtraBold" pointSize="17"/>
                                                         <state key="normal" title="Create Event">
@@ -1947,16 +2041,19 @@
         <image name="testlogo" width="347" height="68"/>
         <image name="upvoteArrow" width="90" height="90"/>
         <namedColor name="AccentPrimary">
-            <color red="0.3411764705882353" green="1" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.050980392156862744" green="0.53725490196078429" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AccentSecondary">
             <color red="0.92549019607843142" green="0.30196078431372547" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Dark">
-            <color red="0.15294117647058825" green="0.015686274509803921" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Medium">
-            <color red="0.26666666666666666" green="0.086274509803921567" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

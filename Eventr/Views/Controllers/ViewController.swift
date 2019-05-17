@@ -57,6 +57,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var subtractCategoryImage: UIImageView!
     @IBOutlet weak var allCategoriesButton: UIButton!
     @IBOutlet weak var categoriesStackView: UIStackView!
+    
+    @IBOutlet weak var mainDateButton: RoundedButton!
+    @IBOutlet weak var mainLocationButton: RoundedButton!
+    @IBOutlet weak var mainSearchButton: RoundedButton!
+    @IBOutlet weak var searchSelectionContainer: UIView!
+    @IBOutlet weak var dateSelectionContainer: UIView!
+    
     @IBOutlet weak var locationEntryField: UITextField!
     @IBOutlet weak var eventTableView: UITableView!
     @IBOutlet weak var calendarContainer: UIView!
@@ -81,6 +88,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpLogOutIcon()
         setUpCategoryStackView()
         setUpAddCategoryImage()
+        setUpMainButtons()
+        configureDateAndSearchContainers()
         setUpSubtractCategoryImage()
         setUpLocationEntryField()
         hideSideMenu()
@@ -337,6 +346,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         print("RETURN BUTTON TAPPED")
         hideListDescriptor()
         
+    }
+    
+    
+    @IBAction func mainDateSelectionButtonTapped(_ sender: Any) {
+        showDateSelectionContainer()
+    }
+    
+    
+    @IBAction func mainSearchSelectionButtonTapped(_ sender: Any) {
+        showSearchSelectionContainer()
+    }
+    
+    
+    @IBAction func mainSearchButtonTapped(_ sender: Any) {
     }
     
 }

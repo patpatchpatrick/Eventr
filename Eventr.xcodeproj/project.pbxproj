@@ -42,6 +42,16 @@
 		F67E98B8228BB16A0070E547 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67E98B7228BB16A0070E547 /* Notifications.swift */; };
 		F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* EventCategories.swift */; };
 		F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */; };
+		F6C8B220228F68C500F78BB0 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21B228F68C400F78BB0 /* Raleway-Thin.ttf */; };
+		F6C8B221228F68C500F78BB0 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21B228F68C400F78BB0 /* Raleway-Thin.ttf */; };
+		F6C8B222228F68C500F78BB0 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21C228F68C400F78BB0 /* Raleway-Regular.ttf */; };
+		F6C8B223228F68C500F78BB0 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21C228F68C400F78BB0 /* Raleway-Regular.ttf */; };
+		F6C8B224228F68C500F78BB0 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21D228F68C400F78BB0 /* Raleway-Medium.ttf */; };
+		F6C8B225228F68C500F78BB0 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21D228F68C400F78BB0 /* Raleway-Medium.ttf */; };
+		F6C8B226228F68C500F78BB0 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21E228F68C400F78BB0 /* Raleway-Bold.ttf */; };
+		F6C8B227228F68C500F78BB0 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21E228F68C400F78BB0 /* Raleway-Bold.ttf */; };
+		F6C8B228228F68C500F78BB0 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */; };
+		F6C8B229228F68C500F78BB0 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */; };
 		F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */; };
 		F6E1AC26228CEE09000D0D87 /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E1AC25228CEE09000D0D87 /* Theme.xcassets */; };
 		F6F2DAF0228B5D9100BB1F36 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */; };
@@ -92,6 +102,11 @@
 		F67E98B7228BB16A0070E547 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		F6ADA4C72273CBA000948B7D /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
+		F6C8B21B228F68C400F78BB0 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
+		F6C8B21C228F68C400F78BB0 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		F6C8B21D228F68C400F78BB0 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		F6C8B21E228F68C400F78BB0 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommunication.swift; sourceTree = "<group>"; };
 		F6E1AC25228CEE09000D0D87 /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
 		F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -159,6 +174,11 @@
 		F6174C14228C9F6F001EF6F9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F6C8B21E228F68C400F78BB0 /* Raleway-Bold.ttf */,
+				F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */,
+				F6C8B21D228F68C400F78BB0 /* Raleway-Medium.ttf */,
+				F6C8B21C228F68C400F78BB0 /* Raleway-Regular.ttf */,
+				F6C8B21B228F68C400F78BB0 /* Raleway-Thin.ttf */,
 				F6174C15228C9FAB001EF6F9 /* Heebo-Black.ttf */,
 				F6174C1B228C9FAC001EF6F9 /* Heebo-Bold.ttf */,
 				F6174C1A228C9FAC001EF6F9 /* Heebo-ExtraBold.ttf */,
@@ -362,6 +382,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6174C1C228C9FAC001EF6F9 /* Heebo-Black.ttf in Resources */,
+				F6C8B224228F68C500F78BB0 /* Raleway-Medium.ttf in Resources */,
+				F6C8B222228F68C500F78BB0 /* Raleway-Regular.ttf in Resources */,
 				F6174C20228C9FAC001EF6F9 /* Heebo-Medium.ttf in Resources */,
 				F610306B228226D300E6D5CE /* CalendarSectionHeaderView.xib in Resources */,
 				F6174C22228C9FAC001EF6F9 /* Heebo-Bold.ttf in Resources */,
@@ -372,8 +394,11 @@
 				F6113F4522764FD900CAD961 /* GoogleService-Info.plist in Resources */,
 				F653688C2272618200861E0D /* Assets.xcassets in Resources */,
 				F6E1AC26228CEE09000D0D87 /* Theme.xcassets in Resources */,
+				F6C8B226228F68C500F78BB0 /* Raleway-Bold.ttf in Resources */,
 				F6174C1D228C9FAC001EF6F9 /* Heebo-Thin.ttf in Resources */,
+				F6C8B228228F68C500F78BB0 /* Raleway-Light.ttf in Resources */,
 				F653688A2272618100861E0D /* Main.storyboard in Resources */,
+				F6C8B220228F68C500F78BB0 /* Raleway-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,10 +407,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6174C25228C9FC1001EF6F9 /* Heebo-Black.ttf in Resources */,
+				F6C8B221228F68C500F78BB0 /* Raleway-Thin.ttf in Resources */,
 				F6174C29228C9FCC001EF6F9 /* Heebo-Regular.ttf in Resources */,
+				F6C8B229228F68C500F78BB0 /* Raleway-Light.ttf in Resources */,
 				F6174C28228C9FC8001EF6F9 /* Heebo-Medium.ttf in Resources */,
+				F6C8B223228F68C500F78BB0 /* Raleway-Regular.ttf in Resources */,
 				F6174C26228C9FC3001EF6F9 /* Heebo-ExtraBold.ttf in Resources */,
 				F6174C24228C9FBE001EF6F9 /* Heebo-Bold.ttf in Resources */,
+				F6C8B225228F68C500F78BB0 /* Raleway-Medium.ttf in Resources */,
+				F6C8B227228F68C500F78BB0 /* Raleway-Bold.ttf in Resources */,
 				F6174C2A228C9FCF001EF6F9 /* Heebo-Thin.ttf in Resources */,
 				F6174C27228C9FC6001EF6F9 /* Heebo-Light.ttf in Resources */,
 			);

@@ -235,7 +235,7 @@ extension ViewController{
         }
         addCategoryDropDown.backgroundColor = themeMedium
         addCategoryDropDown.textColor = UIColor.white
-        if let dropDownFont = UIFont(name: "Heebo-Regular",
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
                                      size: 14.0) {
             addCategoryDropDown.textFont = dropDownFont
         }
@@ -283,7 +283,7 @@ extension ViewController{
         }
         subtractCategoryDropDown.backgroundColor = themeMedium
         subtractCategoryDropDown.textColor = UIColor.white
-        if let dropDownFont = UIFont(name: "Heebo-Regular",
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
                                      size: 14.0) {
             subtractCategoryDropDown.textFont = dropDownFont
         }
@@ -398,5 +398,45 @@ extension ViewController{
             listDescriptorCover.isHidden = true
     }
     
+    func setUpMainButtons(){
+        configureMainButtonDesign(button: mainDateButton)
+        configureMainButtonDesign(button: mainLocationButton)
+        configureMainButtonDesign(button: mainSearchButton)
+    }
+    
+    func configureMainButtonDesign(button: RoundedButton){
+        let shadowSize : CGFloat = 0.0
+        let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
+                                                   y: -shadowSize / 2,
+                                                   width: button.frame.size.width + shadowSize,
+                                                   height: button.frame.size.height + shadowSize))
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 0)
+        button.layer.shadowOpacity = 0.45
+        button.layer.shadowRadius = 10.0
+        button.layer.masksToBounds = false
+        button.layer.shadowPath = shadowPath.cgPath
+    }
+    
+    func configureDateAndSearchContainers(){
+        hideSearchCollectionContainer()
+        hideDateSelectionContainer()
+    }
+    
+    func showSearchSelectionContainer(){
+        searchSelectionContainer.isHidden = false
+    }
+    
+    func hideSearchCollectionContainer(){
+        searchSelectionContainer.isHidden = true
+    }
+    
+    func showDateSelectionContainer(){
+        dateSelectionContainer.isHidden = false
+    }
+    
+    func hideDateSelectionContainer(){
+        dateSelectionContainer.isHidden = true
+    }
     
 }
