@@ -31,6 +31,7 @@ class CustomEventCell: UITableViewCell {
     @IBOutlet weak var upvoteArrow: UIImageView!
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var upvoteCount: UILabel!
+    @IBOutlet weak var primaryView: UIView!
     
     
 }

@@ -262,10 +262,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //Handle event favorited
         if event.favorite {
-            cell.favoriteIcon?.setImage(UIImage(named: "iconSelectedStar"), for: .normal)
-            cell.favoriteIcon?.tintColor = themeAccentSecondary
+            cell.favoriteIcon?.tintColor = themeAccentYellow
         } else {
-            cell.favoriteIcon?.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
             cell.favoriteIcon?.tintColor = themeDark
         }
         
@@ -279,11 +277,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.favoriteIcon?.tag = indexPath.row
         cell.upvoteArrow?.tag = indexPath.row
         if event.upvoted {
-            cell.upvoteArrow.tintColor = themeAccentSecondary
+            cell.upvoteArrow.tintColor = themeAccentGreen
         } else {
             cell.upvoteArrow.tintColor = themeDark
         }
         cell.upvoteCount?.text = String(event.upvoteCount)
+        
+        //Configure design for the primary view
+        configurePrimaryTableViewCellDesign(view: cell.primaryView)
+        
         return cell
     }
     
