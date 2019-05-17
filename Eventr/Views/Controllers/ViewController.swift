@@ -39,6 +39,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var backgroundViewSideBorder: UIView!
+    
+    @IBOutlet weak var headerButtonCreateEventContainer: RoundUIView!
+    
+    @IBOutlet weak var headerButtonAccountContainer: RoundUIView!
+    
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
     @IBOutlet weak var sideMenuCurveImage: UIImageView!
@@ -84,6 +89,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.locationManager.requestWhenInUseAuthorization()
         
         hideListDescriptor()
+        configureHeaderButtons()
         setUpAccountSettingsImage()
         setUpLogOutIcon()
         setUpCategoryStackView()

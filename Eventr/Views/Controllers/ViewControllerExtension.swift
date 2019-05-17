@@ -34,8 +34,6 @@ extension ViewController{
         }
         
         accountSettingsIcon.layer.cornerRadius = 20.0
-        accountSettingsIcon.layer.borderWidth = 2.0
-        accountSettingsIcon.layer.borderColor = themeAccentSecondary.cgColor
         accountSettingsIcon.clipsToBounds = true
         sideMenuAccountButton.clipsToBounds = true
         sideMenuAccountButton.layer.cornerRadius = 20.0
@@ -432,6 +430,27 @@ extension ViewController{
         view.layer.shadowPath = shadowPath.cgPath
         
         
+    }
+    
+    func configureHeaderButtonDesign(view: UIView){
+        
+        let shadowSize : CGFloat = 0.0
+        let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
+                                                   y: -shadowSize / 2,
+                                                   width: view.frame.size.width + shadowSize,
+                                                   height: view.frame.size.height + shadowSize))
+        view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shadowOpacity = 0.7
+        view.layer.shadowRadius = 10.0
+        view.layer.masksToBounds = false
+        view.layer.shadowPath = shadowPath.cgPath
+        
+    }
+    
+    func configureHeaderButtons(){
+        configureHeaderButtonDesign(view: headerButtonAccountContainer)
+        configureHeaderButtonDesign(view: headerButtonCreateEventContainer)
     }
     
     func configureDateAndSearchContainers(){
