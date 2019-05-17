@@ -26,6 +26,7 @@ class CreateEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCalendarView()
+        configureTimePicker()
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -50,7 +51,10 @@ class CreateEventViewController: UIViewController {
     
     
     @IBAction func selectEventDate(_ sender: UIButton) {
-        calendarContainer.isHidden = false
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = false
+        })
     }
     
     @IBAction func previousMonth(_ sender: UIButton) {
@@ -64,12 +68,17 @@ class CreateEventViewController: UIViewController {
     
     //Calendar date selected checkmark tapped
     @IBAction func dateSelected(_ sender: UIButton) {
-        calendarContainer.isHidden = true
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = true
+        })
     }
     
     //Calendar date discarded "X" tapped
     @IBAction func dateDiscarded(_ sender: UIButton) {
-        calendarContainer.isHidden = true
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = true
+        })
+        
         let df = DateFormatter()
         df.dateFormat = "MMM dd YYYY"
         let dateString = df.string(from: Date())
@@ -113,6 +122,12 @@ class CreateEventViewController: UIViewController {
             self.selectCategoryButton.titleLabel?.text = item
         }
         categoryDropDown.width = 140
+        categoryDropDown.backgroundColor = themeDark
+        categoryDropDown.textColor = UIColor.white
+        if let dropDownFont = UIFont(name: "Heebo-Regular",
+                                     size: 14.0) {
+         categoryDropDown.textFont = dropDownFont
+        }
         categoryDropDown.bottomOffset = CGPoint(x: 0, y:(categoryDropDown.anchorView?.plainView.bounds.height)!)
         categoryDropDown.show()
         

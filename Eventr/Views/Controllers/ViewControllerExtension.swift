@@ -235,6 +235,10 @@ extension ViewController{
         }
         addCategoryDropDown.backgroundColor = themeMedium
         addCategoryDropDown.textColor = UIColor.white
+        if let dropDownFont = UIFont(name: "Heebo-Regular",
+                                     size: 14.0) {
+            addCategoryDropDown.textFont = dropDownFont
+        }
         addCategoryDropDown.width = 140
         addCategoryDropDown.bottomOffset = CGPoint(x: 0, y:(addCategoryDropDown.anchorView?.plainView.bounds.height)!)
         addCategoryDropDown.show()
@@ -279,6 +283,10 @@ extension ViewController{
         }
         subtractCategoryDropDown.backgroundColor = themeMedium
         subtractCategoryDropDown.textColor = UIColor.white
+        if let dropDownFont = UIFont(name: "Heebo-Regular",
+                                     size: 14.0) {
+            subtractCategoryDropDown.textFont = dropDownFont
+        }
         subtractCategoryDropDown.width = 140
         subtractCategoryDropDown.bottomOffset = CGPoint(x: 0, y:(addCategoryDropDown.anchorView?.plainView.bounds.height)!)
         subtractCategoryDropDown.show()

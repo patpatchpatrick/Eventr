@@ -4,12 +4,13 @@ platform :ios, '9.0'
 target 'Eventr' do
   use_frameworks!
 
+   # Pods for Eventr
 pod 'DropDown'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
 pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 pod 'JTAppleCalendar', '~> 7.0'
-  # Pods for Eventr
+pod 'KMPlaceholderTextView', '~> 1.4.0'
 
 end

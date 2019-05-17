@@ -11,9 +11,14 @@ import JTAppleCalendar
 
 extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     
+    func configureTimePicker(){
+        timePicker.setValue(UIColor.white, forKeyPath: "textColor")
+    }
+    
     func configureCalendarView(){
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
+        calendarView.layer.cornerRadius = 20.0
         
         let df = DateFormatter()
         df.dateFormat = "MMM dd YYYY"
@@ -41,12 +46,12 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
             return
         }
         if cellState.isSelected{
-            currentCell.dateLabel.textColor = UIColor.black
+            currentCell.dateLabel.textColor = UIColor.white
         } else {
             if cellState.dateBelongsTo == .thisMonth && cellState.date > Date() {
-                currentCell.dateLabel.textColor = UIColor.blue
+                currentCell.dateLabel.textColor = UIColor.black
             } else {
-                currentCell.dateLabel.textColor = UIColor.purple
+                currentCell.dateLabel.textColor = UIColor.lightGray
             }
         }
     }
@@ -77,7 +82,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
         calendar.scrollingMode = .stopAtEachSection
-        calendar.scrollDirection = .horizontal
+        calendar.scrollDirection = .vertical
         
 
         let today = Date()
@@ -119,7 +124,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     }
     
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
-        return MonthSize(defaultSize: 40)
+        return MonthSize(defaultSize: 50)
     }
     
     func displayDateErrorNotification(){
