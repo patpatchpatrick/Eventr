@@ -448,6 +448,24 @@ extension ViewController{
         
     }
     
+    func configureStandardViewDesignWithShadow(view: UIView) {
+        func configureHeaderButtonDesign(view: UIView){
+            
+            let shadowSize : CGFloat = 0.0
+            let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
+                                                       y: -shadowSize / 2,
+                                                       width: view.frame.size.width + shadowSize,
+                                                       height: view.frame.size.height + shadowSize))
+            view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            view.layer.shadowOffset = CGSize(width: 0, height: 0)
+            view.layer.shadowOpacity = 0.7
+            view.layer.shadowRadius = 10.0
+            view.layer.masksToBounds = false
+            view.layer.shadowPath = shadowPath.cgPath
+            
+        }
+    }
+    
     func configureHeaderButtons(){
         configureHeaderButtonDesign(view: headerButtonAccountContainer)
         configureHeaderButtonDesign(view: headerButtonCreateEventContainer)
@@ -459,19 +477,27 @@ extension ViewController{
     }
     
     func showSearchSelectionContainer(){
-        searchSelectionContainer.isHidden = false
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.searchSelectionContainer.isHidden = false
+        })
     }
     
     func hideSearchCollectionContainer(){
-        searchSelectionContainer.isHidden = true
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.searchSelectionContainer.isHidden = true
+        })
     }
     
     func showDateSelectionContainer(){
-        dateSelectionContainer.isHidden = false
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.dateSelectionContainer.isHidden = false
+        })
     }
     
     func hideDateSelectionContainer(){
-        dateSelectionContainer.isHidden = true
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.dateSelectionContainer.isHidden = true
+        })
     }
     
 }

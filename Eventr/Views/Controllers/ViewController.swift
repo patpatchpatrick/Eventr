@@ -32,6 +32,8 @@ var fromDate: Date = Date()
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var fromDateWasSelected: Bool = false //Bool to know which calendar button was selected (from or to)
+    var dateSelectionExpanded: Bool = false
+    var locationSelectionExpanded: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
     let locationManager = CLLocationManager()
@@ -358,12 +360,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func mainDateSelectionButtonTapped(_ sender: Any) {
-        showDateSelectionContainer()
+        if dateSelectionExpanded {
+            hideDateSelectionContainer()
+        } else {
+            showDateSelectionContainer()
+        }
+        dateSelectionExpanded = !dateSelectionExpanded
     }
     
     
     @IBAction func mainSearchSelectionButtonTapped(_ sender: Any) {
-        showSearchSelectionContainer()
+        if locationSelectionExpanded {
+            hideSearchCollectionContainer()
+        } else {
+            showSearchSelectionContainer()
+        }
+        locationSelectionExpanded = !locationSelectionExpanded
     }
     
     

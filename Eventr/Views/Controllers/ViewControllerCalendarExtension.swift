@@ -16,6 +16,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
         calendarView.layer.cornerRadius = 20.0
+        configureStandardViewDesignWithShadow(view: calendarView)
         
         //Display the initial dates on the calendar from and to date buttons
         resetCalendarToDate()
