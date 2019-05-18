@@ -102,9 +102,8 @@ extension ViewController{
         //Animated side menu
         //All icons move horizontally out of the menu in curved fashion
         //The outer icons move more quickly than the inner icons
-        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.backgroundView.transform = .identity
-            self.backgroundViewSideBorder.transform = .identity
         })
         
         UIView.animate(withDuration: 0.4, animations: {
@@ -116,18 +115,18 @@ extension ViewController{
             self.sideMenuLogOutIcon.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuLogOutIconLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         })
-        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuMyEventsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuMyEventsButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuSettingsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuSettingsButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         })
-        UIView.animate(withDuration: 0.4, delay: 0.2, options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuFavoritedButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuFavoritedButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         })
-        UIView.animate(withDuration: 0.4, delay: 0.2, options: .curveEaseOut, animations: {
-            self.sideMenuCurveImage.transform = CGAffineTransform(translationX: -self.sideMenuCurveImage.frame.width, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+            self.sideMenu.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         }) { success in
             self.sideMenu.isHidden = true
         }
@@ -137,11 +136,9 @@ extension ViewController{
         //Animated side menu
         //All icons move horizontally into the menu in curved fashion
         //The outer icons move more slowly than the inner icons
-        sideMenu.isHidden = false
         
-        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.backgroundView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width + 5, y: 0)
-             self.backgroundViewSideBorder.transform = CGAffineTransform(translationX: self.sideMenu.frame.width + 5, y: 0)
         })
         
         
@@ -150,23 +147,22 @@ extension ViewController{
             
         })
         
-        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
-            self.sideMenuCurveImage.transform = .identity
-        })
         
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuFavoritedButton.transform = .identity
             self.sideMenuFavoritedButtonLabel.transform = .identity
+            self.sideMenu.isHidden = false
+            self.sideMenu.transform = .identity
         })
 
-        UIView.animate(withDuration: 0.4, delay: 0.1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuMyEventsButton.transform = .identity
             self.sideMenuMyEventsButtonLabel.transform = .identity
             self.sideMenuSettingsButton.transform = .identity
             self.sideMenuSettingsButtonLabel.transform = .identity
         })
 
-        UIView.animate(withDuration: 0.4, delay: 0.2, options: [.curveEaseOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuAccountButton.transform = .identity
 
             self.sideMenuLogOutIcon.transform = .identity
@@ -440,9 +436,8 @@ extension ViewController{
     }
     
     func configureStandardViewDesignWithShadow(view: UIView) {
-        func configureHeaderButtonDesign(view: UIView){
             
-            let shadowSize : CGFloat = 0.0
+            let shadowSize : CGFloat = 1.0
             let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
                                                        y: -shadowSize / 2,
                                                        width: view.frame.size.width + shadowSize,
@@ -450,11 +445,11 @@ extension ViewController{
             view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             view.layer.shadowOffset = CGSize(width: 0, height: 0)
             view.layer.shadowOpacity = 0.7
-            view.layer.shadowRadius = 10.0
+            view.layer.shadowRadius = 5.0
             view.layer.masksToBounds = false
             view.layer.shadowPath = shadowPath.cgPath
-            
-        }
+
+        
     }
     
     func configureHeaderButtons(){
@@ -489,6 +484,12 @@ extension ViewController{
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.dateSelectionContainer.isHidden = true
         })
+    }
+    
+    func configureSideMenuContainers(){
+        sideMenuMyEventsContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5)
+        sideMenuFavoritedContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5)
+        sideMenuLogOutContainer.addTopBorderWithColor(color: UIColor.black, width: 0.5)
     }
     
 }

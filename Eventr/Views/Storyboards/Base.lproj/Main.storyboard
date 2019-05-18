@@ -111,13 +111,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCH-AW-547" userLabel="SideMenuBorder">
-                                <rect key="frame" x="-1" y="20" width="1" height="548"/>
-                                <color key="backgroundColor" name="Dark"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="lb3-4H-iaX"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ly-4h-XTV" userLabel="BackgroundView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
@@ -219,46 +212,46 @@
                                                                 </connections>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Mr1-dF-0sL" userLabel="WeekDays">
-                                                                <rect key="frame" x="30" y="57" width="260" height="18"/>
+                                                                <rect key="frame" x="30" y="57.5" width="260" height="17.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTD-NC-73T">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spA-er-WCN">
-                                                                        <rect key="frame" x="37" y="0.0" width="37.5" height="18"/>
+                                                                        <rect key="frame" x="37" y="0.0" width="37.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1Y-fO-LDP">
-                                                                        <rect key="frame" x="74.5" y="0.0" width="37" height="18"/>
+                                                                        <rect key="frame" x="74.5" y="0.0" width="37" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwD-Xf-VzK">
-                                                                        <rect key="frame" x="111.5" y="0.0" width="37" height="18"/>
+                                                                        <rect key="frame" x="111.5" y="0.0" width="37" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-Ww-osM">
-                                                                        <rect key="frame" x="148.5" y="0.0" width="37" height="18"/>
+                                                                        <rect key="frame" x="148.5" y="0.0" width="37" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-0h-6td">
-                                                                        <rect key="frame" x="185.5" y="0.0" width="37.5" height="18"/>
+                                                                        <rect key="frame" x="185.5" y="0.0" width="37.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-O7-SE6">
-                                                                        <rect key="frame" x="223" y="0.0" width="37" height="18"/>
+                                                                        <rect key="frame" x="223" y="0.0" width="37" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -746,7 +739,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B90-l6-Puq" userLabel="ListDescriptorLabel">
-                                                <rect key="frame" x="50" y="20" width="45" height="20"/>
+                                                <rect key="frame" x="50" y="20" width="42" height="20"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                                 <color key="textColor" name="Text"/>
                                                 <nil key="highlightedColor"/>
@@ -790,7 +783,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                                <rect key="frame" x="85" y="10" width="150.00000000000006" height="30"/>
+                                                <rect key="frame" x="85" y="10" width="150" height="30"/>
                                                 <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="Igp-Ur-Gqv"/>
@@ -904,15 +897,9 @@
                                     <action selector="sideMenuShadeTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QzN-pP-ckZ"/>
                                 </connections>
                             </button>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1r-ii-eaL">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1r-ii-eaL">
                                 <rect key="frame" x="0.0" y="20" width="250" height="548"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sidemenucurved" translatesAutoresizingMaskIntoConstraints="NO" id="Z6t-Dc-Eeb">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="tvf-jG-gLd"/>
-                                        </constraints>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3T-AC-mXd">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="548"/>
                                         <subviews>
@@ -936,7 +923,7 @@
                                                         <state key="normal" image="iconMyEvents"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="My Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXT-ir-IDQ">
-                                                        <rect key="frame" x="30" y="0.0" width="76.5" height="30"/>
+                                                        <rect key="frame" x="30" y="0.0" width="75" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="iMB-Pp-tKB"/>
                                                         </constraints>
@@ -971,7 +958,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Favorited" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKx-fG-uPU">
-                                                        <rect key="frame" x="30" y="1" width="69.5" height="30"/>
+                                                        <rect key="frame" x="30" y="1" width="67" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="2f2-up-IKN"/>
                                                         </constraints>
@@ -1003,7 +990,7 @@
                                                         <state key="normal" image="iconSettings"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7D-hg-7Ae">
-                                                        <rect key="frame" x="30" y="1" width="61.5" height="30"/>
+                                                        <rect key="frame" x="30" y="1" width="59" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="gcf-T4-5lo"/>
                                                         </constraints>
@@ -1034,7 +1021,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Log Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-5q-xGB">
-                                                        <rect key="frame" x="30" y="0.5" width="60.5" height="30"/>
+                                                        <rect key="frame" x="30" y="0.5" width="58" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="aHL-RF-gxh"/>
                                                         </constraints>
@@ -1074,13 +1061,10 @@
                                 <color key="tintColor" name="Medium"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="o3T-AC-mXd" secondAttribute="trailing" id="8sj-hN-VUr"/>
-                                    <constraint firstItem="Z6t-Dc-Eeb" firstAttribute="centerY" secondItem="K1r-ii-eaL" secondAttribute="centerY" id="Mx3-ne-HTM"/>
                                     <constraint firstItem="o3T-AC-mXd" firstAttribute="leading" secondItem="K1r-ii-eaL" secondAttribute="leading" id="QSo-0W-Hdu"/>
                                     <constraint firstAttribute="bottom" secondItem="o3T-AC-mXd" secondAttribute="bottom" id="Zo4-pE-bMQ"/>
                                     <constraint firstAttribute="width" constant="250" id="aKp-DF-YtD"/>
                                     <constraint firstItem="o3T-AC-mXd" firstAttribute="top" secondItem="K1r-ii-eaL" secondAttribute="top" id="mA8-xQ-hzc"/>
-                                    <constraint firstItem="Z6t-Dc-Eeb" firstAttribute="top" secondItem="K1r-ii-eaL" secondAttribute="top" id="uDh-gV-Mgs"/>
-                                    <constraint firstAttribute="bottom" secondItem="Z6t-Dc-Eeb" secondAttribute="bottom" id="uPW-xb-JYd"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1088,19 +1072,15 @@
                         <constraints>
                             <constraint firstItem="sjr-ur-GUf" firstAttribute="leading" secondItem="K1r-ii-eaL" secondAttribute="leading" id="5Rj-aL-tqW"/>
                             <constraint firstItem="sjr-ur-GUf" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="5bx-5j-64u"/>
-                            <constraint firstItem="pCH-AW-547" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="6MV-68-LD6"/>
                             <constraint firstItem="SKV-0R-RbT" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="6kh-Iv-LlA"/>
                             <constraint firstItem="GO1-41-taC" firstAttribute="top" secondItem="9ly-4h-XTV" secondAttribute="bottom" id="CYF-fI-qTo"/>
                             <constraint firstItem="GO1-41-taC" firstAttribute="top" secondItem="K1r-ii-eaL" secondAttribute="bottom" id="Fi4-qH-w8e"/>
-                            <constraint firstItem="pCH-AW-547" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-1" id="LEO-fC-iR2"/>
                             <constraint firstItem="SKV-0R-RbT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MUg-LD-WEc"/>
                             <constraint firstAttribute="trailing" secondItem="SKV-0R-RbT" secondAttribute="trailing" id="VFN-m0-O92"/>
                             <constraint firstItem="9ly-4h-XTV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VLp-py-PSb"/>
-                            <constraint firstItem="Z6t-Dc-Eeb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ae2-73-BbJ"/>
                             <constraint firstItem="K1r-ii-eaL" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="bab-jl-uQR"/>
                             <constraint firstItem="GO1-41-taC" firstAttribute="top" secondItem="sjr-ur-GUf" secondAttribute="bottom" id="ehf-xG-QBo"/>
                             <constraint firstItem="K1r-ii-eaL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jqw-PG-qpx"/>
-                            <constraint firstItem="GO1-41-taC" firstAttribute="top" secondItem="pCH-AW-547" secondAttribute="bottom" id="nTr-2Y-Kd8"/>
                             <constraint firstAttribute="trailing" secondItem="sjr-ur-GUf" secondAttribute="trailing" id="r4Z-TD-tAZ"/>
                             <constraint firstAttribute="trailing" secondItem="9ly-4h-XTV" secondAttribute="trailing" id="x6y-Ms-xqM"/>
                             <constraint firstItem="9ly-4h-XTV" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="zpJ-jb-Ktt"/>
@@ -1111,7 +1091,6 @@
                         <outlet property="addCategoryImage" destination="N7n-KT-twc" id="W0o-mK-zLy"/>
                         <outlet property="allCategoriesButton" destination="yAH-HP-Yyu" id="YA0-XX-hcT"/>
                         <outlet property="backgroundView" destination="9ly-4h-XTV" id="M1i-Yd-tto"/>
-                        <outlet property="backgroundViewSideBorder" destination="pCH-AW-547" id="XN8-NK-6Qq"/>
                         <outlet property="calendarContainer" destination="Efm-Uk-h3J" id="wBZ-te-C4j"/>
                         <outlet property="calendarView" destination="SgA-y4-taH" id="SIn-nk-tGu"/>
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
@@ -1134,15 +1113,19 @@
                         <outlet property="selectToDate" destination="0mk-9T-DWa" id="fXs-Z9-ZiJ"/>
                         <outlet property="sideMenu" destination="K1r-ii-eaL" id="0OE-pH-nRo"/>
                         <outlet property="sideMenuAccountButton" destination="5oj-Gh-uCt" id="KL3-Ei-Ayb"/>
-                        <outlet property="sideMenuCurveImage" destination="Z6t-Dc-Eeb" id="MIm-L2-EsO"/>
+                        <outlet property="sideMenuBackground" destination="o3T-AC-mXd" id="eve-1d-cZD"/>
                         <outlet property="sideMenuFavoritedButton" destination="W6b-vw-qpz" id="gK3-xi-T4f"/>
                         <outlet property="sideMenuFavoritedButtonLabel" destination="UKx-fG-uPU" id="X3I-Ic-2Hm"/>
+                        <outlet property="sideMenuFavoritedContainer" destination="RnS-nZ-9hP" id="K3V-qH-nqq"/>
+                        <outlet property="sideMenuLogOutContainer" destination="43U-WC-bpJ" id="nyb-wC-4lL"/>
                         <outlet property="sideMenuLogOutIcon" destination="Muw-pa-QyG" id="WLZ-8B-nWQ"/>
                         <outlet property="sideMenuLogOutIconLabel" destination="sd3-5q-xGB" id="yWv-2s-huN"/>
                         <outlet property="sideMenuMyEventsButton" destination="qPJ-Mm-Ghc" id="wo9-Bd-WTg"/>
                         <outlet property="sideMenuMyEventsButtonLabel" destination="YXT-ir-IDQ" id="ce3-ku-AnT"/>
+                        <outlet property="sideMenuMyEventsContainer" destination="qQP-wf-YAz" id="BG6-uL-YWd"/>
                         <outlet property="sideMenuSettingsButton" destination="A6j-Ah-URB" id="sqE-CM-FZm"/>
                         <outlet property="sideMenuSettingsButtonLabel" destination="C7D-hg-7Ae" id="AQu-Pz-4th"/>
+                        <outlet property="sideMenuSettingsContainer" destination="8ox-vP-G3g" id="Adj-PD-LAa"/>
                         <outlet property="sideMenuShade" destination="sjr-ur-GUf" id="1rG-Mo-qSt"/>
                         <outlet property="subtractCategoryImage" destination="16P-xq-ity" id="87O-za-C9O"/>
                     </connections>
@@ -2087,7 +2070,6 @@
         <image name="iconSettings" width="100" height="100"/>
         <image name="iconUnselectedStar" width="100" height="100"/>
         <image name="plusIcon" width="52" height="52"/>
-        <image name="sidemenucurved" width="100" height="550"/>
         <image name="testlogo" width="347" height="68"/>
         <image name="upvoteArrow" width="90" height="90"/>
         <namedColor name="AccentPrimary">

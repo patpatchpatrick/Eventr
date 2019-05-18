@@ -40,7 +40,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var backgroundViewSideBorder: UIView!
     
     @IBOutlet weak var headerButtonCreateEventContainer: RoundUIView!
     
@@ -48,16 +47,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
-    @IBOutlet weak var sideMenuCurveImage: UIImageView!
+    @IBOutlet weak var sideMenuBackground: UIView!
     @IBOutlet weak var sideMenuAccountButton: UIButton!
+    
+    @IBOutlet weak var sideMenuMyEventsContainer: UIView!
     @IBOutlet weak var sideMenuMyEventsButton: UIButton!
     @IBOutlet weak var sideMenuMyEventsButtonLabel: UILabel!
+    
+    
+    @IBOutlet weak var sideMenuFavoritedContainer: UIView!
     @IBOutlet weak var sideMenuFavoritedButton: UIButton!
     @IBOutlet weak var sideMenuFavoritedButtonLabel: UILabel!
+    
+    
+    @IBOutlet weak var sideMenuSettingsContainer: UIView!
     @IBOutlet weak var sideMenuSettingsButton: UIButton!
     @IBOutlet weak var sideMenuSettingsButtonLabel: UILabel!
+    
+    
+    @IBOutlet weak var sideMenuLogOutContainer: UIView!
     @IBOutlet weak var sideMenuLogOutIcon: UIImageView!
     @IBOutlet weak var sideMenuLogOutIconLabel: UILabel!
+    
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var addCategoryImage: UIImageView!
     @IBOutlet weak var subtractCategoryImage: UIImageView!
@@ -90,6 +101,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.locationManager.requestWhenInUseAuthorization()
         
         hideListDescriptor()
+        configureStandardViewDesignWithShadow(view: sideMenu)
+        configureSideMenuContainers()
         configureHeaderButtons()
         setUpAccountSettingsImage()
         setUpLogOutIcon()
