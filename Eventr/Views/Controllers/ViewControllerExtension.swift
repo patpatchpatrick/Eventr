@@ -113,7 +113,6 @@ extension ViewController{
         })
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuAccountButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
-            self.sideMenuAccountButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuLogOutIcon.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuLogOutIconLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         })
@@ -132,14 +131,6 @@ extension ViewController{
         }) { success in
             self.sideMenu.isHidden = true
         }
-    }
-    
-    //Set up user details in the side menu
-    func setUpUser(){
-        guard let userEmail = Auth.auth().currentUser?.email else {
-            return
-        }
-        sideMenuAccountButtonLabel.text = userEmail
     }
     
     func showSideMenu(){
@@ -177,7 +168,7 @@ extension ViewController{
 
         UIView.animate(withDuration: 0.4, delay: 0.2, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuAccountButton.transform = .identity
-            self.sideMenuAccountButtonLabel.transform = .identity
+
             self.sideMenuLogOutIcon.transform = .identity
             self.sideMenuLogOutIconLabel.transform = .identity
         })

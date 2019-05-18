@@ -50,7 +50,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var sideMenuShade: UIButton!
     @IBOutlet weak var sideMenuCurveImage: UIImageView!
     @IBOutlet weak var sideMenuAccountButton: UIButton!
-    @IBOutlet weak var sideMenuAccountButtonLabel: UILabel!
     @IBOutlet weak var sideMenuMyEventsButton: UIButton!
     @IBOutlet weak var sideMenuMyEventsButtonLabel: UILabel!
     @IBOutlet weak var sideMenuFavoritedButton: UIButton!
@@ -101,7 +100,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpSubtractCategoryImage()
         setUpLocationEntryField()
         hideSideMenu()
-        setUpUser()
         configureCalendarView()
   
     }

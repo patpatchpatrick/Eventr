@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eventr/Views/Controllers/ViewControllerExtension.swift"
-            timestampString = "579832732.7041301"
+            timestampString = "579840252.1031899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "addImageToCategoriesStackView(for:)"
             landmarkType = "9">
          </BreakpointContent>
