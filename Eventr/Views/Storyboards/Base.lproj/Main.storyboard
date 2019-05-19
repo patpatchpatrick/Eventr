@@ -212,46 +212,46 @@
                                                                 </connections>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Mr1-dF-0sL" userLabel="WeekDays">
-                                                                <rect key="frame" x="30" y="57.5" width="260" height="17.5"/>
+                                                                <rect key="frame" x="30" y="57" width="260" height="18"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTD-NC-73T">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spA-er-WCN">
-                                                                        <rect key="frame" x="37" y="0.0" width="37.5" height="17.5"/>
+                                                                        <rect key="frame" x="37" y="0.0" width="37.5" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1Y-fO-LDP">
-                                                                        <rect key="frame" x="74.5" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="74.5" y="0.0" width="37" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwD-Xf-VzK">
-                                                                        <rect key="frame" x="111.5" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="111.5" y="0.0" width="37" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-Ww-osM">
-                                                                        <rect key="frame" x="148.5" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="148.5" y="0.0" width="37" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-0h-6td">
-                                                                        <rect key="frame" x="185.5" y="0.0" width="37.5" height="17.5"/>
+                                                                        <rect key="frame" x="185.5" y="0.0" width="37.5" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-O7-SE6">
-                                                                        <rect key="frame" x="223" y="0.0" width="37" height="17.5"/>
+                                                                        <rect key="frame" x="223" y="0.0" width="37" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -739,7 +739,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B90-l6-Puq" userLabel="ListDescriptorLabel">
-                                                <rect key="frame" x="50" y="20" width="42" height="20"/>
+                                                <rect key="frame" x="50" y="20" width="45" height="20"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                                 <color key="textColor" name="Text"/>
                                                 <nil key="highlightedColor"/>
@@ -782,7 +782,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKV-0R-RbT" userLabel="Header">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testlogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
                                                 <rect key="frame" x="85" y="10" width="150" height="30"/>
                                                 <color key="tintColor" name="Text"/>
                                                 <constraints>
@@ -923,7 +923,7 @@
                                                         <state key="normal" image="iconMyEvents"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="My Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXT-ir-IDQ">
-                                                        <rect key="frame" x="30" y="0.0" width="75" height="30"/>
+                                                        <rect key="frame" x="30" y="0.0" width="76.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="iMB-Pp-tKB"/>
                                                         </constraints>
@@ -958,7 +958,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Favorited" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKx-fG-uPU">
-                                                        <rect key="frame" x="30" y="1" width="67" height="30"/>
+                                                        <rect key="frame" x="30" y="1" width="69.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="2f2-up-IKN"/>
                                                         </constraints>
@@ -990,7 +990,7 @@
                                                         <state key="normal" image="iconSettings"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7D-hg-7Ae">
-                                                        <rect key="frame" x="30" y="1" width="59" height="30"/>
+                                                        <rect key="frame" x="30" y="1" width="61.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="gcf-T4-5lo"/>
                                                         </constraints>
@@ -1021,7 +1021,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Log Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd3-5q-xGB">
-                                                        <rect key="frame" x="30" y="0.5" width="58" height="30"/>
+                                                        <rect key="frame" x="30" y="0.5" width="60.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="aHL-RF-gxh"/>
                                                         </constraints>
@@ -2055,6 +2055,7 @@
         <image name="accountIcon" width="100" height="100"/>
         <image name="catIconAll" width="150" height="150"/>
         <image name="catIconFavorite" width="100" height="100"/>
+        <image name="fiestaLogo" width="1868" height="599"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconCheckMark" width="104" height="104"/>
         <image name="iconDiscard" width="90" height="90"/>
@@ -2070,7 +2071,6 @@
         <image name="iconSettings" width="100" height="100"/>
         <image name="iconUnselectedStar" width="100" height="100"/>
         <image name="plusIcon" width="52" height="52"/>
-        <image name="testlogo" width="347" height="68"/>
         <image name="upvoteArrow" width="90" height="90"/>
         <namedColor name="AccentPrimary">
             <color red="0.050980392156862744" green="0.53725490196078429" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
