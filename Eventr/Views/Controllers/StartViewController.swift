@@ -12,11 +12,16 @@ import FirebaseAuth
 import GoogleSignIn
 
 class StartViewController: UIViewController, GIDSignInUIDelegate {
-
+    
+    
+    @IBOutlet weak var mainLogoImage: RoundedImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         GIDSignIn.sharedInstance()?.uiDelegate = self
+        
+        configureMainLogo()
 
     }
     
@@ -48,6 +53,21 @@ class StartViewController: UIViewController, GIDSignInUIDelegate {
     @IBAction func signUp(_ sender: UIButton) {
         
         performSegue(withIdentifier: "signupSegue", sender: self)
+    }
+    
+    func configureMainLogo(){
+        let shadowSize : CGFloat = 0.0
+        let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
+                                                   y: -shadowSize / 2,
+                                                   width: mainLogoImage.frame.size.width + shadowSize,
+                                                   height: mainLogoImage.frame.size.height + shadowSize))
+        mainLogoImage.layer.shadowColor = themeAccentPrimary.cgColor
+        mainLogoImage.layer.shadowOffset = CGSize(width: 0, height: 0)
+        mainLogoImage.layer.shadowOpacity = 0.15
+        mainLogoImage.layer.shadowRadius = 10.0
+        mainLogoImage.layer.masksToBounds = false
+        mainLogoImage.layer.shadowPath = shadowPath.cgPath
+        
     }
     
 }

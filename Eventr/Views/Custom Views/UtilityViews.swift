@@ -107,7 +107,21 @@ class RoundUIView: UIView {
         }
     }
     
+}
+
+//Class used for rounded corner buttons
+@IBDesignable
+class RoundedImage: UIImageView {
     
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
     
 }
 
