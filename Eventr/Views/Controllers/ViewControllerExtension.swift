@@ -104,6 +104,9 @@ extension ViewController{
         //The outer icons move more quickly than the inner icons
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.backgroundView.transform = .identity
+            if let blurView = self.blurEffectView {
+                blurView.alpha = 0
+            }
         })
         
         UIView.animate(withDuration: 0.4, animations: {
@@ -138,7 +141,10 @@ extension ViewController{
         //The outer icons move more slowly than the inner icons
         
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.backgroundView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width + 5, y: 0)
+            self.backgroundView.transform = CGAffineTransform(translationX: self.sideMenu.frame.width, y: 0)
+            if let blurView = self.blurEffectView {
+                blurView.alpha = 0.7
+            }
         })
         
         
@@ -463,33 +469,63 @@ extension ViewController{
     }
     
     func showSearchSelectionContainer(){
+        self.searchSelectionContainer.isHidden = false
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.searchSelectionContainer.isHidden = false
+            self.searchSelectionContainer.alpha = 1
         })
     }
     
     func hideSearchCollectionContainer(){
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.searchSelectionContainer.alpha = 0
+            if let locationText = self.locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                if locationText.isEmpty || locationText == "" {
+                    self.mainLocationButton.setTitle("Current Location", for: .normal)
+                } else {
+                    self.mainLocationButton.setTitle(locationText, for: .normal)
+                }
+            }
+        }) { success in
             self.searchSelectionContainer.isHidden = true
-        })
+        }
     }
     
     func showDateSelectionContainer(){
+        self.dateSelectionContainer.isHidden = false
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.dateSelectionContainer.isHidden = false
-        })
+            self.dateSelectionContainer.alpha = 1
+        }) 
     }
     
     func hideDateSelectionContainer(){
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.dateSelectionContainer.alpha = 0
+        }) { success in
             self.dateSelectionContainer.isHidden = true
-        })
+        }
+    }
+    
+    func configureSideMenu(){
+        configureSideMenuContainers()
+        configureBackgroundViewBlur()
     }
     
     func configureSideMenuContainers(){
         sideMenuMyEventsContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5)
         sideMenuFavoritedContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5)
         sideMenuLogOutContainer.addTopBorderWithColor(color: UIColor.black, width: 0.5)
+    }
+    
+    func configureBackgroundViewBlur(){
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        guard blurEffectView != nil else {
+            return
+        }
+        blurEffectView!.frame = view.bounds
+        blurEffectView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundView.addSubview(blurEffectView!)
+        
     }
     
 }

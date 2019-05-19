@@ -38,8 +38,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let subtractCategoryDropDown = DropDown()
     let locationManager = CLLocationManager()
     
+    var rangeSelectedDates: [Date] = []
+    var testCalendar = Calendar.current
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var backgroundView: UIView!
+    var blurEffectView: UIVisualEffectView?
     
     @IBOutlet weak var headerButtonCreateEventContainer: RoundUIView!
     
@@ -100,16 +104,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         hideListDescriptor()
         configureStandardViewDesignWithShadow(view: sideMenu)
-        configureSideMenuContainers()
+        configureSideMenu()
         configureHeaderButtons()
         setUpAccountSettingsImage()
         setUpLogOutIcon()
         setUpCategoryStackView()
         setUpAddCategoryImage()
-        setUpMainButtons()
-        configureDateAndSearchContainers()
         setUpSubtractCategoryImage()
         setUpLocationEntryField()
+        setUpMainButtons()
+        configureDateAndSearchContainers()
         hideSideMenu()
         configureCalendarView()
   
@@ -339,28 +343,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    //Search button is tapped.  Query events within radius(km) of the location
-    @IBAction func search(_ sender: UIButton) {
-
-        let searchDistanceKm = searchDistanceMiles * 1.60934
-        
-        let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        if addressText == "Current Location" {
-            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm)
-        } else {
-            getCoordinates(forAddress: addressText!) {
-                (location) in
-                guard let location = location else {
-                    //Handle geolocation error
-                    return
-                }
-                let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
-            }
-        }
-        
-    }
-    
     
     @IBAction func sideMenuFavoriteButtonTapped(_ sender: UIButton) {
         loadFavoriteEvents()
@@ -400,7 +382,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+     //Search button is tapped.  Query events within radius(km) of the location
     @IBAction func mainSearchButtonTapped(_ sender: Any) {
+        
+        let searchDistanceKm = searchDistanceMiles * 1.60934
+        
+        let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if addressText == "Current Location" {
+            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm)
+        } else {
+            getCoordinates(forAddress: addressText!) {
+                (location) in
+                guard let location = location else {
+                    //Handle geolocation error
+                    return
+                }
+                let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
+            }
+        }
     }
     
 }
