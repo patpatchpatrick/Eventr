@@ -33,6 +33,7 @@
 		F6174C2A228C9FCF001EF6F9 /* Heebo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6174C16228C9FAB001EF6F9 /* Heebo-Thin.ttf */; };
 		F62733022273873D00FDA681 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733012273873D00FDA681 /* Event.swift */; };
 		F62733042273944500FDA681 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733032273944500FDA681 /* EventViewController.swift */; };
+		F64509F52292113B00D36C16 /* CustomDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64509F42292113B00D36C16 /* CustomDesign.swift */; };
 		F65368852272618100861E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368842272618100861E0D /* AppDelegate.swift */; };
 		F65368872272618100861E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368862272618100861E0D /* ViewController.swift */; };
 		F653688A2272618100861E0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F65368882272618100861E0D /* Main.storyboard */; };
@@ -91,6 +92,7 @@
 		F6174C1B228C9FAC001EF6F9 /* Heebo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Heebo-Bold.ttf"; sourceTree = "<group>"; };
 		F62733012273873D00FDA681 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F62733032273944500FDA681 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		F64509F42292113B00D36C16 /* CustomDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDesign.swift; sourceTree = "<group>"; };
 		F65368812272618000861E0D /* Eventr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65368842272618100861E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F65368862272618100861E0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */,
 				F6F2DAF2228B6C8900BB1F36 /* Constants.swift */,
 				F67E98B7228BB16A0070E547 /* Notifications.swift */,
+				F64509F42292113B00D36C16 /* CustomDesign.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F64509F52292113B00D36C16 /* CustomDesign.swift in Sources */,
 				F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */,
 				F6F2DAF3228B6C8900BB1F36 /* Constants.swift in Sources */,
 				F6113F4B227660A900CAD961 /* LoginViewController.swift in Sources */,

@@ -12,7 +12,7 @@ import JTAppleCalendar
 extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     
     func configureTimePicker(){
-        timePicker.setValue(UIColor.white, forKeyPath: "textColor")
+        timePicker.setValue(themeDarkGray, forKeyPath: "textColor")
     }
     
     func configureCalendarView(){

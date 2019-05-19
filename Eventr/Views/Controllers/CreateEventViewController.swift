@@ -27,10 +27,15 @@ class CreateEventViewController: UIViewController {
         super.viewDidLoad()
         configureCalendarView()
         configureTimePicker()
+        configureFloatingSideButtonDesign(view: headerBackButtonContainer)
+        configureFloatingSideButtonDesign(view: createEventButtonContainer)
+        configureTextEntryFieldsDesign()
         self.hideKeyboardWhenTappedAround()
     }
     
     
+    @IBOutlet weak var headerBackButtonContainer: RoundUIView!
+    @IBOutlet weak var createEventButtonContainer: RoundUIView!
     @IBOutlet weak var eventName: UITextView!
     @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var eventLocation: UITextView!
@@ -48,6 +53,7 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var selectEventTimeButton: UIButton!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var timePickerContainer: UIView!
+    
     
     
     @IBAction func selectEventDate(_ sender: UIButton) {
@@ -122,8 +128,8 @@ class CreateEventViewController: UIViewController {
             self.selectCategoryButton.titleLabel?.text = item
         }
         categoryDropDown.width = 140
-        categoryDropDown.backgroundColor = themeDark
-        categoryDropDown.textColor = UIColor.white
+        categoryDropDown.backgroundColor = themeMedium
+        categoryDropDown.textColor = themeDarkGray
         if let dropDownFont = UIFont(name: "Raleway-Regular",
                                      size: 14.0) {
          categoryDropDown.textFont = dropDownFont
@@ -193,6 +199,19 @@ class CreateEventViewController: UIViewController {
                 }))
                 self.present(createEventFailAlert, animated: true)
             }})
+        
+    }
+    
+    func configureTextEntryFieldsDesign(){
+        eventName.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventDescription.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventLocation.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTicketURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventContactInfo.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTag1.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTag2.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTag3.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
         
     }
     
