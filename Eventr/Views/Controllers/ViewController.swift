@@ -52,22 +52,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var sideMenuMyEventsContainer: UIView!
     @IBOutlet weak var sideMenuMyEventsButton: UIButton!
-    @IBOutlet weak var sideMenuMyEventsButtonLabel: UILabel!
-    
+    @IBOutlet weak var sideMenuMyEventsButtonLabel: UIButton!
     
     @IBOutlet weak var sideMenuFavoritedContainer: UIView!
     @IBOutlet weak var sideMenuFavoritedButton: UIButton!
-    @IBOutlet weak var sideMenuFavoritedButtonLabel: UILabel!
+    @IBOutlet weak var sideMenuFavoritedButtonLabel: UIButton!
     
     
     @IBOutlet weak var sideMenuSettingsContainer: UIView!
     @IBOutlet weak var sideMenuSettingsButton: UIButton!
-    @IBOutlet weak var sideMenuSettingsButtonLabel: UILabel!
-    
+    @IBOutlet weak var sideMenuSettingsButtonLabel: UIButton!
     
     @IBOutlet weak var sideMenuLogOutContainer: UIView!
     @IBOutlet weak var sideMenuLogOutIcon: UIImageView!
-    @IBOutlet weak var sideMenuLogOutIconLabel: UILabel!
+    @IBOutlet weak var sideMenuLogOutIconLabel: UIButton!
     
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var addCategoryImage: UIImageView!
@@ -145,6 +143,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @objc func logOutIconTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
+        logOut()
+    }
+    
+    
+    @IBAction func logOutLabelTapped(_ sender: UIButton) {
         logOut()
     }
     
@@ -314,6 +317,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedEvent = events[indexPath.row]
         performSegue(withIdentifier: "eventSegue", sender: self)
@@ -358,6 +363,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func sideMenuFavoriteButtonTapped(_ sender: UIButton) {
+        loadFavoriteEvents()
+    }
+    
+    
+    @IBAction func sideMenuFavoriteLabelTapped(_ sender: UIButton) {
         loadFavoriteEvents()
     }
     
