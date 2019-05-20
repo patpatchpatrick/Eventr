@@ -16,6 +16,8 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
         calendarView.layer.cornerRadius = 20.0
+        calendarView.allowsMultipleSelection = true
+        calendarView.isRangeSelectionUsed = true
         configureStandardViewDesignWithShadow(view: calendarView)
         
         //Display the initial dates on the calendar from and to date buttons
@@ -59,11 +61,36 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             return
         }
         
+        currentCell.selectedView.isHidden = !cellState.isSelected
+        if #available(iOS 11.0, *) {
+            switch cellState.selectedPosition() {
+            case .left:
+                print("Left" + cellState.date.description)
+                currentCell.selectedView.layer.cornerRadius = 20
+                currentCell.selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            case .middle:
+                print("Middle" + cellState.date.description)
+                currentCell.selectedView.layer.cornerRadius = 0
+                currentCell.selectedView.layer.maskedCorners = []
+            case .right:
+                print("Right" + cellState.date.description)
+                currentCell.selectedView.layer.cornerRadius = 20
+                currentCell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            case .full:
+                print("Full" + cellState.date.description)
+                currentCell.selectedView.layer.cornerRadius = 20
+                currentCell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+            default: break
+            }
+            
+        }
+        
+        /*
         if cellState.isSelected{
             currentCell.selectedView.isHidden = false
         } else {
             currentCell.selectedView.isHidden = true
-        }
+        }*/
  
     }
     
