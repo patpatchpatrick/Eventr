@@ -34,6 +34,8 @@
 		F62733022273873D00FDA681 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733012273873D00FDA681 /* Event.swift */; };
 		F62733042273944500FDA681 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62733032273944500FDA681 /* EventViewController.swift */; };
 		F64509F52292113B00D36C16 /* CustomDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64509F42292113B00D36C16 /* CustomDesign.swift */; };
+		F64509F722921F4100D36C16 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F64509F622921F4100D36C16 /* Raleway-SemiBold.ttf */; };
+		F64509F822921F4100D36C16 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F64509F622921F4100D36C16 /* Raleway-SemiBold.ttf */; };
 		F65368852272618100861E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368842272618100861E0D /* AppDelegate.swift */; };
 		F65368872272618100861E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368862272618100861E0D /* ViewController.swift */; };
 		F653688A2272618100861E0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F65368882272618100861E0D /* Main.storyboard */; };
@@ -93,6 +95,7 @@
 		F62733012273873D00FDA681 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F62733032273944500FDA681 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		F64509F42292113B00D36C16 /* CustomDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDesign.swift; sourceTree = "<group>"; };
+		F64509F622921F4100D36C16 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		F65368812272618000861E0D /* Eventr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65368842272618100861E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F65368862272618100861E0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 		F6174C14228C9F6F001EF6F9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F64509F622921F4100D36C16 /* Raleway-SemiBold.ttf */,
 				F6C8B21E228F68C400F78BB0 /* Raleway-Bold.ttf */,
 				F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */,
 				F6C8B21D228F68C400F78BB0 /* Raleway-Medium.ttf */,
@@ -384,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F64509F722921F4100D36C16 /* Raleway-SemiBold.ttf in Resources */,
 				F6174C1C228C9FAC001EF6F9 /* Heebo-Black.ttf in Resources */,
 				F6C8B224228F68C500F78BB0 /* Raleway-Medium.ttf in Resources */,
 				F6C8B222228F68C500F78BB0 /* Raleway-Regular.ttf in Resources */,
@@ -418,6 +423,7 @@
 				F6174C26228C9FC3001EF6F9 /* Heebo-ExtraBold.ttf in Resources */,
 				F6174C24228C9FBE001EF6F9 /* Heebo-Bold.ttf in Resources */,
 				F6C8B225228F68C500F78BB0 /* Raleway-Medium.ttf in Resources */,
+				F64509F822921F4100D36C16 /* Raleway-SemiBold.ttf in Resources */,
 				F6C8B227228F68C500F78BB0 /* Raleway-Bold.ttf in Resources */,
 				F6174C2A228C9FCF001EF6F9 /* Heebo-Thin.ttf in Resources */,
 				F6174C27228C9FC6001EF6F9 /* Heebo-Light.ttf in Resources */,

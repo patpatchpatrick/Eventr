@@ -71,12 +71,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var sideMenuLogOutIcon: UIImageView!
     @IBOutlet weak var sideMenuLogOutIconLabel: UIButton!
     
+    @IBOutlet weak var categorySelectionStackViewContainer: UIStackView!
+    @IBOutlet weak var mainButtonsStackViewContainer: UIStackView!
     @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var addCategoryImage: UIImageView!
     @IBOutlet weak var subtractCategoryImage: UIImageView!
     @IBOutlet weak var allCategoriesButton: UIButton!
     @IBOutlet weak var categoriesStackView: UIStackView!
     
+    @IBOutlet weak var dateAndSearchButtonStackView: UIStackView!
     @IBOutlet weak var mainDateButton: RoundedButton!
     @IBOutlet weak var mainLocationButton: RoundedButton!
     @IBOutlet weak var mainSearchButton: RoundedButton!
@@ -103,6 +106,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.locationManager.requestWhenInUseAuthorization()
         
         hideListDescriptor()
+        configureListDiscriptor()
         configureStandardViewDesignWithShadow(view: sideMenu)
         configureSideMenu()
         configureHeaderButtons()

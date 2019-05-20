@@ -372,6 +372,9 @@ extension ViewController{
         listDescriptorLabel.text = "Favorited"
         listDescriptorIcon.image = UIImage(named: "catIconFavorite")
         listDescriptorCover.isHidden = false
+        dateAndSearchButtonStackView.isHidden = true
+        categorySelectionStackViewContainer.isHidden = true
+        mainButtonsStackViewContainer.isHidden = true
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.listDescriptor.transform = .identity
             self.listDescriptorReturnButton.transform = .identity
@@ -387,6 +390,9 @@ extension ViewController{
             self.listDescriptorReturnButton.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width - self.listDescriptor.frame.width, y: 0)
         })
             listDescriptorCover.isHidden = true
+        dateAndSearchButtonStackView.isHidden = false
+        categorySelectionStackViewContainer.isHidden = false
+        mainButtonsStackViewContainer.isHidden = false
     }
     
     func setUpMainButtons(){
@@ -511,6 +517,12 @@ extension ViewController{
         blurEffectView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundView.addSubview(blurEffectView!)
         
+    }
+    
+    func configureListDiscriptor(){
+        hideListDescriptor()
+        configureFloatingSideButtonDesign(view: listDescriptorReturnButton)
+        configureFloatingSideButtonDesign(view: listDescriptor)
     }
     
 }

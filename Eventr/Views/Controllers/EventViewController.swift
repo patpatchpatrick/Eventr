@@ -18,19 +18,26 @@ class EventViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    @IBOutlet weak var headerBackButtonContainer: RoundUIView!
+    @IBOutlet weak var headerFavoriteIconContainer: UIView!
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDetails: UITextView!
-    @IBOutlet weak var locationDetails: UITextView!
-    @IBOutlet weak var contactDetails: UITextView!
+    @IBOutlet weak var locationDetails: UILabel!
+    @IBOutlet weak var contactDetails: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var linksStackView: UIStackView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ticketLinkButton: UIButton!
     @IBOutlet weak var eventLinkButton: UIButton!
+
     
     
     override func viewDidAppear(_ animated: Bool) {
+        setStackViewWidth()
         initializeMapKitView()
+        configureFloatingSideButtonDesign(view: headerBackButtonContainer)
+        configureFloatingSideButtonDesign(view: headerFavoriteIconContainer)
         setUpURLButtons()
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
@@ -57,8 +64,10 @@ class EventViewController: UIViewController {
     func updateFavoriteIcon(){
         if selectedEvent.favorite {
             favoriteButton.setImage(UIImage(named: "iconSelectedStar"), for: .normal)
+            favoriteButton.tintColor = themeAccentYellow
         } else {
             favoriteButton.setImage(UIImage(named: "iconUnselectedStar"), for: .normal)
+              favoriteButton.tintColor = themeDarkGray
         }
     }
     
@@ -157,6 +166,10 @@ class EventViewController: UIViewController {
         } else {
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func setStackViewWidth(){
+        linksStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 30).isActive = true
     }
 
 
