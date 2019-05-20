@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var locationSelectionExpanded: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
+    @IBOutlet weak var plusButtonStackView: UIStackView!
     let locationManager = CLLocationManager()
     
     var rangeSelectedDates: [Date] = []
@@ -74,11 +75,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var categorySelectionStackViewContainer: UIStackView!
     @IBOutlet weak var mainButtonsStackViewContainer: UIStackView!
     @IBOutlet weak var accountSettingsIcon: UIImageView!
-    @IBOutlet weak var addCategoryImage: UIImageView!
-    @IBOutlet weak var subtractCategoryImage: UIImageView!
+    
     @IBOutlet weak var allCategoriesButton: UIButton!
     @IBOutlet weak var categoriesStackView: UIStackView!
-    
+    @IBOutlet weak var subtractCategoryButton: RoundedButton!
     @IBOutlet weak var dateAndSearchButtonStackView: UIStackView!
     @IBOutlet weak var mainDateButton: RoundedButton!
     @IBOutlet weak var mainLocationButton: RoundedButton!
@@ -98,6 +98,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var listDescriptorLabel: UILabel!
     @IBOutlet weak var listDescriptorReturnButton: RoundedButton!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -113,8 +115,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpAccountSettingsImage()
         setUpLogOutIcon()
         setUpCategoryStackView()
-        setUpAddCategoryImage()
-        setUpSubtractCategoryImage()
+        setUpSubtractCategoryButton()
         setUpLocationEntryField()
         setUpMainButtons()
         configureDateAndSearchContainers()
@@ -172,6 +173,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
     }
+    
+    //Remove category button in categories stackview was tapped
+    @IBAction func removeCategoryButtonTapped(_ sender: RoundedButton) {
+        removeCategoryFromToolbar()
+    }
+    
+    //Add category button in categories stackview was tapped
+    @IBAction func addCategoryButtonTapped(_ sender: RoundedButton) {
+        plusButtonTapped(sender: sender)
+    }
+    
     
     //"Get current location" button tapped
     //Get the user's location. The locationManager function in VCExtension class will be called after location is retrieved
@@ -406,6 +418,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
+    
+    
     
 }
 

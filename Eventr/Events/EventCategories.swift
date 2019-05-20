@@ -145,3 +145,4 @@ var userSelectedEventCategories: EventCategorySet = EventCategorySet(set: [])
 var userUnselectedEventCategories: EventCategorySet = EventCategorySet(set: [])
 var allEventCategories: EventCategorySet = EventCategorySet(set: [])
 var categoryViewsInStackView: [Int : UIView] = [:] //Map the category toolbar views to the index int of the category that represents them
+var plusButtonsInStackView: [Int : UIView] = [:] //Map of the plus buttons in the toolbar used to add/remove the buttons from the toolbar

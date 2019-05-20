@@ -59,30 +59,13 @@ extension ViewController{
                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
-    func setUpAddCategoryImage(){
+    func setUpSubtractCategoryButton(){
         
         //Set up category selection dropdown menu
-        addCategoryDropDown.anchorView = addCategoryImage
-        addCategoryDropDown.dataSource = userUnselectedEventCategories.strings()
-        addCategoryDropDown.cellConfiguration = { (index, item) in return "\(item)" }
-        
-        addCategoryImage.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addCategoryToToolbar))
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        addCategoryImage.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    func setUpSubtractCategoryImage(){
-        
-        //Set up category selection dropdown menu
-        subtractCategoryDropDown.anchorView = subtractCategoryImage
+        subtractCategoryDropDown.anchorView = subtractCategoryButton
         subtractCategoryDropDown.dataSource = userSelectedEventCategories.strings()
         subtractCategoryDropDown.cellConfiguration = { (index, item) in return "\(item)" }
         
-        subtractCategoryImage.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(removeCategoryFromToolbar))
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        subtractCategoryImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func setUpCategoryStackView(){
@@ -95,6 +78,10 @@ extension ViewController{
           addButtonToStackView(for: eventCategory)
         }
         
+        //For all unselected categories, add a plus button to the category stackview so the user knows that categories can be added
+        for _ in userUnselectedEventCategories.set {
+            addPlusButtonToStackView()
+        }
         
     }
     
@@ -194,19 +181,18 @@ extension ViewController{
     
     func addButtonToStackView(for eventCategory: EventCategory){
         
-        let button = UIButton()
-        button.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+        let button = RoundedButton()
+        button.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
+        button.cornerRadius = 30
+        button.borderWidth = 2
+        button.borderColor = themeAccentPrimary
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .right
-        button.tintColor = UIColor.white
+        button.tintColor = themeAccentPrimary
         button.alpha = 0.25
-        let imageView = UIImageView()
-        imageView.image = eventCategory.image()
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0 )
-        button.addSubview(imageView)
-        button.bringSubviewToFront(button.imageView!)
+        button.setImage(eventCategory.image(), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         button.tag = eventCategory.index()
         
         button.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
@@ -216,16 +202,133 @@ extension ViewController{
         
     }
     
+    //Adds a basic "plus icon" button to stackview
+    //This button populates the stackview to show the user that categories can be added
+    //When this button is tapped, user can add new categories to stackview
+    func addPlusButtonToStackView(){
+        
+        let button = RoundedButton()
+        button.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
+        button.cornerRadius = 30
+        button.borderWidth = 2
+        button.borderColor = themeAccentPrimary
+        button.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .right
+        button.tintColor = themeAccentPrimary
+        button.alpha = 0.25
+        button.setImage(UIImage(named: "plusIcon"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
+        button.tag = 1000
+        
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        
+        plusButtonStackView.addArrangedSubview(button)
+        
+        //Add buttons to map which keeps track of views for addition/removal purposes
+        if plusButtonsInStackView.isEmpty {
+            plusButtonsInStackView[0] = button
+        } else {
+            plusButtonsInStackView[plusButtonsInStackView.count] = button
+        }
+        
+    }
+    
+    func removePlusButtonFromCategoriesStackView(){
+        
+        if !plusButtonsInStackView.isEmpty {
+            
+            guard let plusButton = plusButtonsInStackView[plusButtonsInStackView.count-1] else {
+                return
+            }
+            
+            plusButton.removeFromSuperview()
+            plusButtonsInStackView.removeValue(forKey: plusButtonsInStackView.count - 1)
+            
+        }
+    
+    }
+    
     @objc func addCategoryToToolbar(_ sender: UITapGestureRecognizer) {
-        //When the 'Add Category' image is tapped, show dropDown menu for user to select categories
+        
+    }
+    
+    func removeCategoryFromToolbar() {
+        //When the 'Remove Category' image is tapped, show dropDown menu for user to select category to remove from toolbar
+        
+        subtractCategoryDropDown.selectionAction = { (index: Int, item: String) in
+            removeImageFromCategoriesStackView(for: item)
+        }
+        subtractCategoryDropDown.backgroundColor = themeMedium
+        subtractCategoryDropDown.textColor = themeTextColor
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
+                                     size: 14.0) {
+            subtractCategoryDropDown.textFont = dropDownFont
+        }
+        subtractCategoryDropDown.width = 140
+        subtractCategoryDropDown.bottomOffset = CGPoint(x: 0, y:subtractCategoryButton.plainView.bounds.height)
+        subtractCategoryDropDown.show()
+        
+        
+        func removeImageFromCategoriesStackView(for categoryName: String){
+            
+            //If a category is selected from the dropdown menu, add the category to the categories stack view
+            //Only add the category if it isn't already in the stackview (i.e. userSelectedEventCategories)
+            //After adding the category, remove it from the userUnselectedEventCategories
+            //Update the dropDown list data to include the changes
+            
+            let eventCat = stringToEventCategory(string: categoryName)
+            
+            if(!userUnselectedEventCategories.containsCategory(eventCategory: eventCat)){
+                
+                guard let categoryView = categoryViewsInStackView[eventCat.index()] else {
+                    return
+                }
+                
+                
+                categoryView.removeFromSuperview()
+                addPlusButtonToStackView()
+                
+                
+                userUnselectedEventCategories.add(eventCategory: eventCat)
+                userSelectedEventCategories.remove(eventCategory: eventCat)
+                let preferences = UserDefaults.standard
+                preferences.set(false, forKey: eventCat.text())
+                preferences.synchronize()//Remove category from prefs so it stays out of the user's toolbar when app is reloaded
+                addCategoryDropDown.dataSource = userUnselectedEventCategories.strings()
+                subtractCategoryDropDown.dataSource = userSelectedEventCategories.strings()
+            }
+            
+        }
+        
+    }
+    
+    @objc func selectCategory(sender: UIButton!) {
+        //Select category from category toolbar and make all other categories have 50% opacity so that the selected category stands out
+        for subview in categoriesStackView.arrangedSubviews{
+            subview.tintColor = themeAccentPrimary
+            subview.alpha = 0.25
+        }
+        UIView.animate(withDuration: 0.5){
+            sender.tintColor = themeAccentPrimary
+            sender.alpha = 1
+        }
+        selectedCategory = sender.tag //The tag of the sending button matches the index of whichever category was selected 
+    }
+    
+    @objc func plusButtonTapped(sender: UIButton!) {
+       
+        //When the 'Plus Button / Add Category' image is tapped, show dropDown menu for user to select categories
         // to add to categories stackview
         // Add the user selected category to the StackView
-        
+        addCategoryDropDown.dataSource = userUnselectedEventCategories.strings()
+        addCategoryDropDown.cellConfiguration = { (index, item) in return "\(item)" }
         addCategoryDropDown.selectionAction = { (index: Int, item: String) in
             addImageToCategoriesStackView(for: item)
         }
         addCategoryDropDown.backgroundColor = themeMedium
-        addCategoryDropDown.textColor = UIColor.white
+        addCategoryDropDown.textColor = themeAccentPrimary
+        addCategoryDropDown.anchorView = sender
         if let dropDownFont = UIFont(name: "Raleway-Regular",
                                      size: 14.0) {
             addCategoryDropDown.textFont = dropDownFont
@@ -247,11 +350,7 @@ extension ViewController{
             if(!userSelectedEventCategories.containsCategory(eventCategory: eventCat)){
                 
                 addButtonToStackView(for: eventCat)
-                UIView.animate(withDuration: 0.5){
-                    //button.layoutIfNeeded()
-                    //button.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
-                }
-                
+                self.removePlusButtonFromCategoriesStackView()
                 
                 userSelectedEventCategories.add(eventCategory: eventCat)
                 userUnselectedEventCategories.remove(eventCategory: eventCat)
@@ -264,68 +363,6 @@ extension ViewController{
             
         }
         
-    }
-    
-    @objc func removeCategoryFromToolbar(_ sender: UITapGestureRecognizer) {
-        //When the 'Remove Category' image is tapped, show dropDown menu for user to select category to remove from toolbar
-        
-        subtractCategoryDropDown.selectionAction = { (index: Int, item: String) in
-            removeImageFromCategoriesStackView(for: item)
-        }
-        subtractCategoryDropDown.backgroundColor = themeMedium
-        subtractCategoryDropDown.textColor = UIColor.white
-        if let dropDownFont = UIFont(name: "Raleway-Regular",
-                                     size: 14.0) {
-            subtractCategoryDropDown.textFont = dropDownFont
-        }
-        subtractCategoryDropDown.width = 140
-        subtractCategoryDropDown.bottomOffset = CGPoint(x: 0, y:(addCategoryDropDown.anchorView?.plainView.bounds.height)!)
-        subtractCategoryDropDown.show()
-        
-        
-        func removeImageFromCategoriesStackView(for categoryName: String){
-            
-            //If a category is selected from the dropdown menu, add the category to the categories stack view
-            //Only add the category if it isn't already in the stackview (i.e. userSelectedEventCategories)
-            //After adding the category, remove it from the userUnselectedEventCategories
-            //Update the dropDown list data to include the changes
-            
-            let eventCat = stringToEventCategory(string: categoryName)
-            
-            if(!userUnselectedEventCategories.containsCategory(eventCategory: eventCat)){
-                
-                guard let categoryView = categoryViewsInStackView[eventCat.index()] else {
-                    return
-                }
-                
-                
-                categoryView.removeFromSuperview()
-                
-                
-                userUnselectedEventCategories.add(eventCategory: eventCat)
-                userSelectedEventCategories.remove(eventCategory: eventCat)
-                let preferences = UserDefaults.standard
-                preferences.set(false, forKey: eventCat.text())
-                preferences.synchronize()//Remove category from prefs so it stays out of the user's toolbar when app is reloaded
-                addCategoryDropDown.dataSource = userUnselectedEventCategories.strings()
-                subtractCategoryDropDown.dataSource = userSelectedEventCategories.strings()
-            }
-            
-        }
-        
-    }
-    
-    @objc func selectCategory(sender: UIButton!) {
-        //Select category from category toolbar and make all other categories have 50% opacity so that the selected category stands out
-        for subview in categoriesStackView.arrangedSubviews{
-            subview.tintColor = UIColor.white
-            subview.alpha = 0.25
-        }
-        UIView.animate(withDuration: 0.5){
-            sender.tintColor = UIColor.white
-            sender.alpha = 0.75
-        }
-        selectedCategory = sender.tag //The tag of the sending button matches the index of whichever category was selected 
     }
     
     //User's location returned
