@@ -61,7 +61,14 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             return
         }
         
-        currentCell.selectedView.isHidden = !cellState.isSelected
+        
+        
+         if cellState.isSelected{
+         currentCell.selectedView.isHidden = false
+         } else {
+         currentCell.selectedView.isHidden = true
+         }
+        
         if #available(iOS 11.0, *) {
             switch cellState.selectedPosition() {
             case .left:
@@ -85,12 +92,6 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             
         }
         
-        /*
-        if cellState.isSelected{
-            currentCell.selectedView.isHidden = false
-        } else {
-            currentCell.selectedView.isHidden = true
-        }*/
  
     }
     
@@ -141,6 +142,8 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         } else {
             toDate = date
         }
+        
+        calendarView.selectDates(from: fromDate, to: toDate, triggerSelectionDelegate: true, keepSelectionIfMultiSelectionAllowed: true)
         
         //Display selected date in button text
         if !calendarContainer.isHidden {
