@@ -17,13 +17,12 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendarView.minimumInteritemSpacing = 0
         calendarView.layer.cornerRadius = 20.0
         calendarView.allowsMultipleSelection = true
-        calendarView.isRangeSelectionUsed = true
-        configureStandardViewDesignWithShadow(view: calendarView)
+        configureStandardViewDesignWithShadow(view: calendarInnerContainer, shadowSize: 1.0, widthAdj: 55, xOffset: 0, yOffset: 0)
         
         //Display the initial dates on the calendar from and to date buttons
         resetCalendarToDate()
         resetCalendarFromDate()
-        
+        updateMainDateButtonDateLabels()
         
         calendarView.register(UINib(nibName: "CalendarSectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CalendarSectionHeaderView")
 
@@ -34,8 +33,8 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             return
         }
         currentCell.dateLabel.text = cellState.text
-        configureSelectedStateFor(cell: currentCell, cellState: cellState)
         configureTextColorFor(cell: currentCell, cellState: cellState)
+        configureSelectedStateFor(cell: currentCell, cellState: cellState)
         let cellHidden = cellState.date < hideDate
         currentCell.isHidden = cellHidden
         
@@ -49,7 +48,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             currentCell.dateLabel.textColor = UIColor.white
         } else {
             if cellState.dateBelongsTo == .thisMonth && cellState.date > Date() {
-                currentCell.dateLabel.textColor = UIColor.black
+                currentCell.dateLabel.textColor = themeTextColor
             } else {
                 currentCell.dateLabel.textColor = UIColor.lightGray
             }
@@ -61,32 +60,36 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
             return
         }
         
+        if !cellState.isSelected{
+            currentCell.selectedView.isHidden = true
+            currentCell.selectedMiddleView.isHidden = true
+        }
         
-        
-         if cellState.isSelected{
-         currentCell.selectedView.isHidden = false
-         } else {
-         currentCell.selectedView.isHidden = true
-         }
-        
+        //Set the cell style based on where it is in the range selected
         if #available(iOS 11.0, *) {
             switch cellState.selectedPosition() {
             case .left:
-                print("Left" + cellState.date.description)
-                currentCell.selectedView.layer.cornerRadius = 20
-                currentCell.selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+                currentCell.selectedView.isHidden = false
+                currentCell.selectedMiddleView.isHidden = false
+                currentCell.selectedView.layer.cornerRadius = 22
+                currentCell.dateLabel.textColor = UIColor.white
+                //currentCell.selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
             case .middle:
-                print("Middle" + cellState.date.description)
-                currentCell.selectedView.layer.cornerRadius = 0
-                currentCell.selectedView.layer.maskedCorners = []
+                currentCell.selectedView.isHidden = true
+                currentCell.selectedMiddleView.isHidden = false
+                currentCell.dateLabel.textColor = themeTextColor
+                //currentCell.selectedView.layer.cornerRadius = 0
+                //currentCell.selectedView.layer.maskedCorners = []
             case .right:
-                print("Right" + cellState.date.description)
-                currentCell.selectedView.layer.cornerRadius = 20
-                currentCell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+                currentCell.selectedView.isHidden = false
+                currentCell.selectedMiddleView.isHidden = false
+                currentCell.selectedView.layer.cornerRadius = 22
+                currentCell.dateLabel.textColor = UIColor.white
+                //currentCell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
             case .full:
-                print("Full" + cellState.date.description)
                 currentCell.selectedView.layer.cornerRadius = 20
                 currentCell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+                currentCell.dateLabel.textColor = themeTextColor
             default: break
             }
             
@@ -133,39 +136,35 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         
-        //When calendar date is selected, set the appropriate date ('from date' or 'to date') depending on whether user is selecting from date or to date
-        //Set the date text on the appropriate button
-        
-        configureCell(cell: cell, cellState: cellState)
-        if fromDateWasSelected {
+        if date <= fromDate {
             fromDate = date
         } else {
             toDate = date
         }
         
-        calendarView.selectDates(from: fromDate, to: toDate, triggerSelectionDelegate: true, keepSelectionIfMultiSelectionAllowed: true)
-        
-        //Display selected date in button text
-        if !calendarContainer.isHidden {
-            let df = DateFormatter()
-            df.dateFormat = "MMM dd YYYY"
-            let dateString = df.string(from: date)
-            if fromDateWasSelected{
-               selectFromDate.setTitle(dateString, for: .normal)
-            } else {
-                selectToDate.setTitle(dateString, for: .normal)
-            }
-        }
- 
-       
- 
+        calendarView.selectDates(from: fromDate, to: toDate, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+        configureCell(cell: cell, cellState: cellState)
+        calendar.reloadData()
         
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         
+        //If date is closer to fromDate, deselect all dates before fromDate and make date = fromDate
+        //If date is closer to toDate, deselect all dates after date and make date = toDate
+       if (date.timeIntervalSince1970 - fromDate.timeIntervalSince1970) < (toDate.timeIntervalSince1970 - date.timeIntervalSince1970){
+            fromDate = date
+            calendarView.deselectDates(from: Date().addingTimeInterval(-ONE_DAY), to: fromDate.addingTimeInterval(-ONE_DAY), triggerSelectionDelegate: false)
+            calendarView.selectDates([fromDate], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+        } else {
+        calendarView.deselectDates(from: date.addingTimeInterval(ONE_DAY), to: toDate.addingTimeInterval(ONE_DAY), triggerSelectionDelegate: false)
+        calendarView.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+            toDate = date
+        }
+        
         configureCell(cell: cell, cellState: cellState)
- 
+        calendar.reloadData()
+        
     }
     
     
@@ -184,20 +183,23 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     }
     
     func resetCalendarFromDate(){
-        let df = DateFormatter()
-        df.dateFormat = "MMM dd YYYY"
         fromDate = Date()
-        let fromDateString = df.string(from: fromDate)
-        selectFromDate.setTitle(fromDateString, for: .normal)
         
     }
     
     func resetCalendarToDate(){
-        let df = DateFormatter()
-        df.dateFormat = "MMM dd YYYY"
         toDate = fromDate.addingTimeInterval(ONE_WEEK)
+    }
+    
+    func updateMainDateButtonDateLabels(){
+        
+        //Display selected date in button text
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd/YY"
+        let fromDateString = df.string(from: fromDate)
         let toDateString = df.string(from: toDate)
-        selectToDate.setTitle(toDateString, for: .normal)
+        mainDateButton.setTitle(fromDateString + " \n- " + toDateString, for: .normal)
+        
         
     }
     

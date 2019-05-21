@@ -31,16 +31,11 @@ var fromDate: Date = Date()
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
-    var fromDateWasSelected: Bool = false //Bool to know which calendar button was selected (from or to)
-    var dateSelectionExpanded: Bool = false
     var locationSelectionExpanded: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
     @IBOutlet weak var plusButtonStackView: UIStackView!
     let locationManager = CLLocationManager()
-    
-    var rangeSelectedDates: [Date] = []
-    var testCalendar = Calendar.current
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var backgroundView: UIView!
@@ -84,14 +79,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var mainLocationButton: RoundedButton!
     @IBOutlet weak var mainSearchButton: RoundedButton!
     @IBOutlet weak var searchSelectionContainer: UIView!
-    @IBOutlet weak var dateSelectionContainer: UIView!
     
     @IBOutlet weak var locationEntryField: UITextField!
     @IBOutlet weak var eventTableView: UITableView!
+    @IBOutlet weak var calendarInnerContainer: UIView!
     @IBOutlet weak var calendarContainer: UIView!
-    @IBOutlet weak var selectFromDate: UIButton!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var selectToDate: UIButton!
     @IBOutlet weak var listDescriptor: RoundUIView!
     @IBOutlet weak var listDescriptorCover: UIView!//Covers up all the search options when list descriptor is out
     @IBOutlet weak var listDescriptorIcon: UIImageView!
@@ -109,7 +102,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         hideListDescriptor()
         configureListDiscriptor()
-        configureStandardViewDesignWithShadow(view: sideMenu)
+        configureStandardViewDesignWithShadow(view: sideMenu, shadowSize: 1.0, widthAdj: 0, xOffset: 0.0, yOffset: 0.0)
         configureSideMenu()
         configureHeaderButtons()
         setUpAccountSettingsImage()
@@ -118,14 +111,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpSubtractCategoryButton()
         setUpLocationEntryField()
         setUpMainButtons()
-        configureDateAndSearchContainers()
+        hideSearchCollectionContainer()
         hideSideMenu()
         configureCalendarView()
   
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Add notfication observer to reload tableview whenever event data is changed
+        //Add notification observer to reload tableview whenever event data is changed
         eventTableView.reloadData()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updated_event_data),
@@ -208,17 +201,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Start date button pushed in the main UI
     @IBAction func selectFromDate(_ sender: UIButton) {
         
-        fromDateWasSelected = true
-        hideDate = Date().addingTimeInterval(-ONE_DAY)
-        calendarView.reloadData()
-        calendarView.deselectAllDates()
-        calendarView.selectDates([fromDate])
-        calendarView.scrollToDate(fromDate)
-        selectToDate.isEnabled = false //ensure both from and to buttons aren't pressed at same time
-        
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.calendarContainer.isHidden = false
-        })
         
     }
     
@@ -234,15 +216,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Start date selecton confirmed in the calendarView
     @IBAction func confirmDate(_ sender: UIButton) {
         
-        selectToDate.isEnabled = true
-        selectFromDate.isEnabled = true
-        if fromDate > toDate {
-            resetCalendarToDate()
-        }
-        
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.calendarContainer.isHidden = true
         })
+        updateMainDateButtonDateLabels()
     }
     
     
@@ -252,33 +229,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.calendarContainer.isHidden = true
         })
         
-        //self.calendarContainer.isHidden = true
-        if fromDateWasSelected{
-            resetCalendarFromDate()
-        } else {
-            resetCalendarToDate()
-        }
-        selectToDate.isEnabled = true
-        selectFromDate.isEnabled = true
-    }
-    
-    //End date button pushed in the main UI
-    @IBAction func selectToDate(_ sender: UIButton) {
-        
-        fromDateWasSelected = false
-        hideDate = fromDate
+        calendarView.deselectAllDates(triggerSelectionDelegate: false)
+        resetCalendarFromDate()
+        resetCalendarToDate()
         calendarView.reloadData()
-        calendarView.deselectAllDates()
-        calendarView.selectDates([toDate])
-        calendarView.scrollToDate(toDate)
-        selectFromDate.isEnabled = false //ensure both from and to buttons aren't pressed at same time
-        
-        UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.calendarContainer.isHidden = false
-        })
-
+        updateMainDateButtonDateLabels()
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -379,12 +335,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func mainDateSelectionButtonTapped(_ sender: Any) {
-        if dateSelectionExpanded {
-            hideDateSelectionContainer()
-        } else {
-            showDateSelectionContainer()
-        }
-        dateSelectionExpanded = !dateSelectionExpanded
+        hideDate = Date().addingTimeInterval(-ONE_DAY)
+        calendarView.selectDates(from: fromDate, to: toDate, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+        calendarView.reloadData()
+        calendarView.scrollToDate(fromDate)
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = false
+        })
     }
     
     

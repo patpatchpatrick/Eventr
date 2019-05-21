@@ -95,7 +95,7 @@ class CalendarCell: JTAppleCell {
     
     @IBOutlet weak var selectedView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
-    
+    @IBOutlet weak var selectedMiddleView: UIView!
     
     @IBInspectable
     var cornerRadius: CGFloat {
