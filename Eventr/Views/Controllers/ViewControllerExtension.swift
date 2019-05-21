@@ -397,14 +397,26 @@ extension ViewController{
     
     func loadFavoriteEvents(){
         hideSideMenu()
-        showListDescriptor()
+        showListDescriptor(type: .favorited)
         queryFirebaseFavoriteEvents()
     }
     
+    func loadMyEvents(){
+        hideSideMenu()
+        showListDescriptor(type: .created)
+        queryFirebaseCreatedEvents()
+    }
+    
     //Show the list descriptor which describes the type of events being shown
-    func showListDescriptor(){
-        listDescriptorLabel.text = "Favorited"
+    func showListDescriptor(type: listDescriptorType){
+        switch type {
+        case .favorited: listDescriptorLabel.text = "Favorited"
         listDescriptorIcon.image = UIImage(named: "catIconFavorite")
+        listDescriptorIcon.tintColor = themeAccentYellow
+        case .created: listDescriptorLabel.text = "Created"
+         listDescriptorIcon.image = UIImage(named: "iconMyEvents")
+            listDescriptorIcon.tintColor = themeDarkGray
+        }
         listDescriptorCover.isHidden = false
         dateAndSearchButtonStackView.isHidden = true
         categorySelectionStackViewContainer.isHidden = true

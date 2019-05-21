@@ -59,6 +59,26 @@ func queryFirebaseFavoriteEvents(){
     
 }
 
+//Query list of Firebase events that were created by the user and add them to the eventsTableView
+func queryFirebaseCreatedEvents(){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return }
+    events.removeAll()
+    firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        guard let dict = snapshot.value as? NSDictionary else { return }
+        var createdEvents : [String] = []
+        for value in dict.allValues {
+            if let eventString = value as? String {
+                print("EVENT STRING " + eventString)
+                createdEvents.append(eventString)
+            }
+        }
+        addEventsToEventTableView(eventsList: createdEvents, searchCriteriaIsRequired: false)
+    })
+    
+}
+
 func addEventsToEventTableView(eventsList: Array<String>, searchCriteriaIsRequired: Bool){
     for eventID in eventsList {
         firebaseDatabaseRef.child("events").child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in

@@ -37,6 +37,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var plusButtonStackView: UIStackView!
     let locationManager = CLLocationManager()
     
+    enum listDescriptorType {
+        case favorited
+        case created
+    }
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var backgroundView: UIView!
     var blurEffectView: UIVisualEffectView?
@@ -312,6 +317,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         default:
             break;
         }
+    }
+    
+    @IBAction func sideMenuMyEventsButtonTapped(_ sender: UIButton) {
+        loadMyEvents()
+    }
+    
+    @IBAction func sideMenuMyEventsLabelTapped(_ sender: Any) {
+        loadMyEvents()
     }
     
     
