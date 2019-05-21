@@ -140,6 +140,10 @@ func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
             }
         }
     })
+    //Map the firebase event to the appropriate date in the database
+    let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
+    _ = firebaseDatabaseRef.child("date").child(firebaseDate).childByAutoId().setValue(event.id)
+    
     
     
 }
@@ -361,6 +365,14 @@ func insertGeofireEvent(location: CLLocation, eventID: String, callback: ((Bool)
 func userIsNotLoggedIn() -> Bool{
     guard Auth.auth().currentUser?.uid != nil else { return true }
     return false
+}
+
+func getFirebaseDateFormatYYYYMDD(date: Date) -> String {
+    //Return dateString used to map events with dates in Firebase
+    //The format looks like so "2019m5d22"
+     let calendar = Calendar.current
+     let dateString = String(calendar.component(.year, from: date)) + "m" + String(calendar.component(.month, from: date)) + "d" + String(calendar.component(.day, from: date))
+    return dateString
 }
 
 

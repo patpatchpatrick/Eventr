@@ -134,7 +134,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         self.present(getDateFailAlert, animated: true)
     }
     
-    func getFirebaseDate() -> Date? {
+    func getFirebaseGMTDate() -> Date? {
         //Return the event date in firebase format (GMT)
         //Create the firebase date by adding together the selected date and selected time and converting the date to (GMT)
         if timeWasSelected {

@@ -14,7 +14,7 @@ class Event : Comparable {
     var name: String = ""
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
-    var date: Date?
+    var date: Date? // Event date in GMT Timezone
     var address: String = ""
     var details: String = ""
     var contact: String = ""
@@ -144,5 +144,7 @@ class Event : Comparable {
     static func == (lhs: Event, rhs: Event) -> Bool {
         return lhs.upvoteCount == rhs.upvoteCount
     }
+    
+    
     
 }

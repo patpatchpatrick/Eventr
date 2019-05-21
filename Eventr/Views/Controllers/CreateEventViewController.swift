@@ -176,7 +176,7 @@ class CreateEventViewController: UIViewController {
         
         let categoryString = selectCategoryButton.titleLabel?.text
         let category = stringToEventCategory(string: categoryString!)
-        guard let eventDate = getFirebaseDate() else {
+        guard let eventDate = getFirebaseGMTDate() else {
             displayDateErrorNotification()
             return
         }
