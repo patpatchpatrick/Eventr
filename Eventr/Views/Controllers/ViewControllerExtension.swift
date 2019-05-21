@@ -413,7 +413,7 @@ extension ViewController{
         case .favorited: listDescriptorLabel.text = "Favorited"
         listDescriptorIcon.image = UIImage(named: "catIconFavorite")
         listDescriptorIcon.tintColor = themeAccentYellow
-        case .created: listDescriptorLabel.text = "Created"
+        case .created: listDescriptorLabel.text = "My Events"
          listDescriptorIcon.image = UIImage(named: "iconMyEvents")
             listDescriptorIcon.tintColor = themeDarkGray
         }

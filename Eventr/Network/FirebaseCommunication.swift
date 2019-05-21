@@ -33,7 +33,7 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
     
     //Method called when the query is finished and all keys(event IDs) are loaded
     gQuery.observeReady {
-        addEventsToEventTableView(eventsList: keyList, searchCriteriaIsRequired: true)
+        addEventsToEventTableView(eventsList: keyList, isUserCreatedEvent: false, searchCriteriaIsRequired: true)
     }
     
     
@@ -54,7 +54,7 @@ func queryFirebaseFavoriteEvents(){
                 favoriteEvents.append(eventString)
             }
         }
-        addEventsToEventTableView(eventsList: favoriteEvents, searchCriteriaIsRequired: false)
+        addEventsToEventTableView(eventsList: favoriteEvents, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
     })
     
 }
@@ -74,17 +74,20 @@ func queryFirebaseCreatedEvents(){
                 createdEvents.append(eventString)
             }
         }
-        addEventsToEventTableView(eventsList: createdEvents, searchCriteriaIsRequired: false)
+        addEventsToEventTableView(eventsList: createdEvents, isUserCreatedEvent: true, searchCriteriaIsRequired: false)
     })
     
 }
 
-func addEventsToEventTableView(eventsList: Array<String>, searchCriteriaIsRequired: Bool){
+func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bool, searchCriteriaIsRequired: Bool){
     for eventID in eventsList {
         firebaseDatabaseRef.child("events").child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get dictionary of event data
             if let value = snapshot.value as? NSDictionary {
                 let event = Event(dict: value, idKey: eventID)
+                if isUserCreatedEvent {
+                    event.myEvent = true //Mark if the user created the event
+                }
                 //Check if event has been favorited by user
                 queryIfFirebaseEventIsFavorited(event: event)
                 //Check if event has been upvoted by user

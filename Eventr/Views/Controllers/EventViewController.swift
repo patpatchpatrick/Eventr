@@ -31,6 +31,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var ticketLinkButton: UIButton!
     @IBOutlet weak var eventLinkButton: UIButton!
     @IBOutlet weak var tagLabel: CustomLabel!
+    @IBOutlet weak var editButtonContainer: RoundUIView!
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +40,7 @@ class EventViewController: UIViewController {
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
         configureFloatingSideButtonDesign(view: headerFavoriteIconContainer)
         setUpURLButtons()
+        configureEditButton()
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
         locationDetails.text = selectedEvent.address
@@ -173,5 +175,13 @@ class EventViewController: UIViewController {
         linksStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 30).isActive = true
     }
 
+    func configureEditButton(){
+        if selectedEvent.myEvent {
+            editButtonContainer.isHidden = false
+            configureFloatingSideButtonDesign(view: editButtonContainer)
+        } else {
+            editButtonContainer.isHidden = true
+        }
+    }
 
 }

@@ -27,6 +27,7 @@ class Event : Comparable {
     var paid: Bool = false
     var upvoteCount: Int = 0
     var upvoted: Bool = false
+    var myEvent: Bool = false //Bool to determine if it was a user-created event
     
     
     init(name: String, category: EventCategory, date: Date, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
