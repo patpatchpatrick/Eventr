@@ -205,13 +205,16 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     
     func hideCalendarView(){
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0)
+        }){ success in
             self.calendarContainer.isHidden = true
-        })
+        }
     }
     
     func showCalendarView(){
+        self.calendarContainer.isHidden = false
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.calendarContainer.isHidden = false
+            self.calendarContainer.transform = .identity
         })
     }
 

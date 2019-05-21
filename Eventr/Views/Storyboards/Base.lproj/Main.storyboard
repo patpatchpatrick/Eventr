@@ -19,6 +19,9 @@
         <array key="Raleway-Bold.ttf">
             <string>Raleway-Bold</string>
         </array>
+        <array key="Raleway-Light.ttf">
+            <string>Raleway-Light</string>
+        </array>
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
@@ -420,8 +423,17 @@
                                                                                     <color key="textColor" name="Text"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh7-ZB-guc">
+                                                                                    <rect key="frame" x="40" y="40" width="120" height="21"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="21" id="jlr-uN-Lyk"/>
+                                                                                    </constraints>
+                                                                                    <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway Light" pointSize="14"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8k6-yo-BrG">
-                                                                                    <rect key="frame" x="10" y="67" width="20" height="33"/>
+                                                                                    <rect key="frame" x="10" y="53.5" width="20" height="36.5"/>
                                                                                     <subviews>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upvoteArrow" translatesAutoresizingMaskIntoConstraints="NO" id="mHs-nw-52Z">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -431,7 +443,7 @@
                                                                                             </constraints>
                                                                                         </imageView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDC-6e-F5T">
-                                                                                            <rect key="frame" x="0.0" y="20" width="20" height="13"/>
+                                                                                            <rect key="frame" x="0.0" y="20" width="20" height="16.5"/>
                                                                                             <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="11"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
@@ -444,14 +456,17 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
+                                                                                <constraint firstAttribute="trailing" secondItem="qh7-ZB-guc" secondAttribute="trailing" constant="80" id="2MK-zc-Hro"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="u5X-Tg-WLB" secondAttribute="trailing" constant="20" id="3MY-rj-92n"/>
                                                                                 <constraint firstItem="Bmb-I1-ic2" firstAttribute="top" secondItem="9AB-nd-6WW" secondAttribute="bottom" constant="15" id="7l3-Ob-ot9"/>
                                                                                 <constraint firstItem="u5X-Tg-WLB" firstAttribute="top" secondItem="MGZ-L9-ex3" secondAttribute="top" constant="15" id="9ZF-QP-egK"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="Bmb-I1-ic2" secondAttribute="trailing" constant="20" id="9rP-pi-DFv"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="9AB-nd-6WW" secondAttribute="trailing" constant="20" id="Fxb-Ke-doc"/>
+                                                                                <constraint firstItem="qh7-ZB-guc" firstAttribute="leading" secondItem="8k6-yo-BrG" secondAttribute="trailing" constant="10" id="L9k-KV-7Ub"/>
                                                                                 <constraint firstItem="8k6-yo-BrG" firstAttribute="leading" secondItem="fTK-xp-DYK" secondAttribute="leading" id="Nw3-Eb-fbD"/>
-                                                                                <constraint firstAttribute="bottom" secondItem="8k6-yo-BrG" secondAttribute="bottom" constant="10" id="SEX-bH-zVx"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="8k6-yo-BrG" secondAttribute="bottom" constant="20" id="SEX-bH-zVx"/>
                                                                                 <constraint firstItem="fTK-xp-DYK" firstAttribute="leading" secondItem="MGZ-L9-ex3" secondAttribute="leading" constant="10" id="h1a-Rn-J82"/>
+                                                                                <constraint firstItem="qh7-ZB-guc" firstAttribute="top" secondItem="fTK-xp-DYK" secondAttribute="bottom" constant="10" id="m5E-Gq-ql1"/>
                                                                                 <constraint firstItem="9AB-nd-6WW" firstAttribute="top" secondItem="u5X-Tg-WLB" secondAttribute="bottom" constant="15" id="uOo-ej-iyo"/>
                                                                                 <constraint firstItem="fTK-xp-DYK" firstAttribute="top" secondItem="MGZ-L9-ex3" secondAttribute="top" constant="10" id="xlP-q5-Zxx"/>
                                                                             </constraints>
@@ -474,6 +489,7 @@
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
                                                                     <outlet property="categoryIcon" destination="9AB-nd-6WW" id="F3F-lC-Wkt"/>
+                                                                    <outlet property="eventDescription" destination="qh7-ZB-guc" id="ZF2-0y-cQf"/>
                                                                     <outlet property="eventName" destination="fTK-xp-DYK" id="JAj-p8-0LD"/>
                                                                     <outlet property="favoriteIcon" destination="u5X-Tg-WLB" id="3Cx-RA-r0N"/>
                                                                     <outlet property="paidEvent" destination="Bmb-I1-ic2" id="o4T-vt-TLp"/>
@@ -751,6 +767,7 @@
                                                 </constraints>
                                             </scrollView>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anO-4j-n8B" customClass="HairlineView" customModule="Eventr" customModuleProvider="target">
@@ -826,7 +843,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKV-0R-RbT" userLabel="Header">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoBlackText" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
                                                 <rect key="frame" x="85" y="10" width="150" height="30"/>
                                                 <color key="tintColor" name="Text"/>
                                                 <constraints>
@@ -867,12 +884,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-qX-LWT" customClass="RoundUIView" customModule="Eventr" customModuleProvider="target">
                                                 <rect key="frame" x="-35" y="4" width="96" height="42"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z3D-bz-Ebe">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z3D-bz-Ebe" customClass="RoundedImage" customModule="Eventr" customModuleProvider="target">
                                                         <rect key="frame" x="61" y="3.5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="8US-JO-qDK"/>
                                                             <constraint firstAttribute="height" constant="35" id="kPK-CH-VNK"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="18"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" name="Medium"/>
@@ -947,13 +969,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3T-AC-mXd">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="568"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="600" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oj-Gh-uCt">
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="600" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oj-Gh-uCt" customClass="RoundedButton" customModule="Eventr" customModuleProvider="target">
                                                 <rect key="frame" x="97.5" y="30" width="55" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="OxV-7i-mTw"/>
                                                     <constraint firstAttribute="width" constant="55" id="Qad-gC-MSV"/>
                                                 </constraints>
                                                 <state key="normal" title="User" image="accountIcon"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="27"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQP-wf-YAz">
                                                 <rect key="frame" x="65" y="120" width="120" height="50"/>
@@ -1350,7 +1377,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Xx-Cqk">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoBlackText" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Xx-Cqk">
                                         <rect key="frame" x="85" y="10" width="150" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="AnF-wR-OQU"/>
@@ -1548,6 +1575,7 @@
                         <outlet property="linksStackView" destination="He1-HM-0rb" id="Y7f-Wc-JQj"/>
                         <outlet property="locationDetails" destination="8PF-Su-0Uc" id="rf5-Kb-4uX"/>
                         <outlet property="mapView" destination="yDY-YZ-XMc" id="5kl-U0-TVV"/>
+                        <outlet property="tagLabel" destination="gWw-GK-BTz" id="8ek-2e-FAD"/>
                         <outlet property="ticketLinkButton" destination="Kbc-QI-oda" id="enW-nw-Ip6"/>
                     </connections>
                 </viewController>
@@ -1653,7 +1681,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQp-ni-J3m" userLabel="Header">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="19S-Uu-ALJ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoBlackText" translatesAutoresizingMaskIntoConstraints="NO" id="19S-Uu-ALJ">
                                         <rect key="frame" x="85" y="10" width="150" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="HD1-bR-OAQ"/>
@@ -2286,7 +2314,7 @@
         <image name="accountIcon" width="100" height="100"/>
         <image name="catIconAll" width="150" height="150"/>
         <image name="catIconFavorite" width="100" height="100"/>
-        <image name="fiestaLogo" width="1868" height="599"/>
+        <image name="fiestaLogoBlackText" width="2000" height="599"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconCheckMark" width="104" height="104"/>
         <image name="iconDiscard" width="90" height="90"/>
@@ -2324,7 +2352,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Text">
-            <color red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YellowTint">
             <color red="0.9137254901960784" green="0.76078431372549016" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

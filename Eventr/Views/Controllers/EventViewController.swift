@@ -30,7 +30,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ticketLinkButton: UIButton!
     @IBOutlet weak var eventLinkButton: UIButton!
-
+    @IBOutlet weak var tagLabel: CustomLabel!
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +43,7 @@ class EventViewController: UIViewController {
         eventDetails.text = selectedEvent.details
         locationDetails.text = selectedEvent.address
         contactDetails.text = selectedEvent.contact
+        tagLabel.text = "#" + selectedEvent.tag1 + " #" + selectedEvent.tag2 + " #" + selectedEvent.tag3
         updateFavoriteIcon()
     }
     

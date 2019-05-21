@@ -32,11 +32,8 @@ extension ViewController{
                 }
             }
         }
-        
-        accountSettingsIcon.layer.cornerRadius = 20.0
+    
         accountSettingsIcon.clipsToBounds = true
-        sideMenuAccountButton.clipsToBounds = true
-        sideMenuAccountButton.layer.cornerRadius = 20.0
         sideMenuAccountButton.clipsToBounds = true
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountSettingsIconTapped(tapGestureRecognizer:)))
@@ -493,13 +490,13 @@ extension ViewController{
     func showSearchSelectionContainer(){
         self.searchSelectionContainer.isHidden = false
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.searchSelectionContainer.alpha = 1
+            self.searchSelectionContainer.transform = .identity
         })
     }
     
     func hideSearchCollectionContainer(){
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.searchSelectionContainer.alpha = 0
+            self.searchSelectionContainer.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0)
             if let locationText = self.locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
                 if locationText.isEmpty || locationText == "" {
                     self.mainLocationButton.setTitle("Current Location", for: .normal)
@@ -507,7 +504,7 @@ extension ViewController{
                     self.mainLocationButton.setTitle(locationText, for: .normal)
                 }
             }
-        }) { success in
+        }){ success in
             self.searchSelectionContainer.isHidden = true
         }
     }

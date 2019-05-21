@@ -113,6 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpMainButtons()
         hideSearchCollectionContainer()
         hideSideMenu()
+        hideCalendarView()
         configureCalendarView()
   
     }
@@ -253,6 +254,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             cell.paidEvent?.image = nil
         }
+        
+        cell.eventDescription.text = event.details
         
         //Handle event favorited
         if event.favorite {
