@@ -19,6 +19,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
         calendarView.layer.cornerRadius = 20.0
+        eventDate = Date() //Reset the date of the event
         
         let df = DateFormatter()
         df.dateFormat = "MMM dd YYYY"
@@ -26,7 +27,6 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         selectEventDateButton.setTitle(dateString, for: .normal)
         
         calendarView.register(UINib(nibName: "CalendarSectionHeaderView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CalendarSectionHeaderView")
-        calendarView.selectDates([Date()])
     }
     
     func configureCell(cell: JTAppleCell?, cellState: CellState) {
@@ -134,15 +134,14 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         self.present(getDateFailAlert, animated: true)
     }
     
-    func getFirebaseGMTDate() -> Date? {
+    func getFirebaseGMTDate(date: Date, time: Date) -> Date? {
         //Return the event date in firebase format (GMT)
         //Create the firebase date by adding together the selected date and selected time and converting the date to (GMT)
-        if timeWasSelected {
             let calendar = Calendar.current
-            let comp = calendar.dateComponents([.hour, .minute], from: eventTime)
+            let comp = calendar.dateComponents([.hour, .minute], from: time)
             let hour = comp.hour
             let minute = comp.minute
-            let firebaseDate = Calendar.current.date(bySettingHour: hour!, minute: minute!, second: 0, of: eventDate)!
+            let firebaseDate = Calendar.current.date(bySettingHour: hour!, minute: minute!, second: 0, of: date)!
             let convertedFirebaseDate = firebaseDate.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!)
             let printFormatter = DateFormatter()
             printFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -151,8 +150,21 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
             print("fbdate:" + printFormatter.string(from: firebaseDate))
             print("convertedfbdate:" + printFormatter.string(from: convertedFirebaseDate))
             return convertedFirebaseDate
-        }
-        return nil
+       
+    }
+    
+    func getFirebaseGMTDate(date: Date) -> Date? {
+        //Return the event date in firebase format (GMT)
+        //Create the firebase date by adding together the selected date and selected time and converting the date to (GMT)
+        let convertedFirebaseDate = date.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!)
+        let printFormatter = DateFormatter()
+        printFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        printFormatter.timeZone = Calendar.current.timeZone
+        printFormatter.locale = Calendar.current.locale
+        print("fbdate:" + printFormatter.string(from: date))
+        print("convertedfbdate:" + printFormatter.string(from: convertedFirebaseDate))
+        return convertedFirebaseDate
+        
     }
     
     
@@ -169,7 +181,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         guard let categoryString = selectCategoryButton.titleLabel?.text else {
             return false
         }
-        if eventName.text.isEmpty || eventDescription.text.isEmpty || eventLocation.text.isEmpty || eventContactInfo.text.isEmpty || categoryString.isEmpty || !timeWasSelected {
+        if eventName.text.isEmpty || eventDescription.text.isEmpty || eventLocation.text.isEmpty || eventContactInfo.text.isEmpty || categoryString.isEmpty {
             return true
         } else {
             return false
@@ -229,5 +241,42 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         }))
         
         self.present(maxDailyEventsAlert, animated: true)
+    }
+    
+    func configureCreateEventScreen(){
+        
+        //Update create event button text
+        createEventButton.setTitle("Create Event", for: .normal)
+
+    }
+    
+    func configureEditEventScreen(){
+        
+        //Update create event button text
+        createEventButton.setTitle("Update Event", for: .normal)
+        
+        //If editing an event, autopopulate the entry field values with current event values
+        guard let selectedEventDate = selectedEvent.date else {
+            return
+        }
+        eventName.text = selectedEvent.name
+        selectCategoryButton.setTitle(selectedEvent.category.text(), for: .normal)
+        previousDate = selectedEventDate.addingTimeInterval(0)
+        eventDate = selectedEventDate
+        let df = DateFormatter()
+        df.dateFormat = "MMM dd YYYY"
+        let dateString = df.string(from: selectedEventDate)
+        selectEventDateButton.setTitle(dateString, for: .normal)
+        eventLocation.text = selectedEvent.location
+        eventDescription.text = selectedEvent.details
+        eventContactInfo.text = selectedEvent.contact
+        eventTicketURL.text = selectedEvent.ticketURL
+        eventURL.text = selectedEvent.eventURL
+        eventTag1.text = selectedEvent.tag1
+        eventTag2.text = selectedEvent.tag2
+        eventTag3.text = selectedEvent.tag3
+        paidSwitch.isOn = selectedEvent.paid
+        eventTime = eventDate.addingTimeInterval(0) //The time is the same as the date... when an event is created they are combined to the same date value.  Create a new Date() so that when the time is edited, the date isn't adjusted
+        setCalendarButtonTitleToBeSelectedTime()
     }
 }

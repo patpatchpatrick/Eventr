@@ -17,6 +17,11 @@ import JTAppleCalendar
 var selectedCategory: Int = 0
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), address: "", details: "", contact: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
+enum eventAction {
+    case creating
+    case editing
+}
+var selectedEventAction: eventAction = .creating //variable to track if creating or editing an event
 var events: [Event] = [] //List of events in tableview
 var currentLocation: CLLocation!
 var searchDistanceMiles: Double = 5.0 //search distance in miles
@@ -25,7 +30,6 @@ var googleUser: GIDGoogleUser?
 var hideDate: Date = Date().addingTimeInterval(-ONE_DAY) //date before which to hide calendar cells.  This date is equal to yesterday
 var toDate: Date = Date().addingTimeInterval(ONE_WEEK)//toDate is 1 week from now by default
 var fromDate: Date = Date()
-
 
 
 
@@ -162,6 +166,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Create Event Icon was tapped
     //If user is not logged in, display alert, otherwise segue to createEvent screen
     @IBAction func createEvent(_ sender: UIButton) {
+        selectedEventAction = .creating //Set action used to determine whether to show "creating" or "editing" screen
         if Auth.auth().currentUser == nil {
             let alert = UIAlertController(title: "Must Be Logged In to Create Event", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in

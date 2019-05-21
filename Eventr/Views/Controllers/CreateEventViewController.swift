@@ -21,7 +21,7 @@ class CreateEventViewController: UIViewController {
     
     var eventDate = Date()
     var eventTime = Date()
-    var timeWasSelected: Bool = false
+    var previousDate = Date() //Variable to store previous date if editing an event.  This variable is used to determine if the date changed and needs to be updated in Firebase
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,14 @@ class CreateEventViewController: UIViewController {
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
         configureFloatingSideButtonDesign(view: createEventButtonContainer)
         configureTextEntryFieldsDesign()
+        setCalendarButtonTitleToBeSelectedTime()
         self.hideKeyboardWhenTappedAround()
+        
+        //Configure the screen depending on whether user is creating or editing an event
+        switch selectedEventAction {
+        case .creating: configureCreateEventScreen()
+        case .editing: configureEditEventScreen()
+        }
     }
     
     
@@ -53,6 +60,7 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var selectEventTimeButton: UIButton!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var timePickerContainer: UIView!
+    @IBOutlet weak var createEventButton: RoundedButton!
     
     
     
@@ -61,6 +69,8 @@ class CreateEventViewController: UIViewController {
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.calendarContainer.isHidden = false
         })
+        calendarView.selectDates([eventDate])
+        calendarView.scrollToDate(eventDate)
     }
     
     @IBAction func previousMonth(_ sender: UIButton) {
@@ -105,7 +115,6 @@ class CreateEventViewController: UIViewController {
      //Calendar time discarded "X" tapped
     @IBAction func timeDiscarded(_ sender: Any) {
         selectEventTimeButton.setTitle("Event Time:", for: .normal)
-        timeWasSelected = false
         timePickerContainer.isHidden = true
     }
     
@@ -114,7 +123,6 @@ class CreateEventViewController: UIViewController {
     @IBAction func timeSelected(_ sender: UIButton) {
         setCalendarButtonTitleToBeSelectedTime()
         timePickerContainer.isHidden = true
-        timeWasSelected = true
     }    
     
     @IBAction func selectCategory(_ sender: UIButton) {
@@ -157,6 +165,7 @@ class CreateEventViewController: UIViewController {
     }
     
     func performSegueToReturnBack()  {
+        selectedEventAction = .creating //Reset the selectedEventAction back to default when exiting the screen
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {
@@ -176,21 +185,37 @@ class CreateEventViewController: UIViewController {
         
         let categoryString = selectCategoryButton.titleLabel?.text
         let category = stringToEventCategory(string: categoryString!)
-        guard let eventDate = getFirebaseGMTDate() else {
+        
+        var dateChanged = false
+        guard let eventDate = getFirebaseGMTDate(date: eventDate, time: eventTime) else {
             displayDateErrorNotification()
             return
         }
+        
         let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
+        
+        //Check if the date changed.  Compare the firebaseDateFormat of new date to the previous date to determine if they are different.  If different, the dates will need to be updated in Firebase
+        if selectedEventAction == .editing {
+            if let eventPreviousDate = getFirebaseGMTDate(date: previousDate) {
+                if getFirebaseDateFormatYYYYMDD(date: eventDate) != getFirebaseDateFormatYYYYMDD(date: eventPreviousDate){
+                    dateChanged = true
+                    newEvent.previousDate = eventPreviousDate
+                }
+            }
+        }
         
         let dailyMaxEventsReached = checkIfUserDefaultsDailyEventMaximumReached()
         if dailyMaxEventsReached {
             displayMaxDailyEventsReachedAlert()
             return
         }
-        createFirebaseEvent(viewController: self, event: newEvent, callback: {
+        createOrUpdateFirebaseEvent(viewController: self, event: newEvent, createOrUpdate: selectedEventAction, dateChanged: dateChanged, callback: {
             bool in
             if bool {
-                print("EVENT CREATED SUCCESSFULLY")
+                switch selectedEventAction {
+                case .creating: print("EVENT CREATED SUCCESSFULLY")
+                case .editing: print("EVENT UPDATED SUCCESSFULLY")
+                }
                 self.incrementUserDefaultsDailyEventCount()
                 self.performSegueToReturnBack()
             } else {

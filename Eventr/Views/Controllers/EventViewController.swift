@@ -34,6 +34,8 @@ class EventViewController: UIViewController {
     @IBOutlet weak var editButtonContainer: RoundUIView!
     
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         setStackViewWidth()
         initializeMapKitView()
@@ -43,7 +45,7 @@ class EventViewController: UIViewController {
         configureEditButton()
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
-        locationDetails.text = selectedEvent.address
+        locationDetails.text = selectedEvent.location
         contactDetails.text = selectedEvent.contact
         tagLabel.text = "#" + selectedEvent.tag1 + " #" + selectedEvent.tag2 + " #" + selectedEvent.tag3
         updateFavoriteIcon()
@@ -124,7 +126,7 @@ class EventViewController: UIViewController {
         
         //Initialize map kit view to display location of event 
         
-        getMapCoordinates(forAddress: selectedEvent.address) {
+        getMapCoordinates(forAddress: selectedEvent.location) {
             (location) in
             guard let location = location else {
                 //Handle geolocation error
@@ -160,6 +162,7 @@ class EventViewController: UIViewController {
     @IBAction func returnButton(_ sender: UIButton) {
         
         performSegueToReturnBack()
+        selectedEventAction = .creating //Reset the selected event action back to default
         
     }
     
@@ -183,5 +186,12 @@ class EventViewController: UIViewController {
             editButtonContainer.isHidden = true
         }
     }
-
+    
+    
+    @IBAction func editEventButtonTapped(_ sender: UIButton) {
+        selectedEventAction = .editing //Set the selected event action so that the createEventViewController opens in "editing" mode
+        performSegue(withIdentifier: "editEventSegue", sender: self)
+        
+    }
+    
 }

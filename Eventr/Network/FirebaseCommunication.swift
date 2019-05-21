@@ -124,11 +124,11 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
 //First it will create an event in the Events section of the database
 //Then, it will create an event in the GeoFire section of the database so the event can be searched by location
 //Then, it will create an event in the Dates section of the database so the event can be searched by date (and removed from database when the date has passed)
-func createFirebaseEvent(viewController: UIViewController, event: Event, callback: ((Bool) -> Void)?){
+func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event, createOrUpdate: eventAction, dateChanged: Bool, callback: ((Bool) -> Void)?){
     if userIsNotLoggedIn() {return}
     guard let userID = Auth.auth().currentUser?.uid else { return }
     guard let eventDate = event.date else {return}
-    getCoordinates(forAddress: event.address) {
+    getCoordinates(forAddress: event.location) {
         (location) in
         guard let location = location else {
             //Ensure that event has a valid location before continuing and inserting event into Firebase database
@@ -144,7 +144,7 @@ func createFirebaseEvent(viewController: UIViewController, event: Event, callbac
             "category": event.category.text(),
             "date": String(eventDate.timeIntervalSince1970),
             "description": event.details,
-            "location":   event.address,
+            "location":   event.location,
             "ticketURL":   event.ticketURL,
             "eventURL":   event.eventURL,
             "contact":   event.contact,
@@ -155,7 +155,16 @@ func createFirebaseEvent(viewController: UIViewController, event: Event, callbac
             "paid" : paidString
         ]
         //Add the event to the "events" section of firebase
-        let firebaseEvent = firebaseDatabaseRef.child("events").childByAutoId()
+        //If event is being created for first time, generate an autoID
+        //If event is being updated, the child will be the eventID
+        let firebaseEvent : DatabaseReference = {
+            switch createOrUpdate {
+            case .creating:
+                return firebaseDatabaseRef.child("events").childByAutoId()
+            case .editing:
+                return firebaseDatabaseRef.child("events").child(selectedEvent.id)
+            }
+        }()
         guard let eventKey = firebaseEvent.key else { return }
         event.id = eventKey
         firebaseEvent.setValue(eventData, withCompletionBlock: { (error, snapshot) in
@@ -166,12 +175,30 @@ func createFirebaseEvent(viewController: UIViewController, event: Event, callbac
                 insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
             }
         })
+        
+        
         //Map the firebase event to the appropriate date in the database
         let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
-        _ = firebaseDatabaseRef.child("date").child(firebaseDate).childByAutoId().setValue(event.id)
         
-       //Map the firebase event to the "created" events section of Firebase
-        firebaseDatabaseRef.child("created").child(userID).childByAutoId().setValue(event.id)
+        switch createOrUpdate {
+        case .creating: firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).setValue(event.id)
+        case .editing:
+            if dateChanged {
+                //If you are editing an event and the date changed, remove the old date and add the new date
+                 let previousDate = getFirebaseDateFormatYYYYMDD(date: event.previousDate)
+                firebaseDatabaseRef.child("date").child(previousDate).child(event.id).removeValue()
+                firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).setValue(event.id)
+                
+            }
+        }
+        
+        if createOrUpdate == .creating {
+            //Map the firebase event to the "created" events section of Firebase
+            firebaseDatabaseRef.child("created").child(userID).childByAutoId().setValue(event.id)
+        }
+       
+    
+    
         
         
     }

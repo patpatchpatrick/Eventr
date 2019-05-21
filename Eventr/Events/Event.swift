@@ -15,7 +15,8 @@ class Event : Comparable {
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
     var date: Date? // Event date in GMT Timezone
-    var address: String = ""
+    var previousDate: Date = Date() // Variable to store previous date if date was updated
+    var location: String = ""
     var details: String = ""
     var contact: String = ""
     var ticketURL: String = ""
@@ -32,7 +33,7 @@ class Event : Comparable {
     
     init(name: String, category: EventCategory, date: Date, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
         self.name = name
-        self.address = address
+        self.location = address
         self.date = date
         self.details = details
         self.contact = contact
@@ -65,7 +66,7 @@ class Event : Comparable {
             }
         }
         if dict["location"] != nil {
-            self.address = dict.value(forKey: "location") as! String
+            self.location = dict.value(forKey: "location") as! String
         }
         if dict["description"] != nil {
             self.details = dict.value(forKey: "description") as! String
