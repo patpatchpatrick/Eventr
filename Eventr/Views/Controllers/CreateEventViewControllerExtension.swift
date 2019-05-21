@@ -36,7 +36,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         currentCell.dateLabel.text = cellState.text
         configureSelectedStateFor(cell: currentCell, cellState: cellState)
         configureTextColorFor(cell: currentCell, cellState: cellState)
-        let cellHidden = cellState.dateBelongsTo != .thisMonth
+        let cellHidden = cellState.dateBelongsTo != .thisMonth || cellState.date < Date().addingTimeInterval(-ONE_DAY)
         currentCell.isHidden = cellHidden
         
     }
@@ -49,7 +49,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
             currentCell.dateLabel.textColor = UIColor.white
         } else {
             if cellState.dateBelongsTo == .thisMonth && cellState.date > Date() {
-                currentCell.dateLabel.textColor = UIColor.black
+                currentCell.dateLabel.textColor = themeTextColor
             } else {
                 currentCell.dateLabel.textColor = UIColor.lightGray
             }

@@ -102,7 +102,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         hideListDescriptor()
         configureListDiscriptor()
-        configureStandardViewDesignWithShadow(view: sideMenu, shadowSize: 1.0, widthAdj: 0, xOffset: 0.0, yOffset: 0.0)
+        configureStandardViewDesignWithShadow(view: sideMenu, shadowSize: 1.0, widthAdj: 0, heightAdj: 200, xOffset: 0.0, yOffset: 100)
         configureSideMenu()
         configureHeaderButtons()
         setUpAccountSettingsImage()
@@ -216,18 +216,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Start date selecton confirmed in the calendarView
     @IBAction func confirmDate(_ sender: UIButton) {
         
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.calendarContainer.isHidden = true
-        })
+        hideCalendarView()
         updateMainDateButtonDateLabels()
     }
     
     
     @IBAction func discardDate(_ sender: UIButton) {
         
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.calendarContainer.isHidden = true
-        })
+        hideCalendarView()
         
         calendarView.deselectAllDates(triggerSelectionDelegate: false)
         resetCalendarFromDate()
@@ -339,26 +335,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         calendarView.selectDates(from: fromDate, to: toDate, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
         calendarView.reloadData()
         calendarView.scrollToDate(fromDate)
-        
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.calendarContainer.isHidden = false
-        })
+        showCalendarView()
     }
     
     
     @IBAction func mainSearchSelectionButtonTapped(_ sender: Any) {
-        if locationSelectionExpanded {
+        if !self.searchSelectionContainer.isHidden {
             hideSearchCollectionContainer()
         } else {
             showSearchSelectionContainer()
         }
-        locationSelectionExpanded = !locationSelectionExpanded
     }
     
     
      //Search button is tapped.  Query events within radius(km) of the location
     @IBAction func mainSearchButtonTapped(_ sender: Any) {
-        
+        hideCalendarView()
+        hideSearchCollectionContainer()
         let searchDistanceKm = searchDistanceMiles * 1.60934
         
         let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)

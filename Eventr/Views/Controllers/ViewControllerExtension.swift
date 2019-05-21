@@ -469,12 +469,12 @@ extension ViewController{
     }
     
     
-    func configureStandardViewDesignWithShadow(view: UIView, shadowSize: CGFloat, widthAdj: CGFloat, xOffset: CGFloat, yOffset: CGFloat) {
+    func configureStandardViewDesignWithShadow(view: UIView, shadowSize: CGFloat, widthAdj: CGFloat, heightAdj: CGFloat, xOffset: CGFloat, yOffset: CGFloat) {
         
             let shadowPath = UIBezierPath(rect: CGRect(x: 0,
                                                        y: 0,
                                                        width: view.frame.size.width + widthAdj + shadowSize,
-                                                       height: view.frame.size.height + shadowSize))
+                                                       height: view.frame.size.height + heightAdj + shadowSize))
             view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             view.layer.shadowOffset = CGSize(width: xOffset, height: yOffset)
             view.layer.shadowOpacity = 0.7

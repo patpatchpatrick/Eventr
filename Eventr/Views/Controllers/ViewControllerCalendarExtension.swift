@@ -17,7 +17,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendarView.minimumInteritemSpacing = 0
         calendarView.layer.cornerRadius = 20.0
         calendarView.allowsMultipleSelection = true
-        configureStandardViewDesignWithShadow(view: calendarInnerContainer, shadowSize: 1.0, widthAdj: 55, xOffset: 0, yOffset: 0)
+        configureStandardViewDesignWithShadow(view: calendarInnerContainer, shadowSize: 1.0, widthAdj: 55, heightAdj: 0, xOffset: 0, yOffset: 0)
         
         //Display the initial dates on the calendar from and to date buttons
         resetCalendarToDate()
@@ -203,5 +203,16 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         
     }
     
+    func hideCalendarView(){
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = true
+        })
+    }
+    
+    func showCalendarView(){
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.calendarContainer.isHidden = false
+        })
+    }
 
 }
