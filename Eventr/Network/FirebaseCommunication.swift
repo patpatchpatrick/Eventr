@@ -86,7 +86,7 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
             if let value = snapshot.value as? NSDictionary {
                 let event = Event(dict: value, idKey: eventID)
                 if isUserCreatedEvent {
-                    event.myEvent = true //Mark if the user created the event
+                    event.loggedInUserCreatedTheEvent = true //Mark if the user created the event
                 }
                 //Check if event has been favorited by user
                 queryIfFirebaseEventIsFavorited(event: event)
@@ -194,7 +194,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         
         if createOrUpdate == .creating {
             //Map the firebase event to the "created" events section of Firebase
-            firebaseDatabaseRef.child("created").child(userID).childByAutoId().setValue(event.id)
+            firebaseDatabaseRef.child("created").child(userID).child(event.id).setValue(event.id)
         }
        
     
@@ -202,6 +202,32 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         
         
     }
+}
+
+func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
+    
+    guard let userID = Auth.auth().currentUser?.uid else {
+        callback!(false)
+        return }
+    
+    guard let eventDate = event.date else {
+        callback!(false)
+        return
+    }
+    
+    if event.loggedInUserCreatedTheEvent == false {
+        callback!(false)
+        return} //If event was not created by user, do not delete it
+    
+    //Delete every reference to the event (events, created, date and geoFire)
+    //User specific references to the event (upvotes, favorited, etc...) are not deleted when the event is deleted
+    firebaseDatabaseRef.child("events").child(event.id).removeValue()
+    firebaseDatabaseRef.child("created").child(userID).child(event.id).removeValue()
+    let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
+    //firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).removeValue()
+    //Don't delete the date of the event for now when it is deleted... this date may be used to auto-delete upvotes and favorited events in the future
+    firebaseDatabaseRef.child("geofire").child(event.id).removeValue()
+    callback!(true) //Send callback viewController to let it know that event was deleted successfully
 }
 
 //Check to see if the event is marked as upvoted in firebase and update the event data and tableview accordingly

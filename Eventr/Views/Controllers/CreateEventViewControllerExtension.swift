@@ -227,7 +227,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         
         if Double(date.timeIntervalSinceNow) > -ONE_DAY {
             let dailyCount = prefs.object(forKey: dailyMaximumNumberKey) as? Int
-            if dailyCount != nil && dailyCount! >= 10 {
+            if dailyCount != nil && dailyCount! >= 50 {
                 return true
             }
         }
@@ -278,5 +278,12 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         paidSwitch.isOn = selectedEvent.paid
         eventTime = eventDate.addingTimeInterval(0) //The time is the same as the date... when an event is created they are combined to the same date value.  Create a new Date() so that when the time is edited, the date isn't adjusted
         setCalendarButtonTitleToBeSelectedTime()
+    }
+    
+    func displayCreateEventFailAlert(){
+        let createEventFailAlert = UIAlertController(title: "Event unable to be created. Ensure network connection is established or retry later", message: nil, preferredStyle: .alert)
+        createEventFailAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+        }))
+        self.present(createEventFailAlert, animated: true)
     }
 }

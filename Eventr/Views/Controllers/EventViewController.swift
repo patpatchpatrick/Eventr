@@ -32,7 +32,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var eventLinkButton: UIButton!
     @IBOutlet weak var tagLabel: CustomLabel!
     @IBOutlet weak var editButtonContainer: RoundUIView!
-    
+    @IBOutlet weak var deleteButtonContainer: RoundUIView!
     
     
     
@@ -43,6 +43,7 @@ class EventViewController: UIViewController {
         configureFloatingSideButtonDesign(view: headerFavoriteIconContainer)
         setUpURLButtons()
         configureEditButton()
+        configureDeleteButton()
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
         locationDetails.text = selectedEvent.location
@@ -179,11 +180,20 @@ class EventViewController: UIViewController {
     }
 
     func configureEditButton(){
-        if selectedEvent.myEvent {
+        if selectedEvent.loggedInUserCreatedTheEvent {
             editButtonContainer.isHidden = false
             configureFloatingSideButtonDesign(view: editButtonContainer)
         } else {
             editButtonContainer.isHidden = true
+        }
+    }
+    
+    func configureDeleteButton(){
+        if selectedEvent.loggedInUserCreatedTheEvent {
+            deleteButtonContainer.isHidden = false
+            configureFloatingSideButtonDesign(view: deleteButtonContainer)
+        } else {
+            deleteButtonContainer.isHidden = true
         }
     }
     
@@ -193,5 +203,37 @@ class EventViewController: UIViewController {
         performSegue(withIdentifier: "editEventSegue", sender: self)
         
     }
+    
+    
+    //Show alert confirming that user wants to delete the event, then delete the event
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        let deleteEventAlert = UIAlertController(title: "Delete Event?", message: "Deleting the Event Will Be Permanent ", preferredStyle: .alert)
+        deleteEventAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
+        }))
+        deleteEventAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            deleteFirebaseEvent(event: selectedEvent, callback: {
+                eventWasDeletedSuccessfully in
+                if eventWasDeletedSuccessfully {
+                    print("EVENT DELETED SUCCESSFULLY")
+                    self.performSegueToReturnBack()
+                } else {
+                    print("EVENT UNABLE TO BE DELETED")
+                    self.displayDeleteEventFailAlert()
+                }
+                
+            })
+        }))
+        self.present(deleteEventAlert, animated: true)
+        
+    }
+    
+    func displayDeleteEventFailAlert(){
+        let deleteEventFailAlert = UIAlertController(title: "Event unable to be deleted. Ensure network connection is established or retry later", message: nil, preferredStyle: .alert)
+        deleteEventFailAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+        }))
+        self.present(deleteEventFailAlert, animated: true)
+    }
+    
     
 }

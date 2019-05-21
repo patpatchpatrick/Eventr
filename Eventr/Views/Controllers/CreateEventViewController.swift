@@ -114,7 +114,8 @@ class CreateEventViewController: UIViewController {
     
      //Calendar time discarded "X" tapped
     @IBAction func timeDiscarded(_ sender: Any) {
-        selectEventTimeButton.setTitle("Event Time:", for: .normal)
+        eventTime = Date() //Reset time to NOW
+        setCalendarButtonTitleToBeSelectedTime()
         timePickerContainer.isHidden = true
     }
     
@@ -210,8 +211,8 @@ class CreateEventViewController: UIViewController {
             return
         }
         createOrUpdateFirebaseEvent(viewController: self, event: newEvent, createOrUpdate: selectedEventAction, dateChanged: dateChanged, callback: {
-            bool in
-            if bool {
+            eventWasCreatedSuccessfully in
+            if eventWasCreatedSuccessfully {
                 switch selectedEventAction {
                 case .creating: print("EVENT CREATED SUCCESSFULLY")
                 case .editing: print("EVENT UPDATED SUCCESSFULLY")
@@ -219,10 +220,7 @@ class CreateEventViewController: UIViewController {
                 self.incrementUserDefaultsDailyEventCount()
                 self.performSegueToReturnBack()
             } else {
-                let createEventFailAlert = UIAlertController(title: "Event unable to be created. Ensure network connection is established or retry later", message: nil, preferredStyle: .alert)
-                createEventFailAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-                }))
-                self.present(createEventFailAlert, animated: true)
+                self.displayCreateEventFailAlert()
             }})
         
     }
