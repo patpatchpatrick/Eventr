@@ -100,52 +100,58 @@ func addEventsToEventTableView(eventsList: Array<String>, searchCriteriaIsRequir
 //This method will write all necessary data to firebase for an event when a new event is created
 //First it will create an event in the Events section of the database
 //Then, it will create an event in the GeoFire section of the database so the event can be searched by location
-func createFirebaseEvent(event: Event, callback: ((Bool) -> Void)?){
+//Then, it will create an event in the Dates section of the database so the event can be searched by date (and removed from database when the date has passed)
+func createFirebaseEvent(viewController: UIViewController, event: Event, callback: ((Bool) -> Void)?){
     if userIsNotLoggedIn() {return}
+    guard let userID = Auth.auth().currentUser?.uid else { return }
     guard let eventDate = event.date else {return}
-    let paidString = (event.paid) ? "1" : "0"
-    let eventData = [
-        "name":  event.name,
-        "category": event.category.text(),
-        "date": String(eventDate.timeIntervalSince1970),
-        "description": event.details,
-        "location":   event.address,
-        "ticketURL":   event.ticketURL,
-        "eventURL":   event.eventURL,
-        "contact":   event.contact,
-        "tag1":   event.tag1,
-        "tag2":   event.tag2,
-        "tag3":   event.tag3,
-        "upvotes": String(event.upvoteCount),
-        "paid" : paidString
-    ]
-    //Add the event to the "events" section of firebase
-    let firebaseEvent = firebaseDatabaseRef.child("events").childByAutoId()
-    guard let eventKey = firebaseEvent.key else { return }
-    event.id = eventKey
-    firebaseEvent.setValue(eventData, withCompletionBlock: { (error, snapshot) in
-        if error != nil {
-            print("Error writing event to Firebase")
-        } else {
-            //If event was successfully added to Firebase, add GeoFire event location to firebase
-            getCoordinates(forAddress: event.address) {
-                (location) in
-                guard let location = location else {
-                    //Handle geolocation error
-                    return
-                }
-                let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
-                
-            }
+    getCoordinates(forAddress: event.address) {
+        (location) in
+        guard let location = location else {
+            //Ensure that event has a valid location before continuing and inserting event into Firebase database
+            displayInvalidLocationAlert(viewController: viewController)
+            return
         }
-    })
-    //Map the firebase event to the appropriate date in the database
-    let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
-    _ = firebaseDatabaseRef.child("date").child(firebaseDate).childByAutoId().setValue(event.id)
-    
-    
-    
+        let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        
+        
+        let paidString = (event.paid) ? "1" : "0"
+        let eventData = [
+            "name":  event.name,
+            "category": event.category.text(),
+            "date": String(eventDate.timeIntervalSince1970),
+            "description": event.details,
+            "location":   event.address,
+            "ticketURL":   event.ticketURL,
+            "eventURL":   event.eventURL,
+            "contact":   event.contact,
+            "tag1":   event.tag1,
+            "tag2":   event.tag2,
+            "tag3":   event.tag3,
+            "upvotes": String(event.upvoteCount),
+            "paid" : paidString
+        ]
+        //Add the event to the "events" section of firebase
+        let firebaseEvent = firebaseDatabaseRef.child("events").childByAutoId()
+        guard let eventKey = firebaseEvent.key else { return }
+        event.id = eventKey
+        firebaseEvent.setValue(eventData, withCompletionBlock: { (error, snapshot) in
+            if error != nil {
+                print("Error writing event to Firebase")
+            } else {
+                //If event was successfully added to Firebase, add GeoFire event location to firebase
+                insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
+            }
+        })
+        //Map the firebase event to the appropriate date in the database
+        let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
+        _ = firebaseDatabaseRef.child("date").child(firebaseDate).childByAutoId().setValue(event.id)
+        
+       //Map the firebase event to the "created" events section of Firebase
+        firebaseDatabaseRef.child("created").child(userID).childByAutoId().setValue(event.id)
+        
+        
+    }
 }
 
 //Check to see if the event is marked as upvoted in firebase and update the event data and tableview accordingly
@@ -375,4 +381,10 @@ func getFirebaseDateFormatYYYYMDD(date: Date) -> String {
     return dateString
 }
 
-
+func displayInvalidLocationAlert(viewController: UIViewController) {
+    let alertController = UIAlertController(title: "Invalid Location Entered", message: "Please enter valid location/address and try again", preferredStyle: .alert)
+    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    
+    alertController.addAction(defaultAction)
+    viewController.present(alertController, animated: true, completion: nil)
+}

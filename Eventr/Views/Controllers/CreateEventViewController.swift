@@ -187,7 +187,7 @@ class CreateEventViewController: UIViewController {
             displayMaxDailyEventsReachedAlert()
             return
         }
-        createFirebaseEvent(event: newEvent, callback: {
+        createFirebaseEvent(viewController: self, event: newEvent, callback: {
             bool in
             if bool {
                 print("EVENT CREATED SUCCESSFULLY")
