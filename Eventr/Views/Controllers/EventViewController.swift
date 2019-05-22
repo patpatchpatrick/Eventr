@@ -23,7 +23,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var headerFavoriteIconContainer: UIView!
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDetails: UITextView!
-    @IBOutlet weak var locationDetails: UILabel!
+    @IBOutlet weak var locationDetailsButton: UIButton!
     @IBOutlet weak var contactDetails: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var linksStackView: UIStackView!
@@ -46,7 +46,7 @@ class EventViewController: UIViewController {
         configureDeleteButton()
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
-        locationDetails.text = selectedEvent.location
+        locationDetailsButton.setTitle(selectedEvent.location, for: .normal)
         contactDetails.text = selectedEvent.contact
         tagLabel.text = "#" + selectedEvent.tag1 + " #" + selectedEvent.tag2 + " #" + selectedEvent.tag3
         updateFavoriteIcon()
@@ -233,6 +233,24 @@ class EventViewController: UIViewController {
         deleteEventFailAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
         }))
         self.present(deleteEventFailAlert, animated: true)
+    }
+    
+    
+    @IBAction func eventLocationButtonTapped(_ sender: Any) {
+        
+        //If the location button is tapped, open the driving directions for the user using their default map application
+        
+        getMapCoordinates(forAddress: selectedEvent.location) {
+            (location) in
+            guard let location = location else {
+                //Handle geolocation error
+                return
+            }
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude), addressDictionary:nil))
+            mapItem.name = selectedEvent.location
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        }
+        
     }
     
     
