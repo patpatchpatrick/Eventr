@@ -19,18 +19,15 @@ extension ViewController{
     func setUpAccountSettingsImage(){
         
         //Set the profile photo of the logged in user if they have one
-        if Auth.auth().currentUser?.photoURL != nil {
-            let pic = Auth.auth().currentUser?.photoURL
-            if pic != nil {
-                let data = try? Data(contentsOf: pic!)
+        if let pic = Auth.auth().currentUser?.photoURL {
+            let data = try? Data(contentsOf: pic)
+            if let imageData = data {
+                let image = UIImage(data: imageData)
+                accountSettingsIcon.image = image
+                sideMenuAccountButton.setImage(image, for: .normal)
                 
-                if let imageData = data {
-                    let image = UIImage(data: imageData)
-                    accountSettingsIcon.image = image
-                    sideMenuAccountButton.setImage(image, for: .normal)
-       
-                }
             }
+            
         }
     
         accountSettingsIcon.clipsToBounds = true
@@ -396,15 +393,24 @@ extension ViewController{
     }
     
     func loadFavoriteEvents(){
-        hideSideMenu()
-        showListDescriptor(type: .favorited)
-        queryFirebaseFavoriteEvents()
+        if Auth.auth().currentUser == nil {
+            displayAlertWithOKButton(text: "Must Be Logged In To Access Your Favorite Events")
+        } else {
+            hideSideMenu()
+            showListDescriptor(type: .favorited)
+            queryFirebaseFavoriteEvents()
+        }
+    
     }
     
     func loadMyEvents(){
-        hideSideMenu()
-        showListDescriptor(type: .created)
-        queryFirebaseCreatedEvents()
+        if Auth.auth().currentUser == nil {
+            displayAlertWithOKButton(text: "Must Be Logged In To Access Your Events")
+        } else {
+            hideSideMenu()
+            showListDescriptor(type: .created)
+            queryFirebaseCreatedEvents()
+        }
     }
     
     //Show the list descriptor which describes the type of events being shown
@@ -524,6 +530,12 @@ extension ViewController{
     func configureSideMenu(){
         configureSideMenuContainers()
         configureBackgroundViewBlur()
+        if Auth.auth().currentUser == nil {
+            sideMenuLogOutIconLabel.setTitle("Log In", for: .normal)
+        } else {
+            sideMenuLogOutIconLabel.setTitle("Log Out", for: .normal)
+        }
+        
     }
     
     func configureSideMenuContainers(){
@@ -548,6 +560,17 @@ extension ViewController{
         hideListDescriptor()
         configureFloatingSideButtonDesign(view: listDescriptorReturnButton)
         configureFloatingSideButtonDesign(view: listDescriptor)
+    }
+    
+    func displayAlertWithOKButton(text: String){
+        let alert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    func settingsButtonTapped(){
+         performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     
 }

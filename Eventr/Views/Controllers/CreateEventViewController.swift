@@ -117,6 +117,7 @@ class CreateEventViewController: UIViewController {
         eventTime = Date() //Reset time to NOW
         setCalendarButtonTitleToBeSelectedTime()
         timePickerContainer.isHidden = true
+        
     }
     
     

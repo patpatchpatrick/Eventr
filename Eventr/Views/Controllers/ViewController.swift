@@ -168,10 +168,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func createEvent(_ sender: UIButton) {
         selectedEventAction = .creating //Set action used to determine whether to show "creating" or "editing" screen
         if Auth.auth().currentUser == nil {
-            let alert = UIAlertController(title: "Must Be Logged In to Create Event", message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            }))
-            self.present(alert, animated: true)
+            displayAlertWithOKButton(text: "Must Be Logged In To Create Event")
         } else {
             performSegue(withIdentifier: "createEventSegue", sender: self)
         }
@@ -390,6 +387,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
+    
+    
+    @IBAction func sideMenuSettingsButtonTapped(_ sender: UIButton) {
+        settingsButtonTapped()
+    }
+    
+    @IBAction func sideMenuSettingsButtonLabelTapped(_ sender: UIButton) {
+        settingsButtonTapped()
+    }
+    
     
     
     
