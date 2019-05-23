@@ -19,6 +19,7 @@ class Event : Comparable {
     var location: String = ""
     var details: String = ""
     var contact: String = ""
+    var phoneNumber: String = ""
     var ticketURL: String = ""
     var eventURL: String = ""
     var tag1: String = ""
@@ -31,12 +32,13 @@ class Event : Comparable {
     var loggedInUserCreatedTheEvent: Bool = false //Bool to determine if it was a user-created event
     
     
-    init(name: String, category: EventCategory, date: Date, address: String, details: String, contact: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
+    init(name: String, category: EventCategory, date: Date, address: String, details: String, contact: String, phoneNumber: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
         self.name = name
         self.location = address
         self.date = date
         self.details = details
         self.contact = contact
+        self.phoneNumber = phoneNumber
         self.ticketURL = ticketURL
         self.eventURL = eventURL
         self.tag1 = tag1
@@ -79,6 +81,9 @@ class Event : Comparable {
         }
         if dict["contact"] != nil {
              self.contact = dict.value(forKey: "contact") as! String
+        }
+        if dict["phone"] != nil {
+            self.phoneNumber = dict.value(forKey: "phone") as! String
         }
         if dict["tag1"] != nil {
             self.tag1 = dict.value(forKey: "tag1") as! String

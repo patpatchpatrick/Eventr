@@ -24,7 +24,8 @@ class EventViewController: UIViewController {
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDetails: UITextView!
     @IBOutlet weak var locationDetailsButton: UIButton!
-    @IBOutlet weak var contactDetails: UILabel!
+    @IBOutlet weak var contactDetailsButton: UIButton!
+    @IBOutlet weak var additionalContactInfo: UITextView!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var linksStackView: UIStackView!
     @IBOutlet weak var mapView: MKMapView!
@@ -44,12 +45,32 @@ class EventViewController: UIViewController {
         setUpURLButtons()
         configureEditButton()
         configureDeleteButton()
+        populateFieldsWithData()
+        updateFavoriteIcon()
+    }
+    
+    func populateFieldsWithData(){
         eventName.text = selectedEvent.name
         eventDetails.text = selectedEvent.details
         locationDetailsButton.setTitle(selectedEvent.location, for: .normal)
-        contactDetails.text = selectedEvent.contact
-        tagLabel.text = "#" + selectedEvent.tag1 + " #" + selectedEvent.tag2 + " #" + selectedEvent.tag3
-        updateFavoriteIcon()
+        contactDetailsButton.setTitle(selectedEvent.phoneNumber, for: .normal)
+        let additionalContactInfoString = selectedEvent.contact
+        if additionalContactInfoString.isEmpty || additionalContactInfoString == "" {
+            additionalContactInfo.isHidden = true
+        } else {
+            additionalContactInfo.isHidden = false
+            additionalContactInfo.text = "Additional Contact Info:\n" + additionalContactInfoString
+        }
+        tagLabel.text = ""
+        if !selectedEvent.tag1.isEmpty && selectedEvent.tag1 != "" {
+            tagLabel.text?.append("#" + selectedEvent.tag1)
+        }
+        if !selectedEvent.tag2.isEmpty && selectedEvent.tag2 != "" {
+            tagLabel.text?.append(" #" + selectedEvent.tag2)
+        }
+        if !selectedEvent.tag3.isEmpty && selectedEvent.tag3 != "" {
+            tagLabel.text?.append(" #" + selectedEvent.tag3)
+        }
     }
     
     //Hide URL buttons if URLs are empty
@@ -251,6 +272,29 @@ class EventViewController: UIViewController {
             mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
         }
         
+    }
+    
+    
+    @IBAction func contactPhoneNumberButtonTapped(_ sender: Any) {
+        
+        //If contact phone number button is tapped, attempt to call the phone from the user's device
+        
+        if !selectedEvent.phoneNumber.isEmpty && selectedEvent.phoneNumber != "" {
+            callNumber(phoneNumber: "1" + selectedEvent.phoneNumber)
+        }
+        
+    }
+    
+    //Function to call a phone # when the user clicks the contact info button
+    func callNumber(phoneNumber:String) {
+        
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
     }
     
     
