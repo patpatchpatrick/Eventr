@@ -91,6 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var locationEntryField: UITextField!
     @IBOutlet weak var eventTableView: UITableView!
+    @IBOutlet weak var calendarAndTableViewContainer: RoundUIView!
     @IBOutlet weak var calendarInnerContainer: UIView!
     @IBOutlet weak var calendarContainer: UIView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
@@ -263,6 +264,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         cell.eventDescription.text = event.details
+        
+        //Set the date and time of the event
+        if let eventDate = event.getDateCurrentTimeZone() {
+            let df = DateFormatter()
+            df.amSymbol = "AM"
+            df.pmSymbol = "PM"
+            df.dateFormat = "MMM dd YYYY ' - ' h:mm a"
+            let dateString = df.string(from: eventDate)
+            cell.eventDateAndTime.text = dateString
+        }
+     
         
         //Handle event favorited
         if event.favorite {

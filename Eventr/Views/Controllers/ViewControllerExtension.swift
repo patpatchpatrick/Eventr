@@ -427,6 +427,9 @@ extension ViewController{
         dateAndSearchButtonStackView.isHidden = true
         categorySelectionStackViewContainer.isHidden = true
         mainButtonsStackViewContainer.isHidden = true
+        hideCalendarView()
+        //Move the event tableview up to account for extra space created when search and date settings are hidden
+        self.calendarAndTableViewContainer.transform = CGAffineTransform(translationX: 0, y: -50)
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.listDescriptor.transform = .identity
             self.listDescriptorReturnButton.transform = .identity
@@ -441,6 +444,7 @@ extension ViewController{
             self.listDescriptor.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width - self.listDescriptor.frame.width, y: 0)
             self.listDescriptorReturnButton.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width - self.listDescriptor.frame.width, y: 0)
         })
+           self.calendarAndTableViewContainer.transform = .identity
             listDescriptorCover.isHidden = true
         dateAndSearchButtonStackView.isHidden = false
         categorySelectionStackViewContainer.isHidden = false

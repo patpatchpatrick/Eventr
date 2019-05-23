@@ -100,16 +100,6 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
                         //Make the beforeDate the earliest possible time of the fromDate and the afterDate the latest possible time of the toDate
                         let beforeDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: fromDate)!
                         let afterDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)!
-
-                        let df = DateFormatter()
-                        df.dateFormat = "MM/dd/YY"
-                        let beforeDateString = df.string(from: beforeDate)
-                        let afterDateString = df.string(from: afterDate)
-                        let eventDateString = df.string(from: eventDateCurrentTimeZone)
-                        print(event.name)
-                        print("BeforeDate" + beforeDateString)
-                        print("AfterDate" + afterDateString)
-                        print("EventDate" + eventDateString)
                         if eventDateCurrentTimeZone >= beforeDate && eventDateCurrentTimeZone <= afterDate {
                             if selectedCategory == 0 || event.category.index() == selectedCategory {
                                 let index = events.insertionIndexOf(elem: event, isOrderedBefore: >)

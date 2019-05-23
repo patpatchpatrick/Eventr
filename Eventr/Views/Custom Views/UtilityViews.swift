@@ -32,7 +32,7 @@ class CustomEventCell: UITableViewCell {
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var upvoteCount: UILabel!
     @IBOutlet weak var primaryView: UIView!
-    
+    @IBOutlet weak var eventDateAndTime: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
     
 }
