@@ -14,7 +14,7 @@ class Event : Comparable {
     var name: String = ""
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
-    var date: Date? // Event date in GMT Timezone
+    var GMTDate: Date? // Event date in GMT timezone
     var previousDate: Date = Date() // Variable to store previous date if date was updated
     var location: String = ""
     var details: String = ""
@@ -35,7 +35,7 @@ class Event : Comparable {
     init(name: String, category: EventCategory, date: Date, address: String, details: String, contact: String, phoneNumber: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
         self.name = name
         self.location = address
-        self.date = date
+        self.GMTDate = date
         self.details = details
         self.contact = contact
         self.phoneNumber = phoneNumber
@@ -61,10 +61,8 @@ class Event : Comparable {
         if dict["date"] != nil {
             let dateString = dict.value(forKey: "date") as! String
             if let dateDouble = Double(dateString) {
-                //Date is stored in GMT time in unix time
-                //Convert from unix GMT time to current calendar time zone
-                let gmtDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
-                self.date = gmtDate.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0)!, timeZone: Calendar.current.timeZone)
+                //Date is stored in Firebase in GMT time (unix time)
+                self.GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
             }
         }
         if dict["location"] != nil {
@@ -150,6 +148,13 @@ class Event : Comparable {
     //Comparable protocol stub
     static func == (lhs: Event, rhs: Event) -> Bool {
         return lhs.upvoteCount == rhs.upvoteCount
+    }
+    
+    func getDateCurrentTimeZone() -> Date? {
+        guard let gmtDate = self.GMTDate else {
+            return nil
+        }
+         return gmtDate.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0)!, timeZone: Calendar.current.timeZone)
     }
     
     

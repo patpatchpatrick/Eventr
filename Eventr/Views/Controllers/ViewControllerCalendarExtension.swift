@@ -198,15 +198,6 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         df.dateFormat = "MM/dd/YY"
         let fromDateString = df.string(from: fromDate)
         let toDateString = df.string(from: toDate)
-        let calendar = Calendar.current
-        print("YEAR")
-        print(calendar.component(.year, from: fromDate))
-        print("MONTH")
-        print(calendar.component(.month, from: fromDate))
-        print("DAY")
-        print(calendar.component(.day, from: fromDate))
-        print("TESTDATEFORMAT")
-        print(String(calendar.component(.year, from: fromDate)) + "m" + String(calendar.component(.month, from: fromDate)) + "d" + String(calendar.component(.day, from: fromDate)))
         mainDateButton.setTitle(fromDateString + " \n- " + toDateString, for: .normal)
         
         

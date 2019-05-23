@@ -267,7 +267,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         createEventButton.setTitle("Update Event", for: .normal)
         
         //If editing an event, autopopulate the entry field values with current event values
-        guard let selectedEventDate = selectedEvent.date else {
+        guard let selectedEventDate = selectedEvent.getDateCurrentTimeZone() else {
             return
         }
         eventName.text = selectedEvent.name

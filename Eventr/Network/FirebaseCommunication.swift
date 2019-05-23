@@ -96,8 +96,21 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
                 //Check if event meets search criteria (date and category)
                 //If so, add event to table view events list and update table
                 if searchCriteriaIsRequired{
-                    if let eventDate = event.date{
-                        if eventDate > fromDate && eventDate < toDate {
+                    if let eventDateCurrentTimeZone = event.getDateCurrentTimeZone(){
+                        //Make the beforeDate the earliest possible time of the fromDate and the afterDate the latest possible time of the toDate
+                        let beforeDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: fromDate)!
+                        let afterDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)!
+
+                        let df = DateFormatter()
+                        df.dateFormat = "MM/dd/YY"
+                        let beforeDateString = df.string(from: beforeDate)
+                        let afterDateString = df.string(from: afterDate)
+                        let eventDateString = df.string(from: eventDateCurrentTimeZone)
+                        print(event.name)
+                        print("BeforeDate" + beforeDateString)
+                        print("AfterDate" + afterDateString)
+                        print("EventDate" + eventDateString)
+                        if eventDateCurrentTimeZone >= beforeDate && eventDateCurrentTimeZone <= afterDate {
                             if selectedCategory == 0 || event.category.index() == selectedCategory {
                                 let index = events.insertionIndexOf(elem: event, isOrderedBefore: >)
                                 events.insert(event, at: index)
@@ -127,7 +140,7 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
 func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event, createOrUpdate: eventAction, dateChanged: Bool, callback: ((Bool) -> Void)?){
     if userIsNotLoggedIn() {return}
     guard let userID = Auth.auth().currentUser?.uid else { return }
-    guard let eventDate = event.date else {return}
+    guard let eventDate = event.GMTDate else {return}
     getCoordinates(forAddress: event.location) {
         (location) in
         guard let location = location else {
@@ -211,7 +224,7 @@ func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
         callback!(false)
         return }
     
-    guard let eventDate = event.date else {
+    guard let eventDate = event.GMTDate else {
         callback!(false)
         return
     }
