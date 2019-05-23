@@ -30,6 +30,12 @@ var googleUser: GIDGoogleUser?
 var hideDate: Date = Date().addingTimeInterval(-ONE_DAY) //date before which to hide calendar cells.  This date is equal to yesterday
 var toDate: Date = Date().addingTimeInterval(ONE_WEEK)//toDate is 1 week from now by default
 var fromDate: Date = Date()
+enum sortBy {
+    case popularity
+    case dateasc
+    case datedesc
+}
+var sortByPreference : sortBy = .popularity //Variable to track user's sorting preferences
 
 
 
@@ -38,6 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var locationSelectionExpanded: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
+    let sortDropDown = DropDown()
     @IBOutlet weak var plusButtonStackView: UIStackView!
     let locationManager = CLLocationManager()
     
@@ -86,15 +93,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var dateAndSearchButtonStackView: UIStackView!
     @IBOutlet weak var mainDateButton: RoundedButton!
     @IBOutlet weak var mainLocationButton: RoundedButton!
+    @IBOutlet weak var distanceRadiusSegmentedControl: UISegmentedControl!
     @IBOutlet weak var mainSearchButton: RoundedButton!
     @IBOutlet weak var searchSelectionContainer: UIView!
     
     @IBOutlet weak var locationEntryField: UITextField!
+    @IBOutlet weak var tableViewSettingsContainer: UIView!
     @IBOutlet weak var eventTableView: UITableView!
     @IBOutlet weak var calendarAndTableViewContainer: RoundUIView!
     @IBOutlet weak var calendarInnerContainer: UIView!
     @IBOutlet weak var calendarContainer: UIView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
+    
+    @IBOutlet weak var sortButton: RoundedButton!
+    
     @IBOutlet weak var listDescriptor: RoundUIView!
     @IBOutlet weak var listDescriptorCover: UIView!//Covers up all the search options when list descriptor is out
     @IBOutlet weak var listDescriptorIcon: UIImageView!
@@ -121,6 +133,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpSubtractCategoryButton()
         setUpLocationEntryField()
         setUpMainButtons()
+        setUpSortButton()
         hideSearchCollectionContainer()
         hideSideMenu()
         hideCalendarView()
@@ -143,6 +156,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @objc func updated_event_data(notification:Notification) -> Void{
         eventTableView.reloadData()
+        if events.count > 0 {
+            showTableViewSettingsContainer()
+        } else {
+            hideTableViewSettingsContainer()
+        }
     }
     
     @IBAction func sideMenuShadeTouched(_ sender: UIButton) {
@@ -240,6 +258,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         calendarView.reloadData()
         updateMainDateButtonDateLabels()
     }
+    
+    
+    @IBAction func sortButtonTapped(_ sender: Any) {
+        sortButtonTapped()
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -380,24 +404,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
      //Search button is tapped.  Query events within radius(km) of the location
     @IBAction func mainSearchButtonTapped(_ sender: Any) {
-        hideCalendarView()
-        hideSearchCollectionContainer()
-        let searchDistanceKm = searchDistanceMiles * 1.60934
-        
-        let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        if addressText == "Current Location" {
-            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm)
-        } else {
-            getCoordinates(forAddress: addressText!) {
-                (location) in
-                guard let location = location else {
-                    //Handle geolocation error
-                    return
-                }
-                let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
-            }
-        }
+        searchForEvents()
     }
     
     

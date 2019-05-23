@@ -141,13 +141,33 @@ class Event : Comparable {
     }
     
     //Comparable protocol stub
+    //Determine how events should be compared based on user's sort preferences
     static func < (lhs: Event, rhs: Event) -> Bool {
-        return lhs.upvoteCount < rhs.upvoteCount
+        guard let lhsEventDate = lhs.GMTDate, let rhsEventDate = rhs.GMTDate else {
+            return lhs.upvoteCount < rhs.upvoteCount
+        }
+        
+        switch sortByPreference {
+        case .popularity: return lhs.upvoteCount < rhs.upvoteCount
+        case .datedesc: return lhsEventDate < rhsEventDate
+        case .dateasc: return lhsEventDate < rhsEventDate
+        }
     }
     
     //Comparable protocol stub
+     //Determine how events should be compared based on user's sort preferences
     static func == (lhs: Event, rhs: Event) -> Bool {
-        return lhs.upvoteCount == rhs.upvoteCount
+        
+        guard let lhsEventDate = lhs.GMTDate, let rhsEventDate = rhs.GMTDate else {
+            return lhs.upvoteCount == rhs.upvoteCount
+        }
+        
+        switch sortByPreference {
+        case .popularity: return lhs.upvoteCount == rhs.upvoteCount
+        case .datedesc: return lhsEventDate == rhsEventDate
+        case .dateasc: return lhsEventDate == rhsEventDate
+        }
+
     }
     
     func getDateCurrentTimeZone() -> Date? {

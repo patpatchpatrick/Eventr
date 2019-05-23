@@ -22,6 +22,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var headerBackButtonContainer: RoundUIView!
     @IBOutlet weak var headerFavoriteIconContainer: UIView!
     @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var eventDateLabel: UILabel!
     @IBOutlet weak var eventDetails: UITextView!
     @IBOutlet weak var locationDetailsButton: UIButton!
     @IBOutlet weak var contactDetailsButton: UIButton!
@@ -51,6 +52,17 @@ class EventViewController: UIViewController {
     
     func populateFieldsWithData(){
         eventName.text = selectedEvent.name
+        
+        //Set the date and time of the event
+        if let eventDate = selectedEvent.getDateCurrentTimeZone() {
+            let df = DateFormatter()
+            df.amSymbol = "AM"
+            df.pmSymbol = "PM"
+            df.dateFormat = "MMM dd YYYY ' - ' h:mm a"
+            let dateString = df.string(from: eventDate)
+            eventDateLabel.text = dateString
+        }
+        
         eventDetails.text = selectedEvent.details
         locationDetailsButton.setTitle(selectedEvent.location, for: .normal)
         contactDetailsButton.setTitle(selectedEvent.phoneNumber, for: .normal)

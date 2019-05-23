@@ -49,6 +49,9 @@ extension ViewController{
     }
     
     func setUpLocationEntryField(){
+       
+
+    distanceRadiusSegmentedControl.selectedSegmentIndex = 1 //Set the default segment to (20 miles)
         locationEntryField.attributedPlaceholder = NSAttributedString(string: "Enter Location",
                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
@@ -60,6 +63,63 @@ extension ViewController{
         subtractCategoryDropDown.dataSource = userSelectedEventCategories.strings()
         subtractCategoryDropDown.cellConfiguration = { (index, item) in return "\(item)" }
         
+    }
+    
+    func setUpSortButton(){
+        
+        configureFloatingSideButtonDesign(view: sortButton)
+        sortDropDown.anchorView = sortButton
+        sortDropDown.dataSource = ["Popularity", "Date (Desc)", "Date (Asc)"]
+        sortDropDown.cellConfiguration = { (index, item) in return "\(item)" }
+    }
+    
+    func sortButtonTapped(){
+        
+        sortDropDown.selectionAction = { (index: Int, item: String) in
+            sortBy(sortMethod: item)
+        }
+        sortDropDown.backgroundColor = themeMedium
+        sortDropDown.textColor = themeAccentPrimary
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
+                                     size: 14.0) {
+            sortDropDown.textFont = dropDownFont
+        }
+        sortDropDown.width = 140
+        sortDropDown.bottomOffset = CGPoint(x: 0, y:(sortDropDown.anchorView?.plainView.bounds.height)!)
+        sortDropDown.show()
+        
+        func sortBy(sortMethod: String){
+            let sortBySelected : sortBy = sortByPreference
+            if sortMethod == "Date (Desc)" {
+                sortByPreference = .datedesc
+            } else if sortMethod == "Date (Asc)" {
+                sortByPreference = .dateasc
+            } else {
+                sortByPreference = .popularity
+            }
+            if sortBySelected != sortByPreference {
+                //If user's sort preference changed, re-sort the events
+                switch sortByPreference {
+                case .popularity: events.sort(by: >)
+                case .datedesc: events.sort(by: <)
+                case .dateasc: events.sort(by: >)
+                }
+                reloadEventTableView()
+            }
+        }
+        
+    }
+    
+    func showTableViewSettingsContainer(){
+        //Show the table view settings container if the table view is not empty
+        
+        tableViewSettingsContainer.isHidden = false
+        sortButton.isHidden = false
+    }
+    
+    func hideTableViewSettingsContainer(){
+        tableViewSettingsContainer.isHidden = true
+        sortButton.isHidden = true
     }
     
     func setUpCategoryStackView(){
@@ -575,6 +635,29 @@ extension ViewController{
     
     func settingsButtonTapped(){
          performSegue(withIdentifier: "settingsSegue", sender: self)
+    }
+    
+    func searchForEvents(){
+        hideCalendarView()
+        hideSearchCollectionContainer()
+        let searchDistanceKm = searchDistanceMiles * 1.60934
+        
+        guard let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+            return
+        }
+        if addressText == "Current Location" || addressText.isEmpty || addressText == "" {
+            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm)
+        } else {
+            getCoordinates(forAddress: addressText) {
+                (location) in
+                guard let location = location else {
+                    //Handle geolocation error
+                    return
+                }
+                let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
+            }
+        }
     }
     
 }
