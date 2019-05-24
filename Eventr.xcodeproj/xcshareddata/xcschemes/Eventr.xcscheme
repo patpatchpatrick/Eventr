@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F65368802272618000861E0D"
-               BuildableName = "Eventr.app"
+               BuildableName = "Fiesta!.app"
                BlueprintName = "Eventr"
                ReferencedContainer = "container:Eventr.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F6FD35C2228A4D1D000DF12B"
-               BuildableName = "EventrUITests.xctest"
+               BuildableName = "Fiesta!UITests.xctest"
                BlueprintName = "EventrUITests"
                ReferencedContainer = "container:Eventr.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F65368802272618000861E0D"
-            BuildableName = "Eventr.app"
+            BuildableName = "Fiesta!.app"
             BlueprintName = "Eventr"
             ReferencedContainer = "container:Eventr.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F65368802272618000861E0D"
-            BuildableName = "Eventr.app"
+            BuildableName = "Fiesta!.app"
             BlueprintName = "Eventr"
             ReferencedContainer = "container:Eventr.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F65368802272618000861E0D"
-            BuildableName = "Eventr.app"
+            BuildableName = "Fiesta!.app"
             BlueprintName = "Eventr"
             ReferencedContainer = "container:Eventr.xcodeproj">
          </BuildableReference>
