@@ -299,6 +299,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let dateString = df.string(from: eventDate)
             cell.eventDateAndTime.text = dateString
         }
+        
+        //Set the count of users attending the event
+        if event.userCount > 0 {
+            cell.eventUserCount.isHidden = false
+            cell.eventUserCountIcon.isHidden = false
+            cell.eventUserCount.text = String(event.userCount)
+        } else {
+            cell.eventUserCount.isHidden = true
+            cell.eventUserCountIcon.isHidden = true
+        }
      
         
         //Handle event favorited

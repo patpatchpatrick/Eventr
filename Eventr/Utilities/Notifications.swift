@@ -12,3 +12,7 @@ import Foundation
 func reloadEventTableView(){
        NotificationCenter.default.post(name: Notification.Name("UPDATED_EVENT_DATA"), object: nil)
 }
+
+func reloadEventViewController(){
+    NotificationCenter.default.post(name: Notification.Name("RELOAD_EVENT_VC"), object: nil)
+}

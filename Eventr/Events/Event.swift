@@ -29,8 +29,11 @@ class Event : Comparable {
     var paid: Bool = false
     var upvoteCount: Int = 0
     var upvoted: Bool = false
-    var loggedInUserCreatedTheEvent: Bool = false //Bool to determine if it was a user-created event
+    var userCount = 0 //count of users who are attending the event
     
+    
+    var loggedInUserCreatedTheEvent: Bool = false //Bool to determine if it was a user-created event
+    var loggedInUserAttendingTheEvent: Bool = false //Bool to track if user is attending the event
     
     init(name: String, category: EventCategory, date: Date, address: String, details: String, contact: String, phoneNumber: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
         self.name = name
@@ -50,55 +53,55 @@ class Event : Comparable {
     
     //Initialize an event from a dictionary retreived from Firebase
     init(dict: NSDictionary, idKey: String){
-        if dict["name"] != nil {
-            self.name = dict.value(forKey: "name") as! String
+        if let nameDict = dict["name"] as? String {
+            self.name = nameDict
         }
         self.id = idKey
-        if dict["category"] != nil {
-            let categoryString = dict.value(forKey: "category") as! String
+        if let categoryString = dict["category"] as? String {
             self.category = stringToEventCategory(string: categoryString)
         }
-        if dict["date"] != nil {
-            let dateString = dict.value(forKey: "date") as! String
+        if let dateString = dict["date"] as? String {
             if let dateDouble = Double(dateString) {
                 //Date is stored in Firebase in GMT time (unix time)
                 self.GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
             }
         }
-        if dict["location"] != nil {
-            self.location = dict.value(forKey: "location") as! String
+        if let locationDict = dict["location"] as? String {
+            self.location = locationDict
         }
-        if dict["description"] != nil {
-            self.details = dict.value(forKey: "description") as! String
+        if let descriptionDict = dict["description"] as? String {
+            self.details = descriptionDict
         }
-        if dict["ticketURL"] != nil {
-            self.ticketURL = dict.value(forKey: "ticketURL") as! String
+        if let ticketURLDict = dict["ticketURL"] as? String {
+            self.ticketURL = ticketURLDict
         }
-        if dict["eventURL"] != nil {
-            self.eventURL = dict.value(forKey: "eventURL") as! String
+        if let eventURLDict = dict["eventURL"] as? String {
+            self.eventURL = eventURLDict
         }
-        if dict["contact"] != nil {
-             self.contact = dict.value(forKey: "contact") as! String
+        if let contactDict = dict["contact"] as? String {
+             self.contact = contactDict
         }
-        if dict["phone"] != nil {
-            self.phoneNumber = dict.value(forKey: "phone") as! String
+        if let phoneNumberDict = dict["phone"] as? String {
+            self.phoneNumber = phoneNumberDict
+            
         }
-        if dict["tag1"] != nil {
-            self.tag1 = dict.value(forKey: "tag1") as! String
+        if let tag1 = dict["tag1"] as? String {
+            self.tag1 = tag1
         }
-        if dict["tag2"] != nil {
-            self.tag2 = dict.value(forKey: "tag2") as! String
+        if let tag2 = dict["tag2"] as? String {
+            self.tag2 = tag2
         }
-        if dict["tag3"] != nil {
-            self.tag3 = dict.value(forKey: "tag3") as! String
+        if let tag3 = dict["tag3"] as? String {
+            self.tag3 = tag3
         }
-        if dict["upvotes"] != nil {
-            let stringUpvoteCount = dict.value(forKey: "upvotes") as! String
+        if let stringUpvoteCount = dict["upvotes"] as? String {
             self.upvoteCount = Int(stringUpvoteCount)!
         }
-        if dict["paid"] != nil {
-            let stringPaid = dict.value(forKey: "paid") as! String
+        if let stringPaid = dict["paid"] as? String {
             self.paid = (stringPaid == "1") ? true : false
+        }
+        if let userCount = dict["userCount"] as? Int {
+            self.userCount = userCount
         }
     }
     

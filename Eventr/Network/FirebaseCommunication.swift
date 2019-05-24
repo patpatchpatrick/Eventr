@@ -397,6 +397,86 @@ func unfavoriteFirebaseEvent(event: Event){
     
 }
 
+//Attend a particular event in Firebase
+func attendFirebaseEvent(event: Event){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return }
+    
+    //Mark that the user is attending the event in Firebase
+    //Add user to list of users attending the event and add event to the list of events that the user attended
+    firebaseDatabaseRef.child("attendingEvents").child(event.id).child(userID).setValue(userID)
+    
+    firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).setValue(event.id)
+    
+
+   //Update the count of users attending the event.  If no one is attending, set the count to 1.
+    firebaseDatabaseRef.child("events").child(event.id).child("userCount").observeSingleEvent(of: .value, with: { snapshot in
+        if !snapshot.exists() {
+                firebaseDatabaseRef.child("events").child(event.id).child("userCount").setValue(1)
+                selectedEvent.userCount = 1
+            
+        } else {
+            if var count = snapshot.value as? Int {
+                count = count + 1
+                print("NEW COUNT")
+                print(count)
+                firebaseDatabaseRef.child("events").child(event.id).child("userCount").setValue(count)
+                selectedEvent.userCount = count
+            }
+        }
+    })
+    
+    
+}
+
+func unattendFirebaseEvent(event: Event){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return }
+    
+    //User is no longer attending the event, so remove all of the "attending" user and event data from Firebase
+    firebaseDatabaseRef.child("attendingEvents").child(event.id).child(userID).removeValue()
+    
+    firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).removeValue()
+    
+    //Update the count of users attending the event.
+    firebaseDatabaseRef.child("events").child(event.id).child("userCount").observeSingleEvent(of: .value, with: { snapshot in
+        
+        if var count = snapshot.value as? Int {
+            count = count - 1
+            print("NEW COUNT")
+            print(count)
+            firebaseDatabaseRef.child("events").child(event.id).child("userCount").setValue(count)
+            selectedEvent.userCount = count
+        }
+        
+    })
+    
+}
+
+func queryIfUserIsAttendingEvent(event: Event) {
+    
+     guard let userID = Auth.auth().currentUser?.uid else { return }
+    
+    //Check if event is being attended by user.  If so, reload the event view controller to reflect this
+    firebaseDatabaseRef.child("attendingUsers").child(userID).observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        var userIsAttendingEvent = false
+        let dict = snapshot.value as? NSDictionary
+        if dict != nil {
+            userIsAttendingEvent = dict!.allValues.contains { element in
+                if case element as! String = event.id { return true } else { return false }
+            }
+        }
+        
+        if userIsAttendingEvent {
+            selectedEvent.loggedInUserAttendingTheEvent = true
+            reloadEventViewController()
+        }
+        
+    })
+    
+}
+
 
 //Query a firebase event to determine if it was favorited
 func queryIfFirebaseEventIsFavorited(event: Event){

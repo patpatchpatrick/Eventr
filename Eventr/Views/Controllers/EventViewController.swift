@@ -35,10 +35,18 @@ class EventViewController: UIViewController {
     @IBOutlet weak var tagLabel: CustomLabel!
     @IBOutlet weak var editButtonContainer: RoundUIView!
     @IBOutlet weak var deleteButtonContainer: RoundUIView!
+    @IBOutlet weak var attendingEventButton: RoundedButton!
     
     
     
     override func viewDidAppear(_ animated: Bool) {
+        //Notification that event data has changed and should be reloaded
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reload_event_data),
+                                               name:Notification.Name("RELOAD_EVENT_VC"),
+                                               object: nil)
+
+        queryIfUserIsAttendingEvent(event: selectedEvent)
         setStackViewWidth()
         initializeMapKitView()
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
@@ -48,6 +56,15 @@ class EventViewController: UIViewController {
         configureDeleteButton()
         populateFieldsWithData()
         updateFavoriteIcon()
+    }
+    
+    @objc func reload_event_data(notification:Notification) -> Void{
+        reloadAttendingButton()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func populateFieldsWithData(){
@@ -307,6 +324,42 @@ class EventViewController: UIViewController {
                 application.open(phoneCallURL, options: [:], completionHandler: nil)
             }
         }
+    }
+    
+    
+    @IBAction func attendButtonTapped(_ sender: Any) {
+        
+    //If user is already attending the event, unattend the event
+        //If user is not yet attending the event, attend the event
+        
+        if selectedEvent.loggedInUserAttendingTheEvent {
+            selectedEvent.loggedInUserAttendingTheEvent = false
+            unattendFirebaseEvent(event: selectedEvent)
+        } else {
+            selectedEvent.loggedInUserAttendingTheEvent = true
+            attendFirebaseEvent(event: selectedEvent)
+        }
+        
+           reloadAttendingButton()
+        
+    }
+    
+    func reloadAttendingButton(){
+        
+        if userIsNotLoggedIn(){
+            attendingEventButton.isHidden = true
+        } else {
+            attendingEventButton.isHidden = false
+        }
+        
+        if selectedEvent.loggedInUserAttendingTheEvent == false {
+            attendingEventButton.setTitle("ATTEND", for: .normal)
+            attendingEventButton.backgroundColor = themeAccentLightBlue
+        } else {
+            attendingEventButton.setTitle("UNATTEND", for: .normal)
+            attendingEventButton.backgroundColor = themeAccentRed
+        }
+        
     }
     
     
