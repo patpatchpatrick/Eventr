@@ -123,7 +123,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         
         calendar.scrollingMode = .stopAtEachSection
         calendar.scrollDirection = .vertical
-        var startDate = Date()
+        let startDate = Date()
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
         var endDate = cal!.date(byAdding: NSCalendar.Unit.year, value: 3, to: startDate, options: NSCalendar.Options.matchLast)
         if endDate == nil { endDate = startDate}

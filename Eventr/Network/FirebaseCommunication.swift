@@ -103,11 +103,9 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
                         let afterDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)!
                         if eventDateCurrentTimeZone >= beforeDate && eventDateCurrentTimeZone <= afterDate {
                             //First, add the event to the allEvents list (this list is used to maintain events so that they can be re-filtered without needing to query Firebase again)
-                            print("ALLEVENTSREACHED")
                             addEventToEventsListInOrder(event: event, eventList: &allEvents)
                             if selectedCategory == categoryAll || selectedCategory == event.category.index() {
                                 //Secondly, use the current selected category to filter the events and add them to tableView
-                                  print("TABLEEVENTSREACHED")
                                 addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                                 reloadEventTableView()
                             }

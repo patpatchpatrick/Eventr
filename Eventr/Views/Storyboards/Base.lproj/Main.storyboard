@@ -69,6 +69,12 @@
                                     <constraint firstAttribute="height" constant="128" id="rdU-DS-EnU"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Social Life Solution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRZ-ax-cDP">
+                                <rect key="frame" x="66" y="372" width="188.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V8l-8w-yLf">
                                 <rect key="frame" x="0.0" y="430" width="320" height="108"/>
                                 <subviews>
@@ -125,6 +131,8 @@
                             <constraint firstItem="Uqm-oE-C8L" firstAttribute="top" secondItem="V8l-8w-yLf" secondAttribute="bottom" constant="30" id="ggl-Kb-CDq"/>
                             <constraint firstItem="0xq-oF-4RZ" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="hLv-1m-UdS"/>
                             <constraint firstItem="R8a-3r-jsb" firstAttribute="top" secondItem="Woq-dE-Kjq" secondAttribute="bottom" id="k5x-Sy-f6c"/>
+                            <constraint firstItem="XRZ-ax-cDP" firstAttribute="top" secondItem="R8a-3r-jsb" secondAttribute="bottom" constant="-30" id="kP3-ka-1S8"/>
+                            <constraint firstItem="XRZ-ax-cDP" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="q80-bV-Jda"/>
                             <constraint firstItem="R8a-3r-jsb" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="y1a-cS-FPO"/>
                         </constraints>
                     </view>
