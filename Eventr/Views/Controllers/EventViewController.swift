@@ -36,7 +36,8 @@ class EventViewController: UIViewController {
     @IBOutlet weak var editButtonContainer: RoundUIView!
     @IBOutlet weak var deleteButtonContainer: RoundUIView!
     @IBOutlet weak var attendingEventButton: RoundedButton!
-    
+    @IBOutlet weak var eventUserAccountIcon: UIButton!
+    @IBOutlet weak var eventUserCountLabel: UILabel!
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +48,7 @@ class EventViewController: UIViewController {
                                                object: nil)
 
         queryIfUserIsAttendingEvent(event: selectedEvent)
+        reloadAttendingUserData()
         setStackViewWidth()
         initializeMapKitView()
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
@@ -60,7 +62,7 @@ class EventViewController: UIViewController {
     
     @objc func reload_event_data(notification:Notification) -> Void{
         reloadAttendingButton()
-        
+        reloadAttendingUserData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -358,6 +360,18 @@ class EventViewController: UIViewController {
         } else {
             attendingEventButton.setTitle("UNATTEND", for: .normal)
             attendingEventButton.backgroundColor = themeAccentRed
+        }
+    }
+    
+    func reloadAttendingUserData(){
+        
+        if selectedEvent.userCount > 0 {
+            eventUserCountLabel.isHidden = false
+            eventUserAccountIcon.isHidden = false
+            eventUserCountLabel.text = String(selectedEvent.userCount)
+        } else {
+            eventUserCountLabel.isHidden = true
+            eventUserAccountIcon.isHidden = true
         }
         
     }

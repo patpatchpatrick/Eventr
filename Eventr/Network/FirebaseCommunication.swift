@@ -159,8 +159,9 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             "tag2":   event.tag2,
             "tag3":   event.tag3,
             "upvotes": String(event.upvoteCount),
-            "paid" : paidString
-        ]
+            "paid" : paidString,
+            "userCount" : event.userCount
+            ] as [String : Any]
         //Add the event to the "events" section of firebase
         //If event is being created for first time, generate an autoID
         //If event is being updated, the child will be the eventID
@@ -229,6 +230,7 @@ func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
     //Delete every reference to the event (events, created, date and geoFire)
     //User specific references to the event (upvotes, favorited, etc...) are not deleted when the event is deleted
     firebaseDatabaseRef.child("events").child(event.id).removeValue()
+    firebaseDatabaseRef.child("attendingEvents").child(event.id).removeValue()
     firebaseDatabaseRef.child("created").child(userID).child(event.id).removeValue()
     let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
     //firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).removeValue()
