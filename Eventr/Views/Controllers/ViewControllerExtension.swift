@@ -506,6 +506,7 @@ extension ViewController{
      //Hide the list descriptor which describes the type of events being shown
     func hideListDescriptor(){
         tableEvents.removeAll()
+        refilterTableViewByCategory() //If tableView has events already loaded, add them back to the tableView
         reloadEventTableView()
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.listDescriptor.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width - self.listDescriptor.frame.width, y: 0)

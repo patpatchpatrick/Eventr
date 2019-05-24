@@ -87,7 +87,9 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
                 currentCell.dateLabel.textColor = UIColor.white
                 //currentCell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
             case .full:
-                currentCell.selectedView.layer.cornerRadius = 20
+                currentCell.selectedView.isHidden = false
+                currentCell.selectedMiddleView.isHidden = false
+                currentCell.selectedView.layer.cornerRadius = 22
                 currentCell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
                 currentCell.dateLabel.textColor = themeTextColor
             default: break
@@ -152,7 +154,18 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         
         //If date is closer to fromDate, deselect all dates before fromDate and make date = fromDate
         //If date is closer to toDate, deselect all dates after date and make date = toDate
-       if (date.timeIntervalSince1970 - fromDate.timeIntervalSince1970) < (toDate.timeIntervalSince1970 - date.timeIntervalSince1970){
+        
+        if date.isWithin24HoursOf(date: fromDate){
+            calendarView.deselectAllDates(triggerSelectionDelegate: false)
+             calendarView.selectDates([fromDate], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+            fromDate = date
+            toDate = date
+        } else if date.isWithin24HoursOf(date: toDate){
+            calendarView.deselectAllDates(triggerSelectionDelegate: false)
+             calendarView.selectDates([toDate], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+            fromDate = date
+            toDate = date
+        } else if (date.timeIntervalSince1970 - fromDate.timeIntervalSince1970) < (toDate.timeIntervalSince1970 - date.timeIntervalSince1970){
             fromDate = date
             calendarView.deselectDates(from: Date().addingTimeInterval(-ONE_DAY), to: fromDate.addingTimeInterval(-ONE_DAY), triggerSelectionDelegate: false)
             calendarView.selectDates([fromDate], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)

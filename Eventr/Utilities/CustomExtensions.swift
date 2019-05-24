@@ -15,6 +15,14 @@ extension Date {
         let delta = TimeInterval(timeZone.secondsFromGMT() - initTimeZone.secondsFromGMT())
         return addingTimeInterval(delta)
     }
+    
+    func isWithin24HoursOf(date: Date) -> Bool {
+        if abs(self.timeIntervalSince1970 - date.timeIntervalSince1970) < ONE_DAY {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 //Hide keyboard when tapped elsewhere

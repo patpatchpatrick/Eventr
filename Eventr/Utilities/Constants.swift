@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//Time intervals used for date calculations
 let ONE_DAY: Double = 86400
 let ONE_WEEK : Double = 604800
 
