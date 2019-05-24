@@ -69,7 +69,7 @@ extension ViewController{
         
         configureFloatingSideButtonDesign(view: sortButton)
         sortDropDown.anchorView = sortButton
-        sortDropDown.dataSource = ["Popularity", "Date (Desc)", "Date (Asc)"]
+        sortDropDown.dataSource = ["Popularity", "Date (Asc)", "Date (Desc)"]
         sortDropDown.cellConfiguration = { (index, item) in return "\(item)" }
     }
     
@@ -100,9 +100,9 @@ extension ViewController{
             if sortBySelected != sortByPreference {
                 //If user's sort preference changed, re-sort the events
                 switch sortByPreference {
-                case .popularity: events.sort(by: >)
-                case .datedesc: events.sort(by: <)
-                case .dateasc: events.sort(by: >)
+                case .popularity: tableEvents.sort(by: >)
+                case .datedesc: tableEvents.sort(by: >)
+                case .dateasc: tableEvents.sort(by: <)
                 }
                 reloadEventTableView()
             }
@@ -367,7 +367,14 @@ extension ViewController{
             sender.tintColor = themeAccentPrimary
             sender.alpha = 1
         }
-        selectedCategory = sender.tag //The tag of the sending button matches the index of whichever category was selected 
+        
+        print("TEST ALL CATEGORIES" + String(sender.tag))
+        //If the category changed, update the category and refilter the tableView
+        if sender.tag != selectedCategory {
+                   selectedCategory = sender.tag //The tag of the sending button matches the index of whichever category was selected
+            refilterTableViewByCategory()
+        }
+        
     }
     
     @objc func plusButtonTapped(sender: UIButton!) {
@@ -440,9 +447,9 @@ extension ViewController{
     {
         guard let upvoteImage = tapGestureRecognizer.view as? UIImageView else {return}
         //If an upvote arrow was clicked, upvote the event
-        events[upvoteImage.tag].upvote()
+        tableEvents[upvoteImage.tag].upvote()
         eventTableView.reloadData()
-        print(events[upvoteImage.tag].name)
+        print(tableEvents[upvoteImage.tag].name)
         if (upvoteImage.tag == 0) //Give your image View tag
         {
             //navigate to next view
@@ -498,7 +505,7 @@ extension ViewController{
     
      //Hide the list descriptor which describes the type of events being shown
     func hideListDescriptor(){
-        events.removeAll()
+        tableEvents.removeAll()
         reloadEventTableView()
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.listDescriptor.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width - self.listDescriptor.frame.width, y: 0)
@@ -646,7 +653,10 @@ extension ViewController{
             return
         }
         if addressText == "Current Location" || addressText.isEmpty || addressText == "" {
-            queryFirebaseEventsInRadius(centerLocation: currentLocation!, radius: searchDistanceKm)
+            guard let location = currentLocation else {
+                return
+            }
+            queryFirebaseEventsInRadius(centerLocation: location, radius: searchDistanceKm)
         } else {
             getCoordinates(forAddress: addressText) {
                 (location) in
@@ -658,6 +668,22 @@ extension ViewController{
                 queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
             }
         }
+    }
+    
+    func refilterTableViewByCategory(){
+        //This method will re-filter the tableview if the selected category was changed by the user
+        //It goes through the "AllEvents" list, and adds selected categories to the tableEvents list
+        if allEvents.count <= 0 {
+            return
+        }
+        tableEvents.removeAll()
+        for event in allEvents {
+            if selectedCategory == event.category.index() || selectedCategory == categoryAll {
+                addEventToEventsListInOrder(event: event, eventList: &tableEvents)
+            }
+        }
+        reloadEventTableView()
+        
     }
     
 }

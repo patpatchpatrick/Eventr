@@ -14,7 +14,7 @@ import FirebaseAuth
 import GoogleSignIn
 import JTAppleCalendar
 
-var selectedCategory: Int = 0
+var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), address: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 enum eventAction {
@@ -22,7 +22,8 @@ enum eventAction {
     case editing
 }
 var selectedEventAction: eventAction = .creating //variable to track if creating or editing an event
-var events: [Event] = [] //List of events in tableview
+var tableEvents: [Event] = [] //List of events in tableview
+var allEvents: [Event] = [] //List of all queried events.  This list may be filtered/shortened based on search criteria when events are displayed in the table (tableEvents) array.  This list of events is maintained so that events don't need to be re-queried from Firebase
 var currentLocation: CLLocation!
 var searchDistanceMiles: Double = 5.0 //search distance in miles
 var googleUser: GIDGoogleUser?
@@ -156,7 +157,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @objc func updated_event_data(notification:Notification) -> Void{
         eventTableView.reloadData()
-        if events.count > 0 {
+        if tableEvents.count > 0 {
             showTableViewSettingsContainer()
         } else {
             hideTableViewSettingsContainer()
@@ -266,7 +267,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return tableEvents.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -279,7 +280,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = eventTableView.dequeueReusableCell(withIdentifier: "cellEvent", for: indexPath) as! CustomEventCell
         
         //Handle paid event
-        let event = events[indexPath.row]
+        let event = tableEvents[indexPath.row]
         cell.eventName?.text = event.name
         if event.paid {
             cell.paidEvent?.image = UIImage(named: "eventIconDollar")
@@ -331,14 +332,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //Favorite icon (star) is tapped for a table row
     @IBAction func eventFavorited(_ sender: UIButton) {
-        events[sender.tag].markFavorite()
+        tableEvents[sender.tag].markFavorite()
     }
     
     
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedEvent = events[indexPath.row]
+        selectedEvent = tableEvents[indexPath.row]
         performSegue(withIdentifier: "eventSegue", sender: self)
     }
     
@@ -378,7 +379,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func listDescriptorReturnButtonTapped(_ sender: Any) {
         
-        print("RETURN BUTTON TAPPED")
         hideListDescriptor()
         
     }

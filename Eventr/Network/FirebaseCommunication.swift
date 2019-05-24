@@ -22,7 +22,8 @@ let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 //Query firebase for event data for each of the keys and build events
 //Set the events list to include the queried events data and reload the tableview
 func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
-    events.removeAll()
+    tableEvents.removeAll()
+    allEvents.removeAll()
     var keyList: [String] = []
     
     //Query to find all keys(event IDs) within radius of location
@@ -43,7 +44,7 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
 func queryFirebaseFavoriteEvents(){
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
-    events.removeAll()
+    tableEvents.removeAll()
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
@@ -63,7 +64,7 @@ func queryFirebaseFavoriteEvents(){
 func queryFirebaseCreatedEvents(){
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
-    events.removeAll()
+    tableEvents.removeAll()
     firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
@@ -101,17 +102,21 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
                         let beforeDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: fromDate)!
                         let afterDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)!
                         if eventDateCurrentTimeZone >= beforeDate && eventDateCurrentTimeZone <= afterDate {
-                            if selectedCategory == 0 || event.category.index() == selectedCategory {
-                                let index = events.insertionIndexOf(elem: event, isOrderedBefore: >)
-                                events.insert(event, at: index)
+                            //First, add the event to the allEvents list (this list is used to maintain events so that they can be re-filtered without needing to query Firebase again)
+                            print("ALLEVENTSREACHED")
+                            addEventToEventsListInOrder(event: event, eventList: &allEvents)
+                            if selectedCategory == categoryAll || selectedCategory == event.category.index() {
+                                //Secondly, use the current selected category to filter the events and add them to tableView
+                                  print("TABLEEVENTSREACHED")
+                                addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                                 reloadEventTableView()
                             }
                         }
                     }
                 } else {
                     //Add event to tableview without search criteria check
-                    let index = events.insertionIndexOf(elem: event, isOrderedBefore: >)
-                    events.insert(event, at: index)
+                    let index = tableEvents.insertionIndexOf(elem: event, isOrderedBefore: >)
+                    tableEvents.insert(event, at: index)
                     reloadEventTableView()
                 }
             }
@@ -468,3 +473,4 @@ func displayInvalidLocationAlert(viewController: UIViewController) {
     alertController.addAction(defaultAction)
     viewController.present(alertController, animated: true, completion: nil)
 }
+
