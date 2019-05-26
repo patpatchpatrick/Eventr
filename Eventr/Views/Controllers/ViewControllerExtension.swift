@@ -426,6 +426,21 @@ extension ViewController{
         
     }
     
+    func getCurrentLocationAndLoadTableView(){
+        if currentLocation == nil {
+            //Get user's current location
+            DispatchQueue.global(qos: .userInteractive).async {
+                if CLLocationManager.locationServicesEnabled() {
+                    self.locationManager.delegate = self
+                    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                    self.locationManager.startUpdatingLocation()
+                }
+            }
+        } else {
+            currentLocationRetrieved()
+        }
+    }
+    
     //User's location returned
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -438,8 +453,17 @@ extension ViewController{
     }
     
     func currentLocationRetrieved(){
+        print("Location Retrieved!")
         locationEntryField.text = "Current Location"
         locationEntryField.endEditing(true)
+        self.locationManager.stopUpdatingLocation()
+        
+        //If app is starting up for the first time, load the list of events to display
+        if !initialListLoaded {
+            print("QUERYING INITIAL SEARCH")
+            initialListLoaded = true
+            searchForEvents()
+        }
     }
     
     // Method to run when upvote imageview is tapped

@@ -24,7 +24,8 @@ enum eventAction {
 var selectedEventAction: eventAction = .creating //variable to track if creating or editing an event
 var tableEvents: [Event] = [] //List of events in tableview
 var allEvents: [Event] = [] //List of all queried events.  This list may be filtered/shortened based on search criteria when events are displayed in the table (tableEvents) array.  This list of events is maintained so that events don't need to be re-queried from Firebase
-var currentLocation: CLLocation!
+var currentLocation: CLLocation?
+var initialListLoaded: Bool = false //Bool to keep track of if the list has loaded when the app starts
 var searchDistanceMiles: Double = 5.0 //search distance in miles
 var googleUser: GIDGoogleUser?
 //Date range to query events
@@ -135,6 +136,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpLocationEntryField()
         setUpMainButtons()
         setUpSortButton()
+        getCurrentLocationAndLoadTableView()
         hideSearchCollectionContainer()
         hideSideMenu()
         hideCalendarView()
@@ -208,21 +210,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //"Get current location" button tapped
     //Get the user's location. The locationManager function in VCExtension class will be called after location is retrieved
-    @IBAction func getCurrentLocation(_ sender: UIButton) {
-        
-        if currentLocation == nil {
-            //Get user's current location
-            DispatchQueue.global(qos: .userInteractive).async {
-                if CLLocationManager.locationServicesEnabled() {
-                    self.locationManager.delegate = self
-                    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-                    self.locationManager.startUpdatingLocation()
-                }
-            }
-        } else {
-            currentLocationRetrieved()
-        }
-        
+    @IBAction func getCurrentLocationButtonTapped(_ sender: UIButton) {
+
+       getCurrentLocationAndLoadTableView()
         
     }
     
