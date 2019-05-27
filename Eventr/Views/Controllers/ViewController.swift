@@ -141,6 +141,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         hideSideMenu()
         hideCalendarView()
         configureCalendarView()
+        
+        //addTestDataToFirebase(vc: self)
   
     }
     
