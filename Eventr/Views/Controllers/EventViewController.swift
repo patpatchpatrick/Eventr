@@ -84,7 +84,14 @@ class EventViewController: UIViewController {
         }
         
         eventDetails.text = selectedEvent.details
-        locationDetailsButton.setTitle(selectedEvent.location, for: .normal)
+        
+        if selectedEvent.venue != "" && !selectedEvent.venue.isEmpty {
+            locationDetailsButton.setTitle(selectedEvent.venue + " - " + selectedEvent.location, for: .normal)
+        } else {
+            locationDetailsButton.setTitle( selectedEvent.location, for: .normal)
+            
+        }
+
         contactDetailsButton.setTitle(selectedEvent.phoneNumber, for: .normal)
         let additionalContactInfoString = selectedEvent.contact
         if additionalContactInfoString.isEmpty || additionalContactInfoString == "" {

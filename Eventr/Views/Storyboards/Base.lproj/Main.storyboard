@@ -2241,7 +2241,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="423"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="10" y="10" width="300" height="476"/>
+                                                <rect key="frame" x="10" y="10" width="300" height="519.5"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-3j-RYP" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="36.5"/>
@@ -2615,11 +2615,24 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                                                                 <color key="value" name="Dark"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Event Location/Address*"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Event Address*"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textView>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1Wu-Hw-q40" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                                        <rect key="frame" x="0.0" y="238.5" width="300" height="36.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" name="Text"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Event Venue Name"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" name="Dark"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RKs-T8-3EI" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="238.5" width="300" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="284" width="300" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2632,7 +2645,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GLy-IO-trK" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="284" width="300" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="329.5" width="300" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2644,14 +2657,18 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Event URL"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-Xe-pKs" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
-                                                        <rect key="frame" x="0.0" y="329.5" width="300" height="30"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-Xe-pKs" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
+                                                        <rect key="frame" x="0.0" y="375" width="300" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="28" id="urc-U4-OYY"/>
+                                                        </constraints>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dwq-yQ-BWN" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="368.5" width="300" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="412" width="300" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2664,7 +2681,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RS7-M6-4Wu">
-                                                        <rect key="frame" x="0.0" y="414" width="300" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="457.5" width="300" height="36.5"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-9N-b2h" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="98.5" height="36.5"/>
@@ -2708,7 +2725,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ta1-Ru-Q21">
-                                                        <rect key="frame" x="0.0" y="459.5" width="300" height="16.5"/>
+                                                        <rect key="frame" x="0.0" y="503" width="300" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
@@ -2810,6 +2827,7 @@
                         <outlet property="eventTag3" destination="ZHv-tw-obb" id="Iry-Ab-lNJ"/>
                         <outlet property="eventTicketURL" destination="RKs-T8-3EI" id="sXn-PG-DfL"/>
                         <outlet property="eventURL" destination="GLy-IO-trK" id="i9T-aI-Rmk"/>
+                        <outlet property="eventVenueName" destination="1Wu-Hw-q40" id="cqh-ju-Etg"/>
                         <outlet property="headerBackButtonContainer" destination="8BQ-NV-SH3" id="tVM-Zc-rSM"/>
                         <outlet property="paidSwitch" destination="rmz-v0-rvR" id="joV-7f-tG1"/>
                         <outlet property="selectCategoryButton" destination="1Xu-72-To4" id="veA-JU-S5R"/>

@@ -291,6 +291,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         let dateString = df.string(from: selectedEventDate)
         selectEventDateButton.setTitle(dateString, for: .normal)
         eventLocation.text = selectedEvent.location
+        eventVenueName.text = selectedEvent.venue
         eventDescription.text = selectedEvent.details
         eventPhoneNumberTextField.text = selectedEvent.phoneNumber
         eventContactInfo.text = selectedEvent.contact

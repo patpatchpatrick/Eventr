@@ -16,7 +16,7 @@ import JTAppleCalendar
 
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), address: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
+var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 enum eventAction {
     case creating
     case editing
