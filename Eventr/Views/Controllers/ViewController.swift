@@ -317,19 +317,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.upvoteArrow?.addGestureRecognizer(tapGestureRecognizer)
         cell.favoriteIcon?.tag = indexPath.row
         cell.upvoteArrow?.tag = indexPath.row
+        cell.upvoteCount?.tag = indexPath.row
         if event.upvoted {
             cell.upvoteArrow.tintColor = themeAccentGreen
         } else {
             cell.upvoteArrow.tintColor = themeDark
         }
-        cell.upvoteCount?.text = String(event.upvoteCount)
+        cell.upvoteCount?.setTitle(String(event.upvoteCount), for: .normal)
         
         //Configure design for the primary view
         configurePrimaryTableViewCellDesign(view: cell.primaryView)
         
         return cell
     }
-    
+ 
     //Favorite icon (star) is tapped for a table row
     @IBAction func eventFavorited(_ sender: UIButton) {
         tableEvents[sender.tag].markFavorite()
@@ -417,6 +418,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    @IBAction func upvoteLabelTapped(_ sender: UIButton) {
+        
+        //If the upvote label was clicked, upvote the event
+        tableEvents[sender.tag].upvote()
+        eventTableView.reloadData()
+        
+        
+    }
     
     
 }

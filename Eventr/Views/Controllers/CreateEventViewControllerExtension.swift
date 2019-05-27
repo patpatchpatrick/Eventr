@@ -8,6 +8,7 @@
 
 import Foundation
 import JTAppleCalendar
+import PhoneNumberKit
 
 extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     
@@ -181,22 +182,11 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         guard let categoryString = selectCategoryButton.titleLabel?.text else {
             return false
         }
-        if eventName.text.isEmpty || eventDescription.text.isEmpty || eventLocation.text.isEmpty || eventPhoneNumber.text.isEmpty ||  categoryString.isEmpty {
+        if eventName.text.isEmpty || eventDescription.text.isEmpty || eventLocation.text.isEmpty ||  categoryString.isEmpty {
             return true
         } else {
             return false
         }
-    }
-    
-    //Check if phone number is properly formatted
-    //Phone number is properly formatted if it only contains numbers or is empty
-    func phoneNumberIsNotProperlyFormatted() -> Bool {
-          let phoneNumberString = eventPhoneNumber.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !eventPhoneNumber.text.isEmpty && phoneNumberString != "" {
-            let onlyContainsNumbers = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phoneNumberString))
-            return !onlyContainsNumbers
-        }
-        return false
     }
     
     func displayAlertWithOKButton(text: String){
@@ -225,6 +215,27 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         } else {
             prefs.set(Date(), forKey: dailyMaximumDateKey)
             prefs.set(1, forKey: dailyMaximumNumberKey)
+        }
+        
+    }
+    
+    //Check that phone number is properly formatted/valid
+    func getValidPhoneNumberOrDisplayAlert() -> PhoneNumber? {
+        
+        guard let phoneNumberString = eventPhoneNumberTextField.text else {
+            return nil
+        }
+        
+        let phoneNumberKit = PhoneNumberKit()
+        do {
+            let phoneRaw = phoneNumberString.filter { Int(String($0)) != nil }
+            let phoneNumber = try phoneNumberKit.parse(phoneRaw)
+            return phoneNumber
+        }
+        catch {
+            print("Generic parser error")
+             displayAlertWithOKButton(text: "Enter Valid Phone Number")
+            return nil
         }
         
     }
@@ -271,6 +282,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
             return
         }
         eventName.text = selectedEvent.name
+        selectedCategoryString = selectedEvent.category.text()
         selectCategoryButton.setTitle(selectedEvent.category.text(), for: .normal)
         previousDate = selectedEventDate.addingTimeInterval(0)
         eventDate = selectedEventDate
@@ -280,6 +292,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         selectEventDateButton.setTitle(dateString, for: .normal)
         eventLocation.text = selectedEvent.location
         eventDescription.text = selectedEvent.details
+        eventPhoneNumberTextField.text = selectedEvent.phoneNumber
         eventContactInfo.text = selectedEvent.contact
         eventTicketURL.text = selectedEvent.ticketURL
         eventURL.text = selectedEvent.eventURL

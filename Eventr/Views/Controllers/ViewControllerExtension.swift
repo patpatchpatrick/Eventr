@@ -473,14 +473,6 @@ extension ViewController{
         //If an upvote arrow was clicked, upvote the event
         tableEvents[upvoteImage.tag].upvote()
         eventTableView.reloadData()
-        print(tableEvents[upvoteImage.tag].name)
-        if (upvoteImage.tag == 0) //Give your image View tag
-        {
-            //navigate to next view
-        }
-        else{
-            
-        }
     }
     
     func loadFavoriteEvents(){
@@ -710,5 +702,7 @@ extension ViewController{
         reloadEventTableView()
         
     }
+    
+    
     
 }

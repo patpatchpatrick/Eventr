@@ -37,7 +37,6 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
         addEventsToEventTableView(eventsList: keyList, isUserCreatedEvent: false, searchCriteriaIsRequired: true)
     }
     
-    
 }
 
 //Query list of Firebase events that were favorited by the user and add them to the eventsTableView

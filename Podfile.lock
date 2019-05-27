@@ -84,6 +84,12 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PhoneNumberKit (2.6.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 2.6.0)
+    - PhoneNumberKit/UIKit (= 2.6.0)
+  - PhoneNumberKit/PhoneNumberKitCore (2.6.0)
+  - PhoneNumberKit/UIKit (2.6.0):
+    - PhoneNumberKit/PhoneNumberKitCore
 
 DEPENDENCIES:
   - DropDown
@@ -93,6 +99,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - JTAppleCalendar (~> 7.0)
   - KMPlaceholderTextView (~> 1.4.0)
+  - PhoneNumberKit (~> 2.6)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -113,6 +120,7 @@ SPEC REPOS:
     - KMPlaceholderTextView
     - leveldb-library
     - nanopb
+    - PhoneNumberKit
 
 EXTERNAL SOURCES:
   GeoFire:
@@ -142,7 +150,8 @@ SPEC CHECKSUMS:
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PhoneNumberKit: 167ee1f0bbb6efce7c62559e620eae745595532f
 
-PODFILE CHECKSUM: 7ce256420f5817d81cd8310c4dc2683d6757016b
+PODFILE CHECKSUM: 0ef8b9f3818d86c88ceb2ee84fecc43f7174778f
 
 COCOAPODS: 1.6.1

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import PhoneNumberKit
 
 class EventViewController: UIViewController {
 
@@ -310,9 +311,17 @@ class EventViewController: UIViewController {
         
         //If contact phone number button is tapped, attempt to call the phone from the user's device
         
-        if !selectedEvent.phoneNumber.isEmpty && selectedEvent.phoneNumber != "" {
-            callNumber(phoneNumber: "1" + selectedEvent.phoneNumber)
+        let phoneNumberKit = PhoneNumberKit()
+        do {
+            let phoneNumber = try phoneNumberKit.parse(selectedEvent.phoneNumber)
+            if !selectedEvent.phoneNumber.isEmpty && selectedEvent.phoneNumber != "" {
+                callNumber(phoneNumber: String(phoneNumber.nationalNumber))
+            }
         }
+        catch {
+            return
+        }
+        
         
     }
     

@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Heebo-Light.ttf">
-            <string>Heebo-Light</string>
-        </array>
         <array key="Heebo-Thin.ttf">
             <string>Heebo-Thin</string>
         </array>
@@ -417,12 +414,16 @@
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZe-BG-Ttz" userLabel="upvoteContainer">
                                                                                     <rect key="frame" x="0.0" y="53" width="30" height="40"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDC-6e-F5T">
-                                                                                            <rect key="frame" x="2" y="23.5" width="26" height="16.5"/>
-                                                                                            <fontDescription key="fontDescription" name="Heebo-Light" family="Heebo Light" pointSize="11"/>
-                                                                                            <nil key="textColor"/>
-                                                                                            <nil key="highlightedColor"/>
-                                                                                        </label>
+                                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9n6-jc-NuU">
+                                                                                            <rect key="frame" x="-3" y="12" width="36" height="28"/>
+                                                                                            <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway Light" pointSize="13"/>
+                                                                                            <state key="normal" title="Count">
+                                                                                                <color key="titleColor" name="Text"/>
+                                                                                            </state>
+                                                                                            <connections>
+                                                                                                <action selector="upvoteLabelTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FwO-Al-QeX"/>
+                                                                                            </connections>
+                                                                                        </button>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upvoteArrow" translatesAutoresizingMaskIntoConstraints="NO" id="mHs-nw-52Z">
                                                                                             <rect key="frame" x="5" y="0.0" width="20" height="20"/>
                                                                                             <constraints>
@@ -435,10 +436,10 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="30" id="7du-XZ-PXN"/>
                                                                                         <constraint firstItem="mHs-nw-52Z" firstAttribute="top" secondItem="gZe-BG-Ttz" secondAttribute="top" id="H0w-9K-A1G"/>
-                                                                                        <constraint firstAttribute="bottom" secondItem="SDC-6e-F5T" secondAttribute="bottom" id="Kd1-Ia-MAh"/>
                                                                                         <constraint firstAttribute="height" constant="40" id="OrN-s1-1O8"/>
+                                                                                        <constraint firstItem="9n6-jc-NuU" firstAttribute="centerX" secondItem="gZe-BG-Ttz" secondAttribute="centerX" id="Tyl-nl-yPr"/>
                                                                                         <constraint firstItem="mHs-nw-52Z" firstAttribute="centerX" secondItem="gZe-BG-Ttz" secondAttribute="centerX" id="qBi-0Q-IPD"/>
-                                                                                        <constraint firstItem="SDC-6e-F5T" firstAttribute="centerX" secondItem="gZe-BG-Ttz" secondAttribute="centerX" id="vef-Vt-hCp"/>
+                                                                                        <constraint firstAttribute="bottom" secondItem="9n6-jc-NuU" secondAttribute="bottom" id="uZ5-Wl-8Zy"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1C1-nE-igI" userLabel="userCountContainer">
@@ -574,7 +575,7 @@
                                                                     <outlet property="paidEvent" destination="Bmb-I1-ic2" id="o4T-vt-TLp"/>
                                                                     <outlet property="primaryView" destination="MGZ-L9-ex3" id="fS2-xn-3By"/>
                                                                     <outlet property="upvoteArrow" destination="mHs-nw-52Z" id="VH6-c1-EvG"/>
-                                                                    <outlet property="upvoteCount" destination="SDC-6e-F5T" id="lJn-LU-K9b"/>
+                                                                    <outlet property="upvoteCount" destination="9n6-jc-NuU" id="373-Lm-LbZ"/>
                                                                     <segue destination="4hp-pR-aFR" kind="show" identifier="eventSegue" id="dut-gU-axl"/>
                                                                 </connections>
                                                             </tableViewCell>
@@ -2240,7 +2241,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="423"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="10" y="10" width="300" height="482.5"/>
+                                                <rect key="frame" x="10" y="10" width="300" height="476"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-3j-RYP" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="36.5"/>
@@ -2643,21 +2644,14 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Event URL"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-vV-5CR" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="329.5" width="300" height="36.5"/>
-                                                        <color key="backgroundColor" name="Medium"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-Xe-pKs" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
+                                                        <rect key="frame" x="0.0" y="329.5" width="300" height="30"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                                <color key="value" name="Dark"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Contact Phone #* (Format 1234567890)"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </textView>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dwq-yQ-BWN" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="375" width="300" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="368.5" width="300" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2670,7 +2664,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RS7-M6-4Wu">
-                                                        <rect key="frame" x="0.0" y="420.5" width="300" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="414" width="300" height="36.5"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-9N-b2h" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="98.5" height="36.5"/>
@@ -2714,7 +2708,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ta1-Ru-Q21">
-                                                        <rect key="frame" x="0.0" y="466" width="300" height="16.5"/>
+                                                        <rect key="frame" x="0.0" y="459.5" width="300" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
@@ -2810,7 +2804,7 @@
                         <outlet property="eventDescription" destination="d8G-QA-bbR" id="HIO-22-gGm"/>
                         <outlet property="eventLocation" destination="UsO-g7-EtX" id="SJh-0L-cmn"/>
                         <outlet property="eventName" destination="6SQ-3j-RYP" id="exE-gh-x6N"/>
-                        <outlet property="eventPhoneNumber" destination="IPE-vV-5CR" id="TRx-tq-fTP"/>
+                        <outlet property="eventPhoneNumberTextField" destination="3qT-Xe-pKs" id="swU-bF-JrC"/>
                         <outlet property="eventTag1" destination="sWv-9N-b2h" id="hwu-sz-gRV"/>
                         <outlet property="eventTag2" destination="Q9j-55-P9s" id="qeE-pV-SSr"/>
                         <outlet property="eventTag3" destination="ZHv-tw-obb" id="Iry-Ab-lNJ"/>
