@@ -311,4 +311,19 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         }))
         self.present(createEventFailAlert, animated: true)
     }
+    
+    func configureTextEntryFieldsDesign(){
+        eventName.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventDescription.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventLocation.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventVenueName.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTicketURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventContactInfo.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventPhoneNumberTextField.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTag1.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTag2.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventTag3.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        
+    }
 }

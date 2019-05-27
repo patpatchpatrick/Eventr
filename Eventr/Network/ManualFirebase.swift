@@ -25,17 +25,18 @@ func addTestDataToFirebase(vc: UIViewController){
         let dateString = eventStringArr[2]
         let dateDouble = Double(dateString)!
         let GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
+        let city = "NYC"
         let address = eventStringArr[3]
         let venue = eventStringArr[4]
         let name = eventStringArr[1] + " at " + venue
         let category = stringToEventCategory(string: "Music")
         let tag1 = "Concert"
-        let tag2 = "NYC"
+        let tag2 = "NY"
         let tag3 = "Show"
         
         if name != nil && GMTDate != nil && address != nil && venue != nil {
-            let event = Event(name: name, category: category, date: GMTDate, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: tag1, tag2: tag2, tag3: tag3, paid: true)
-            
+            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: tag1, tag2: tag2, tag3: tag3, paid: true)
+            event.upvoteCount = Int(arc4random_uniform(100) + 1)
             
             createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
                 eventWasCreatedSuccessfully in

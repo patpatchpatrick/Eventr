@@ -47,6 +47,7 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var eventName: UITextView!
     @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var eventLocation: UITextView!
+    @IBOutlet weak var eventCityLabel: UILabel!
     @IBOutlet weak var eventVenueName: UITextView!
     @IBOutlet weak var eventTicketURL: UITextView!
     @IBOutlet weak var eventURL: UITextView!
@@ -205,7 +206,7 @@ class CreateEventViewController: UIViewController {
             return
         }
         
-        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), venue: eventVenueName.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), phoneNumber: eventPhoneNumber.numberString, ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
+        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, city: "NYC", address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), venue: eventVenueName.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), phoneNumber: eventPhoneNumber.numberString, ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn)
         
         //Check if the date changed.  Compare the firebaseDateFormat of new date to the previous date to determine if they are different.  If different, the dates will need to be updated in Firebase
         if selectedEventAction == .editing {
@@ -234,21 +235,6 @@ class CreateEventViewController: UIViewController {
             } else {
                 self.displayCreateEventFailAlert()
             }})
-        
-    }
-    
-    func configureTextEntryFieldsDesign(){
-        eventName.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventDescription.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventLocation.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventVenueName.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTicketURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventContactInfo.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventPhoneNumberTextField.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTag1.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTag2.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTag3.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
         
     }
     

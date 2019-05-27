@@ -50,6 +50,10 @@ extension ViewController{
     
     func setUpLocationEntryField(){
        
+        citySelectDropDown.anchorView = sortButton
+        citySelectDropDown.dataSource = ["New York", "Location Based Search"]
+        citySelectDropDown.cellConfiguration = { (index, item) in return "\(item)" }
+        
 
     distanceRadiusSegmentedControl.selectedSegmentIndex = 1 //Set the default segment to (20 miles)
         locationEntryField.attributedPlaceholder = NSAttributedString(string: "Enter Location",
@@ -466,6 +470,44 @@ extension ViewController{
         }
     }
     
+    func locationButtonTapped(){
+        
+        //If location button is tapped, expand the city selection dropdown menu
+        //If "Location Based Search" is selected, the user is using a location based search, otherwise they will search by city (standard search method)
+        
+        citySelectDropDown.selectionAction = { (index: Int, item: String) in
+            handleCitySelection(citySelection: item)
+        }
+        citySelectDropDown.backgroundColor = themeMedium
+        citySelectDropDown.textColor = themeAccentPrimary
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
+                                     size: 14.0) {
+            citySelectDropDown.textFont = dropDownFont
+        }
+        citySelectDropDown.width = 140
+        citySelectDropDown.bottomOffset = CGPoint(x: 0, y:(citySelectDropDown.anchorView?.plainView.bounds.height)!)
+        citySelectDropDown.show()
+        
+        func handleCitySelection(citySelection: String){
+            
+            if citySelection == "Location Based Search" {
+                usingLocationBasedSearch = true
+                if self.searchSelectionContainer.isHidden {
+                    showSearchSelectionContainer()
+                }
+            } else {
+                
+                mainLocationButton.setTitle("New York", for: .normal)
+                usingLocationBasedSearch = false
+                if !self.searchSelectionContainer.isHidden {
+                    hideSearchCollectionContainer()
+                }
+            }
+        }
+        
+    }
+    
+    
     // Method to run when upvote imageview is tapped
     @objc func upvoteTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
@@ -603,12 +645,17 @@ extension ViewController{
     func hideSearchCollectionContainer(){
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.searchSelectionContainer.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0)
-            if let locationText = self.locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-                if locationText.isEmpty || locationText == "" {
-                    self.mainLocationButton.setTitle("Current Location", for: .normal)
-                } else {
-                    self.mainLocationButton.setTitle(locationText, for: .normal)
+            
+            if self.usingLocationBasedSearch {
+                if let locationText = self.locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                    if locationText.isEmpty || locationText == "" {
+                        self.mainLocationButton.setTitle("Specific Location", for: .normal)
+                    } else {
+                        self.mainLocationButton.setTitle(locationText, for: .normal)
+                    }
                 }
+            } else {
+                self.mainLocationButton.setTitle("New York", for: .normal)
             }
         }){ success in
             self.searchSelectionContainer.isHidden = true
@@ -702,6 +749,8 @@ extension ViewController{
         reloadEventTableView()
         
     }
+    
+    
     
     
     

@@ -16,7 +16,7 @@ import JTAppleCalendar
 
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
+var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 enum eventAction {
     case creating
     case editing
@@ -44,9 +44,11 @@ var sortByPreference : sortBy = .popularity //Variable to track user's sorting p
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var locationSelectionExpanded: Bool = false
+    var usingLocationBasedSearch: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
     let sortDropDown = DropDown()
+    let citySelectDropDown = DropDown() //dropdown menu to choose specific city to search within
     @IBOutlet weak var plusButtonStackView: UIStackView!
     let locationManager = CLLocationManager()
     
@@ -395,13 +397,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         showCalendarView()
     }
     
-    
+    //Location selection button tapped
     @IBAction func mainSearchSelectionButtonTapped(_ sender: Any) {
-        if !self.searchSelectionContainer.isHidden {
-            hideSearchCollectionContainer()
-        } else {
-            showSearchSelectionContainer()
-        }
+        locationButtonTapped()
     }
     
     

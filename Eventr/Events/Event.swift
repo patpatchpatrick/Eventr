@@ -16,6 +16,7 @@ class Event : Comparable {
     var category: EventCategory = EventCategory(category: .misc)
     var GMTDate: Date? // Event date in GMT timezone
     var previousDate: Date = Date() // Variable to store previous date if date was updated
+    var city: String = ""
     var location: String = ""
     var venue: String = ""
     var details: String = ""
@@ -36,8 +37,9 @@ class Event : Comparable {
     var loggedInUserCreatedTheEvent: Bool = false //Bool to determine if it was a user-created event
     var loggedInUserAttendingTheEvent: Bool = false //Bool to track if user is attending the event
     
-    init(name: String, category: EventCategory, date: Date, address: String, venue: String, details: String, contact: String, phoneNumber: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
+    init(name: String, category: EventCategory, date: Date, city: String, address: String, venue: String, details: String, contact: String, phoneNumber: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
         self.name = name
+        self.city = city
         self.location = address
         self.venue = venue
         self.GMTDate = date
@@ -67,6 +69,9 @@ class Event : Comparable {
                 //Date is stored in Firebase in GMT time (unix time)
                 self.GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
             }
+        }
+        if let cityDict = dict["city"] as? String {
+            self.city = cityDict
         }
         if let locationDict = dict["location"] as? String {
             self.location = locationDict
