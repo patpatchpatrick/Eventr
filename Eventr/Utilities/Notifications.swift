@@ -16,3 +16,8 @@ func reloadEventTableView(){
 func reloadEventViewController(){
     NotificationCenter.default.post(name: Notification.Name("RELOAD_EVENT_VC"), object: nil)
 }
+
+//Notification for when pagination has finished loading
+func paginationFinishedLoading(){
+    NotificationCenter.default.post(name: Notification.Name("PAGINATION_FINISHED_LOADING"), object: nil)
+}

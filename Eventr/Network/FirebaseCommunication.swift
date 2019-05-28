@@ -36,7 +36,7 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
     
     //Method called when the query is finished and all keys(event IDs) are loaded
     gQuery.observeReady {
-        addEventsToEventTableView(eventsList: keyDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: true)
+        addEventsToEventTableView(eventsList: keyDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: true, firstPage: true)
     }
     
 }
@@ -49,8 +49,7 @@ func queryFirebaseEventsByCity(city: String, firstPage: Bool){
         
         tableEvents.removeAll()
         allEvents.removeAll()
-        print("QUERY STARTED")
-        
+    
         firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryLimited(toLast: 10).observeSingleEvent(of: .value, with: {
             (snapshot) in
             guard let dict = snapshot.value as? NSDictionary else { return }
@@ -59,7 +58,7 @@ func queryFirebaseEventsByCity(city: String, firstPage: Bool){
                     eventDict[keyString] = "NYC"
                 }
             }
-            addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
+            addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false, firstPage: firstPage)
         })
         
     } else {
@@ -67,7 +66,7 @@ func queryFirebaseEventsByCity(city: String, firstPage: Bool){
         print("ALL EVENTS COUNT")
         print(allEvents.count)
         
-        if (allEvents.count > 0) {
+        if (allEvents.count > 9) {
             
             let lastUpvoteValue = allEvents[allEvents.count-1].upvoteCount - 1
             
@@ -81,7 +80,7 @@ func queryFirebaseEventsByCity(city: String, firstPage: Bool){
                         eventDict[keyString] = "NYC"
                     }
                 }
-                addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
+                addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false, firstPage: firstPage)
             })
         }
        
@@ -94,10 +93,11 @@ func queryFirebaseFavoriteEvents(){
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
     tableEvents.removeAll()
+    allEvents.removeAll()
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addEventsToEventTableView(eventsList: dict, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
+        addEventsToEventTableView(eventsList: dict, isUserCreatedEvent: false, searchCriteriaIsRequired: false, firstPage: true)
     })
     
 }
@@ -107,15 +107,16 @@ func queryFirebaseCreatedEvents(){
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
     tableEvents.removeAll()
+   allEvents.removeAll()
     firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addEventsToEventTableView(eventsList: dict, isUserCreatedEvent: true, searchCriteriaIsRequired: false)
+        addEventsToEventTableView(eventsList: dict, isUserCreatedEvent: true, searchCriteriaIsRequired: false, firstPage: true)
     })
     
 }
 
-func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Bool, searchCriteriaIsRequired: Bool){
+func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Bool, searchCriteriaIsRequired: Bool, firstPage: Bool){
     for (id, city) in eventsList {
        
         //Get the Event ID and the City as string values
@@ -149,6 +150,8 @@ func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Boo
                                 //Secondly, use the current selected category to filter the events and add them to tableView
                                 addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                                 reloadEventTableView()
+                                paginationFinishedLoading()
+                        
                             }
                         }
                     }
@@ -157,6 +160,8 @@ func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Boo
                     addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                     addEventToEventsListInOrder(event: event, eventList: &allEvents)
                     reloadEventTableView()
+                    paginationFinishedLoading()
+                
                 }
             }
         }) { (error) in

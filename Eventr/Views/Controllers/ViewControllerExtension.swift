@@ -717,12 +717,7 @@ extension ViewController{
             searchForEventsByRadius()
             
         } else {
-            if testSearchButtonCount == 0 {
-                
-                searchForEventsByCity(firstPage: firstPage)
-            } else {
-                searchForEventsByCity(firstPage: false)
-            }
+            searchForEventsByCity(firstPage: firstPage)
             print("SEARCH COUNT")
             print(testSearchButtonCount)
             testSearchButtonCount += 1
@@ -780,7 +775,11 @@ extension ViewController{
         
     }
     
-    
+    func loadInitialListOfEvents(){
+        
+        searchForEventsByCity(firstPage: true)
+        
+    }
     
     
     

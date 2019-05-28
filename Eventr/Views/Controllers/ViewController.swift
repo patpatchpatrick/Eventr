@@ -129,6 +129,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         
+        //Add notification on view to listen for when the initial data is loaded
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updated_event_data),
+                                               name:Notification.Name("UPDATED_EVENT_DATA"),
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(pagination_finished_loading),
+                                               name:Notification.Name("PAGINATION_FINISHED_LOADING"),
+                                               object: nil)
+        
         hideListDescriptor()
         configureListDiscriptor()
         configureStandardViewDesignWithShadow(view: sideMenu, shadowSize: 1.0, widthAdj: 0, heightAdj: 200, xOffset: 0.0, yOffset: 100)
@@ -142,6 +153,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpMainButtons()
         setUpSortButton()
         getCurrentLocationAndLoadTableView()
+        loadInitialListOfEvents()
         hideSearchCollectionContainer()
         hideSideMenu()
         hideCalendarView()
@@ -165,13 +177,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @objc func updated_event_data(notification:Notification) -> Void{
-        paginationInProgress = false //Once updated event data is received, pagination is no longer in progress
+      
         eventTableView.reloadData()
         if tableEvents.count > 0 {
             showTableViewSettingsContainer()
         } else {
             hideTableViewSettingsContainer()
         }
+        
+    }
+    
+    @objc func pagination_finished_loading(notification:Notification) -> Void{
+        
+       paginationInProgress = false //Once updated event data is received, pagination is no longer in progress
     }
     
     @IBAction func sideMenuShadeTouched(_ sender: UIButton) {
@@ -272,20 +290,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 1
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if !paginationInProgress && (scrollView.contentOffset.y + 10) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
-            // Bottom of the scrollview of the eventTableView has been reached, so search for more events
-            testPageCount += 1
-            print("NEXT PAGE")
-            print(testPageCount)
-            paginationInProgress = true
-            //searchForEvents(firstPage: false)
-        }
-    }
-    
-    
     //Set up the cells in the table view using the event data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //Determine if more data needs to be loaded to the tableview (user has scrolled to the bottom of the page)
+        if indexPath.row == tableEvents.count - 1 { // last cell
+            print("PAGINATION IN PROGRESS")
+            print(paginationInProgress)
+            
+            if !paginationInProgress {
+                // Bottom of the scrollview of the eventTableView has been reached, so search for more events if pagination isn't currently in progress
+                testPageCount += 1
+                print("NEXT PAGE")
+                print(testPageCount)
+                paginationInProgress = true
+                searchForEvents(firstPage: false)
+            }
+        }
+        
         let cell = eventTableView.dequeueReusableCell(withIdentifier: "cellEvent", for: indexPath) as! CustomEventCell
         
         //Handle paid event
