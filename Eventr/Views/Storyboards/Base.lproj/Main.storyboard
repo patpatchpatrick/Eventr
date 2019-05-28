@@ -684,12 +684,15 @@
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="YIR-kh-Ya2"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FIU-NR-25c" userLabel="MainButtons">
-                                        <rect key="frame" x="10" y="130" width="300" height="42"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cis-Vy-6kZ" userLabel="queryButtons">
+                                        <rect key="frame" x="0.0" y="172" width="320" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-gg-50x" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="115" height="42"/>
+                                                <rect key="frame" x="102.5" y="7" width="115" height="28"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="115" id="pUi-id-cdI"/>
@@ -708,8 +711,19 @@
                                                     <action selector="mainDateSelectionButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r58-bd-88O"/>
                                                 </connections>
                                             </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="1MS-5p-nJk"/>
+                                            <constraint firstItem="k9C-gg-50x" firstAttribute="centerX" secondItem="cis-Vy-6kZ" secondAttribute="centerX" id="KYo-jx-QVz"/>
+                                            <constraint firstItem="k9C-gg-50x" firstAttribute="centerY" secondItem="cis-Vy-6kZ" secondAttribute="centerY" id="y6U-VE-YGD"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FIU-NR-25c" userLabel="MainButtons">
+                                        <rect key="frame" x="10" y="130" width="300" height="42"/>
+                                        <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="116.5" y="0.0" width="140" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="140" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="140" id="kwn-TE-lfL"/>
@@ -727,8 +741,26 @@
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ">
+                                                <rect key="frame" x="140" y="0.0" width="30" height="42"/>
+                                                <state key="normal" title="Hot"/>
                                                 <connections>
-                                                    <action selector="mainSearchSelectionButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pv6-p1-A3T"/>
+                                                    <action selector="hotButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="phB-Xb-3jg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi">
+                                                <rect key="frame" x="170" y="0.0" width="71" height="42"/>
+                                                <state key="normal" title="Upcoming"/>
+                                                <connections>
+                                                    <action selector="upcomingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jv7-gT-sjk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yx-11-eFT">
+                                                <rect key="frame" x="241" y="0.0" width="17" height="42"/>
+                                                <state key="normal" title="Near Me"/>
+                                                <connections>
+                                                    <action selector="nearMeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERn-LI-x65"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpo-t1-7eE" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
@@ -736,6 +768,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="42" id="a8v-sh-U2h"/>
+                                                    <constraint firstAttribute="height" constant="42" id="nUL-pS-HFh"/>
                                                 </constraints>
                                                 <color key="tintColor" name="AccentPrimary"/>
                                                 <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -756,11 +789,7 @@
                                         <constraints>
                                             <constraint firstItem="REQ-xr-Xqh" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="top" id="3BN-d1-i1a"/>
                                             <constraint firstAttribute="bottom" secondItem="REQ-xr-Xqh" secondAttribute="bottom" id="6Sw-xX-5Wa"/>
-                                            <constraint firstAttribute="bottom" secondItem="k9C-gg-50x" secondAttribute="bottom" id="MUa-gg-sc4"/>
-                                            <constraint firstItem="k9C-gg-50x" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="top" id="W3v-7f-ate"/>
-                                            <constraint firstAttribute="bottom" secondItem="jpo-t1-7eE" secondAttribute="bottom" id="okv-lv-Vbw"/>
                                             <constraint firstAttribute="height" constant="42" id="r2p-j1-gKz"/>
-                                            <constraint firstItem="jpo-t1-7eE" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="top" id="tky-cL-2Va"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1es-1h-yhM" userLabel="CategorySelection">
@@ -1026,17 +1055,20 @@
                                 </subviews>
                                 <color key="backgroundColor" name="Medium"/>
                                 <constraints>
-                                    <constraint firstItem="4gX-3A-YK6" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" id="0PO-eL-lsR"/>
                                     <constraint firstItem="Zza-Cn-weC" firstAttribute="centerY" secondItem="Ktv-mT-FN5" secondAttribute="centerY" id="4AP-To-w5p"/>
                                     <constraint firstItem="dI4-Fy-ey3" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="top" constant="-5" id="6ju-Xo-gcG"/>
                                     <constraint firstItem="1es-1h-yhM" firstAttribute="top" secondItem="SKV-0R-RbT" secondAttribute="bottom" constant="10" id="7Z0-jA-dy5"/>
+                                    <constraint firstItem="4gX-3A-YK6" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" id="Gmh-ze-OyB"/>
                                     <constraint firstItem="Ktv-mT-FN5" firstAttribute="bottom" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Jqw-1n-x7v"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="top" secondItem="SKV-0R-RbT" secondAttribute="bottom" id="RaW-Gg-NOr"/>
+                                    <constraint firstItem="25H-xd-yYF" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" constant="45" id="T7D-vo-Eqq"/>
                                     <constraint firstItem="25H-xd-yYF" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="WGE-5g-E6f"/>
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Xb0-zy-JoW"/>
+                                    <constraint firstItem="cis-Vy-6kZ" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" id="YCu-OV-Z2f"/>
                                     <constraint firstAttribute="trailing" secondItem="FIU-NR-25c" secondAttribute="trailing" constant="10" id="ZbB-2G-krb"/>
                                     <constraint firstItem="4gX-3A-YK6" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="ckg-3G-OuB"/>
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="cxG-jg-rO6"/>
+                                    <constraint firstAttribute="trailing" secondItem="cis-Vy-6kZ" secondAttribute="trailing" id="e5E-wm-0tN"/>
                                     <constraint firstAttribute="trailing" secondItem="25H-xd-yYF" secondAttribute="trailing" id="eCm-tv-wZK"/>
                                     <constraint firstItem="FIU-NR-25c" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" constant="10" id="hF0-aJ-LvM"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="lYs-9s-or0"/>
@@ -1049,7 +1081,7 @@
                                     <constraint firstItem="Ktv-mT-FN5" firstAttribute="centerX" secondItem="9ly-4h-XTV" secondAttribute="centerX" id="rVP-a7-dr9"/>
                                     <constraint firstItem="dI4-Fy-ey3" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="t2e-9R-MOb"/>
                                     <constraint firstAttribute="trailing" secondItem="4gX-3A-YK6" secondAttribute="trailing" id="tZQ-xp-82H"/>
-                                    <constraint firstItem="25H-xd-yYF" firstAttribute="top" secondItem="4gX-3A-YK6" secondAttribute="bottom" constant="15" id="tbj-3i-OUz"/>
+                                    <constraint firstItem="cis-Vy-6kZ" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="w1x-zC-rND"/>
                                     <constraint firstAttribute="trailing" secondItem="dI4-Fy-ey3" secondAttribute="trailing" id="x6y-d9-0Yn"/>
                                     <constraint firstAttribute="trailing" secondItem="7x5-R6-dey" secondAttribute="trailing" id="zn0-uV-icW"/>
                                     <constraint firstItem="FIU-NR-25c" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" constant="10" id="zpb-y1-3Li"/>
@@ -1282,6 +1314,7 @@
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
                         <outlet property="categorySelectionStackViewContainer" destination="1es-1h-yhM" id="lFt-Fp-c3D"/>
                         <outlet property="dateAndSearchButtonStackView" destination="4gX-3A-YK6" id="F7M-6L-clA"/>
+                        <outlet property="dateButtonContainer" destination="cis-Vy-6kZ" id="LwX-XD-oA2"/>
                         <outlet property="distanceRadiusSegmentedControl" destination="sqj-r5-NPC" id="23q-9X-VKt"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                         <outlet property="headerButtonAccountContainer" destination="DvS-qX-LWT" id="3lj-ef-NqQ"/>

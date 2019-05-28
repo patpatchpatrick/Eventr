@@ -149,6 +149,11 @@ var plusButtonsInStackView: [Int : UIView] = [:] //Map of the plus buttons in th
 
 //Method to add events to event lists in order
 func addEventToEventsListInOrder(event: Event, eventList: inout [Event]){
-    let index = eventList.insertionIndexOf(elem: event, isOrderedBefore: >)
+    var index = 0
+    if sortByPreference == .dateasc {
+        index = eventList.insertionIndexOf(elem: event, isOrderedBefore: <)
+    } else {
+        index = eventList.insertionIndexOf(elem: event, isOrderedBefore: >)
+    }
     eventList.insert(event, at: index)
 }

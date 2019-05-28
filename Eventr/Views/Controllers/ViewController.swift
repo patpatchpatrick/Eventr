@@ -14,12 +14,11 @@ import FirebaseAuth
 import GoogleSignIn
 import JTAppleCalendar
 
-var testPageCount = 0
-var testSearchButtonCount = 0
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
 var paginationInProgress: Bool = false
 var mostRecentlyQueriedDate: Date?
+var mostRecentlyQueriedUpvoteCount: Int?
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 enum eventAction {
     case creating
@@ -47,8 +46,6 @@ var sortByPreference : sortBy = .popularity //Variable to track user's sorting p
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
-    var locationSelectionExpanded: Bool = false
-    var usingLocationBasedSearch: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
     let sortDropDown = DropDown()
@@ -101,6 +98,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var dateAndSearchButtonStackView: UIStackView!
     @IBOutlet weak var mainDateButton: RoundedButton!
     @IBOutlet weak var mainLocationButton: RoundedButton!
+    
+    
+    @IBOutlet weak var dateButtonContainer: UIView!
+    
     @IBOutlet weak var distanceRadiusSegmentedControl: UISegmentedControl!
     @IBOutlet weak var mainSearchButton: RoundedButton!
     @IBOutlet weak var searchSelectionContainer: UIView!
@@ -131,16 +132,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.locationManager.requestWhenInUseAuthorization()
         
         //Add notification on view to listen for when the initial data is loaded
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updated_event_data),
-                                               name:Notification.Name("UPDATED_EVENT_DATA"),
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(pagination_finished_loading),
-                                               name:Notification.Name("PAGINATION_FINISHED_LOADING"),
-                                               object: nil)
-        
+        addDefaultNotifications()
         hideListDescriptor()
         configureListDiscriptor()
         configureStandardViewDesignWithShadow(view: sideMenu, shadowSize: 1.0, widthAdj: 0, heightAdj: 200, xOffset: 0.0, yOffset: 100)
@@ -154,9 +146,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpMainButtons()
         setUpSortButton()
         getCurrentLocationAndLoadTableView()
-        loadInitialListOfEvents()
+        //loadInitialListOfEvents()
         hideSearchCollectionContainer()
         hideSideMenu()
+        hideDateButtonContainer()
         hideCalendarView()
         configureCalendarView()
         
@@ -175,6 +168,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func addDefaultNotifications(){
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updated_event_data),
+                                               name:Notification.Name("UPDATED_EVENT_DATA"),
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(pagination_finished_loading),
+                                               name:Notification.Name("PAGINATION_FINISHED_LOADING"),
+                                               object: nil)
     }
     
     @objc func updated_event_data(notification:Notification) -> Void{
@@ -299,9 +304,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             if !paginationInProgress {
                 // Bottom of the scrollview of the eventTableView has been reached, so search for more events if pagination isn't currently in progress
-                testPageCount += 1
-                print("NEXT PAGE")
-                print(testPageCount)
                 paginationInProgress = true
                 searchForEvents(firstPage: false)
             }
@@ -310,6 +312,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = eventTableView.dequeueReusableCell(withIdentifier: "cellEvent", for: indexPath) as! CustomEventCell
         
         //Handle paid event
+        if tableEvents.isEmpty {return cell}
         let event = tableEvents[indexPath.row]
         cell.eventName?.text = event.name
         if event.paid {
@@ -433,11 +436,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         showCalendarView()
     }
     
-    //Location selection button tapped
-    @IBAction func mainSearchSelectionButtonTapped(_ sender: Any) {
-        locationButtonTapped()
-    }
-    
     
      //Search button is tapped.  Query events within radius(km) of the location
     @IBAction func mainSearchButtonTapped(_ sender: Any) {
@@ -461,6 +459,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         eventTableView.reloadData()
         
         
+    }
+    
+    
+    @IBAction func hotButtonTapped(_ sender: UIButton) {
+        firebaseQueryType = .popular
+        hideDateButtonContainer()
+        hideCalendarView()
+        hideSearchCollectionContainer()
+    }
+    
+    
+    @IBAction func upcomingButtonTapped(_ sender: UIButton) {
+        firebaseQueryType = .upcoming
+        showDateButtonContainer()
+        hideSearchCollectionContainer()
+    }
+    
+    
+    @IBAction func nearMeButtonTapped(_ sender: UIButton) {
+        firebaseQueryType = .nearby
+        hideDateButtonContainer()
+        hideCalendarView()
+        showSearchSelectionContainer()
     }
     
     
