@@ -99,11 +99,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var mainDateButton: RoundedButton!
     @IBOutlet weak var mainLocationButton: RoundedButton!
     
+    @IBOutlet weak var hotButton: RoundedButton!
+    
+    @IBOutlet weak var upcomingButton: RoundedButton!
+    
+    @IBOutlet weak var nearbyButton: RoundedButton!
     
     @IBOutlet weak var dateButtonContainer: UIView!
     
     @IBOutlet weak var distanceRadiusSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var mainSearchButton: RoundedButton!
     @IBOutlet weak var searchSelectionContainer: UIView!
     
     @IBOutlet weak var locationEntryField: UITextField!
@@ -152,6 +156,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         hideDateButtonContainer()
         hideCalendarView()
         configureCalendarView()
+        updateSelectedQueryButtonStyle()
         
         //addTestDataToFirebase(vc: self)
   
@@ -437,11 +442,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-     //Search button is tapped.  Query events within radius(km) of the location
-    @IBAction func mainSearchButtonTapped(_ sender: Any) {
-        searchForEvents(firstPage: true)
-    }
-    
     
     @IBAction func sideMenuSettingsButtonTapped(_ sender: UIButton) {
         settingsButtonTapped()
@@ -467,6 +467,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         hideDateButtonContainer()
         hideCalendarView()
         hideSearchCollectionContainer()
+        updateSelectedQueryButtonStyle()
+        searchForEvents(firstPage: true)
     }
     
     
@@ -474,6 +476,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         firebaseQueryType = .upcoming
         showDateButtonContainer()
         hideSearchCollectionContainer()
+        updateSelectedQueryButtonStyle()
+        searchForEvents(firstPage: true)
     }
     
     
@@ -482,8 +486,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         hideDateButtonContainer()
         hideCalendarView()
         showSearchSelectionContainer()
+        updateSelectedQueryButtonStyle()
+        searchForEvents(firstPage: true)
     }
     
-    
+    func updateSelectedQueryButtonStyle(){
+        
+        switch firebaseQueryType {
+        case .nearby:
+            nearbyButton.borderWidth = 1.0
+            nearbyButton.borderColor = themeAccentGreen
+            nearbyButton.layer.shadowOpacity = 0
+            hotButton.layer.shadowOpacity = 0.5
+            upcomingButton.layer.shadowOpacity = 0.5
+            hotButton.borderWidth = 0
+            upcomingButton.borderWidth = 0
+        case .popular:
+            hotButton.borderWidth = 1.0
+            hotButton.borderColor = themeAccentGreen
+            hotButton.layer.shadowOpacity = 0
+            nearbyButton.layer.shadowOpacity = 0.5
+            upcomingButton.layer.shadowOpacity = 0.5
+            nearbyButton.borderWidth = 0
+            upcomingButton.borderWidth = 0
+        case .upcoming:
+            upcomingButton.borderWidth = 1.0
+            upcomingButton.borderColor = themeAccentGreen
+            upcomingButton.layer.shadowOpacity = 0
+            hotButton.layer.shadowOpacity = 0.5
+            nearbyButton.layer.shadowOpacity = 0.5
+            hotButton.borderWidth = 0
+            nearbyButton.borderWidth = 0
+        }
+        
+    }
 }
 

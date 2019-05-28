@@ -689,10 +689,10 @@
                                         </constraints>
                                     </stackView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cis-Vy-6kZ" userLabel="queryButtons">
-                                        <rect key="frame" x="0.0" y="172" width="320" height="42"/>
+                                        <rect key="frame" x="0.0" y="172" width="320" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-gg-50x" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="102.5" y="7" width="115" height="28"/>
+                                                <rect key="frame" x="102.5" y="11" width="115" height="28"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="115" id="pUi-id-cdI"/>
@@ -714,7 +714,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="1MS-5p-nJk"/>
+                                            <constraint firstAttribute="height" constant="50" id="1MS-5p-nJk"/>
                                             <constraint firstItem="k9C-gg-50x" firstAttribute="centerX" secondItem="cis-Vy-6kZ" secondAttribute="centerX" id="KYo-jx-QVz"/>
                                             <constraint firstItem="k9C-gg-50x" firstAttribute="centerY" secondItem="cis-Vy-6kZ" secondAttribute="centerY" id="y6U-VE-YGD"/>
                                         </constraints>
@@ -723,57 +723,71 @@
                                         <rect key="frame" x="10" y="130" width="300" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="140" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="kwn-TE-lfL"/>
+                                                    <constraint firstAttribute="width" constant="100" id="kwn-TE-lfL"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
-                                                <color key="tintColor" name="AccentPrimary"/>
-                                                <inset key="titleEdgeInsets" minX="-95" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <inset key="imageEdgeInsets" minX="7" minY="12" maxX="115" maxY="12"/>
-                                                <state key="normal" title="New York" image="iconLocation">
-                                                    <color key="titleColor" name="AccentPrimary"/>
+                                                <color key="tintColor" name="Dark"/>
+                                                <inset key="titleEdgeInsets" minX="-70" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="5" minY="12" maxX="75" maxY="12"/>
+                                                <state key="normal" title="New York" image="iconHome">
+                                                    <color key="titleColor" name="Dark"/>
                                                     <color key="titleShadowColor" name="Dark"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="Dark"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ">
-                                                <rect key="frame" x="140" y="0.0" width="30" height="42"/>
-                                                <state key="normal" title="Hot"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                <rect key="frame" x="90" y="0.0" width="50" height="42"/>
+                                                <color key="backgroundColor" name="Medium"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="gvx-Ky-ln4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
+                                                <color key="tintColor" name="AccentPrimary"/>
+                                                <inset key="titleEdgeInsets" minX="-81" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="2" minY="13" maxX="32" maxY="13"/>
+                                                <state key="normal" title="Hot" image="iconFlame">
+                                                    <color key="titleColor" name="AccentPrimary"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="AccentGreen"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="hotButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="phB-Xb-3jg"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi">
-                                                <rect key="frame" x="170" y="0.0" width="71" height="42"/>
-                                                <state key="normal" title="Upcoming"/>
-                                                <connections>
-                                                    <action selector="upcomingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jv7-gT-sjk"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yx-11-eFT">
-                                                <rect key="frame" x="241" y="0.0" width="17" height="42"/>
-                                                <state key="normal" title="Near Me"/>
-                                                <connections>
-                                                    <action selector="nearMeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERn-LI-x65"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpo-t1-7eE" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="258" y="0.0" width="42" height="42"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                <rect key="frame" x="140" y="0.0" width="90" height="42"/>
+                                                <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="42" id="a8v-sh-U2h"/>
-                                                    <constraint firstAttribute="height" constant="42" id="nUL-pS-HFh"/>
+                                                    <constraint firstAttribute="width" constant="90" id="HqI-hz-QT1"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
                                                 <color key="tintColor" name="AccentPrimary"/>
-                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                <state key="normal" image="iconSearch">
-                                                    <color key="titleShadowColor" name="Dark"/>
+                                                <inset key="titleEdgeInsets" minX="-80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="2" minY="13" maxX="71" maxY="13"/>
+                                                <state key="normal" title="Upcoming" image="iconClock">
+                                                    <color key="titleColor" name="AccentPrimary"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -781,7 +795,29 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="mainSearchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L3e-7W-dff"/>
+                                                    <action selector="upcomingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jv7-gT-sjk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yx-11-eFT" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                <rect key="frame" x="230" y="0.0" width="70" height="42"/>
+                                                <color key="backgroundColor" name="Medium"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="YlS-yl-0eF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
+                                                <color key="tintColor" name="AccentPrimary"/>
+                                                <inset key="titleEdgeInsets" minX="-98" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="2" minY="13" maxX="52" maxY="13"/>
+                                                <state key="normal" title="Nearby" image="iconLocation">
+                                                    <color key="titleColor" name="AccentPrimary"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="nearMeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERn-LI-x65"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1319,6 +1355,7 @@
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                         <outlet property="headerButtonAccountContainer" destination="DvS-qX-LWT" id="3lj-ef-NqQ"/>
                         <outlet property="headerButtonCreateEventContainer" destination="N6V-qO-qjn" id="Q6Q-HH-H1Z"/>
+                        <outlet property="hotButton" destination="gWy-b7-IHZ" id="4EO-Vh-PjC"/>
                         <outlet property="listDescriptor" destination="Ktv-mT-FN5" id="366-bW-15F"/>
                         <outlet property="listDescriptorCover" destination="7x5-R6-dey" id="7VW-OE-2A7"/>
                         <outlet property="listDescriptorIcon" destination="f2p-Xp-o7b" id="mnw-ji-I8C"/>
@@ -1328,8 +1365,8 @@
                         <outlet property="mainButtonsStackViewContainer" destination="FIU-NR-25c" id="JlU-pi-e2J"/>
                         <outlet property="mainDateButton" destination="k9C-gg-50x" id="znT-wM-xba"/>
                         <outlet property="mainLocationButton" destination="REQ-xr-Xqh" id="b8e-pE-IvC"/>
-                        <outlet property="mainSearchButton" destination="jpo-t1-7eE" id="Byu-PJ-tAg"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="aie-IY-bcL"/>
+                        <outlet property="nearbyButton" destination="6yx-11-eFT" id="asp-M0-Yoq"/>
                         <outlet property="plusButtonStackView" destination="CWj-kI-FK2" id="WnN-4h-Hr4"/>
                         <outlet property="searchSelectionContainer" destination="JNM-0r-0co" id="REa-Iw-Sr9"/>
                         <outlet property="sideMenu" destination="K1r-ii-eaL" id="0OE-pH-nRo"/>
@@ -1351,6 +1388,7 @@
                         <outlet property="sortButton" destination="CBy-SI-Nzu" id="7jR-5q-cPq"/>
                         <outlet property="subtractCategoryButton" destination="Qui-T5-EW7" id="S9Q-63-ink"/>
                         <outlet property="tableViewSettingsContainer" destination="0el-qb-p9p" id="wyG-kj-XRf"/>
+                        <outlet property="upcomingButton" destination="98e-JN-cwi" id="8Ki-25-wID"/>
                         <segue destination="cYY-Sb-yxV" kind="show" identifier="settingsSegue" id="ZWA-9p-OYh"/>
                     </connections>
                 </viewController>
@@ -2890,17 +2928,19 @@
         <image name="fiestaLogoText" width="1281" height="597"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconCheckMark" width="104" height="104"/>
+        <image name="iconClock" width="96" height="96"/>
         <image name="iconDiscard" width="90" height="90"/>
         <image name="iconDownTriangle" width="212" height="214"/>
         <image name="iconEdit" width="96" height="96"/>
+        <image name="iconFlame" width="90" height="90"/>
         <image name="iconForward" width="52" height="52"/>
+        <image name="iconHome" width="90" height="90"/>
         <image name="iconLocation" width="113" height="114"/>
         <image name="iconLogOut" width="52" height="52"/>
         <image name="iconMinus" width="52" height="52"/>
         <image name="iconMyEvents" width="109" height="108"/>
         <image name="iconPhone" width="220" height="222"/>
         <image name="iconReturn" width="96" height="96"/>
-        <image name="iconSearch" width="100" height="100"/>
         <image name="iconSelectedStar" width="100" height="100"/>
         <image name="iconSettings" width="100" height="100"/>
         <image name="iconSort" width="52" height="52"/>
@@ -2909,7 +2949,7 @@
         <image name="plusIcon" width="52" height="52"/>
         <image name="upvoteArrow" width="90" height="90"/>
         <namedColor name="AccentGreen">
-            <color red="0.44313725490196076" green="0.78431372549019607" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.062745098039215685" green="0.81960784313725488" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AccentLightBlue">
             <color red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -18,7 +18,7 @@ enum fbQueryType {
     case upcoming
     case nearby
 }
-var firebaseQueryType : fbQueryType = .upcoming //Query type - is popular by default
+var firebaseQueryType : fbQueryType = .popular //Query type - is popular by default
 
 let paginationFirstPageCount: UInt = 20
 let paginationAddlPageCount: UInt = 10

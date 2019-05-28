@@ -541,20 +541,22 @@ extension ViewController{
     
     func setUpMainButtons(){
         configureMainButtonDesign(button: mainDateButton)
-        configureMainButtonDesign(button: mainLocationButton)
-        configureMainButtonDesign(button: mainSearchButton)
+        configureMainButtonDesign(button: hotButton)
+        configureMainButtonDesign(button: upcomingButton)
+        configureMainButtonDesign(button: nearbyButton)
     }
     
     func configureMainButtonDesign(button: RoundedButton){
         let shadowSize : CGFloat = 0.0
-        let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
+      
+        let shadowPath = UIBezierPath(ovalIn: CGRect(x: -shadowSize / 2,
                                                    y: -shadowSize / 2,
                                                    width: button.frame.size.width + shadowSize,
                                                    height: button.frame.size.height + shadowSize))
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 0)
-        button.layer.shadowOpacity = 0.45
-        button.layer.shadowRadius = 10.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 6.0
         button.layer.masksToBounds = false
         button.layer.shadowPath = shadowPath.cgPath
     }
@@ -595,6 +597,7 @@ extension ViewController{
     func configureHeaderButtons(){
         configureFloatingSideButtonDesign(view: headerButtonAccountContainer)
         configureFloatingSideButtonDesign(view: headerButtonCreateEventContainer)
+        
     }
     
     func showSearchSelectionContainer(){

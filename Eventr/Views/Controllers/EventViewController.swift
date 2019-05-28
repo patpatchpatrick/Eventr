@@ -377,6 +377,7 @@ class EventViewController: UIViewController {
             attendingEventButton.setTitle("UNATTEND", for: .normal)
             attendingEventButton.backgroundColor = themeAccentRed
         }
+        
     }
     
     func reloadAttendingUserData(){
