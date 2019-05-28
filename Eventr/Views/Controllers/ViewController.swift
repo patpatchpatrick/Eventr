@@ -18,6 +18,8 @@ var testPageCount = 0
 var testSearchButtonCount = 0
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
+var paginationInProgress: Bool = false
+var mostRecentlyQueriedDate: Date?
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 enum eventAction {
     case creating
@@ -47,7 +49,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var locationSelectionExpanded: Bool = false
     var usingLocationBasedSearch: Bool = false
-    var paginationInProgress: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
     let sortDropDown = DropDown()
@@ -295,8 +296,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //Determine if more data needs to be loaded to the tableview (user has scrolled to the bottom of the page)
         if indexPath.row == tableEvents.count - 1 { // last cell
-            print("PAGINATION IN PROGRESS")
-            print(paginationInProgress)
             
             if !paginationInProgress {
                 // Bottom of the scrollview of the eventTableView has been reached, so search for more events if pagination isn't currently in progress

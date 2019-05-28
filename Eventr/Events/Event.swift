@@ -64,11 +64,11 @@ class Event : Comparable {
         if let categoryString = dict["category"] as? String {
             self.category = stringToEventCategory(string: categoryString)
         }
-        if let dateString = dict["date"] as? String {
-            if let dateDouble = Double(dateString) {
+        if let dateDouble = dict["date"] as? Double {
+
                 //Date is stored in Firebase in GMT time (unix time)
                 self.GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
-            }
+            
         }
         if let cityDict = dict["city"] as? String {
             self.city = cityDict

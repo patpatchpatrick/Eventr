@@ -43,14 +43,23 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
 
 func queryFirebaseEventsByCity(city: String, firstPage: Bool){
     
+    let beforeDate = Double((Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: fromDate)?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
+    let afterDate = ((Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
+    
     var eventDict : [String:String] = [:]
     
     if firstPage{
+        //First page query
         
+        //Reset query variables and clear tableview when a new search has begun
         tableEvents.removeAll()
         allEvents.removeAll()
-    
-        firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryLimited(toLast: 10).observeSingleEvent(of: .value, with: {
+        mostRecentlyQueriedDate = nil
+        paginationInProgress = false
+        
+        //Query all events between the before and after date selected by the user
+        //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
+        firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate).queryEnding(atValue: 0 - beforeDate).queryLimited(toLast: 10).observeSingleEvent(of: .value, with: {
             (snapshot) in
             guard let dict = snapshot.value as? NSDictionary else { return }
             for key in dict.allKeys {
@@ -62,26 +71,30 @@ func queryFirebaseEventsByCity(city: String, firstPage: Bool){
         })
         
     } else {
-        
-        print("ALL EVENTS COUNT")
-        print(allEvents.count)
-        
-        if (allEvents.count > 9) {
+        //Query for another page
+        //If the all events count is greater than the initial query amount, then more events are ready to be loaded
+        if (allEvents.count >= 10) {
             
-            let lastUpvoteValue = allEvents[allEvents.count-1].upvoteCount - 1
-            
-            print("LAST EVENT UPVOTE COUNT")
-            print(lastUpvoteValue)
-            firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryEnding(atValue:lastUpvoteValue ).queryLimited(toLast: 11).observeSingleEvent(of: .value, with: {
-                (snapshot) in
-                guard let dict = snapshot.value as? NSDictionary else { return }
-                for key in dict.allKeys {
-                    if let keyString = key as? String {
-                        eventDict[keyString] = "NYC"
+            if let lastDateValue = mostRecentlyQueriedDate?.timeIntervalSince1970 {
+                let queryStartValue = 0 - lastDateValue - 1
+                print("QUERY START VALUE")
+                print(queryStartValue)
+                
+                
+                //Query all events between the most recently queried date and the after date selected by the user
+                //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
+                firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate ).queryEnding(atValue: queryStartValue).queryLimited(toLast: 11).observeSingleEvent(of: .value, with: {
+                    (snapshot) in
+                    guard let dict = snapshot.value as? NSDictionary else { return }
+                    for key in dict.allKeys {
+                        if let keyString = key as? String {
+                            eventDict[keyString] = "NYC"
+                        }
                     }
-                }
-                addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false, firstPage: firstPage)
-            })
+                    addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false, firstPage: firstPage)
+                })
+                
+            }
         }
        
     }
@@ -128,8 +141,19 @@ func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Boo
             // Get dictionary of event data
             if let value = snapshot.value as? NSDictionary {
                 let event = Event(dict: value, idKey: eventID)
+                
+                //Keep track of the most recently queried date for pagination purposes.  The most recently queried date is always the greatest date, since dates are queried in ascending order
+                if mostRecentlyQueriedDate == nil {
+                    mostRecentlyQueriedDate = event.GMTDate
+                } else {
+                    if event.GMTDate! > mostRecentlyQueriedDate! {
+                        mostRecentlyQueriedDate = event.GMTDate
+                    }
+                }
+              
                 if isUserCreatedEvent {
                     event.loggedInUserCreatedTheEvent = true //Mark if the user created the event
+                    //This will currently only be triggered if the user clicks the "My Events" button
                 }
                 //Check if event has been favorited by user
                 queryIfFirebaseEventIsFavorited(event: event)
@@ -139,11 +163,6 @@ func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Boo
                 //Check if event meets search criteria (date and category)
                 //If so, add event to table view events list and update table
                 if searchCriteriaIsRequired{
-                    if let eventDateCurrentTimeZone = event.getDateCurrentTimeZone(){
-                        //Make the beforeDate the earliest possible time of the fromDate and the afterDate the latest possible time of the toDate
-                        let beforeDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: fromDate)!
-                        let afterDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)!
-                        if eventDateCurrentTimeZone >= beforeDate && eventDateCurrentTimeZone <= afterDate {
                             //First, add the event to the allEvents list (this list is used to maintain events so that they can be re-filtered without needing to query Firebase again)
                             addEventToEventsListInOrder(event: event, eventList: &allEvents)
                             if selectedCategory == categoryAll || selectedCategory == event.category.index() {
@@ -153,8 +172,8 @@ func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Boo
                                 paginationFinishedLoading()
                         
                             }
-                        }
-                    }
+                        
+                    
                 } else {
                     //Add event to tableview without search criteria check
                     addEventToEventsListInOrder(event: event, eventList: &tableEvents)
@@ -189,12 +208,14 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         }
         let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         
+        let eventDateDouble = Double(eventDate.timeIntervalSince1970)
         
         let paidString = (event.paid) ? "1" : "0"
         let eventData = [
             "name":  event.name,
             "category": event.category.text(),
-            "date": String(eventDate.timeIntervalSince1970),
+            "date": eventDateDouble,
+            "dateSort": 0 - eventDateDouble,
             "description": event.details,
             "city": event.city,
             "location":   event.location,

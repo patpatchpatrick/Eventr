@@ -713,14 +713,12 @@ extension ViewController{
         hideCalendarView()
         hideSearchCollectionContainer()
         
+        //Search for events using either CITY or Radius-based search, depending on what user selected
         if usingLocationBasedSearch {
             searchForEventsByRadius()
             
         } else {
             searchForEventsByCity(firstPage: firstPage)
-            print("SEARCH COUNT")
-            print(testSearchButtonCount)
-            testSearchButtonCount += 1
         }
         
        
