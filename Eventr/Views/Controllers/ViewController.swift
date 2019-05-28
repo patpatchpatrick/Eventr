@@ -14,6 +14,8 @@ import FirebaseAuth
 import GoogleSignIn
 import JTAppleCalendar
 
+var testPageCount = 0
+var testSearchButtonCount = 0
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
@@ -45,6 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var locationSelectionExpanded: Bool = false
     var usingLocationBasedSearch: Bool = false
+    var paginationInProgress: Bool = false
     let addCategoryDropDown = DropDown()
     let subtractCategoryDropDown = DropDown()
     let sortDropDown = DropDown()
@@ -162,6 +165,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @objc func updated_event_data(notification:Notification) -> Void{
+        paginationInProgress = false //Once updated event data is received, pagination is no longer in progress
         eventTableView.reloadData()
         if tableEvents.count > 0 {
             showTableViewSettingsContainer()
@@ -266,6 +270,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !paginationInProgress && (scrollView.contentOffset.y + 10) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            // Bottom of the scrollview of the eventTableView has been reached, so search for more events
+            testPageCount += 1
+            print("NEXT PAGE")
+            print(testPageCount)
+            paginationInProgress = true
+            //searchForEvents(firstPage: false)
+        }
     }
     
     
@@ -405,7 +420,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
      //Search button is tapped.  Query events within radius(km) of the location
     @IBAction func mainSearchButtonTapped(_ sender: Any) {
-        searchForEvents()
+        searchForEvents(firstPage: true)
     }
     
     

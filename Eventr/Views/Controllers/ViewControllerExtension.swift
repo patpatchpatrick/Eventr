@@ -466,7 +466,7 @@ extension ViewController{
         if !initialListLoaded {
             print("QUERYING INITIAL SEARCH")
             initialListLoaded = true
-            searchForEvents()
+           //searchForEvents(firstPage: true)
         }
     }
     
@@ -708,9 +708,37 @@ extension ViewController{
          performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     
-    func searchForEvents(){
+    func searchForEvents(firstPage: Bool){
+        
         hideCalendarView()
         hideSearchCollectionContainer()
+        
+        if usingLocationBasedSearch {
+            searchForEventsByRadius()
+            
+        } else {
+            if testSearchButtonCount == 0 {
+                
+                searchForEventsByCity(firstPage: firstPage)
+            } else {
+                searchForEventsByCity(firstPage: false)
+            }
+            print("SEARCH COUNT")
+            print(testSearchButtonCount)
+            testSearchButtonCount += 1
+        }
+        
+       
+    }
+    
+    func searchForEventsByCity(firstPage: Bool){
+        
+        queryFirebaseEventsByCity(city: "NYC", firstPage: firstPage)
+        
+    }
+    
+    func searchForEventsByRadius(){
+        
         let searchDistanceKm = searchDistanceMiles * 1.60934
         
         guard let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
@@ -732,6 +760,8 @@ extension ViewController{
                 queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
             }
         }
+        
+        
     }
     
     func refilterTableViewByCategory(){

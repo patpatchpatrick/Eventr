@@ -104,8 +104,8 @@ class Event : Comparable {
         if let tag3 = dict["tag3"] as? String {
             self.tag3 = tag3
         }
-        if let stringUpvoteCount = dict["upvotes"] as? String {
-            self.upvoteCount = Int(stringUpvoteCount)!
+        if let upvoteCountDict = dict["upvotes"] as? Int {
+            self.upvoteCount = upvoteCountDict
         }
         if let stringPaid = dict["paid"] as? String {
             self.paid = (stringPaid == "1") ? true : false

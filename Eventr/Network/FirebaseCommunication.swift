@@ -25,18 +25,68 @@ func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
     tableEvents.removeAll()
     allEvents.removeAll()
     var keyList: [String] = []
+    var keyDict: [String:String] = [:]
     
     //Query to find all keys(event IDs) within radius of location
     let gQuery = geoFire.query(at: centerLocation, withRadius: radius)
     gQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
         keyList.append(key)
+        keyDict[key] = "NYC"
     })
     
     //Method called when the query is finished and all keys(event IDs) are loaded
     gQuery.observeReady {
-        addEventsToEventTableView(eventsList: keyList, isUserCreatedEvent: false, searchCriteriaIsRequired: true)
+        addEventsToEventTableView(eventsList: keyDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: true)
     }
     
+}
+
+func queryFirebaseEventsByCity(city: String, firstPage: Bool){
+    
+    var eventDict : [String:String] = [:]
+    
+    if firstPage{
+        
+        tableEvents.removeAll()
+        allEvents.removeAll()
+        print("QUERY STARTED")
+        
+        firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryLimited(toLast: 10).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            guard let dict = snapshot.value as? NSDictionary else { return }
+            for key in dict.allKeys {
+                if let keyString = key as? String {
+                    eventDict[keyString] = "NYC"
+                }
+            }
+            addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
+        })
+        
+    } else {
+        
+        print("ALL EVENTS COUNT")
+        print(allEvents.count)
+        
+        if (allEvents.count > 0) {
+            
+            let lastUpvoteValue = allEvents[allEvents.count-1].upvoteCount - 1
+            
+            print("LAST EVENT UPVOTE COUNT")
+            print(lastUpvoteValue)
+            firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryEnding(atValue:lastUpvoteValue ).queryLimited(toLast: 11).observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                guard let dict = snapshot.value as? NSDictionary else { return }
+                for key in dict.allKeys {
+                    if let keyString = key as? String {
+                        eventDict[keyString] = "NYC"
+                    }
+                }
+                addEventsToEventTableView(eventsList: eventDict as NSDictionary, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
+            })
+        }
+       
+    }
+
 }
 
 //Query list of Firebase events that were favorited by the user and add them to the eventsTableView
@@ -47,14 +97,7 @@ func queryFirebaseFavoriteEvents(){
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        var favoriteEvents : [String] = []
-        for value in dict.allValues {
-            if let eventString = value as? String {
-                print("EVENT STRING " + eventString)
-                favoriteEvents.append(eventString)
-            }
-        }
-        addEventsToEventTableView(eventsList: favoriteEvents, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
+        addEventsToEventTableView(eventsList: dict, isUserCreatedEvent: false, searchCriteriaIsRequired: false)
     })
     
 }
@@ -67,21 +110,20 @@ func queryFirebaseCreatedEvents(){
     firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        var createdEvents : [String] = []
-        for value in dict.allValues {
-            if let eventString = value as? String {
-                print("EVENT STRING " + eventString)
-                createdEvents.append(eventString)
-            }
-        }
-        addEventsToEventTableView(eventsList: createdEvents, isUserCreatedEvent: true, searchCriteriaIsRequired: false)
+        addEventsToEventTableView(eventsList: dict, isUserCreatedEvent: true, searchCriteriaIsRequired: false)
     })
     
 }
 
-func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bool, searchCriteriaIsRequired: Bool){
-    for eventID in eventsList {
-        firebaseDatabaseRef.child("events").child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in
+func addEventsToEventTableView(eventsList: NSDictionary, isUserCreatedEvent: Bool, searchCriteriaIsRequired: Bool){
+    for (id, city) in eventsList {
+       
+        //Get the Event ID and the City as string values
+        //The Event ID and the City are stored as Key:Value pairs in Firebase
+        guard let eventID = id as? String, let eventCity = city as? String else {
+            return
+        }
+        firebaseDatabaseRef.child("events").child(eventCity).child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get dictionary of event data
             if let value = snapshot.value as? NSDictionary {
                 let event = Event(dict: value, idKey: eventID)
@@ -112,8 +154,8 @@ func addEventsToEventTableView(eventsList: Array<String>, isUserCreatedEvent: Bo
                     }
                 } else {
                     //Add event to tableview without search criteria check
-                    let index = tableEvents.insertionIndexOf(elem: event, isOrderedBefore: >)
-                    tableEvents.insert(event, at: index)
+                    addEventToEventsListInOrder(event: event, eventList: &tableEvents)
+                    addEventToEventsListInOrder(event: event, eventList: &allEvents)
                     reloadEventTableView()
                 }
             }
@@ -159,7 +201,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             "tag1":   event.tag1,
             "tag2":   event.tag2,
             "tag3":   event.tag3,
-            "upvotes": String(event.upvoteCount),
+            "upvotes": event.upvoteCount,
             "paid" : paidString,
             "userCount" : event.userCount
             ] as [String : Any]
@@ -169,12 +211,13 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         let firebaseEvent : DatabaseReference = {
             switch createOrUpdate {
             case .creating:
-                return firebaseDatabaseRef.child("events").childByAutoId()
+                return firebaseDatabaseRef.child("events").child(event.city).childByAutoId()
             case .editing:
-                return firebaseDatabaseRef.child("events").child(selectedEvent.id)
+                return firebaseDatabaseRef.child("events").child(event.city).child(selectedEvent.id)
             }
         }()
         guard let eventKey = firebaseEvent.key else { return }
+        
         event.id = eventKey
         firebaseEvent.setValue(eventData, withCompletionBlock: { (error, snapshot) in
             if error != nil {
@@ -201,9 +244,14 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             }
         }
         
+        //Create the other event data needed in Firebase
+        
         if createOrUpdate == .creating {
             //Map the firebase event to the "created" events section of Firebase
-            firebaseDatabaseRef.child("created").child(userID).child(event.id).setValue(event.id)
+            firebaseDatabaseRef.child("created").child(userID).child(event.id).setValue(event.city)
+            
+            //Add the event to the eventByCity section of firebase used to find events based on the city
+            firebaseDatabaseRef.child("eventbyCity").child(event.id).child(event.city).setValue(event.city)
         }
        
     
@@ -230,7 +278,7 @@ func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
     
     //Delete every reference to the event (events, created, date and geoFire)
     //User specific references to the event (upvotes, favorited, etc...) are not deleted when the event is deleted
-    firebaseDatabaseRef.child("events").child(event.id).removeValue()
+    firebaseDatabaseRef.child("events").child(event.city).child(event.id).removeValue()
     firebaseDatabaseRef.child("attendingEvents").child(event.id).removeValue()
     firebaseDatabaseRef.child("created").child(userID).child(event.id).removeValue()
     let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
@@ -285,13 +333,13 @@ func upvoteFirebaseEvent(event: Event){
         if !eventAlreadyUpvoted {
             
             //Update the upvotes in Firebase
-            firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
+            firebaseDatabaseRef.child("events").child(event.city).child(event.id).observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 guard let dict = snapshot.value as? NSDictionary else { return }
-                guard let upvoteCountString = dict["upvotes"] as? String else { return }
-                guard var upvoteCount = Int(upvoteCountString) else { return }
+                guard var upvoteCount = dict["upvotes"] as? Int else { return }
+                
                 upvoteCount += 1
-                firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
+                firebaseDatabaseRef.child("events").child(event.city).child(event.id).updateChildValues(["upvotes": upvoteCount])
             firebaseDatabaseRef.child("users").child(userID).child("upvoted").childByAutoId().setValue(event.id)
                
             })
@@ -320,13 +368,13 @@ func removeUpvoteFromFirebaseEvent(event: Event){
         if eventAlreadyUpvoted {
             
             //Update Firebase
-            firebaseDatabaseRef.child("events").child(event.id).observeSingleEvent(of: .value, with: {
+            firebaseDatabaseRef.child("events").child(event.city).child(event.id).observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 guard let dict = snapshot.value as? NSDictionary else { return }
-                guard let upvoteCountString = dict["upvotes"] as? String else { return }
-                guard var upvoteCount = Int(upvoteCountString) else { return }
+                guard var upvoteCount = dict["upvotes"] as? Int else { return }
+    
                 upvoteCount -= 1
-                firebaseDatabaseRef.child("events").child(event.id).updateChildValues(["upvotes": String(upvoteCount)])
+                firebaseDatabaseRef.child("events").child(event.city).child(event.id).updateChildValues(["upvotes": upvoteCount])
                 
                 firebaseDatabaseRef.child("users").child(userID).child("upvoted").queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
                     for result in querySnapshot.children {
@@ -355,14 +403,14 @@ func favoriteFirebaseEvent(event: Event){
         var eventAlreadyFavorited = false
         let dict = snapshot.value as? NSDictionary
         if dict != nil {
-                eventAlreadyFavorited = dict!.allValues.contains { element in
+                eventAlreadyFavorited = dict!.allKeys.contains { element in
                 if case element as! String = event.id { return true } else { return false }
             }
         }
         
         //If not favorited, mark the event as "favorite" in Firebase
         if !eventAlreadyFavorited {
-            firebaseDatabaseRef.child("favorited").child(userID).childByAutoId().setValue(event.id)
+            firebaseDatabaseRef.child("favorited").child(userID).child(event.id).setValue(event.city)
         }
         
     })
@@ -378,22 +426,15 @@ func unfavoriteFirebaseEvent(event: Event){
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        let eventAlreadyFavorited = dict.allValues.contains { element in
+        let eventAlreadyFavorited = dict.allKeys.contains { element in
             if case element as! String = event.id { return true } else { return false }
         }
         
         //If favorited, unmark the event as "favorite" in firebase
         if eventAlreadyFavorited {
-            firebaseDatabaseRef.child("favorited").child(userID).queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
-                for result in querySnapshot.children {
-                    let resultSnapshot = result as! DataSnapshot
-                    let eventKey = resultSnapshot.key
-                    firebaseDatabaseRef.child("favorited").child(userID).child(eventKey).removeValue()
-                    
-                    event.favorite = false
-                    
-                }
-            }
+            firebaseDatabaseRef.child("favorited").child(userID).child(event.id).removeValue()
+            
+            event.favorite = false
         }
         
     })
@@ -413,9 +454,9 @@ func attendFirebaseEvent(event: Event){
     
 
    //Update the count of users attending the event.  If no one is attending, set the count to 1.
-    firebaseDatabaseRef.child("events").child(event.id).child("userCount").observeSingleEvent(of: .value, with: { snapshot in
+    firebaseDatabaseRef.child("events").child(event.city).child(event.id).child("userCount").observeSingleEvent(of: .value, with: { snapshot in
         if !snapshot.exists() {
-                firebaseDatabaseRef.child("events").child(event.id).child("userCount").setValue(1)
+                firebaseDatabaseRef.child("events").child(event.city).child(event.id).child("userCount").setValue(1)
                 selectedEvent.userCount = 1
             
         } else {
@@ -423,7 +464,7 @@ func attendFirebaseEvent(event: Event){
                 count = count + 1
                 print("NEW COUNT")
                 print(count)
-                firebaseDatabaseRef.child("events").child(event.id).child("userCount").setValue(count)
+                firebaseDatabaseRef.child("events").child(event.city).child(event.id).child("userCount").setValue(count)
                 selectedEvent.userCount = count
             }
         }
@@ -442,13 +483,13 @@ func unattendFirebaseEvent(event: Event){
     firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).removeValue()
     
     //Update the count of users attending the event.
-    firebaseDatabaseRef.child("events").child(event.id).child("userCount").observeSingleEvent(of: .value, with: { snapshot in
+    firebaseDatabaseRef.child("events").child(event.city).child(event.id).child("userCount").observeSingleEvent(of: .value, with: { snapshot in
         
         if var count = snapshot.value as? Int {
             count = count - 1
             print("NEW COUNT")
             print(count)
-            firebaseDatabaseRef.child("events").child(event.id).child("userCount").setValue(count)
+            firebaseDatabaseRef.child("events").child(event.city).child(event.id).child("userCount").setValue(count)
             selectedEvent.userCount = count
         }
         
