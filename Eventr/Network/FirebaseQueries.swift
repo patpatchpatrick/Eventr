@@ -106,27 +106,27 @@ func queryPopularEvents(city: String, firstPage: Bool){
     
 }
 
-//Query list of events within a certain radius (km) of a location
-//Get the keys(eventIDs) of the events within the specified radius
-//Query firebase for event data for each of the keys and build events
-//Set the events list to include the queried events data and reload the tableview
-func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
+//Query list of events within a certain radius of a location
+func queryNearbyEvents(centerLocation: CLLocation?, radius: Double){
+    
+    guard let queryLocation = centerLocation else {return}
+    let searchDistanceKm = radius * 1.60934 //Convert radius(miles) to km
+    
     tableEvents.removeAll()
     allEvents.removeAll()
-    var keyList: [String] = []
-    var keyDict: [String:String] = [:]
     
     //Query to find all keys(event IDs) within radius of location
-    gQuery = geoFire.query(at: centerLocation, withRadius: radius)
+    //When new events are found, they are added to the tableView
+    gQuery = geoFire.query(at: queryLocation, withRadius: searchDistanceKm)
     guard let gQ = gQuery else {return}
     gQ.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        keyList.append(key)
-        keyDict[key] = "NYC"
-        addEventsToEventTableViewByEventID(eventIDMap: [key : "NYC"] as! NSDictionary, isUserCreatedEvent: false, filterByCategory: true)
+        addEventsToEventTableViewByEventID(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, filterByCategory: true)
     })
+    
     //Method called when the query is finished and all keys(event IDs) are loaded
+    //After all events within a radius are loaded, check if the distance query is complete or if the radius needs to be increased
     gQ.observeReady {
-        //checkIfDistanceSearchIsComplete()
+        checkIfNearbyQueryIsComplete()
     }
     
 }
@@ -155,17 +155,6 @@ func queryFirebaseCreatedEvents(){
         guard let dict = snapshot.value as? NSDictionary else { return }
         addEventsToEventTableViewByEventID(eventIDMap: dict, isUserCreatedEvent: true, filterByCategory: false)
     })
-    
-}
-
-func searchForEventsByRadius(radius: Double, location: CLLocation?){
-    
-    guard let queryLocation = location else {return}
-    //searchDistanceMiles
-    let searchDistanceKm = radius * 1.60934
-    
-    queryFirebaseEventsInRadius(centerLocation: queryLocation, radius: searchDistanceKm)
-    
     
 }
 

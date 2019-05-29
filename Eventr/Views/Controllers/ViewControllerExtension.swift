@@ -706,45 +706,31 @@ extension ViewController{
         
         switch firebaseQueryType{
             
-        case .popular: //For upcoming events, add events to tableView in upvote count order.  No date range used.
+        case .popular: //User querying "Popular/Hot" events, add events to tableView in upvote count order.  No date range used.
             sortByPreference = .popularity
             queryPopularEvents(city: city, firstPage: firstPage)
-        case .nearby:
-            sortByPreference = .popularity //Searches for events near user via GeoFire ans sorts them by popularity
             
-            //If the first page is being loaded, reset the variables that track event count and incrementing search radius
+        case .nearby:  //User querying "Nearby" events, use Geofire to search for and add events near user and sort them by popularity
+            sortByPreference = .popularity
+            
             if firstPage {
-                nearbyEventPageCountLoaded = false
-                nearbyEventPageCount = 20
-                incrementingSearchRadius = 0.5
                 
-                guard let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-                    return
-                }
-                //If text is empty or is "Current Location", search for events using the current user's location, if not, search by address that they entered
-                if addressText == "Current Location" || addressText.isEmpty || addressText == "" {
-                    searchForEventsByRadius(radius: incrementingSearchRadius, location: currentLocation)
-                    nearbyEventSearchLocation = currentLocation
-                } else {
-                    getCoordinates(forAddress: addressText) {
-                        (location) in
-                        guard let location = location else {
-                            //Handle geolocation error
-                            return
-                        }
-                        let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                        nearbyEventSearchLocation = addressLocation
-                        searchForEventsByRadius(radius: incrementingSearchRadius, location: addressLocation)
-                    }
-                }
+                //If the first page is being loaded, reset the variables that track the "Nearby" events that have been loaded
+                nearbyEventPageCountLoaded = false
+                nearbyEventPageCount = paginationFirstPageCount
+                incrementingSearchRadius = defaultSearchIncrement
+                
+                determineLocationToQuery()
+                
+                queryNearbyEvents(centerLocation: mostRecentlyQueriedLocation, radius: incrementingSearchRadius)
+                
                 
             } else if nearbyEventPageCountLoaded{
-                //If you aren't loading the first page, and the pageCount has been loaded increase the page count and load more data if it exists
+                //If you aren't loading the first page and the pageCount has been loaded, increase the page count and load more data if it exists
                 nearbyEventPageCount += paginationAddlPageCount
                 nearbyEventPageCountLoaded = false
+                checkIfNearbyQueryIsComplete()
                 
-            } else if !nearbyEventPageCountLoaded {
-                checkIfDistanceSearchIsComplete()
             }
         
         case .upcoming: //For upcoming events, add events to tableView in dateAscending order within user selected date range
@@ -769,6 +755,24 @@ extension ViewController{
             hideSearchCollectionContainer()
         }
     
+    }
+    
+    //Determine which location should be queried based on text entered by user in "Location Entry" field
+    func determineLocationToQuery(){
+        guard let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+            return
+        }
+        //If user-entered address text is empty or is "Current Location", search for events using the current user's location, if not, search by address that they entered
+        if addressText == "Current Location" || addressText.isEmpty || addressText == "" {
+            mostRecentlyQueriedLocation = currentLocation
+        } else {
+            getCoordinates(forAddress: addressText) {
+                (location) in
+                guard let location = location else {return} //Handle geolocation error here if necessary
+                let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                mostRecentlyQueriedLocation = addressLocation
+            }
+        }
     }
     
     

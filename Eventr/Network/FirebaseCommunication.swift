@@ -20,17 +20,18 @@ enum fbQueryType {
 }
 var firebaseQueryType : fbQueryType = .popular //Query type - is popular by default
 
-let paginationFirstPageCount: UInt = 20
+let paginationFirstPageCount: UInt = 7
 let paginationAddlPageCount: UInt = 10
 let firebaseDatabaseRef = Database.database().reference()
 let geoFireDatabase = firebaseDatabaseRef.child("geofire")
 let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 
-//Variables for radius (GeoFire queries)
+//Variables for nearby Event queries
 var nearbyEventPageCount: UInt = 0
 var incrementingSearchRadius:Double = 0 //search radius (in miles) that increments until it reaches the user selected search radius.  This is used for pagination purposes (the search radius is slowly increased to ensure large queries aren't performed)
+var defaultSearchIncrement:Double = 0.5 //default search increment amount (in miles)
 var nearbyEventPageCountLoaded: Bool = false //Bool to represent if the full count of nearby events has loaded.  This is used for Geofire pagination
-var nearbyEventSearchLocation: CLLocation?
+var mostRecentlyQueriedLocation: CLLocation?
 
 
 func addQueriedEventsToTableView(eventsList: NSDictionary){
@@ -123,9 +124,8 @@ func addEventsToEventTableViewByEventID(eventIDMap: NSDictionary, isUserCreatedE
                                 //Secondly, use the current selected category to filter the events and add them to tableView
                                 addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                                 reloadEventTableView()
-                                paginationFinishedLoading()
-                                if firebaseQueryType == .nearby {
-                                   //checkIfDistanceSearchIsComplete()
+                                if firebaseQueryType != .nearby {
+                                    paginationFinishedLoading()
                                 }
                             }
                         
@@ -135,10 +135,10 @@ func addEventsToEventTableViewByEventID(eventIDMap: NSDictionary, isUserCreatedE
                     addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                     addEventToEventsListInOrder(event: event, eventList: &allEvents)
                     reloadEventTableView()
-                    paginationFinishedLoading()
-                    if firebaseQueryType == .nearby {
-                        //checkIfDistanceSearchIsComplete()
+                    if firebaseQueryType != .nearby {
+                        paginationFinishedLoading()
                     }
+                 
                 }
             }
         }) { (error) in

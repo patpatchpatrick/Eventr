@@ -295,16 +295,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Set up the cells in the table view using the event data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //Determine if more data needs to be loaded to the tableview (user has scrolled to the bottom of the page)
-        if indexPath.row == tableEvents.count - 1 { // last cell
-            
-            print("PAGINATINO IN PROGRE")
-            print(paginationInProgress)
-            print("NEARBYEVENTPAGECOUNTLOADED")
-            print(nearbyEventPageCountLoaded)
-            
+        //Determine if more data needs to be loaded in the tableview (user has scrolled to the bottom of the page and another page needs to be loaded)
+        if indexPath.row == tableEvents.count - 1 {
+            //If the last cell has been loaded and pagination is not currently in progress, load another page
             if !paginationInProgress {
-                // Bottom of the scrollview of the eventTableView has been reached, so search for more events if pagination isn't currently in progress
                 paginationInProgress = true
                 queryFirebaseEvents(city: "NYC", firstPage: false)
             }
