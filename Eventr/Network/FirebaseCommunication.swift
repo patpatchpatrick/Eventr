@@ -13,27 +13,6 @@ import MapKit
 
 //Class to handle communication with Firebase
 
-enum fbQueryType {
-    case popular
-    case upcoming
-    case nearby
-}
-var firebaseQueryType : fbQueryType = .popular //Query type - is popular by default
-
-let paginationFirstPageCount: UInt = 7
-let paginationAddlPageCount: UInt = 10
-let firebaseDatabaseRef = Database.database().reference()
-let geoFireDatabase = firebaseDatabaseRef.child("geofire")
-let geoFire = GeoFire(firebaseRef: geoFireDatabase)
-
-//Variables for nearby Event queries
-var nearbyEventPageCount: UInt = 0
-var incrementingSearchRadius:Double = 0 //search radius (in miles) that increments until it reaches the user selected search radius.  This is used for pagination purposes (the search radius is slowly increased to ensure large queries aren't performed)
-var defaultSearchIncrement:Double = 0.5 //default search increment amount (in miles)
-var nearbyEventPageCountLoaded: Bool = false //Bool to represent if the full count of nearby events has loaded.  This is used for Geofire pagination
-var mostRecentlyQueriedLocation: CLLocation?
-
-
 func addQueriedEventsToTableView(eventsList: NSDictionary){
     
     //Add queried events to tableView

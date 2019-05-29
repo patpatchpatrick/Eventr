@@ -9,7 +9,13 @@
 import Foundation
 import JTAppleCalendar
 
-//Extension for calendar code
+//CALENDAR VARIABLES
+var hideDate: Date = Date().addingTimeInterval(-ONE_DAY) //date before which to hide calendar cells.  This date is equal to yesterday
+var toDate: Date = Date().addingTimeInterval(ONE_WEEK)//toDate is 1 week from now by default
+var fromDate: Date = Date()
+
+//This Extension primarily deals with the handling of the Calendar
+
 extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     
     func configureCalendarView(){

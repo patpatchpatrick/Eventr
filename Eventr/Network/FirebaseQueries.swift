@@ -10,10 +10,40 @@ import Foundation
 import Firebase
 import GeoFire
 import MapKit
+import GoogleSignIn
 
 //Class to track types of queries that can be performed in Firebase
 
-var gQuery : GFCircleQuery?
+//QUERY AND DATABASE REFS
+var gQuery : GFCircleQuery? //The Geoquery used for all "Nearby" Queries
+let firebaseDatabaseRef = Database.database().reference()
+let geoFireDatabase = firebaseDatabaseRef.child("geofire")
+let geoFire = GeoFire(firebaseRef: geoFireDatabase)
+var googleUser: GIDGoogleUser?
+
+enum fbQueryType {
+    case popular
+    case upcoming
+    case nearby
+}
+var firebaseQueryType : fbQueryType = .popular //Query type - is popular by default
+
+//PAGINATION VARIABLES
+var paginationInProgress: Bool = true //Bool to represent if events are currently being paginated.  Variable starts at "TRUE" and will change to "FALSE" after first page has finished loading
+var mostRecentlyQueriedDate: Date?
+var mostRecentlyQueriedUpvoteCount: Int?
+let paginationFirstPageCount: UInt = 7
+let paginationAddlPageCount: UInt = 10
+
+
+//NEARBY EVENT QUERY VARIABLES
+var nearbyEventPageCount: UInt = 0
+var incrementingSearchRadius:Double = 0 //search radius (in miles) that increments until it reaches the user selected search radius.  This is used for pagination purposes (the search radius is slowly increased to ensure large queries aren't performed)
+var searchDistanceMiles: Double = 5.0 //user selected search distance (miles)
+var defaultSearchIncrement:Double = 0.5 //default search increment amount (in miles)
+var nearbyEventPageCountLoaded: Bool = false //Bool to represent if the full count of nearby events has loaded.  This is used for Geofire pagination
+var mostRecentlyQueriedLocation: CLLocation?
+var currentLocation: CLLocation? //User's current location
 
 //Query all upcoming events using the dates input by the user
 func queryUpcomingEvents(city: String, firstPage: Bool){

@@ -48,6 +48,7 @@
 		F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* EventCategories.swift */; };
 		F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */; };
 		F6C21484229C89400066B15F /* ManualFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C21483229C89400066B15F /* ManualFirebase.swift */; };
+		F6C39772229F4D1300FFFA55 /* ViewControllerDataHandlerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C39771229F4D1300FFFA55 /* ViewControllerDataHandlerExtension.swift */; };
 		F6C8B220228F68C500F78BB0 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21B228F68C400F78BB0 /* Raleway-Thin.ttf */; };
 		F6C8B221228F68C500F78BB0 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21B228F68C400F78BB0 /* Raleway-Thin.ttf */; };
 		F6C8B222228F68C500F78BB0 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21C228F68C400F78BB0 /* Raleway-Regular.ttf */; };
@@ -113,6 +114,7 @@
 		F6ADA4C72273CBA000948B7D /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		F6C21483229C89400066B15F /* ManualFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualFirebase.swift; sourceTree = "<group>"; };
+		F6C39771229F4D1300FFFA55 /* ViewControllerDataHandlerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDataHandlerExtension.swift; sourceTree = "<group>"; };
 		F6C8B21B228F68C400F78BB0 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		F6C8B21C228F68C400F78BB0 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		F6C8B21D228F68C400F78BB0 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
@@ -250,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */,
-				F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */,
 				F6C21483229C89400066B15F /* ManualFirebase.swift */,
 				F63E6E97229DE2A9004F1657 /* FirebaseQueries.swift */,
 			);
@@ -273,11 +274,13 @@
 				F6113F46227654D200CAD961 /* StartViewController.swift */,
 				F6113F482276589400CAD961 /* SignUpViewController.swift */,
 				F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */,
+				F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */,
 				F6113F4A227660A900CAD961 /* LoginViewController.swift */,
 				F62733032273944500FDA681 /* EventViewController.swift */,
 				F65368862272618100861E0D /* ViewController.swift */,
 				F6103064228204C800E6D5CE /* ViewControllerExtension.swift */,
-				F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */,
+				F6C39771229F4D1300FFFA55 /* ViewControllerDataHandlerExtension.swift */,
+				F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */,
 				F61DE9652295C49500C3E654 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
@@ -553,6 +556,7 @@
 				F6C21484229C89400066B15F /* ManualFirebase.swift in Sources */,
 				F65368852272618100861E0D /* AppDelegate.swift in Sources */,
 				F65368972272678C00861E0D /* UtilityViews.swift in Sources */,
+				F6C39772229F4D1300FFFA55 /* ViewControllerDataHandlerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

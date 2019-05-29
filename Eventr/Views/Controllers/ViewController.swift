@@ -14,10 +14,8 @@ import FirebaseAuth
 import GoogleSignIn
 import JTAppleCalendar
 
+//TABLEVIEW VARIABLES
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
-var paginationInProgress: Bool = true //Bool to represent if events are currently being paginated.  Variable starts at "TRUE" and will change to "FALSE" after first page has finished loading
-var mostRecentlyQueriedDate: Date?
-var mostRecentlyQueriedUpvoteCount: Int?
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 enum eventAction {
@@ -27,21 +25,14 @@ enum eventAction {
 var selectedEventAction: eventAction = .creating //variable to track if creating or editing an event
 var tableEvents: [Event] = [] //List of events in tableview
 var allEvents: [Event] = [] //List of all queried events.  This list may be filtered/shortened based on search criteria when events are displayed in the table (tableEvents) array.  This list of events is maintained so that events don't need to be re-queried from Firebase
-var currentLocation: CLLocation?
 var initialListLoaded: Bool = false //Bool to keep track of if the list has loaded when the app starts
-var searchDistanceMiles: Double = 5.0 //search distance in miles
-var googleUser: GIDGoogleUser?
 //Date range to query events
-var hideDate: Date = Date().addingTimeInterval(-ONE_DAY) //date before which to hide calendar cells.  This date is equal to yesterday
-var toDate: Date = Date().addingTimeInterval(ONE_WEEK)//toDate is 1 week from now by default
-var fromDate: Date = Date()
 enum sortBy {
     case popularity
     case dateasc
     case datedesc
 }
 var sortByPreference : sortBy = .popularity //Variable to track user's sorting preferences
-
 
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
@@ -137,24 +128,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //Add notification on view to listen for when the initial data is loaded
         addDefaultNotifications()
-        hideListDescriptor()
         configureListDiscriptor()
-        configureStandardViewDesignWithShadow(view: sideMenu, shadowSize: 1.0, widthAdj: 0, heightAdj: 200, xOffset: 0.0, yOffset: 100)
         configureSideMenu()
         configureHeaderButtons()
-        setUpAccountSettingsImage()
-        setUpLogOutIcon()
         setUpCategoryStackView()
-        setUpSubtractCategoryButton()
-        setUpLocationEntryField()
         setUpMainButtons()
         setUpSortButton()
         getCurrentLocationAndLoadTableView()
         //loadInitialListOfEvents()
-        hideSearchCollectionContainer()
-        hideSideMenu()
-        hideDateButtonContainer()
-        hideCalendarView()
+        hideViews()
         configureCalendarView()
         updateSelectedQueryButtonStyle()
         
@@ -475,35 +457,5 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         queryFirebaseEvents(city: "NYC", firstPage: true)
     }
     
-    func updateSelectedQueryButtonStyle(){
-        
-        switch firebaseQueryType {
-        case .nearby:
-            nearbyButton.borderWidth = 1.0
-            nearbyButton.borderColor = themeAccentGreen
-            nearbyButton.layer.shadowOpacity = 0
-            hotButton.layer.shadowOpacity = 0.5
-            upcomingButton.layer.shadowOpacity = 0.5
-            hotButton.borderWidth = 0
-            upcomingButton.borderWidth = 0
-        case .popular:
-            hotButton.borderWidth = 1.0
-            hotButton.borderColor = themeAccentGreen
-            hotButton.layer.shadowOpacity = 0
-            nearbyButton.layer.shadowOpacity = 0.5
-            upcomingButton.layer.shadowOpacity = 0.5
-            nearbyButton.borderWidth = 0
-            upcomingButton.borderWidth = 0
-        case .upcoming:
-            upcomingButton.borderWidth = 1.0
-            upcomingButton.borderColor = themeAccentGreen
-            upcomingButton.layer.shadowOpacity = 0
-            hotButton.layer.shadowOpacity = 0.5
-            nearbyButton.layer.shadowOpacity = 0.5
-            hotButton.borderWidth = 0
-            nearbyButton.borderWidth = 0
-        }
-        
-    }
 }
 

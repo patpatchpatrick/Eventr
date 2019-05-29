@@ -15,10 +15,7 @@ let testData: [String] = [
   
 ]
 
-
-
-
- 
+//Class used to manually add data to Firebase if necessary
 
 func addTestDataToFirebase(vc: UIViewController){
     
