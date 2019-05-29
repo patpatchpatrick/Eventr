@@ -26,29 +26,12 @@ let firebaseDatabaseRef = Database.database().reference()
 let geoFireDatabase = firebaseDatabaseRef.child("geofire")
 let geoFire = GeoFire(firebaseRef: geoFireDatabase)
 
-//Query list of events within a certain radius (km) of a location
-//Get the keys(eventIDs) of the events within the specified radius
-//Query firebase for event data for each of the keys and build events
-//Set the events list to include the queried events data and reload the tableview
-func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
-    tableEvents.removeAll()
-    allEvents.removeAll()
-    var keyList: [String] = []
-    var keyDict: [String:String] = [:]
-    
-    //Query to find all keys(event IDs) within radius of location
-    let gQuery = geoFire.query(at: centerLocation, withRadius: radius)
-    gQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        keyList.append(key)
-        keyDict[key] = "NYC"
-    })
-    
-    //Method called when the query is finished and all keys(event IDs) are loaded
-    gQuery.observeReady {
-        addEventsToEventTableViewByEventID(eventIDMap: keyDict as NSDictionary, isUserCreatedEvent: false, filterByCategory: true)
-    }
-    
-}
+//Variables for radius (GeoFire queries)
+var nearbyEventPageCount: UInt = 0
+var incrementingSearchRadius:Double = 0 //search radius (in miles) that increments until it reaches the user selected search radius.  This is used for pagination purposes (the search radius is slowly increased to ensure large queries aren't performed)
+var nearbyEventPageCountLoaded: Bool = false //Bool to represent if the full count of nearby events has loaded.  This is used for Geofire pagination
+var nearbyEventSearchLocation: CLLocation?
+
 
 func addQueriedEventsToTableView(eventsList: NSDictionary){
     
@@ -59,22 +42,8 @@ func addQueriedEventsToTableView(eventsList: NSDictionary){
         if let id = eventID as? String, let eventDict = eventsList[eventID] as? NSDictionary {
             let event = Event(dict: eventDict, idKey: id)
             
-            //Keep track of the most recently queried date for pagination purposes.  The most recently queried date is always the greatest date, since dates are queried in ascending order
-            if mostRecentlyQueriedDate == nil {
-                mostRecentlyQueriedDate = event.GMTDate
-            } else {
-                if event.GMTDate! > mostRecentlyQueriedDate! {
-                    mostRecentlyQueriedDate = event.GMTDate
-                }
-            }
-            
-            if mostRecentlyQueriedUpvoteCount == nil {
-                mostRecentlyQueriedUpvoteCount = event.upvoteCount
-            } else {
-                if event.upvoteCount < mostRecentlyQueriedUpvoteCount! {
-                    mostRecentlyQueriedUpvoteCount = event.upvoteCount
-                }
-            }
+            //Keep track of the most recently queried values for pagination purposes.
+            updatePaginationValues(event: event)
             
             //Check if event has been favorited by user
             queryIfFirebaseEventIsFavorited(event: event)
@@ -94,6 +63,32 @@ func addQueriedEventsToTableView(eventsList: NSDictionary){
     
     }
     
+    
+}
+
+func updatePaginationValues(event: Event){
+    
+    //Keep track of the most recently queried values for pagination purposes.
+    //The most recently queried date is always the greatest date, since dates are queried in ascending order
+    //The most recently queried upvote count is always the lowest count since upvotes are queried in descending order
+    
+    if mostRecentlyQueriedDate == nil {
+        mostRecentlyQueriedDate = event.GMTDate
+    } else {
+        if let eventDate = event.GMTDate {
+            if eventDate > mostRecentlyQueriedDate! {
+                mostRecentlyQueriedDate = event.GMTDate
+            }
+        }
+    }
+    
+    if mostRecentlyQueriedUpvoteCount == nil {
+        mostRecentlyQueriedUpvoteCount = event.upvoteCount
+    } else {
+        if event.upvoteCount < mostRecentlyQueriedUpvoteCount! {
+            mostRecentlyQueriedUpvoteCount = event.upvoteCount
+        }
+    }
     
 }
 
@@ -129,7 +124,9 @@ func addEventsToEventTableViewByEventID(eventIDMap: NSDictionary, isUserCreatedE
                                 addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                                 reloadEventTableView()
                                 paginationFinishedLoading()
-                        
+                                if firebaseQueryType == .nearby {
+                                   //checkIfDistanceSearchIsComplete()
+                                }
                             }
                         
                     
@@ -139,7 +136,9 @@ func addEventsToEventTableViewByEventID(eventIDMap: NSDictionary, isUserCreatedE
                     addEventToEventsListInOrder(event: event, eventList: &allEvents)
                     reloadEventTableView()
                     paginationFinishedLoading()
-                
+                    if firebaseQueryType == .nearby {
+                        //checkIfDistanceSearchIsComplete()
+                    }
                 }
             }
         }) { (error) in

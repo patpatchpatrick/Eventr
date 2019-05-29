@@ -19,5 +19,29 @@ func reloadEventViewController(){
 
 //Notification for when pagination has finished loading
 func paginationFinishedLoading(){
-    NotificationCenter.default.post(name: Notification.Name("PAGINATION_FINISHED_LOADING"), object: nil)
+    paginationInProgress = false
+}
+
+func checkIfDistanceSearchIsComplete(){
+    print("TABLEVIEWCOUNT")
+    print(tableEvents.count)
+    print("NEARBYEVENTPAGECOUNT")
+    print(nearbyEventPageCount)
+    print("SEARCHRADIUS")
+    print(incrementingSearchRadius)
+    
+    if tableEvents.count >= nearbyEventPageCount {
+        
+        //If the count of events in the table is greater than the total page count, the query is complete and all events have been loaded
+        nearbyEventPageCountLoaded = true
+        paginationInProgress = false
+    } else {
+        //If the event count is less than the necessary page count and the search radius is still less than the user selected search radius, then query Firebase for more events in a greater radius
+        if incrementingSearchRadius < searchDistanceMiles {
+            incrementingSearchRadius += 0.5
+            guard let gQ = gQuery else {return}
+            gQ.radius = incrementingSearchRadius //Update the query radius 
+        }
+    }
+    
 }

@@ -13,21 +13,7 @@ import MapKit
 
 //Class to track types of queries that can be performed in Firebase
 
-
-//The primary query function used by the app.  This method determines which query to run depending on which button the user pushed (i.e. firebaseQueryType)
-func queryFirebaseEventsByCity(city: String, firstPage: Bool){
-    
-    switch firebaseQueryType{
-        
-    case .popular: //For upcoming events, add events to tableView in upvote count order.  No date range used.
-        sortByPreference = .popularity
-        queryPopularEvents(city: city, firstPage: firstPage)
-    case .nearby: print("HI")
-    case .upcoming: //For upcoming events, add events to tableView in dateAscending order within user selected date range
-        sortByPreference = .dateasc
-        queryUpcomingEvents(city: city, firstPage: firstPage)
-    }
-}
+var gQuery : GFCircleQuery?
 
 //Query all upcoming events using the dates input by the user
 func queryUpcomingEvents(city: String, firstPage: Bool){
@@ -120,6 +106,31 @@ func queryPopularEvents(city: String, firstPage: Bool){
     
 }
 
+//Query list of events within a certain radius (km) of a location
+//Get the keys(eventIDs) of the events within the specified radius
+//Query firebase for event data for each of the keys and build events
+//Set the events list to include the queried events data and reload the tableview
+func queryFirebaseEventsInRadius(centerLocation: CLLocation, radius: Double){
+    tableEvents.removeAll()
+    allEvents.removeAll()
+    var keyList: [String] = []
+    var keyDict: [String:String] = [:]
+    
+    //Query to find all keys(event IDs) within radius of location
+    gQuery = geoFire.query(at: centerLocation, withRadius: radius)
+    guard let gQ = gQuery else {return}
+    gQ.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+        keyList.append(key)
+        keyDict[key] = "NYC"
+        addEventsToEventTableViewByEventID(eventIDMap: [key : "NYC"] as! NSDictionary, isUserCreatedEvent: false, filterByCategory: true)
+    })
+    //Method called when the query is finished and all keys(event IDs) are loaded
+    gQ.observeReady {
+        //checkIfDistanceSearchIsComplete()
+    }
+    
+}
+
 
 //Query list of Firebase events that were favorited by the user and add them to the eventsTableView
 func queryFirebaseFavoriteEvents(){
@@ -144,6 +155,17 @@ func queryFirebaseCreatedEvents(){
         guard let dict = snapshot.value as? NSDictionary else { return }
         addEventsToEventTableViewByEventID(eventIDMap: dict, isUserCreatedEvent: true, filterByCategory: false)
     })
+    
+}
+
+func searchForEventsByRadius(radius: Double, location: CLLocation?){
+    
+    guard let queryLocation = location else {return}
+    //searchDistanceMiles
+    let searchDistanceKm = radius * 1.60934
+    
+    queryFirebaseEventsInRadius(centerLocation: queryLocation, radius: searchDistanceKm)
+    
     
 }
 
@@ -201,10 +223,11 @@ func queryIfFirebaseEventIsFavorited(event: Event){
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Check if event has already been favorited
+    //An event has already been favorited if the "favorite/userID" section of firebase contains the eventID as a key
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        let eventAlreadyFavorited = dict.allValues.contains { element in
+        let eventAlreadyFavorited = dict.allKeys.contains { element in
             if case element as! String = event.id { return true } else { return false }
         }
         

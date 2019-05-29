@@ -250,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */,
+				F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */,
 				F6C21483229C89400066B15F /* ManualFirebase.swift */,
 				F63E6E97229DE2A9004F1657 /* FirebaseQueries.swift */,
 			);
@@ -277,7 +278,6 @@
 				F65368862272618100861E0D /* ViewController.swift */,
 				F6103064228204C800E6D5CE /* ViewControllerExtension.swift */,
 				F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */,
-				F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */,
 				F61DE9652295C49500C3E654 /* SettingsViewController.swift */,
 			);
 			path = Controllers;

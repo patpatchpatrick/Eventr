@@ -55,7 +55,7 @@ extension ViewController{
         citySelectDropDown.cellConfiguration = { (index, item) in return "\(item)" }
         
 
-    distanceRadiusSegmentedControl.selectedSegmentIndex = 1 //Set the default segment to (20 miles)
+    distanceRadiusSegmentedControl.selectedSegmentIndex = 0 //Set the default segment to (5 miles)
         locationEntryField.attributedPlaceholder = NSAttributedString(string: "Enter Location",
                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
@@ -664,48 +664,6 @@ extension ViewController{
          performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     
-    func searchForEvents(firstPage: Bool){
-        
-        hideCalendarView()
-        hideSearchCollectionContainer()
-        
-        searchForEventsByCity(firstPage: firstPage)
-       
-    }
-    
-    func searchForEventsByCity(firstPage: Bool){
-        
-        queryFirebaseEventsByCity(city: "NYC", firstPage: firstPage)
-        
-    }
-    
-    func searchForEventsByRadius(){
-        
-        let searchDistanceKm = searchDistanceMiles * 1.60934
-        
-        guard let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-            return
-        }
-        if addressText == "Current Location" || addressText.isEmpty || addressText == "" {
-            guard let location = currentLocation else {
-                return
-            }
-            queryFirebaseEventsInRadius(centerLocation: location, radius: searchDistanceKm)
-        } else {
-            getCoordinates(forAddress: addressText) {
-                (location) in
-                guard let location = location else {
-                    //Handle geolocation error
-                    return
-                }
-                let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                queryFirebaseEventsInRadius(centerLocation: addressLocation, radius: searchDistanceKm)
-            }
-        }
-        
-        
-    }
-    
     func refilterTableViewByCategory(){
         //This method will re-filter the tableview if the selected category was changed by the user
         //It goes through the "AllEvents" list, and adds selected categories to the tableEvents list
@@ -724,7 +682,7 @@ extension ViewController{
     
     func loadInitialListOfEvents(){
         
-        searchForEventsByCity(firstPage: true)
+        queryFirebaseEvents(city: "NYC", firstPage: true)
         
     }
     
@@ -743,6 +701,75 @@ extension ViewController{
         }
     }
     
+    //The primary query function used by the app.  This method determines which query to run depending on which button the user pushed (i.e. firebaseQueryType)
+    func queryFirebaseEvents(city: String, firstPage: Bool){
+        
+        switch firebaseQueryType{
+            
+        case .popular: //For upcoming events, add events to tableView in upvote count order.  No date range used.
+            sortByPreference = .popularity
+            queryPopularEvents(city: city, firstPage: firstPage)
+        case .nearby:
+            sortByPreference = .popularity //Searches for events near user via GeoFire ans sorts them by popularity
+            
+            //If the first page is being loaded, reset the variables that track event count and incrementing search radius
+            if firstPage {
+                nearbyEventPageCountLoaded = false
+                nearbyEventPageCount = 20
+                incrementingSearchRadius = 0.5
+                
+                guard let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+                    return
+                }
+                //If text is empty or is "Current Location", search for events using the current user's location, if not, search by address that they entered
+                if addressText == "Current Location" || addressText.isEmpty || addressText == "" {
+                    searchForEventsByRadius(radius: incrementingSearchRadius, location: currentLocation)
+                    nearbyEventSearchLocation = currentLocation
+                } else {
+                    getCoordinates(forAddress: addressText) {
+                        (location) in
+                        guard let location = location else {
+                            //Handle geolocation error
+                            return
+                        }
+                        let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                        nearbyEventSearchLocation = addressLocation
+                        searchForEventsByRadius(radius: incrementingSearchRadius, location: addressLocation)
+                    }
+                }
+                
+            } else if nearbyEventPageCountLoaded{
+                //If you aren't loading the first page, and the pageCount has been loaded increase the page count and load more data if it exists
+                nearbyEventPageCount += paginationAddlPageCount
+                nearbyEventPageCountLoaded = false
+                
+            } else if !nearbyEventPageCountLoaded {
+                checkIfDistanceSearchIsComplete()
+            }
+        
+        case .upcoming: //For upcoming events, add events to tableView in dateAscending order within user selected date range
+            sortByPreference = .dateasc
+            queryUpcomingEvents(city: city, firstPage: firstPage)
+        }
+    }
+    
+    func showAndHideViewsBasedOnQueryType(){
+        
+        switch firebaseQueryType{
+        case .popular:
+            hideDateButtonContainer()
+            hideCalendarView()
+            hideSearchCollectionContainer()
+        case .nearby:
+            hideDateButtonContainer()
+            hideCalendarView()
+            showSearchSelectionContainer()
+        case .upcoming:
+            showDateButtonContainer()
+            hideSearchCollectionContainer()
+        }
+    
+    }
     
     
 }

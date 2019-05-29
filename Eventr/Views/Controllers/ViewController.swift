@@ -15,10 +15,10 @@ import GoogleSignIn
 import JTAppleCalendar
 
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
-//Variable to represent which event was selected in TableView
-var paginationInProgress: Bool = false
+var paginationInProgress: Bool = true //Bool to represent if events are currently being paginated.  Variable starts at "TRUE" and will change to "FALSE" after first page has finished loading
 var mostRecentlyQueriedDate: Date?
 var mostRecentlyQueriedUpvoteCount: Int?
+//Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false)
 enum eventAction {
     case creating
@@ -180,11 +180,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                                selector: #selector(updated_event_data),
                                                name:Notification.Name("UPDATED_EVENT_DATA"),
                                                object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(pagination_finished_loading),
-                                               name:Notification.Name("PAGINATION_FINISHED_LOADING"),
-                                               object: nil)
+
     }
     
     @objc func updated_event_data(notification:Notification) -> Void{
@@ -196,11 +192,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             hideTableViewSettingsContainer()
         }
         
-    }
-    
-    @objc func pagination_finished_loading(notification:Notification) -> Void{
-        
-       paginationInProgress = false //Once updated event data is received, pagination is no longer in progress
     }
     
     @IBAction func sideMenuShadeTouched(_ sender: UIButton) {
@@ -273,13 +264,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         hideCalendarView()
         updateMainDateButtonDateLabels()
+        queryFirebaseEvents(city: "NYC", firstPage: true) //Search for new events when new date is chosen
     }
     
     
     @IBAction func discardDate(_ sender: UIButton) {
         
         hideCalendarView()
-        
         calendarView.deselectAllDates(triggerSelectionDelegate: false)
         resetCalendarFromDate()
         resetCalendarToDate()
@@ -307,10 +298,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Determine if more data needs to be loaded to the tableview (user has scrolled to the bottom of the page)
         if indexPath.row == tableEvents.count - 1 { // last cell
             
+            print("PAGINATINO IN PROGRE")
+            print(paginationInProgress)
+            print("NEARBYEVENTPAGECOUNTLOADED")
+            print(nearbyEventPageCountLoaded)
+            
             if !paginationInProgress {
                 // Bottom of the scrollview of the eventTableView has been reached, so search for more events if pagination isn't currently in progress
                 paginationInProgress = true
-                searchForEvents(firstPage: false)
+                queryFirebaseEvents(city: "NYC", firstPage: false)
             }
         }
         
@@ -464,30 +460,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func hotButtonTapped(_ sender: UIButton) {
         firebaseQueryType = .popular
-        hideDateButtonContainer()
-        hideCalendarView()
-        hideSearchCollectionContainer()
         updateSelectedQueryButtonStyle()
-        searchForEvents(firstPage: true)
+        showAndHideViewsBasedOnQueryType()
+        queryFirebaseEvents(city: "NYC", firstPage: true)
     }
     
     
     @IBAction func upcomingButtonTapped(_ sender: UIButton) {
         firebaseQueryType = .upcoming
-        showDateButtonContainer()
-        hideSearchCollectionContainer()
         updateSelectedQueryButtonStyle()
-        searchForEvents(firstPage: true)
+        showAndHideViewsBasedOnQueryType()
+        queryFirebaseEvents(city: "NYC", firstPage: true)
     }
     
     
     @IBAction func nearMeButtonTapped(_ sender: UIButton) {
         firebaseQueryType = .nearby
-        hideDateButtonContainer()
-        hideCalendarView()
-        showSearchSelectionContainer()
+        showAndHideViewsBasedOnQueryType()
         updateSelectedQueryButtonStyle()
-        searchForEvents(firstPage: true)
+        queryFirebaseEvents(city: "NYC", firstPage: true)
     }
     
     func updateSelectedQueryButtonStyle(){
