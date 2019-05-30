@@ -273,7 +273,6 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     }
     
     func configureEditEventScreen(){
-        
         //Update create event button text
         createEventButton.setTitle("Update Event", for: .normal)
         

@@ -229,6 +229,7 @@ class CreateEventViewController: UIViewController {
                 switch selectedEventAction {
                 case .creating: print("EVENT CREATED SUCCESSFULLY")
                 case .editing: print("EVENT UPDATED SUCCESSFULLY")
+                    selectedEvent = newEvent //Update the selected event to be the new event so that data reloads properly on the EventViewController screen
                 }
                 self.incrementUserDefaultsDailyEventCount()
                 self.performSegueToReturnBack()
