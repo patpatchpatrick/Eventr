@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         allEventCategories.add(eventCategory: EventCategory(category: .food))
         allEventCategories.add(eventCategory: EventCategory(category: .art))
         allEventCategories.add(eventCategory: EventCategory(category: .social))
+        allEventCategories.add(eventCategory: EventCategory(category: .party))
         allEventCategories.add(eventCategory: EventCategory(category: .music))
         allEventCategories.add(eventCategory: EventCategory(category: .misc))
         

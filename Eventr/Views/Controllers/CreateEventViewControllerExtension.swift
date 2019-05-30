@@ -313,6 +313,9 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     
     func configureTextEntryFieldsDesign(){
         eventName.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventDescription.addTopBorderWithColor(color: themeDark, width: 1.0)
+        eventDescription.addLeftBorderWithColor(color: themeDark, width: 1.0)
+        eventDescription.addRightBorderWithColor(color: themeDark, width: 1.0  )
         eventDescription.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
         eventLocation.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
         eventVenueName.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
@@ -325,4 +328,5 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         eventTag3.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
         
     }
+
 }

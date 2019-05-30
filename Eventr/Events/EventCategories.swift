@@ -22,6 +22,7 @@ enum eventCategory {
     case social
     case food
     case outdoors
+    case party
     case misc
 }
 
@@ -35,6 +36,7 @@ func stringToEventCategory(string: String) -> EventCategory {
     case "Art" : return EventCategory(category: .art)
     case "Social" : return EventCategory(category: .social)
     case "Food" : return EventCategory(category: .food)
+    case "Party" : return EventCategory(category: .party)
     case "Misc" : return EventCategory(category: .misc)
     default: return EventCategory(category: .misc)
     }
@@ -58,6 +60,7 @@ public struct EventCategory : Hashable {
         case .art: return "Art"
         case .social: return "Social"
         case .food: return "Food"
+        case .party: return "Party"
         case .misc: return "Misc"
         }
     }
@@ -80,6 +83,8 @@ public struct EventCategory : Hashable {
             return UIImage(named: "catIconFriends")
         case .food:
             return UIImage(named: "catIconFood")
+        case .party:
+            return UIImage(named: "catIconParty")
         case .misc:
             return UIImage(named: "catIconMisc")
         }
@@ -103,8 +108,10 @@ public struct EventCategory : Hashable {
             return 6
         case .art:
             return 7
-        case .misc:
+        case .party:
             return 8
+        case .misc:
+            return 9
         }
     }
     

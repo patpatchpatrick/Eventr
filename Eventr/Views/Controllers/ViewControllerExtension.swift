@@ -454,6 +454,7 @@ extension ViewController{
     //Show the list descriptor which describes the type of events being shown
     func showListDescriptor(type: listDescriptorType){
         listDescriptorInUse = true
+        hideDateAndLocationBackground() //Hide the date/location background so events list has more space
         switch type {
         case .favorited: listDescriptorLabel.text = "Favorited"
         listDescriptorIcon.image = UIImage(named: "catIconFavorite")
@@ -466,6 +467,8 @@ extension ViewController{
         dateAndSearchButtonStackView.isHidden = true
         categorySelectionStackViewContainer.isHidden = true
         mainButtonsStackViewContainer.isHidden = true
+        hideDateButtonContainer()
+        hideSearchCollectionContainer()
         hideCalendarView()
         //Move the event tableview up to account for extra space created when search and date settings are hidden
         self.calendarAndTableViewContainer.transform = CGAffineTransform(translationX: 0, y: -50)
@@ -478,6 +481,7 @@ extension ViewController{
      //Hide the list descriptor which describes the type of events being shown
     func hideListDescriptor(){
         listDescriptorInUse = false
+        showAndHideViewsBasedOnQueryType() //Ensure the main query views are set up appropriately
         tableEvents.removeAll()
         refilterTableViewByCategory() //If tableView has events already loaded, add them back to the tableView
         reloadEventTableView()
@@ -552,9 +556,9 @@ extension ViewController{
     }
     
     func configureSideMenuContainers(){
-        sideMenuMyEventsContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5, widthExtension: 0)
-        sideMenuFavoritedContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5, widthExtension: 0)
-        sideMenuLogOutContainer.addTopBorderWithColor(color: UIColor.black, width: 0.5)
+        sideMenuMyEventsContainer.addBottomBorderWithColor(color: themeTextColor, width: 0.5, widthExtension: 0)
+        sideMenuFavoritedContainer.addBottomBorderWithColor(color: themeTextColor, width: 0.5, widthExtension: 0)
+        sideMenuLogOutContainer.addTopBorderWithColor(color: themeTextColor, width: 0.5)
     }
     
     func configureBackgroundViewBlur(){
