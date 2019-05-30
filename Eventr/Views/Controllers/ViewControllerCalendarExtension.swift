@@ -23,7 +23,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
         calendarView.minimumInteritemSpacing = 0
         calendarView.layer.cornerRadius = 20.0
         calendarView.allowsMultipleSelection = true
-        configureStandardViewDesignWithShadow(view: calendarInnerContainer, shadowSize: 1.0, widthAdj: 55, heightAdj: 0, xOffset: 0, yOffset: 0)
+        configureStandardViewDesignWithShadow(view: calendarInnerContainer, xOffset: 0, yOffset: 0, opacity: 0.7)
         
         //Display the initial dates on the calendar from and to date buttons
         resetCalendarToDate()

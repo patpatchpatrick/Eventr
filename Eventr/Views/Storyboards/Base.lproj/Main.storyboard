@@ -628,7 +628,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4gX-3A-YK6">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4gX-3A-YK6" userLabel="locationContainer">
                                         <rect key="frame" x="0.0" y="172" width="320" height="30"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNM-0r-0co" userLabel="searchOptionsView">
@@ -688,7 +688,7 @@
                                             <constraint firstAttribute="height" constant="30" id="YIR-kh-Ya2"/>
                                         </constraints>
                                     </stackView>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cis-Vy-6kZ" userLabel="queryButtons">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cis-Vy-6kZ" userLabel="dateButtonContainer">
                                         <rect key="frame" x="0.0" y="172" width="320" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-gg-50x" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
@@ -712,7 +712,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="1MS-5p-nJk"/>
                                             <constraint firstItem="k9C-gg-50x" firstAttribute="centerX" secondItem="cis-Vy-6kZ" secondAttribute="centerX" id="KYo-jx-QVz"/>
@@ -2971,7 +2971,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MSv-Pn-SaB"/>
+        <segue reference="8KJ-OK-Kql"/>
         <segue reference="S6u-EE-Q3h"/>
     </inferredMetricsTieBreakers>
 </document>

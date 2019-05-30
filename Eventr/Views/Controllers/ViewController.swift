@@ -25,7 +25,6 @@ enum eventAction {
 var selectedEventAction: eventAction = .creating //variable to track if creating or editing an event
 var tableEvents: [Event] = [] //List of events in tableview
 var allEvents: [Event] = [] //List of all queried events.  This list may be filtered/shortened based on search criteria when events are displayed in the table (tableEvents) array.  This list of events is maintained so that events don't need to be re-queried from Firebase
-var initialListLoaded: Bool = false //Bool to keep track of if the list has loaded when the app starts
 //Date range to query events
 enum sortBy {
     case popularity
@@ -134,11 +133,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setUpCategoryStackView()
         setUpMainButtons()
         setUpSortButton()
-        getCurrentLocationAndLoadTableView()
-        //loadInitialListOfEvents()
+        getCurrentLocation()
         hideViews()
         configureCalendarView()
         updateSelectedQueryButtonStyle()
+        loadInitialListOfEvents()
         
         //addTestDataToFirebase(vc: self)
   
@@ -222,7 +221,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //Get the user's location. The locationManager function in VCExtension class will be called after location is retrieved
     @IBAction func getCurrentLocationButtonTapped(_ sender: UIButton) {
 
-       getCurrentLocationAndLoadTableView()
+       getCurrentLocation()
         
     }
     
@@ -280,7 +279,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Determine if more data needs to be loaded in the tableview (user has scrolled to the bottom of the page and another page needs to be loaded)
         if indexPath.row == tableEvents.count - 1 {
             //If the last cell has been loaded and pagination is not currently in progress, load another page
-            if !paginationInProgress {
+            //Do not load more data if the list descriptor is in use.  List descriptor shows events that don't require pagination
+            if !paginationInProgress && !listDescriptorInUse {
                 paginationInProgress = true
                 queryFirebaseEvents(city: "NYC", firstPage: false)
             }

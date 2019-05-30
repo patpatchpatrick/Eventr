@@ -18,7 +18,7 @@ import GoogleSignIn
 //This Extension primarily deals with data-handling (location, Firebase queries, etc...)
 extension ViewController{
     
-    func getCurrentLocationAndLoadTableView(){
+    func getCurrentLocation(){
         if currentLocation == nil {
             //Get user's current location
             DispatchQueue.global(qos: .userInteractive).async {
@@ -50,12 +50,6 @@ extension ViewController{
         locationEntryField.endEditing(true)
         self.locationManager.stopUpdatingLocation()
         
-        //If app is starting up for the first time, load the list of events to display
-        if !initialListLoaded {
-            print("QUERYING INITIAL SEARCH")
-            initialListLoaded = true
-            //searchForEvents(firstPage: true)
-        }
     }
     
     func loadInitialListOfEvents(){

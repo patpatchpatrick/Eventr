@@ -72,7 +72,8 @@ func updatePaginationValues(event: Event){
     
 }
 
-func addEventsToEventTableViewByEventID(eventIDMap: NSDictionary, isUserCreatedEvent: Bool, filterByCategory: Bool){
+//Method used by "Nearby Queries" and "List Descriptor Queries" to add events to tableview
+func addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: NSDictionary, isUserCreatedEvent: Bool, isListDescriptorEvent: Bool){
     for (id, city) in eventIDMap {
        
         //Get the Event ID and the City as string values
@@ -93,31 +94,25 @@ func addEventsToEventTableViewByEventID(eventIDMap: NSDictionary, isUserCreatedE
                 queryIfFirebaseEventIsFavorited(event: event)
                 //Check if event has been upvoted by user
                 queryIfFirebaseEventIsUpvoted(event: event)
-                
-                //Check if event meets search criteria (date and category)
-                //If so, add event to table view events list and update table
-                if filterByCategory{
-                            //First, add the event to the allEvents list (this list is used to maintain events so that they can be re-filtered without needing to query Firebase again)
-                            addEventToEventsListInOrder(event: event, eventList: &allEvents)
-                            if selectedCategory == categoryAll || selectedCategory == event.category.index() {
-                                //Secondly, use the current selected category to filter the events and add them to tableView
-                                addEventToEventsListInOrder(event: event, eventList: &tableEvents)
-                                reloadEventTableView()
-                                if firebaseQueryType != .nearby {
-                                    paginationFinishedLoading()
-                                }
-                            }
-                        
-                    
-                } else {
-                    //Add event to tableview without search criteria check
+            
+                if isListDescriptorEvent{
+                    //If event is a list descriptor event, then it is only added to the tableEvents list, because we only want to look at it temporarily and don't want to keep it in the cache (allEvents)
                     addEventToEventsListInOrder(event: event, eventList: &tableEvents)
-                    addEventToEventsListInOrder(event: event, eventList: &allEvents)
                     reloadEventTableView()
-                    if firebaseQueryType != .nearby {
-                        paginationFinishedLoading()
+
+                } else {
+                    //If event is not a list descriptor event, the event is a "NEARBY" query event
+                    //First, add the event to the allEvents list (this list is used as a cache so that events  can be re-filtered without needing to query Firebase again)
+                    addEventToEventsListInOrder(event: event, eventList: &allEvents)
+                    if selectedCategory == categoryAll || selectedCategory == event.category.index() {
+                        //Secondly, use the current selected category to filter the events and add them to tableView
+                        //They do not need to be added to the tableView in order since "Nearby" events are not queried in any particular order
+                        tableEvents.append(event)
+                        reloadEventTableView()
+                        if firebaseQueryType != .nearby {
+                            paginationFinishedLoading()
+                        }
                     }
-                 
                 }
             }
         }) { (error) in

@@ -101,7 +101,6 @@ extension ViewController{
         sortDropDown.show()
         
         func sortBy(sortMethod: String){
-            let sortBySelected : sortBy = sortByPreference
             if sortMethod == "Date (Desc)" {
                 sortByPreference = .datedesc
             } else if sortMethod == "Date (Asc)" {
@@ -109,15 +108,14 @@ extension ViewController{
             } else {
                 sortByPreference = .popularity
             }
-            if sortBySelected != sortByPreference {
-                //If user's sort preference changed, re-sort the events
-                switch sortByPreference {
-                case .popularity: tableEvents.sort(by: >)
-                case .datedesc: tableEvents.sort(by: >)
-                case .dateasc: tableEvents.sort(by: <)
-                }
-                reloadEventTableView()
+            //If user's sort preference changed, re-sort the events
+            switch sortByPreference {
+            case .popularity: tableEvents.sort(by: >)
+            case .datedesc: tableEvents.sort(by: >)
+            case .dateasc: tableEvents.sort(by: <)
             }
+            reloadEventTableView()
+            
         }
         
     }
@@ -451,6 +449,7 @@ extension ViewController{
     
     //Show the list descriptor which describes the type of events being shown
     func showListDescriptor(type: listDescriptorType){
+        listDescriptorInUse = true
         switch type {
         case .favorited: listDescriptorLabel.text = "Favorited"
         listDescriptorIcon.image = UIImage(named: "catIconFavorite")
@@ -474,6 +473,7 @@ extension ViewController{
     
      //Hide the list descriptor which describes the type of events being shown
     func hideListDescriptor(){
+        listDescriptorInUse = false
         tableEvents.removeAll()
         refilterTableViewByCategory() //If tableView has events already loaded, add them back to the tableView
         reloadEventTableView()
@@ -497,21 +497,6 @@ extension ViewController{
         setUpLocationEntryField()
     }
     
-    func configureMainButtonDesign(button: RoundedButton){
-        let shadowSize : CGFloat = 0.0
-      
-        let shadowPath = UIBezierPath(ovalIn: CGRect(x: -shadowSize / 2,
-                                                   y: -shadowSize / 2,
-                                                   width: button.frame.size.width + shadowSize,
-                                                   height: button.frame.size.height + shadowSize))
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 0)
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 6.0
-        button.layer.masksToBounds = false
-        button.layer.shadowPath = shadowPath.cgPath
-    }
-    
     func configurePrimaryTableViewCellDesign(view: UIView) {
         let shadowSize : CGFloat = 0.0
         let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
@@ -525,23 +510,6 @@ extension ViewController{
         view.layer.masksToBounds = false
         view.layer.shadowPath = shadowPath.cgPath
         
-        
-    }
-    
-    
-    func configureStandardViewDesignWithShadow(view: UIView, shadowSize: CGFloat, widthAdj: CGFloat, heightAdj: CGFloat, xOffset: CGFloat, yOffset: CGFloat) {
-        
-            let shadowPath = UIBezierPath(rect: CGRect(x: 0,
-                                                       y: 0,
-                                                       width: view.frame.size.width + widthAdj + shadowSize,
-                                                       height: view.frame.size.height + heightAdj + shadowSize))
-            view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            view.layer.shadowOffset = CGSize(width: xOffset, height: yOffset)
-            view.layer.shadowOpacity = 0.7
-            view.layer.shadowRadius = 5.0
-            view.layer.masksToBounds = false
-            view.layer.shadowPath = shadowPath.cgPath
-
         
     }
     
@@ -571,7 +539,7 @@ extension ViewController{
     }
     
     func configureSideMenu(){
-        configureStandardViewDesignWithShadow(view: sideMenu, shadowSize: 1.0, widthAdj: 0, heightAdj: 200, xOffset: 0.0, yOffset: 100)
+        configureStandardViewDesignWithShadow(view: sideMenu, xOffset: 0.0, yOffset: 100, opacity: 0.7)
         configureSideMenuContainers()
         configureBackgroundViewBlur()
         setUpLogOutIcon()

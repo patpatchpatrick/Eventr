@@ -30,6 +30,7 @@ var firebaseQueryType : fbQueryType = .popular //Query type - is popular by defa
 
 //PAGINATION VARIABLES
 var paginationInProgress: Bool = true //Bool to represent if events are currently being paginated.  Variable starts at "TRUE" and will change to "FALSE" after first page has finished loading
+var listDescriptorInUse: Bool = false
 var mostRecentlyQueriedDate: Date?
 var mostRecentlyQueriedUpvoteCount: Int?
 let paginationFirstPageCount: UInt = 7
@@ -150,7 +151,7 @@ func queryNearbyEvents(centerLocation: CLLocation?, radius: Double){
     gQuery = geoFire.query(at: queryLocation, withRadius: searchDistanceKm)
     guard let gQ = gQuery else {return}
     gQ.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        addEventsToEventTableViewByEventID(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, filterByCategory: true)
+        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, isListDescriptorEvent: false)
     })
     
     //Method called when the query is finished and all keys(event IDs) are loaded
@@ -167,10 +168,11 @@ func queryFirebaseFavoriteEvents(){
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
     tableEvents.removeAll()
+    reloadEventTableView()
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addEventsToEventTableViewByEventID(eventIDMap: dict, isUserCreatedEvent: false, filterByCategory: false)
+        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: false, isListDescriptorEvent: true)
     })
     
 }
@@ -180,10 +182,11 @@ func queryFirebaseCreatedEvents(){
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
     tableEvents.removeAll()
+    reloadEventTableView()
     firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addEventsToEventTableViewByEventID(eventIDMap: dict, isUserCreatedEvent: true, filterByCategory: false)
+        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: true, isListDescriptorEvent: true)
     })
     
 }
