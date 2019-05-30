@@ -86,6 +86,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var categoriesStackView: UIStackView!
     @IBOutlet weak var subtractCategoryButton: RoundedButton!
     @IBOutlet weak var dateAndSearchButtonStackView: UIStackView!
+    
+    @IBOutlet weak var dateAndLocationBackground: UIView!
+    
     @IBOutlet weak var mainDateButton: RoundedButton!
     @IBOutlet weak var mainLocationButton: RoundedButton!
     
@@ -101,12 +104,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var searchSelectionContainer: UIView!
     
     @IBOutlet weak var locationEntryField: UITextField!
+    
+    @IBOutlet weak var locationSearchButton: RoundedButton!
+    
+    
     @IBOutlet weak var tableViewSettingsContainer: UIView!
     @IBOutlet weak var eventTableView: UITableView!
     @IBOutlet weak var calendarAndTableViewContainer: RoundUIView!
     @IBOutlet weak var calendarInnerContainer: UIView!
     @IBOutlet weak var calendarContainer: UIView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var calendarAndTableStackView: UIStackView!
+    
     
     @IBOutlet weak var sortButton: RoundedButton!
     
@@ -131,7 +140,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         configureSideMenu()
         configureHeaderButtons()
         setUpCategoryStackView()
-        setUpMainButtons()
+        setUpMainButtonsAndLocationBar()
         setUpSortButton()
         getCurrentLocation()
         hideViews()
@@ -360,8 +369,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedEvent = tableEvents[indexPath.row]
-        performSegue(withIdentifier: "eventSegue", sender: self)
+        if !tableEvents.isEmpty && indexPath.row < tableEvents.count {
+            selectedEvent = tableEvents[indexPath.row]
+            performSegue(withIdentifier: "eventSegue", sender: self)
+        }
     }
     
     
@@ -443,6 +454,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func upcomingButtonTapped(_ sender: UIButton) {
+        clearTableView()
         firebaseQueryType = .upcoming
         updateSelectedQueryButtonStyle()
         showAndHideViewsBasedOnQueryType()
@@ -451,10 +463,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func nearMeButtonTapped(_ sender: UIButton) {
+        clearTableView()
         firebaseQueryType = .nearby
         showAndHideViewsBasedOnQueryType()
         updateSelectedQueryButtonStyle()
         queryFirebaseEvents(city: "NYC", firstPage: true)
+    }
+    
+    //If the user changes the location and taps the search button, the "Nearby" query will be retriggered
+    @IBAction func locationSearchButtonTapped(_ sender: RoundedButton) {
+        clearTableView()
+        firebaseQueryType = .nearby
+        showAndHideViewsBasedOnQueryType()
+        updateSelectedQueryButtonStyle()
+        queryFirebaseEvents(city: "NYC", firstPage: true)
+        
     }
     
 }

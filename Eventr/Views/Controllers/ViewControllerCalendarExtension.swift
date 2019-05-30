@@ -231,6 +231,7 @@ extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSo
     }
     
     func showCalendarView(){
+        calendarAndTableStackView.bringSubviewToFront(calendarContainer) //Ensure that calendar is in front of event table view 
         self.calendarContainer.isHidden = false
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.calendarContainer.transform = .identity

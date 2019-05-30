@@ -158,10 +158,10 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25H-xd-yYF" userLabel="CalendarAndEventsContainer" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="217" width="320" height="331"/>
+                                        <rect key="frame" x="0.0" y="232" width="320" height="316"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eof-ox-qI6" userLabel="CalendarAndEvents">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="331"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="316"/>
                                                 <subviews>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yta-Wn-Tu0">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="325"/>
@@ -396,7 +396,7 @@
                                                         </constraints>
                                                     </view>
                                                     <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="113" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-7E-hkr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="331"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="316"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="separatorColor" name="Medium"/>
                                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -593,34 +593,13 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBy-SI-Nzu" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="150.5" width="30" height="30"/>
-                                                <color key="backgroundColor" name="Medium"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="hfp-5Z-DtH"/>
-                                                    <constraint firstAttribute="width" constant="30" id="kq3-nq-yRW"/>
-                                                </constraints>
-                                                <color key="tintColor" name="AccentPrimary"/>
-                                                <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                <state key="normal" image="iconSort"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="sortButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zMN-2o-RKL"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="CBy-SI-Nzu" firstAttribute="leading" secondItem="0el-qb-p9p" secondAttribute="leading" constant="15" id="2WB-XX-R9e"/>
                                             <constraint firstItem="eof-ox-qI6" firstAttribute="top" secondItem="25H-xd-yYF" secondAttribute="top" id="9JC-ss-sta"/>
                                             <constraint firstAttribute="trailing" secondItem="eof-ox-qI6" secondAttribute="trailing" id="JXc-VU-2wh"/>
                                             <constraint firstItem="eof-ox-qI6" firstAttribute="leading" secondItem="25H-xd-yYF" secondAttribute="leading" id="Qtm-fU-Ipb"/>
                                             <constraint firstAttribute="bottom" secondItem="eof-ox-qI6" secondAttribute="bottom" id="VDo-u2-Flf"/>
-                                            <constraint firstItem="CBy-SI-Nzu" firstAttribute="centerY" secondItem="0el-qb-p9p" secondAttribute="centerY" id="xlW-BF-6tP"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -628,11 +607,18 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ne-PT-ftd" userLabel="dateAndLocationBackground">
+                                        <rect key="frame" x="0.0" y="147" width="320" height="80"/>
+                                        <color key="backgroundColor" name="Medium"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="Gqb-H5-Cx9"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4gX-3A-YK6" userLabel="locationContainer">
-                                        <rect key="frame" x="0.0" y="172" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="172" width="320" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNM-0r-0co" userLabel="searchOptionsView">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndK-B0-wb8">
                                                         <rect key="frame" x="5" y="13" width="20" height="20"/>
@@ -655,8 +641,27 @@
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mH-IH-KEo" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                        <rect key="frame" x="143" y="6" width="30" height="30"/>
+                                                        <color key="backgroundColor" name="Medium"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="2qb-NI-47q"/>
+                                                            <constraint firstAttribute="width" constant="30" id="KsD-nu-y1h"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                        <state key="normal" image="iconSearch"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="locationSearchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bx1-Mp-FOP"/>
+                                                        </connections>
+                                                    </button>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-r5-NPC">
                                                         <rect key="frame" x="180" y="8" width="135" height="29"/>
+                                                        <color key="backgroundColor" name="Medium"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="135" id="QcC-Zi-YTx"/>
                                                         </constraints>
@@ -677,15 +682,17 @@
                                                     <constraint firstAttribute="trailing" secondItem="sqj-r5-NPC" secondAttribute="trailing" constant="5" id="3gY-1Y-yvq"/>
                                                     <constraint firstItem="GWU-Ct-tSG" firstAttribute="leading" secondItem="ndK-B0-wb8" secondAttribute="trailing" constant="2" id="A56-Q3-ChR"/>
                                                     <constraint firstItem="ndK-B0-wb8" firstAttribute="top" secondItem="GWU-Ct-tSG" secondAttribute="top" constant="5" id="BXG-W4-jSg"/>
-                                                    <constraint firstAttribute="height" constant="30" id="Dpy-Cs-rtR"/>
+                                                    <constraint firstAttribute="height" constant="50" id="Dpy-Cs-rtR"/>
                                                     <constraint firstItem="sqj-r5-NPC" firstAttribute="top" secondItem="GWU-Ct-tSG" secondAttribute="top" id="QxZ-hE-YcA"/>
+                                                    <constraint firstItem="9mH-IH-KEo" firstAttribute="top" secondItem="GWU-Ct-tSG" secondAttribute="top" constant="-2" id="bp4-ce-OJ3"/>
                                                     <constraint firstItem="ndK-B0-wb8" firstAttribute="leading" secondItem="JNM-0r-0co" secondAttribute="leading" constant="5" id="exQ-rW-2Iv"/>
+                                                    <constraint firstItem="9mH-IH-KEo" firstAttribute="leading" secondItem="GWU-Ct-tSG" secondAttribute="trailing" constant="5" id="jif-vT-zPW"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="YIR-kh-Ya2"/>
+                                            <constraint firstAttribute="height" constant="50" id="YIR-kh-Ya2"/>
                                         </constraints>
                                     </stackView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cis-Vy-6kZ" userLabel="dateButtonContainer">
@@ -828,6 +835,25 @@
                                             <constraint firstAttribute="height" constant="42" id="r2p-j1-gKz"/>
                                         </constraints>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBy-SI-Nzu" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="227" width="30" height="30"/>
+                                        <color key="backgroundColor" name="Medium"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="hfp-5Z-DtH"/>
+                                            <constraint firstAttribute="width" constant="30" id="kq3-nq-yRW"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AccentPrimary"/>
+                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <state key="normal" image="iconSort"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="sortButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zMN-2o-RKL"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1es-1h-yhM" userLabel="CategorySelection">
                                         <rect key="frame" x="0.0" y="60" width="320" height="60"/>
                                         <subviews>
@@ -1092,12 +1118,15 @@
                                 <color key="backgroundColor" name="Medium"/>
                                 <constraints>
                                     <constraint firstItem="Zza-Cn-weC" firstAttribute="centerY" secondItem="Ktv-mT-FN5" secondAttribute="centerY" id="4AP-To-w5p"/>
+                                    <constraint firstItem="CBy-SI-Nzu" firstAttribute="top" secondItem="0Ne-PT-ftd" secondAttribute="bottom" id="54h-LY-9jl"/>
                                     <constraint firstItem="dI4-Fy-ey3" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="top" constant="-5" id="6ju-Xo-gcG"/>
                                     <constraint firstItem="1es-1h-yhM" firstAttribute="top" secondItem="SKV-0R-RbT" secondAttribute="bottom" constant="10" id="7Z0-jA-dy5"/>
+                                    <constraint firstItem="CBy-SI-Nzu" firstAttribute="leading" secondItem="0Ne-PT-ftd" secondAttribute="leading" constant="15" id="DYU-XA-XUc"/>
                                     <constraint firstItem="4gX-3A-YK6" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" id="Gmh-ze-OyB"/>
+                                    <constraint firstItem="0Ne-PT-ftd" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="HTk-nO-cEx"/>
+                                    <constraint firstItem="0Ne-PT-ftd" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" constant="-25" id="Jhy-gZ-4Eg"/>
                                     <constraint firstItem="Ktv-mT-FN5" firstAttribute="bottom" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Jqw-1n-x7v"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="top" secondItem="SKV-0R-RbT" secondAttribute="bottom" id="RaW-Gg-NOr"/>
-                                    <constraint firstItem="25H-xd-yYF" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" constant="45" id="T7D-vo-Eqq"/>
                                     <constraint firstItem="25H-xd-yYF" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="WGE-5g-E6f"/>
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Xb0-zy-JoW"/>
                                     <constraint firstItem="cis-Vy-6kZ" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" id="YCu-OV-Z2f"/>
@@ -1107,6 +1136,7 @@
                                     <constraint firstAttribute="trailing" secondItem="cis-Vy-6kZ" secondAttribute="trailing" id="e5E-wm-0tN"/>
                                     <constraint firstAttribute="trailing" secondItem="25H-xd-yYF" secondAttribute="trailing" id="eCm-tv-wZK"/>
                                     <constraint firstItem="FIU-NR-25c" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" constant="10" id="hF0-aJ-LvM"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Ne-PT-ftd" secondAttribute="trailing" id="lVV-ZL-G3H"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="lYs-9s-or0"/>
                                     <constraint firstItem="Zza-Cn-weC" firstAttribute="leading" secondItem="Ktv-mT-FN5" secondAttribute="trailing" constant="10" id="mVY-Ju-dIa"/>
                                     <constraint firstItem="1es-1h-yhM" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="pcE-ha-39I"/>
@@ -1117,6 +1147,7 @@
                                     <constraint firstItem="Ktv-mT-FN5" firstAttribute="centerX" secondItem="9ly-4h-XTV" secondAttribute="centerX" id="rVP-a7-dr9"/>
                                     <constraint firstItem="dI4-Fy-ey3" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="t2e-9R-MOb"/>
                                     <constraint firstAttribute="trailing" secondItem="4gX-3A-YK6" secondAttribute="trailing" id="tZQ-xp-82H"/>
+                                    <constraint firstItem="25H-xd-yYF" firstAttribute="top" secondItem="0Ne-PT-ftd" secondAttribute="bottom" constant="5" id="w1R-hD-umT"/>
                                     <constraint firstItem="cis-Vy-6kZ" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="w1x-zC-rND"/>
                                     <constraint firstAttribute="trailing" secondItem="dI4-Fy-ey3" secondAttribute="trailing" id="x6y-d9-0Yn"/>
                                     <constraint firstAttribute="trailing" secondItem="7x5-R6-dey" secondAttribute="trailing" id="zn0-uV-icW"/>
@@ -1343,12 +1374,14 @@
                         <outlet property="accountSettingsIcon" destination="Z3D-bz-Ebe" id="UxI-NH-7gY"/>
                         <outlet property="allCategoriesButton" destination="yAH-HP-Yyu" id="YA0-XX-hcT"/>
                         <outlet property="backgroundView" destination="9ly-4h-XTV" id="M1i-Yd-tto"/>
+                        <outlet property="calendarAndTableStackView" destination="eof-ox-qI6" id="h6u-yw-JhI"/>
                         <outlet property="calendarAndTableViewContainer" destination="25H-xd-yYF" id="9Li-9u-PIR"/>
                         <outlet property="calendarContainer" destination="yta-Wn-Tu0" id="hcr-AL-QkF"/>
                         <outlet property="calendarInnerContainer" destination="Efm-Uk-h3J" id="pqk-Qr-C6d"/>
                         <outlet property="calendarView" destination="SgA-y4-taH" id="SIn-nk-tGu"/>
                         <outlet property="categoriesStackView" destination="KqC-1n-CwP" id="sHe-as-es3"/>
                         <outlet property="categorySelectionStackViewContainer" destination="1es-1h-yhM" id="lFt-Fp-c3D"/>
+                        <outlet property="dateAndLocationBackground" destination="0Ne-PT-ftd" id="KbS-Fo-nnr"/>
                         <outlet property="dateAndSearchButtonStackView" destination="4gX-3A-YK6" id="F7M-6L-clA"/>
                         <outlet property="dateButtonContainer" destination="cis-Vy-6kZ" id="LwX-XD-oA2"/>
                         <outlet property="distanceRadiusSegmentedControl" destination="sqj-r5-NPC" id="23q-9X-VKt"/>
@@ -1362,6 +1395,7 @@
                         <outlet property="listDescriptorLabel" destination="B90-l6-Puq" id="C7Q-oj-Kf0"/>
                         <outlet property="listDescriptorReturnButton" destination="Zza-Cn-weC" id="H1z-7D-wfp"/>
                         <outlet property="locationEntryField" destination="GWU-Ct-tSG" id="mAe-Wi-zBj"/>
+                        <outlet property="locationSearchButton" destination="9mH-IH-KEo" id="5ZK-f7-xbM"/>
                         <outlet property="mainButtonsStackViewContainer" destination="FIU-NR-25c" id="JlU-pi-e2J"/>
                         <outlet property="mainDateButton" destination="k9C-gg-50x" id="znT-wM-xba"/>
                         <outlet property="mainLocationButton" destination="REQ-xr-Xqh" id="b8e-pE-IvC"/>
@@ -2941,6 +2975,7 @@
         <image name="iconMyEvents" width="109" height="108"/>
         <image name="iconPhone" width="220" height="222"/>
         <image name="iconReturn" width="96" height="96"/>
+        <image name="iconSearch" width="100" height="100"/>
         <image name="iconSelectedStar" width="100" height="100"/>
         <image name="iconSettings" width="100" height="100"/>
         <image name="iconSort" width="52" height="52"/>

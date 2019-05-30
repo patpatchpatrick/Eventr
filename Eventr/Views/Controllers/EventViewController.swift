@@ -351,14 +351,17 @@ class EventViewController: UIViewController {
         //If user is not yet attending the event, attend the event
         
         if selectedEvent.loggedInUserAttendingTheEvent {
+            selectedEvent.userCount -= 1 //Update the count immediately so the UI reflects the change
             selectedEvent.loggedInUserAttendingTheEvent = false
             unattendFirebaseEvent(event: selectedEvent)
         } else {
+            selectedEvent.userCount += 1 //Update the count immediately so the UI reflects the change
             selectedEvent.loggedInUserAttendingTheEvent = true
             attendFirebaseEvent(event: selectedEvent)
         }
         
            reloadAttendingButton()
+            reloadAttendingUserData()
         
     }
     

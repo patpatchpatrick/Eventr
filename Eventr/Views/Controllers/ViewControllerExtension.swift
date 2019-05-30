@@ -239,6 +239,10 @@ extension ViewController{
             print ("Error signing out: %@", signOutError)
         }
         
+        //Clear event tables
+        tableEvents.removeAll()
+        allEvents.removeAll()
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initial = storyboard.instantiateInitialViewController()
         UIApplication.shared.keyWindow?.rootViewController = initial
@@ -488,12 +492,13 @@ extension ViewController{
         mainButtonsStackViewContainer.isHidden = false
     }
     
-    func setUpMainButtons(){
+    func setUpMainButtonsAndLocationBar(){
         configureMainButtonDesign(button: mainDateButton)
         configureMainButtonDesign(button: hotButton)
         configureMainButtonDesign(button: upcomingButton)
         configureMainButtonDesign(button: nearbyButton)
-        
+        configureMainButtonDesign(button: locationSearchButton)
+        dateAndLocationBackground.addBottomBorderWithColor(color: themeDark, width: 0.5)
         setUpLocationEntryField()
     }
     
@@ -612,6 +617,23 @@ extension ViewController{
             self.dateButtonContainer.isHidden = true
         }
     }
+    
+    func hideDateAndLocationBackground(){
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.dateAndLocationBackground.transform = CGAffineTransform(translationX: 0, y: -50)
+            self.calendarAndTableStackView.transform = CGAffineTransform(translationX:0, y: -50)
+             self.sortButton.transform = CGAffineTransform(translationX:0, y: -50)
+        })
+    }
+    
+    func showDateAndLocationBackground(){
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.dateAndLocationBackground.transform = .identity
+            self.calendarAndTableStackView.transform = .identity
+            self.sortButton.transform = .identity
+        })
+        
+    }
         
     
     func hideViews(){
@@ -620,6 +642,7 @@ extension ViewController{
         hideSideMenu()
         hideDateButtonContainer()
         hideCalendarView()
+        hideDateAndLocationBackground()
     }
     
     func updateSelectedQueryButtonStyle(){
@@ -660,15 +683,23 @@ extension ViewController{
             hideDateButtonContainer()
             hideCalendarView()
             hideSearchCollectionContainer()
+            hideDateAndLocationBackground()
         case .nearby:
             hideDateButtonContainer()
             hideCalendarView()
             showSearchSelectionContainer()
+            showDateAndLocationBackground()
         case .upcoming:
             showDateButtonContainer()
             hideSearchCollectionContainer()
+            showDateAndLocationBackground()
         }
         
+    }
+    
+    func clearTableView(){
+        tableEvents.removeAll()
+        reloadEventTableView()
     }
     
     
