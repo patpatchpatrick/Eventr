@@ -498,7 +498,7 @@ extension ViewController{
         configureMainButtonDesign(button: upcomingButton)
         configureMainButtonDesign(button: nearbyButton)
         configureMainButtonDesign(button: locationSearchButton)
-        dateAndLocationBackground.addBottomBorderWithColor(color: themeDark, width: 0.5)
+        dateAndLocationBackground.addBottomBorderWithColor(color: themeDark, width: 0.5, widthExtension: 100)
         setUpLocationEntryField()
     }
     
@@ -552,8 +552,8 @@ extension ViewController{
     }
     
     func configureSideMenuContainers(){
-        sideMenuMyEventsContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5)
-        sideMenuFavoritedContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5)
+        sideMenuMyEventsContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5, widthExtension: 0)
+        sideMenuFavoritedContainer.addBottomBorderWithColor(color: UIColor.black, width: 0.5, widthExtension: 0)
         sideMenuLogOutContainer.addTopBorderWithColor(color: UIColor.black, width: 0.5)
     }
     
@@ -618,6 +618,7 @@ extension ViewController{
         }
     }
     
+    //The sort button, background and calendar/tableview all move together
     func hideDateAndLocationBackground(){
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.dateAndLocationBackground.transform = CGAffineTransform(translationX: 0, y: -50)
@@ -626,6 +627,7 @@ extension ViewController{
         })
     }
     
+    //The sort button, background and calendar/tableview all move together
     func showDateAndLocationBackground(){
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.dateAndLocationBackground.transform = .identity

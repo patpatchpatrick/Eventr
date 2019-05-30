@@ -21,9 +21,9 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         loadUserData()
-        userNameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1
+        userNameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0
         )
-        userEmailLabel.addBottomBorderWithColor(color: themeTextColor, width: 1)
+        userEmailLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0)
         configureFloatingSideButtonDesign(view: settingsButtonContainer)
     }
     

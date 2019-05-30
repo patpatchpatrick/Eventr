@@ -313,17 +313,17 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     }
     
     func configureTextEntryFieldsDesign(){
-        eventName.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventDescription.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventLocation.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventVenueName.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTicketURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventURL.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventContactInfo.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventPhoneNumberTextField.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTag1.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTag2.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
-        eventTag3.addBottomBorderWithColor(color: themeDarkGray, width: 1.0)
+        eventName.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventDescription.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventLocation.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventVenueName.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventTicketURL.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventURL.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventContactInfo.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventPhoneNumberTextField.addBottomBorderWithColor(color: themeDark, width: 0.75, widthExtension: 0)
+        eventTag1.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventTag2.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventTag3.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
         
     }
 }

@@ -23,7 +23,7 @@ let themeAccentGreen: UIColor = UIColor(red: 16/255.0, green: 209/255.0, blue: 1
 let themeAccentLightBlue: UIColor = UIColor(red: 0/255.0, green: 204/255.0, blue: 255/255.0, alpha: 1.00)
 let themeAccentRed: UIColor = UIColor(red: 255/255.0, green: 42/255.0, blue: 42/255.0, alpha: 1.00)
 let themeDarkGray: UIColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.70)
-let themeTextColor: UIColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1)
+let themeTextColor: UIColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
 
 //Variable to keep track of categories.  Used for filtering the tableview based on whatever category was selected
 let categoryAll = 0
