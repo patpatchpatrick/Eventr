@@ -30,6 +30,8 @@ extension ViewController{
                 
             }
             
+        } else {
+            sideMenuAccountButton.setImage(UIImage(named: "accountIcon"), for: .normal)
         }
     
         accountSettingsIcon.clipsToBounds = true

@@ -26,7 +26,9 @@ class EventViewController: UIViewController {
     @IBOutlet weak var eventDateLabel: UILabel!
     @IBOutlet weak var eventDetails: UITextView!
     @IBOutlet weak var locationDetailsButton: UIButton!
-    @IBOutlet weak var contactDetailsButton: UIButton!
+    @IBOutlet weak var phoneNumberContainer: UIView!
+    @IBOutlet weak var phoneNumberButton: UIButton!
+    @IBOutlet weak var addressTextView: UITextView!
     @IBOutlet weak var additionalContactInfo: UITextView!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var linksStackView: UIStackView!
@@ -86,13 +88,28 @@ class EventViewController: UIViewController {
         eventDetails.text = selectedEvent.details
         
         if selectedEvent.venue != "" && !selectedEvent.venue.isEmpty {
-            locationDetailsButton.setTitle(selectedEvent.venue + " - " + selectedEvent.location, for: .normal)
+            locationDetailsButton.setTitle(selectedEvent.venue, for: .normal)
         } else {
             locationDetailsButton.setTitle( selectedEvent.location, for: .normal)
             
         }
 
-        contactDetailsButton.setTitle(selectedEvent.phoneNumber, for: .normal)
+        if selectedEvent.phoneNumber.isEmpty || selectedEvent.phoneNumber == "" {
+            phoneNumberContainer.isHidden = true
+        } else {
+            phoneNumberContainer.isHidden = false
+            phoneNumberButton.setTitle(selectedEvent.phoneNumber, for: .normal)
+        }
+        
+        
+        let addressString = selectedEvent.location
+        if addressString.isEmpty || addressString == "" {
+            addressTextView.isHidden = true
+        } else {
+            addressTextView.isHidden = false
+            addressTextView.text = "Address:\n" + addressString
+        }
+        
         let additionalContactInfoString = selectedEvent.contact
         if additionalContactInfoString.isEmpty || additionalContactInfoString == "" {
             additionalContactInfo.isHidden = true
