@@ -252,7 +252,7 @@ func upvoteFirebaseEvent(event: Event){
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Check if event has already been upvoted
-    firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
+    firebaseDatabaseRef.child("upvotes").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         var eventAlreadyUpvoted = false
         let dict = snapshot.value as? NSDictionary
@@ -275,7 +275,7 @@ func upvoteFirebaseEvent(event: Event){
                 
                 upvoteCount += 1
                 firebaseDatabaseRef.child("events").child(event.city).child(event.id).updateChildValues(["upvotes": upvoteCount])
-            firebaseDatabaseRef.child("users").child(userID).child("upvoted").childByAutoId().setValue(event.id)
+            firebaseDatabaseRef.child("upvotes").child(userID).childByAutoId().setValue(event.id)
                
             })
         }
@@ -290,7 +290,7 @@ func removeUpvoteFromFirebaseEvent(event: Event){
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Check if event has already been upvoted
-    firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
+    firebaseDatabaseRef.child("upvotes").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
         let eventAlreadyUpvoted = dict.allValues.contains { element in
@@ -311,11 +311,11 @@ func removeUpvoteFromFirebaseEvent(event: Event){
                 upvoteCount -= 1
                 firebaseDatabaseRef.child("events").child(event.city).child(event.id).updateChildValues(["upvotes": upvoteCount])
                 
-                firebaseDatabaseRef.child("users").child(userID).child("upvoted").queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
+                firebaseDatabaseRef.child("upvotes").child(userID).queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
                     for result in querySnapshot.children {
                         let resultSnapshot = result as! DataSnapshot
                         let eventKey = resultSnapshot.key
-                        firebaseDatabaseRef.child("users").child(userID).child("upvoted").child(eventKey).removeValue()
+                        firebaseDatabaseRef.child("upvotes").child(userID).child(eventKey).removeValue()
                     }
                 }
                 

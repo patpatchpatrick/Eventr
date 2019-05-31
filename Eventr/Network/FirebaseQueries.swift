@@ -196,7 +196,7 @@ func queryIfFirebaseEventIsUpvoted(event: Event){
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
-    firebaseDatabaseRef.child("users").child(userID).child("upvoted").observeSingleEvent(of: .value, with: {
+    firebaseDatabaseRef.child("upvotes").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
         _ = dict.allValues.contains { element in
