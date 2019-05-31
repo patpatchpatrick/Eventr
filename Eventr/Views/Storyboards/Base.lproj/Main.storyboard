@@ -852,6 +852,10 @@
                                             <action selector="sortButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zMN-2o-RKL"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-R6-dey" userLabel="ListDescriptorCover">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="70"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1es-1h-yhM" userLabel="CategorySelection">
                                         <rect key="frame" x="5" y="60" width="315" height="60"/>
                                         <subviews>
@@ -974,12 +978,8 @@
                                             <constraint firstAttribute="height" constant="1" id="DtB-RH-zfF"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-R6-dey" userLabel="ListDescriptorCover">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="70"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-mT-FN5" userLabel="ListDescriptor" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="60" width="150" height="60"/>
+                                        <rect key="frame" x="85" y="102" width="150" height="60"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="catIconFavorite" translatesAutoresizingMaskIntoConstraints="NO" id="f2p-Xp-o7b">
                                                 <rect key="frame" x="10" y="15" width="30" height="30"/>
@@ -1012,7 +1012,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zza-Cn-weC" userLabel="ListDescriptorReturnButton" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                        <rect key="frame" x="245" y="70" width="40" height="40"/>
+                                        <rect key="frame" x="245" y="112" width="40" height="40"/>
                                         <color key="backgroundColor" name="Medium"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="sid-cq-aV0"/>
@@ -1032,12 +1032,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKV-0R-RbT" userLabel="Header">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoBlackText" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                                <rect key="frame" x="85" y="10" width="150" height="30"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaFunkyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
+                                                <rect key="frame" x="35" y="-5" width="250" height="60"/>
                                                 <color key="tintColor" name="Text"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="Igp-Ur-Gqv"/>
-                                                    <constraint firstAttribute="height" constant="30" id="eg0-Fh-18e"/>
+                                                    <constraint firstAttribute="width" constant="250" id="Igp-Ur-Gqv"/>
+                                                    <constraint firstAttribute="height" constant="60" id="eg0-Fh-18e"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6V-qO-qjn" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
@@ -1124,7 +1124,6 @@
                                     <constraint firstItem="4gX-3A-YK6" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" id="Gmh-ze-OyB"/>
                                     <constraint firstItem="0Ne-PT-ftd" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="HTk-nO-cEx"/>
                                     <constraint firstItem="0Ne-PT-ftd" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" constant="-25" id="Jhy-gZ-4Eg"/>
-                                    <constraint firstItem="Ktv-mT-FN5" firstAttribute="bottom" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Jqw-1n-x7v"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="top" secondItem="SKV-0R-RbT" secondAttribute="bottom" id="RaW-Gg-NOr"/>
                                     <constraint firstItem="25H-xd-yYF" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="WGE-5g-E6f"/>
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Xb0-zy-JoW"/>
@@ -1134,6 +1133,7 @@
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="cxG-jg-rO6"/>
                                     <constraint firstAttribute="trailing" secondItem="cis-Vy-6kZ" secondAttribute="trailing" id="e5E-wm-0tN"/>
                                     <constraint firstAttribute="trailing" secondItem="25H-xd-yYF" secondAttribute="trailing" id="eCm-tv-wZK"/>
+                                    <constraint firstItem="Ktv-mT-FN5" firstAttribute="bottom" secondItem="FIU-NR-25c" secondAttribute="bottom" constant="-10" id="gAz-pK-S2V"/>
                                     <constraint firstItem="FIU-NR-25c" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" constant="10" id="hF0-aJ-LvM"/>
                                     <constraint firstAttribute="trailing" secondItem="0Ne-PT-ftd" secondAttribute="trailing" id="lVV-ZL-G3H"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="lYs-9s-or0"/>
@@ -1791,11 +1791,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoBlackText" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Xx-Cqk">
-                                        <rect key="frame" x="85" y="10" width="150" height="30"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaFunkyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Xx-Cqk">
+                                        <rect key="frame" x="35" y="-5" width="250" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="AnF-wR-OQU"/>
-                                            <constraint firstAttribute="height" constant="30" id="CPl-33-jF2"/>
+                                            <constraint firstAttribute="width" constant="250" id="AnF-wR-OQU"/>
+                                            <constraint firstAttribute="height" constant="60" id="CPl-33-jF2"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -2301,11 +2301,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQp-ni-J3m" userLabel="Header">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoBlackText" translatesAutoresizingMaskIntoConstraints="NO" id="19S-Uu-ALJ">
-                                        <rect key="frame" x="85" y="10" width="150" height="30"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaFunkyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="19S-Uu-ALJ">
+                                        <rect key="frame" x="35" y="-5" width="250" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="HD1-bR-OAQ"/>
-                                            <constraint firstAttribute="height" constant="30" id="Vrr-t9-3ZC"/>
+                                            <constraint firstAttribute="width" constant="250" id="HD1-bR-OAQ"/>
+                                            <constraint firstAttribute="height" constant="60" id="Vrr-t9-3ZC"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-NV-SH3" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
@@ -3000,6 +3000,7 @@
         <image name="accountIcon" width="100" height="100"/>
         <image name="catIconAll" width="150" height="150"/>
         <image name="catIconFavorite" width="100" height="100"/>
+        <image name="fiestaFunkyLogo" width="1200" height="523"/>
         <image name="fiestaLogoBlackText" width="2000" height="599"/>
         <image name="fiestaLogoText" width="1281" height="597"/>
         <image name="iconBack" width="52" height="52"/>
@@ -3048,7 +3049,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8KJ-OK-Kql"/>
+        <segue reference="MSv-Pn-SaB"/>
         <segue reference="S6u-EE-Q3h"/>
     </inferredMetricsTieBreakers>
 </document>
