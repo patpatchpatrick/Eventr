@@ -12,7 +12,12 @@ import UIKit
 var count = 0
 
 let testData: [String] = [
-  
+
+]
+
+let testSportData: [String] = [
+
+    
 ]
 
 //Class used to manually add data to Firebase if necessary
@@ -29,6 +34,12 @@ func addTestDataToFirebase(vc: UIViewController){
         let address = eventStringArr[3]
         let venue = eventStringArr[4]
         let name = eventStringArr[1] + " at " + venue
+        var upvoteCount = 0
+        var userCount = 0
+        if let multiplier = Int(eventStringArr[5] ){
+             upvoteCount = (multiplier + 1) * Int(arc4random_uniform(17) + 1)
+            userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
+        }
         let category = stringToEventCategory(string: "Music")
         let tag1 = "Concert"
         let tag2 = "NY"
@@ -36,7 +47,8 @@ func addTestDataToFirebase(vc: UIViewController){
         
         if name != nil && GMTDate != nil && address != nil && venue != nil {
             let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: tag1, tag2: tag2, tag3: tag3, paid: true)
-            event.upvoteCount = Int(arc4random_uniform(100) + 1)
+            event.upvoteCount = upvoteCount
+            event.userCount = userCount
             
             createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
                 eventWasCreatedSuccessfully in
@@ -49,6 +61,52 @@ func addTestDataToFirebase(vc: UIViewController){
                 }})
             
         }
+        
+        
+    }
+    
+}
+
+func addTestSportDataToFirebase(vc: UIViewController){
+    
+    for eventString in testSportData {
+        
+        let eventStringArr = eventString.components(separatedBy: "|")
+        if !eventStringArr[1].contains("XXXX"){
+        let dateString = eventStringArr[2]
+            if let dateDouble = Double(dateString){
+        let GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble + 25200))
+        let city = "NYC"
+        let address = eventStringArr[3]
+        let venue = eventStringArr[4]
+        let name = eventStringArr[1] + " at " + venue
+        var upvoteCount = 0
+        var userCount = 0
+        if let multiplier = Int(eventStringArr[6] ){
+            upvoteCount = (multiplier + 1) * Int(arc4random_uniform(17) + 1)
+            userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
+        }
+        let category = stringToEventCategory(string: "Sports")
+        let tag1 = "Sports"
+        let tag2 = "NY"
+        let tag3 = "Athletics"
+        
+        if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
+            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: tag1, tag2: tag2, tag3: tag3, paid: true)
+            event.upvoteCount = upvoteCount
+            event.userCount = userCount
+            
+            createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
+                eventWasCreatedSuccessfully in
+                if eventWasCreatedSuccessfully {
+                    count += 1
+                    print("TEST DATA ADDED SUCCESSFULLY")
+                    print(count)
+                } else {
+                    print("TEST DATA ADDED FAIL")
+                }})
+            
+                }}}
         
         
     }

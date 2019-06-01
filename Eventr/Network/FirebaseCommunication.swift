@@ -135,7 +135,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         (location) in
         guard let location = location else {
             //Ensure that event has a valid location before continuing and inserting event into Firebase database
-            displayInvalidLocationAlert(viewController: viewController)
+            //displayInvalidLocationAlert(viewController: viewController)
             return
         }
         let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
