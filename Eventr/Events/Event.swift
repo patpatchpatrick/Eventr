@@ -29,6 +29,7 @@ class Event : Comparable {
     var tag3: String = ""
     var favorite: Bool = false
     var paid: Bool = false
+    var price: String = ""
     var upvoteCount: Int = 0
     var upvoted: Bool = false
     var userCount = 0 //count of users who are attending the event
@@ -37,7 +38,7 @@ class Event : Comparable {
     var loggedInUserCreatedTheEvent: Bool = false //Bool to determine if it was a user-created event
     var loggedInUserAttendingTheEvent: Bool = false //Bool to track if user is attending the event
     
-    init(name: String, category: EventCategory, date: Date, city: String, address: String, venue: String, details: String, contact: String, phoneNumber: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool) {
+    init(name: String, category: EventCategory, date: Date, city: String, address: String, venue: String, details: String, contact: String, phoneNumber: String, ticketURL: String, eventURL: String, tag1: String, tag2: String, tag3: String, paid: Bool, price: String) {
         self.name = name
         self.city = city
         self.location = address
@@ -53,6 +54,7 @@ class Event : Comparable {
         self.tag3 = tag3
         self.category = category
         self.paid = paid
+        self.price = price
     }
     
     //Initialize an event from a dictionary retreived from Firebase
@@ -109,6 +111,9 @@ class Event : Comparable {
         }
         if let stringPaid = dict["paid"] as? String {
             self.paid = (stringPaid == "1") ? true : false
+        }
+        if let stringPrice = dict["price"] as? String {
+            self.price = stringPrice
         }
         if let userCount = dict["userCount"] as? Int {
             self.userCount = userCount

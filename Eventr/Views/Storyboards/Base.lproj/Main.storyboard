@@ -45,33 +45,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoNoText" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-dE-Kjq" customClass="RoundedImage" customModule="Fiesta_" customModuleProvider="target">
-                                <rect key="frame" x="40" y="34" width="240" height="240"/>
-                                <color key="backgroundColor" name="Medium"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-dE-Kjq" customClass="RoundedImage" customModule="Fiesta_" customModuleProvider="target">
+                                <rect key="frame" x="40" y="104" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="8ew-iC-Jnp"/>
                                     <constraint firstAttribute="width" constant="240" id="9Aj-Dn-mID"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
+                                        <real key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoText" translatesAutoresizingMaskIntoConstraints="NO" id="R8a-3r-jsb">
-                                <rect key="frame" x="40" y="274" width="240" height="128"/>
-                                <color key="tintColor" name="Text"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="Ydl-aS-Kyo"/>
-                                    <constraint firstAttribute="height" constant="128" id="rdU-DS-EnU"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Social Life Solution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRZ-ax-cDP">
-                                <rect key="frame" x="66" y="372" width="188.5" height="20"/>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V8l-8w-yLf">
                                 <rect key="frame" x="0.0" y="430" width="320" height="108"/>
                                 <subviews>
@@ -121,20 +107,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Woq-dE-Kjq" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="ALB-6M-xiS"/>
-                            <constraint firstItem="Woq-dE-Kjq" firstAttribute="centerY" secondItem="Vdz-6a-P0n" secondAttribute="centerY" constant="-130" id="COY-0h-Oc4"/>
+                            <constraint firstItem="Woq-dE-Kjq" firstAttribute="centerY" secondItem="Vdz-6a-P0n" secondAttribute="centerY" constant="-60" id="COY-0h-Oc4"/>
                             <constraint firstAttribute="trailing" secondItem="V8l-8w-yLf" secondAttribute="trailing" id="Cus-Gk-o0B"/>
                             <constraint firstItem="V8l-8w-yLf" firstAttribute="top" secondItem="0xq-oF-4RZ" secondAttribute="bottom" constant="10" id="d9y-xh-rrA"/>
                             <constraint firstItem="V8l-8w-yLf" firstAttribute="leading" secondItem="Vdz-6a-P0n" secondAttribute="leading" id="eS1-WS-9h0"/>
                             <constraint firstItem="Uqm-oE-C8L" firstAttribute="top" secondItem="V8l-8w-yLf" secondAttribute="bottom" constant="30" id="ggl-Kb-CDq"/>
                             <constraint firstItem="0xq-oF-4RZ" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="hLv-1m-UdS"/>
-                            <constraint firstItem="R8a-3r-jsb" firstAttribute="top" secondItem="Woq-dE-Kjq" secondAttribute="bottom" id="k5x-Sy-f6c"/>
-                            <constraint firstItem="XRZ-ax-cDP" firstAttribute="top" secondItem="R8a-3r-jsb" secondAttribute="bottom" constant="-30" id="kP3-ka-1S8"/>
-                            <constraint firstItem="XRZ-ax-cDP" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="q80-bV-Jda"/>
-                            <constraint firstItem="R8a-3r-jsb" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="y1a-cS-FPO"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mainLogoImage" destination="Woq-dE-Kjq" id="7CP-59-Z5u"/>
+                        <outlet property="mainLogoImage" destination="Woq-dE-Kjq" id="Tbh-9b-sua"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeSegue" id="S6u-EE-Q3h"/>
                     </connections>
                 </viewController>
@@ -1032,7 +1014,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKV-0R-RbT" userLabel="Header">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaFunkyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
                                                 <rect key="frame" x="35" y="-5" width="250" height="60"/>
                                                 <color key="tintColor" name="Text"/>
                                                 <constraints>
@@ -1791,7 +1773,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaFunkyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Xx-Cqk">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Xx-Cqk">
                                         <rect key="frame" x="35" y="-5" width="250" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="AnF-wR-OQU"/>
@@ -2301,7 +2283,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQp-ni-J3m" userLabel="Header">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaFunkyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="19S-Uu-ALJ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="19S-Uu-ALJ">
                                         <rect key="frame" x="35" y="-5" width="250" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="HD1-bR-OAQ"/>
@@ -3000,9 +2982,9 @@
         <image name="accountIcon" width="100" height="100"/>
         <image name="catIconAll" width="150" height="150"/>
         <image name="catIconFavorite" width="100" height="100"/>
-        <image name="fiestaFunkyLogo" width="1200" height="523"/>
+        <image name="fiestaLogo" width="1734" height="614"/>
         <image name="fiestaLogoBlackText" width="2000" height="599"/>
-        <image name="fiestaLogoText" width="1281" height="597"/>
+        <image name="homeScreenLogo" width="4167" height="4168"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconCheckMark" width="104" height="104"/>
         <image name="iconClock" width="96" height="96"/>
@@ -3023,7 +3005,6 @@
         <image name="iconSettings" width="100" height="100"/>
         <image name="iconSort" width="52" height="52"/>
         <image name="iconUnselectedStar" width="100" height="100"/>
-        <image name="logoNoText" width="605" height="599"/>
         <image name="plusIcon" width="52" height="52"/>
         <image name="upvoteArrow" width="90" height="90"/>
         <namedColor name="AccentGreen">

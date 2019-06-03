@@ -135,11 +135,13 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         (location) in
         guard let location = location else {
             //Ensure that event has a valid location before continuing and inserting event into Firebase database
-            //displayInvalidLocationAlert(viewController: viewController)
+            displayInvalidLocationAlert(viewController: viewController)
             return
         }
-        let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         
+
+        let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+    
         let eventDateDouble = Double(eventDate.timeIntervalSince1970)
         
         let paidString = (event.paid) ? "1" : "0"
@@ -161,6 +163,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             "tag3":   event.tag3,
             "upvotes": event.upvoteCount,
             "paid" : paidString,
+            "price" : event.price,
             "userCount" : event.userCount
             ] as [String : Any]
         //Add the event to the "events" section of firebase
@@ -182,7 +185,8 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
                 print("Error writing event to Firebase")
             } else {
                 //If event was successfully added to Firebase, add GeoFire event location to firebase
-                insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
+                     insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
+                
             }
         })
         

@@ -11,12 +11,11 @@ import UIKit
 
 var count = 0
 
-let testData: [String] = [
-
+let testMusicData: [String] = [
+   
 ]
 
 let testSportData: [String] = [
-
     
 ]
 
@@ -24,7 +23,7 @@ let testSportData: [String] = [
 
 func addTestDataToFirebase(vc: UIViewController){
     
-    for eventString in testData {
+    for eventString in testMusicData {
         
         let eventStringArr = eventString.components(separatedBy: "|")
         let dateString = eventStringArr[2]
@@ -36,6 +35,8 @@ func addTestDataToFirebase(vc: UIViewController){
         let name = eventStringArr[1] + " at " + venue
         var upvoteCount = 0
         var userCount = 0
+        let eventLink = eventStringArr[6]
+        let eventPrice = eventStringArr[7]
         if let multiplier = Int(eventStringArr[5] ){
              upvoteCount = (multiplier + 1) * Int(arc4random_uniform(17) + 1)
             userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
@@ -46,7 +47,7 @@ func addTestDataToFirebase(vc: UIViewController){
         let tag3 = "Show"
         
         if name != nil && GMTDate != nil && address != nil && venue != nil {
-            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: tag1, tag2: tag2, tag3: tag3, paid: true)
+            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
             event.upvoteCount = upvoteCount
             event.userCount = userCount
             
@@ -80,6 +81,8 @@ func addTestSportDataToFirebase(vc: UIViewController){
         let address = eventStringArr[3]
         let venue = eventStringArr[4]
         let name = eventStringArr[1] + " at " + venue
+        let eventLink = eventStringArr[7]
+        let eventPrice = eventStringArr[8]
         var upvoteCount = 0
         var userCount = 0
         if let multiplier = Int(eventStringArr[6] ){
@@ -92,7 +95,7 @@ func addTestSportDataToFirebase(vc: UIViewController){
         let tag3 = "Athletics"
         
         if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
-            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: tag1, tag2: tag2, tag3: tag3, paid: true)
+            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
             event.upvoteCount = upvoteCount
             event.userCount = userCount
             

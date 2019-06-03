@@ -14,7 +14,8 @@ import GoogleSignIn
 class StartViewController: UIViewController, GIDSignInUIDelegate {
     
     
-    @IBOutlet weak var mainLogoImage: RoundedImage!
+    @IBOutlet weak var mainLogoImage: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,17 +57,8 @@ class StartViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     func configureMainLogo(){
-        let shadowSize : CGFloat = 0.0
-        let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
-                                                   y: -shadowSize / 2,
-                                                   width: mainLogoImage.frame.size.width + shadowSize,
-                                                   height: mainLogoImage.frame.size.height + shadowSize))
-        mainLogoImage.layer.shadowColor = themeAccentPrimary.cgColor
-        mainLogoImage.layer.shadowOffset = CGSize(width: 0, height: 0)
-        mainLogoImage.layer.shadowOpacity = 0.15
-        mainLogoImage.layer.shadowRadius = 10.0
-        mainLogoImage.layer.masksToBounds = false
-        mainLogoImage.layer.shadowPath = shadowPath.cgPath
+        mainLogoImage.layer.cornerRadius = 40
+        configureStandardViewDesignWithShadow(view: mainLogoImage, xOffset: 0, yOffset: 0, opacity: 1)
         
     }
     
