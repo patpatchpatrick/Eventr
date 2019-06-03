@@ -288,6 +288,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if indexPath.row == tableEvents.count - 1 {
             //If the last cell has been loaded and pagination is not currently in progress, load another page
             //Do not load more data if the list descriptor is in use.  List descriptor shows events that don't require pagination
+            print("Pagination In Progress")
+            print(paginationInProgress)
             if !paginationInProgress && !listDescriptorInUse {
                 paginationInProgress = true
                 queryFirebaseEvents(city: "NYC", firstPage: false)
