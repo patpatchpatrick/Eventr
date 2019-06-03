@@ -57,6 +57,8 @@ class EventViewController: UIViewController {
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
         configureFloatingSideButtonDesign(view: headerFavoriteIconContainer)
         setUpURLButtons()
+        locationDetailsButton.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+        locationDetailsButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         configureEditButton()
         configureDeleteButton()
         populateFieldsWithData()

@@ -306,6 +306,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.paidEvent?.image = nil
         }
         
+        cell.eventPrice.text = event.price
+        
         cell.eventDescription.text = event.details
         
         //Set the date and time of the event

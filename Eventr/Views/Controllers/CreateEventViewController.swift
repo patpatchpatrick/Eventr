@@ -26,13 +26,13 @@ class CreateEventViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        createEventStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 45).isActive = true //set max width on the main stackview container
         configureCalendarView()
         configureTimePicker()
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
         configureFloatingSideButtonDesign(view: createEventButtonContainer)
         configureTextEntryFieldsDesign()
         setCalendarButtonTitleToBeSelectedTime()
-        self.hideKeyboardWhenTappedAround()
         
         //Configure the screen depending on whether user is creating or editing an event
         switch selectedEventAction {
@@ -43,6 +43,9 @@ class CreateEventViewController: UIViewController {
     
     
     @IBOutlet weak var headerBackButtonContainer: RoundUIView!
+    
+    @IBOutlet weak var createEventStackView: UIStackView!
+    
     @IBOutlet weak var createEventButtonContainer: RoundUIView!
     @IBOutlet weak var eventName: UITextView!
     @IBOutlet weak var eventDescription: UITextView!

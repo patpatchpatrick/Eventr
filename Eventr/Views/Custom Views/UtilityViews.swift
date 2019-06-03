@@ -36,6 +36,7 @@ class CustomEventCell: UITableViewCell {
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var eventUserCount: UILabel!
     @IBOutlet weak var eventUserCountIcon: UIImageView!
+    @IBOutlet weak var eventPrice: UILabel!
     
 }
 

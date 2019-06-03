@@ -57,8 +57,6 @@ class StartViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     func configureMainLogo(){
-        mainLogoImage.layer.cornerRadius = 40
-        configureStandardViewDesignWithShadow(view: mainLogoImage, xOffset: 0, yOffset: 0, opacity: 1)
         
     }
     
