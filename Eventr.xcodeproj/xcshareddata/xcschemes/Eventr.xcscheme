@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F65368802272618000861E0D"
                BuildableName = "Fiesta!.app"
-               BlueprintName = "Eventr"
-               ReferencedContainer = "container:Eventr.xcodeproj">
+               BlueprintName = "Fiesta"
+               ReferencedContainer = "container:Fiesta.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F6FD35C2228A4D1D000DF12B"
                BuildableName = "Fiesta!UITests.xctest"
-               BlueprintName = "EventrUITests"
-               ReferencedContainer = "container:Eventr.xcodeproj">
+               BlueprintName = "FiestaUITests"
+               ReferencedContainer = "container:Fiesta.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F65368802272618000861E0D"
             BuildableName = "Fiesta!.app"
-            BlueprintName = "Eventr"
-            ReferencedContainer = "container:Eventr.xcodeproj">
+            BlueprintName = "Fiesta"
+            ReferencedContainer = "container:Fiesta.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,8 +67,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F65368802272618000861E0D"
             BuildableName = "Fiesta!.app"
-            BlueprintName = "Eventr"
-            ReferencedContainer = "container:Eventr.xcodeproj">
+            BlueprintName = "Fiesta"
+            ReferencedContainer = "container:Fiesta.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -86,8 +86,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F65368802272618000861E0D"
             BuildableName = "Fiesta!.app"
-            BlueprintName = "Eventr"
-            ReferencedContainer = "container:Eventr.xcodeproj">
+            BlueprintName = "Fiesta"
+            ReferencedContainer = "container:Fiesta.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

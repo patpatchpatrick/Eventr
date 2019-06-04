@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Eventr.xcodeproj">
+      location = "group:/Users/patrickdoyle/code/mapps/Eventr/Eventr/Eventr.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

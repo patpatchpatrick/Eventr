@@ -29,6 +29,7 @@ func addQueriedEventsToTableViewByValue(eventsList: NSDictionary){
             queryIfFirebaseEventIsFavorited(event: event)
             //Check if event has been upvoted by user
             queryIfFirebaseEventIsUpvoted(event: event)
+        
             
             //First, add the event to the allEvents list (this list is used to maintain events so that they can be re-filtered without needing to query Firebase again)
             addEventToEventsListInOrder(event: event, eventList: &allEvents)
@@ -95,7 +96,7 @@ func addEventsToTableViewByKey(eventIDMap: NSDictionary, isUserCreatedEvent: Boo
                 queryIfFirebaseEventIsFavorited(event: event)
                 //Check if event has been upvoted by user
                 queryIfFirebaseEventIsUpvoted(event: event)
-            
+                
                 if addToListsInSortedOrder{
                     //ListDescriptor events and Specific Category queries are added here
                     updatePaginationValues(event: event) //Update values used for pagination purposes
@@ -141,7 +142,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         (location) in
         guard let location = location else {
             //Ensure that event has a valid location before continuing and inserting event into Firebase database
-            displayInvalidLocationAlert(viewController: viewController)
+            //displayInvalidLocationAlert(viewController: viewController)
             return
         }
         
@@ -156,6 +157,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             "category": event.category.index(),
             "date": eventDateDouble,
             "dateSort": 0 - eventDateDouble,
+            "duration": event.duration,
             "description": event.details,
             "city": event.city,
             "location":   event.location,

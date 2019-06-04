@@ -18,8 +18,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F6FD35C2228A4D1D000DF12B"
                BuildableName = "Fiesta!UITests.xctest"
-               BlueprintName = "EventrUITests"
-               ReferencedContainer = "container:Eventr.xcodeproj">
+               BlueprintName = "FiestaUITests"
+               ReferencedContainer = "container:Fiesta.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

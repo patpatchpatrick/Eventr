@@ -15,6 +15,7 @@ class Event : Comparable {
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
     var GMTDate: Date? // Event date in GMT timezone
+    var duration = 0 // Event duration in minutes
     var previousDate: Date = Date() // Variable to store previous date if date was updated
     var city: String = ""
     var location: String = ""
@@ -57,6 +58,14 @@ class Event : Comparable {
         self.price = price
     }
     
+    func printEvent(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)!
+        
+        print("Name: " + name + "Date: " + dateFormatter.string(from: GMTDate!) + "Duration: " + String(duration) + "City: " + city + "Address: " + location + "Venue: " + venue + "Details: " + details + "Contact: " + contact + "Phone: " + phoneNumber + "TicketURL: " + ticketURL + "EventURL: " + eventURL + "Category " + category.text() + "Price: " + price + "Upvotes: " + String(upvoteCount) + "Attending: " + String(userCount))
+    }
+    
     //Initialize an event from a dictionary retreived from Firebase
     init(dict: NSDictionary, idKey: String){
         if let nameDict = dict["name"] as? String {
@@ -71,6 +80,9 @@ class Event : Comparable {
                 //Date is stored in Firebase in GMT time (unix time)
                 self.GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
             
+        }
+        if let durationInt = dict["duration"] as? Int {
+            self.duration = durationInt
         }
         if let cityDict = dict["city"] as? String {
             self.city = cityDict

@@ -148,6 +148,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         updateSelectedQueryButtonStyle()
         loadInitialListOfEvents()
         
+        //addTestStandardDataToFirebase(vc: self)
   
     }
     

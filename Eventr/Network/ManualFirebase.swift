@@ -19,6 +19,10 @@ let testSportData: [String] = [
     
 ]
 
+let testStandardData: [String] = [
+
+]
+
 //Class used to manually add data to Firebase if necessary
 
 func addTestDataToFirebase(vc: UIViewController){
@@ -113,5 +117,63 @@ func addTestSportDataToFirebase(vc: UIViewController){
         
         
     }
+    
+}
+
+func addTestStandardDataToFirebase(vc: UIViewController){
+    
+    for eventString in testStandardData {
+        
+        let eventStringArr = eventString.components(separatedBy: "|")
+        let dateString = eventStringArr[1]
+        let duration = Int(eventStringArr[2])
+        if let dateDouble = Double(dateString){
+        let GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble + 25200))
+        let city = "NYC"
+        let name = eventStringArr[0]
+        let address = eventStringArr[3]
+        let venue = eventStringArr[4]
+        let description = eventStringArr[5]
+        let eventLink = eventStringArr[6]
+        let eventPrice = eventStringArr[7]
+        var upvoteCount = 0
+        var userCount = 0
+        let phone = eventStringArr[8]
+        if let multiplier = Int(eventStringArr[9] ){
+                upvoteCount = (multiplier + 1) * Int(arc4random_uniform(17) + 1)
+                userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
+            }
+            let category = stringToEventCategory(string: "Food")
+            let tag1 = "Food"
+            let tag2 = "Drink"
+            let tag3 = "Festival"
+            
+            if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
+                let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: description, contact: "", phoneNumber: phone, ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
+                if let dur = duration {
+                   event.duration = dur * 60
+                }
+                event.upvoteCount = upvoteCount
+                event.userCount = userCount
+                
+                //event.printEvent()
+                
+                /*
+                createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
+                    eventWasCreatedSuccessfully in
+                    if eventWasCreatedSuccessfully {
+                        count += 1
+                        print("TEST DATA ADDED SUCCESSFULLY")
+                        print(count)
+                    } else {
+                        print("TEST DATA ADDED FAIL")
+                    }})
+                */
+                
+            }}
+        
+        
+    }
+    
     
 }

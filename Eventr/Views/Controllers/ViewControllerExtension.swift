@@ -569,9 +569,9 @@ extension ViewController{
     }
     
     func configureSideMenuContainers(){
-        sideMenuMyEventsContainer.addBottomBorderWithColor(color: themeTextColor, width: 0.5, widthExtension: 0)
-        sideMenuFavoritedContainer.addBottomBorderWithColor(color: themeTextColor, width: 0.5, widthExtension: 0)
-        sideMenuLogOutContainer.addTopBorderWithColor(color: themeTextColor, width: 0.5)
+        sideMenuMyEventsContainer.addBottomBorderWithColor(color: themeAccentPrimary, width: 0.5, widthExtension: 0)
+        sideMenuFavoritedContainer.addBottomBorderWithColor(color: themeAccentPrimary, width: 0.5, widthExtension: 0)
+        sideMenuLogOutContainer.addTopBorderWithColor(color: themeAccentPrimary, width: 0.5)
     }
     
     func configureBackgroundViewBlur(){
