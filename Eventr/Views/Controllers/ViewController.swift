@@ -148,7 +148,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         updateSelectedQueryButtonStyle()
         loadInitialListOfEvents()
         
-        //addTestSportDataToFirebase(vc: self)
   
     }
     

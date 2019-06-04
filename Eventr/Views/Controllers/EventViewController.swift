@@ -31,6 +31,8 @@ class EventViewController: UIViewController {
     @IBOutlet weak var addressTextView: UITextView!
     @IBOutlet weak var additionalContactInfo: UITextView!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var priceContainer: UIView!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var linksStackView: UIStackView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ticketLinkButton: UIButton!
@@ -57,8 +59,6 @@ class EventViewController: UIViewController {
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
         configureFloatingSideButtonDesign(view: headerFavoriteIconContainer)
         setUpURLButtons()
-        locationDetailsButton.titleLabel?.numberOfLines = 0; // Dynamic number of lines
-        locationDetailsButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         configureEditButton()
         configureDeleteButton()
         populateFieldsWithData()
@@ -128,6 +128,13 @@ class EventViewController: UIViewController {
         }
         if !selectedEvent.tag3.isEmpty && selectedEvent.tag3 != "" {
             tagLabel.text?.append(" #" + selectedEvent.tag3)
+        }
+        
+        if selectedEvent.paid && selectedEvent.price != "" && !selectedEvent.price.isEmpty {
+            priceContainer.isHidden = false
+            priceLabel.text = selectedEvent.price
+        } else {
+            priceContainer.isHidden = true
         }
     }
     
@@ -203,6 +210,11 @@ class EventViewController: UIViewController {
     
     
     func initializeMapKitView(){
+        
+        mapView.addTopBorderWithColor(color: themeAccentPrimary, width: 4.0)
+         mapView.addRightBorderWithColor(color: themeAccentPrimary, width: 4.0)
+         mapView.addLeftBorderWithColor(color: themeAccentPrimary, width: 4.0)
+        mapView.addBottomBorderWithColor(color: themeAccentPrimary, width: 4.0, widthExtension: 0)
         
         //Initialize map kit view to display location of event 
         

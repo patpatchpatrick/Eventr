@@ -396,7 +396,7 @@ extension ViewController{
             case .popular:
                 queryPopularEvents(city: "NYC", queryingFirstPage: true)
             case .upcoming:
-                queryUpcomingEvents(city: "NYC", firstPage: true)
+                queryUpcomingEvents(city: "NYC", queryingFirstPage: true)
             case .nearby:
                 refilterTableViewByCategory()
           

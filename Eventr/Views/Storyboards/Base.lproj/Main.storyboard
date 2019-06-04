@@ -719,7 +719,7 @@
                                         <rect key="frame" x="10" y="130" width="300" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="kwn-TE-lfL"/>
@@ -745,7 +745,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="100" y="0.0" width="50" height="42"/>
+                                                <rect key="frame" x="90" y="0.0" width="50" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="gvx-Ky-ln4"/>
@@ -773,7 +773,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="150" y="0.0" width="80" height="42"/>
+                                                <rect key="frame" x="140" y="0.0" width="90" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="HqI-hz-QT1"/>
@@ -1024,11 +1024,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tLb-mw-xKu">
-                                                <rect key="frame" x="35" y="-5" width="250" height="60"/>
+                                                <rect key="frame" x="35" y="0.0" width="250" height="50"/>
                                                 <color key="tintColor" name="Text"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="Igp-Ur-Gqv"/>
-                                                    <constraint firstAttribute="height" constant="60" id="eg0-Fh-18e"/>
+                                                    <constraint firstAttribute="height" constant="50" id="eg0-Fh-18e"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6V-qO-qjn" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
@@ -1439,7 +1439,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aor-5M-eck">
                                         <rect key="frame" x="0.0" y="0.0" width="220" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
-                                        <color key="textColor" name="Text"/>
+                                        <color key="textColor" name="Medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="f4U-pH-6is">
@@ -1451,7 +1451,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bet-n1-zVE">
                                         <rect key="frame" x="0.0" y="88.5" width="220" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
-                                        <color key="textColor" name="Text"/>
+                                        <color key="textColor" name="Medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="21L-hA-1jW">
@@ -1463,7 +1463,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Re-type Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2g-se-8xk">
                                         <rect key="frame" x="0.0" y="177" width="220" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
-                                        <color key="textColor" name="Text"/>
+                                        <color key="textColor" name="Medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="vQN-gk-sHK">
@@ -1478,7 +1478,7 @@
                                 <rect key="frame" x="120" y="458" width="80" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
                                 <state key="normal" title="SIGNUP">
-                                    <color key="titleColor" name="AccentPrimary"/>
+                                    <color key="titleColor" name="Medium"/>
                                 </state>
                                 <connections>
                                     <action selector="signUp:" destination="dYJ-nZ-3ys" eventType="touchUpInside" id="3S3-xo-vqC"/>
@@ -1488,14 +1488,14 @@
                                 <rect key="frame" x="120" y="512" width="80" height="36"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
                                 <state key="normal" title="BACK">
-                                    <color key="titleColor" name="AccentPrimary"/>
+                                    <color key="titleColor" name="Medium"/>
                                 </state>
                                 <connections>
                                     <action selector="previousScreen:" destination="dYJ-nZ-3ys" eventType="touchUpInside" id="fFa-0u-X4L"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AccentPrimary"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mhm-c2-7Ff" secondAttribute="trailing" constant="120" id="7KG-qH-K6G"/>
                             <constraint firstItem="NhX-Nr-gjQ" firstAttribute="top" secondItem="cSD-NR-C9w" secondAttribute="bottom" constant="40" id="Ao5-bv-Jj3"/>
@@ -1632,7 +1632,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWl-3Q-mgY" userLabel="Header">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogoBlackText" translatesAutoresizingMaskIntoConstraints="NO" id="BlX-5U-BaN">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="BlX-5U-BaN">
                                         <rect key="frame" x="85" y="10" width="150" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="59j-hS-Dh0"/>
@@ -1783,10 +1783,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Xx-Cqk">
-                                        <rect key="frame" x="35" y="-5" width="250" height="60"/>
+                                        <rect key="frame" x="35" y="0.0" width="250" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="AnF-wR-OQU"/>
-                                            <constraint firstAttribute="height" constant="60" id="CPl-33-jF2"/>
+                                            <constraint firstAttribute="height" constant="50" id="CPl-33-jF2"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -1802,13 +1802,13 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vV-dL-K79">
-                                <rect key="frame" x="0.0" y="80" width="320" height="338"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzT-Qw-vmX">
-                                        <rect key="frame" x="10" y="0.0" width="300" height="571"/>
+                                        <rect key="frame" x="10" y="0.0" width="300" height="791"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jxa-Xj-4av">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="571"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="791"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-OB-igJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="110"/>
@@ -1951,8 +1951,35 @@
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLv-9A-xdn">
+                                                        <rect key="frame" x="0.0" y="455" width="300" height="30"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOi-LU-STQ">
+                                                                <rect key="frame" x="127.5" y="5" width="45" height="20"/>
+                                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventIconDollar" translatesAutoresizingMaskIntoConstraints="NO" id="rsf-yJ-YUH">
+                                                                <rect key="frame" x="97.5" y="0.0" width="30" height="30"/>
+                                                                <color key="tintColor" name="AccentGreen"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="8DN-fP-FMd"/>
+                                                                    <constraint firstAttribute="width" constant="30" id="c04-iz-0I5"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="jOi-LU-STQ" firstAttribute="centerY" secondItem="FLv-9A-xdn" secondAttribute="centerY" id="00Z-mz-tD2"/>
+                                                            <constraint firstItem="jOi-LU-STQ" firstAttribute="centerX" secondItem="FLv-9A-xdn" secondAttribute="centerX" id="ABM-GQ-bL6"/>
+                                                            <constraint firstAttribute="height" constant="30" id="o6h-mC-HMI"/>
+                                                            <constraint firstItem="rsf-yJ-YUH" firstAttribute="centerY" secondItem="FLv-9A-xdn" secondAttribute="centerY" id="qEs-qj-Kd9"/>
+                                                            <constraint firstItem="rsf-yJ-YUH" firstAttribute="trailing" secondItem="jOi-LU-STQ" secondAttribute="leading" id="qzq-PA-Nbi"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uK-9C-YWP" userLabel="Links Container">
-                                                        <rect key="frame" x="0.0" y="455" width="300" height="32"/>
+                                                        <rect key="frame" x="0.0" y="505" width="300" height="32"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="He1-HM-0rb">
                                                                 <rect key="frame" x="15" y="0.0" width="270" height="32"/>
@@ -2007,7 +2034,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-Im-A4x" userLabel="Attend Container">
-                                                        <rect key="frame" x="0.0" y="507" width="300" height="64"/>
+                                                        <rect key="frame" x="0.0" y="557" width="300" height="64"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbc-h4-DEy" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
                                                                 <rect key="frame" x="100" y="0.0" width="100" height="32"/>
@@ -2058,6 +2085,12 @@
                                                             <constraint firstAttribute="height" constant="64" id="vAo-23-MVs"/>
                                                         </constraints>
                                                     </view>
+                                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yDY-YZ-XMc">
+                                                        <rect key="frame" x="0.0" y="641" width="300" height="150"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="150" id="0e1-EG-NuK"/>
+                                                        </constraints>
+                                                    </mapView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -2076,12 +2109,6 @@
                                     <constraint firstAttribute="trailing" secondItem="kzT-Qw-vmX" secondAttribute="trailing" id="iXy-gR-Cqu"/>
                                 </constraints>
                             </scrollView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yDY-YZ-XMc">
-                                <rect key="frame" x="0.0" y="418" width="320" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="0e1-EG-NuK"/>
-                                </constraints>
-                            </mapView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaO-gu-exB" userLabel="EditButtonContainer" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
                                 <rect key="frame" x="259" y="75" width="96" height="42"/>
                                 <subviews>
@@ -2148,19 +2175,16 @@
                         <constraints>
                             <constraint firstItem="AaO-gu-exB" firstAttribute="trailing" secondItem="kzi-hv-t1w" secondAttribute="trailing" constant="35" id="0n9-TL-OsZ"/>
                             <constraint firstItem="0vV-dL-K79" firstAttribute="top" secondItem="kzi-hv-t1w" secondAttribute="bottom" constant="10" id="2d5-es-hta"/>
-                            <constraint firstAttribute="trailing" secondItem="yDY-YZ-XMc" secondAttribute="trailing" id="Dgu-LG-uDc"/>
                             <constraint firstItem="kzi-hv-t1w" firstAttribute="top" secondItem="1FJ-Ey-KLf" secondAttribute="bottom" id="I1b-Bd-3Sj"/>
                             <constraint firstItem="M2L-Yg-0Dv" firstAttribute="top" secondItem="AaO-gu-exB" secondAttribute="bottom" constant="10" id="ThP-X7-jHN"/>
                             <constraint firstItem="kzT-Qw-vmX" firstAttribute="leading" secondItem="IbG-Gr-784" secondAttribute="leading" constant="10" id="WCu-Iq-2PW"/>
                             <constraint firstItem="kzi-hv-t1w" firstAttribute="leading" secondItem="IbG-Gr-784" secondAttribute="leading" id="gdu-ai-SDK"/>
                             <constraint firstAttribute="trailing" secondItem="0vV-dL-K79" secondAttribute="trailing" id="iXJ-9W-Nr0"/>
-                            <constraint firstItem="yDY-YZ-XMc" firstAttribute="leading" secondItem="IbG-Gr-784" secondAttribute="leading" id="ntC-uY-mGZ"/>
                             <constraint firstAttribute="trailing" secondItem="kzT-Qw-vmX" secondAttribute="trailing" constant="10" id="oyr-JH-RPb"/>
-                            <constraint firstItem="0vV-dL-K79" firstAttribute="bottom" secondItem="yDY-YZ-XMc" secondAttribute="top" id="s3M-9r-L08"/>
+                            <constraint firstItem="JKG-jd-THo" firstAttribute="top" secondItem="0vV-dL-K79" secondAttribute="bottom" id="p6M-8p-BSI"/>
                             <constraint firstAttribute="trailing" secondItem="kzi-hv-t1w" secondAttribute="trailing" id="tLi-QO-4Be"/>
                             <constraint firstItem="AaO-gu-exB" firstAttribute="top" secondItem="kzi-hv-t1w" secondAttribute="bottom" constant="5" id="ucd-0e-N9b"/>
                             <constraint firstItem="0vV-dL-K79" firstAttribute="leading" secondItem="IbG-Gr-784" secondAttribute="leading" id="vZQ-tv-Xal"/>
-                            <constraint firstItem="JKG-jd-THo" firstAttribute="top" secondItem="yDY-YZ-XMc" secondAttribute="bottom" id="x9A-at-PQh"/>
                             <constraint firstItem="M2L-Yg-0Dv" firstAttribute="trailing" secondItem="kzi-hv-t1w" secondAttribute="trailing" constant="35" id="zx5-8F-aue"/>
                         </constraints>
                     </view>
@@ -2184,6 +2208,8 @@
                         <outlet property="mapView" destination="yDY-YZ-XMc" id="5kl-U0-TVV"/>
                         <outlet property="phoneNumberButton" destination="Bwe-GB-pC4" id="AfF-OI-HEA"/>
                         <outlet property="phoneNumberContainer" destination="ZeI-cs-UiY" id="SHG-bV-PPJ"/>
+                        <outlet property="priceContainer" destination="FLv-9A-xdn" id="CTX-wk-A1B"/>
+                        <outlet property="priceLabel" destination="jOi-LU-STQ" id="js2-eP-DQr"/>
                         <outlet property="tagLabel" destination="gWw-GK-BTz" id="8ek-2e-FAD"/>
                         <outlet property="ticketLinkButton" destination="Kbc-QI-oda" id="enW-nw-Ip6"/>
                     </connections>
@@ -2210,7 +2236,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ab-hN-GZb">
                                         <rect key="frame" x="0.0" y="0.0" width="220" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
-                                        <color key="textColor" name="Text"/>
+                                        <color key="textColor" name="Medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="DtS-B7-Q6Q" userLabel="Username">
@@ -2223,7 +2249,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFz-n9-VjA">
                                         <rect key="frame" x="0.0" y="101" width="220" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
-                                        <color key="textColor" name="Text"/>
+                                        <color key="textColor" name="Medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ilR-cS-4Sv" userLabel="Password">
@@ -2239,7 +2265,7 @@
                                 <rect key="frame" x="120" y="428" width="80" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
                                 <state key="normal" title="LOGIN">
-                                    <color key="titleColor" name="AccentPrimary"/>
+                                    <color key="titleColor" name="Medium"/>
                                 </state>
                                 <connections>
                                     <action selector="logIn:" destination="6sm-hA-swY" eventType="touchUpInside" id="qtF-AN-W2D"/>
@@ -2249,14 +2275,14 @@
                                 <rect key="frame" x="120" y="490" width="80" height="36"/>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
                                 <state key="normal" title="BACK">
-                                    <color key="titleColor" name="AccentPrimary"/>
+                                    <color key="titleColor" name="Medium"/>
                                 </state>
                                 <connections>
                                     <action selector="previousScreen:" destination="6sm-hA-swY" eventType="touchUpInside" id="GOq-Pd-QCk"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AccentPrimary"/>
                         <constraints>
                             <constraint firstItem="sBH-V3-3jQ" firstAttribute="leading" secondItem="xZS-Oj-be8" secondAttribute="leading" constant="120" id="3bn-sf-oDX"/>
                             <constraint firstItem="6xK-1X-aqb" firstAttribute="top" secondItem="sBH-V3-3jQ" secondAttribute="bottom" constant="100" id="7eO-ib-Iwr"/>
@@ -2297,10 +2323,10 @@
                                 <rect key="frame" x="16" y="70" width="288" height="428"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFA-VQ-esL">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="933"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1125"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="933"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1125"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-3j-RYP" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="36.5"/>
@@ -2664,10 +2690,10 @@
                                                         </constraints>
                                                     </view>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d8G-QA-bbR" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="147.5" width="320" height="108"/>
+                                                        <rect key="frame" x="0.0" y="147.5" width="320" height="300"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="108" id="gnw-67-DQA"/>
+                                                            <constraint firstAttribute="height" constant="300" id="gnw-67-DQA"/>
                                                         </constraints>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2680,7 +2706,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" City: New York (Greater New York City Area)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="r8L-hu-TV9">
-                                                        <rect key="frame" x="0.0" y="264.5" width="320" height="24"/>
+                                                        <rect key="frame" x="0.0" y="456.5" width="320" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="YfL-Vh-rax"/>
                                                         </constraints>
@@ -2689,7 +2715,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-g7-EtX" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="297.5" width="320" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="489.5" width="320" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2703,7 +2729,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1Wu-Hw-q40" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="343" width="320" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="535" width="320" height="36.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2716,7 +2742,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RKs-T8-3EI" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="388.5" width="320" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="580.5" width="320" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2730,7 +2756,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GLy-IO-trK" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="434" width="320" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="626" width="320" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2744,7 +2770,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Enter Phone Number*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-Xe-pKs" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
-                                                        <rect key="frame" x="0.0" y="479.5" width="320" height="28"/>
+                                                        <rect key="frame" x="0.0" y="671.5" width="320" height="28"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="urc-U4-OYY"/>
@@ -2759,7 +2785,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dwq-yQ-BWN" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="516.5" width="320" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="708.5" width="320" height="36.5"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -2772,7 +2798,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RS7-M6-4Wu">
-                                                        <rect key="frame" x="0.0" y="562" width="320" height="36.5"/>
+                                                        <rect key="frame" x="0.0" y="754" width="320" height="36.5"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-9N-b2h" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="105.5" height="36.5"/>
@@ -2816,13 +2842,13 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ta1-Ru-Q21">
-                                                        <rect key="frame" x="0.0" y="607.5" width="320" height="16.5"/>
+                                                        <rect key="frame" x="0.0" y="799.5" width="320" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYO-iy-rns" userLabel="Extra Space">
-                                                        <rect key="frame" x="0.0" y="633" width="320" height="300"/>
+                                                        <rect key="frame" x="0.0" y="825" width="320" height="300"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="300" id="6Bu-GI-j5u"/>
@@ -2857,10 +2883,10 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="19S-Uu-ALJ">
-                                        <rect key="frame" x="35" y="-5" width="250" height="60"/>
+                                        <rect key="frame" x="35" y="0.0" width="250" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="HD1-bR-OAQ"/>
-                                            <constraint firstAttribute="height" constant="60" id="Vrr-t9-3ZC"/>
+                                            <constraint firstAttribute="height" constant="50" id="Vrr-t9-3ZC"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-NV-SH3" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
@@ -3003,8 +3029,8 @@
         <image name="accountIcon" width="100" height="100"/>
         <image name="catIconAll" width="150" height="150"/>
         <image name="catIconFavorite" width="100" height="100"/>
+        <image name="eventIconDollar" width="52" height="52"/>
         <image name="fiestaLogo" width="1734" height="614"/>
-        <image name="fiestaLogoBlackText" width="2000" height="599"/>
         <image name="homeScreenLogo" width="4167" height="4168"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconCheckMark" width="104" height="104"/>
@@ -3051,7 +3077,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8KJ-OK-Kql"/>
-        <segue reference="S6u-EE-Q3h"/>
+        <segue reference="MSv-Pn-SaB"/>
+        <segue reference="wqm-YJ-0hk"/>
     </inferredMetricsTieBreakers>
 </document>

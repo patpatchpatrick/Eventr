@@ -72,9 +72,10 @@ func updatePaginationValues(event: Event){
     
 }
 
-//Method used by "Nearby Queries" and "List Descriptor Queries" to add events to tableview
-func addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: NSDictionary, isUserCreatedEvent: Bool, addToListsInSortedOrder: Bool, addToAllEventsList: Bool){
+//Add events to the tableView by Key(eventID)
+func addEventsToTableViewByKey(eventIDMap: NSDictionary, isUserCreatedEvent: Bool, addToListsInSortedOrder: Bool, addToAllEventsList: Bool){
     for (id, city) in eventIDMap {
+        //Method used by "Nearby Queries" and "List Descriptor Queries" to add events to tableview
        
         //Get the Event ID and the City as string values
         //The Event ID and the City are stored as Key:Value pairs in Firebase
@@ -231,14 +232,14 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             }
         }
         
-        //Add user creation data and eventsByCity data to Firebase
+        //Add user creation data and event-city data to Firebase
         
         if createOrUpdate == .creating {
             //Map the firebase event to the "created" events section of Firebase
             firebaseDatabaseRef.child("created").child(userID).child(event.id).setValue(event.city)
             
-            //Add the event to the eventByCity section of firebase used to find events based on the city
-            firebaseDatabaseRef.child("eventbyCity").child(event.id).child(event.city).setValue(event.city)
+            //Add the event to the event-city section of firebase used to find events based on the city
+            firebaseDatabaseRef.child("event-city").child(event.id).child(event.city).setValue(event.city)
         }
        
     

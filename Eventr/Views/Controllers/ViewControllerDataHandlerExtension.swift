@@ -92,7 +92,7 @@ extension ViewController{
             
         case .upcoming: //For upcoming events, add events to tableView in dateAscending order within user selected date range
             sortByPreference = .dateasc
-            queryUpcomingEvents(city: city, firstPage: firstPage)
+            queryUpcomingEvents(city: city, queryingFirstPage: firstPage)
         }
     }
     

@@ -47,14 +47,14 @@ var mostRecentlyQueriedLocation: CLLocation?
 var currentLocation: CLLocation? //User's current location
 
 //Query all upcoming events using the dates input by the user
-func queryUpcomingEvents(city: String, firstPage: Bool){
+func queryUpcomingEvents(city: String, queryingFirstPage: Bool){
     
     let beforeDate = Double((Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: fromDate)?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
     let afterDate = ((Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
     let specificCategoryWasQueried = selectedCategory != categoryAll
     let firstPageFinishedQuerying = allEvents.count >= paginationFirstPageCount
     
-    if firstPage{
+    if queryingFirstPage{
         //First page query
         //Reset query variables and clear tableview when a new search has begun
         tableEvents.removeAll()
@@ -115,7 +115,7 @@ func queryUpcomingEventsFirstPage(specificCategory: Bool, city: String, beforeDa
                 guard let dict = snapshot.value as? NSDictionary else { return }
                 for eventID in dict.allKeys {
                     
-                    addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                    addEventsToTableViewByKey(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
                 }
                 
             })
@@ -154,7 +154,7 @@ func queryUpcomingEventsAdditionalPage(specificCategory: Bool, city: String, aft
                     
                     print("SNAPSHOT")
                     print(eventID)
-                    addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                    addEventsToTableViewByKey(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
                 }
                 
             })
@@ -186,7 +186,7 @@ func queryPopularEventsFirstPage(specificCategory: Bool, city: String){
                 
                 print("SNAPSHOT")
                 print(eventID)
-                addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : city], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                addEventsToTableViewByKey(eventIDMap: [eventID : city], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
             }
             
         })
@@ -217,7 +217,7 @@ func queryPopularEventsAdditionalPage(specificCategory: Bool, city: String, last
                 
                 print("SNAPSHOT")
                 print(eventID)
-                addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                addEventsToTableViewByKey(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
             }
             
         })
@@ -250,7 +250,7 @@ func queryNearbyEvents(centerLocation: CLLocation?, radius: Double){
     gQuery = geoFire.query(at: queryLocation, withRadius: searchDistanceKm)
     guard let gQ = gQuery else {return}
     gQ.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, addToListsInSortedOrder: false, addToAllEventsList: false)
+        addEventsToTableViewByKey(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, addToListsInSortedOrder: false, addToAllEventsList: false)
     })
     
     //Method called when the query is finished and all keys(event IDs) are loaded
@@ -271,7 +271,7 @@ func queryFirebaseFavoriteEvents(){
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: false)
+        addEventsToTableViewByKey(eventIDMap: dict, isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: false)
     })
     
 }
@@ -285,7 +285,7 @@ func queryFirebaseCreatedEvents(){
     firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: true, addToListsInSortedOrder: true, addToAllEventsList: false)
+        addEventsToTableViewByKey(eventIDMap: dict, isUserCreatedEvent: true, addToListsInSortedOrder: true, addToAllEventsList: false)
     })
     
 }
