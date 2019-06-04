@@ -386,11 +386,22 @@ extension ViewController{
             sender.alpha = 1
         }
         
-        print("TEST ALL CATEGORIES" + String(sender.tag))
+
         //If the category changed, update the category and refilter the tableView
         if sender.tag != selectedCategory {
-                   selectedCategory = sender.tag //The tag of the sending button matches the index of whichever category was selected
-            refilterTableViewByCategory()
+                   selectedCategory = sender.tag
+            
+            //If querying popular or upcoming events, reload the tableview.  If querying nearby events, simply refilter the table since "Nearby" events cannot be queried by category
+            switch firebaseQueryType{
+            case .popular:
+                queryPopularEvents(city: "NYC", queryingFirstPage: true)
+            case .upcoming:
+                queryUpcomingEvents(city: "NYC", firstPage: true)
+            case .nearby:
+                refilterTableViewByCategory()
+          
+            }
+            
         }
         
     }

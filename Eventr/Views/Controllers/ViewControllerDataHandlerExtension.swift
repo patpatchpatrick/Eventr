@@ -65,7 +65,7 @@ extension ViewController{
             
         case .popular: //User querying "Popular/Hot" events, add events to tableView in upvote count order.  No date range used.
             sortByPreference = .popularity
-            queryPopularEvents(city: city, firstPage: firstPage)
+            queryPopularEvents(city: city, queryingFirstPage: firstPage)
             
         case .nearby:  //User querying "Nearby" events, use Geofire to search for and add events near user and sort them by popularity
             sortByPreference = .popularity

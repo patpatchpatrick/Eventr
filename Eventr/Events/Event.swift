@@ -63,8 +63,8 @@ class Event : Comparable {
             self.name = nameDict
         }
         self.id = idKey
-        if let categoryString = dict["category"] as? String {
-            self.category = stringToEventCategory(string: categoryString)
+        if let categoryInt = dict["category"] as? Int {
+            self.category = intToEventCategory(integer: categoryInt)
         }
         if let dateDouble = dict["date"] as? Double {
 

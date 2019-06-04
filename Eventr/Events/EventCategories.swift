@@ -42,6 +42,22 @@ func stringToEventCategory(string: String) -> EventCategory {
     }
 }
 
+func intToEventCategory(integer: Int) -> EventCategory {
+    switch integer{
+    case 0: return EventCategory(category: .all)
+    case 3 : return EventCategory(category: .sports)
+    case 4 : return EventCategory(category: .outdoors)
+    case 2 : return EventCategory(category: .music)
+    case 5 : return EventCategory(category: .business)
+    case 7 : return EventCategory(category: .art)
+    case 1 : return EventCategory(category: .social)
+    case 6 : return EventCategory(category: .food)
+    case 8 : return EventCategory(category: .party)
+    case 9 : return EventCategory(category: .misc)
+    default: return EventCategory(category: .misc)
+    }
+}
+
 public struct EventCategory : Hashable {
     
     var category : eventCategory

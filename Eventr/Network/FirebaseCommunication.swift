@@ -13,7 +13,7 @@ import MapKit
 
 //Class to handle communication with Firebase
 
-func addQueriedEventsToTableView(eventsList: NSDictionary){
+func addQueriedEventsToTableViewByValue(eventsList: NSDictionary){
     
     //Add queried events to tableView
     //This method is used for queried events that already have all event data in NSDictionary format
@@ -73,7 +73,7 @@ func updatePaginationValues(event: Event){
 }
 
 //Method used by "Nearby Queries" and "List Descriptor Queries" to add events to tableview
-func addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: NSDictionary, isUserCreatedEvent: Bool, isListDescriptorEvent: Bool){
+func addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: NSDictionary, isUserCreatedEvent: Bool, addToListsInSortedOrder: Bool, addToAllEventsList: Bool){
     for (id, city) in eventIDMap {
        
         //Get the Event ID and the City as string values
@@ -95,18 +95,23 @@ func addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: NSDictionary, 
                 //Check if event has been upvoted by user
                 queryIfFirebaseEventIsUpvoted(event: event)
             
-                if isListDescriptorEvent{
-                    //If event is a list descriptor event, then it is only added to the tableEvents list, because we only want to look at it temporarily and don't want to keep it in the cache (allEvents)
+                if addToListsInSortedOrder{
+                    //ListDescriptor events and Specific Category queries are added here
+                    updatePaginationValues(event: event) //Update values used for pagination purposes
                     addEventToEventsListInOrder(event: event, eventList: &tableEvents)
                     reloadEventTableView()
+                    if addToAllEventsList{
+                              addEventToEventsListInOrder(event: event, eventList: &allEvents)
+                        paginationFinishedLoading()
+                    }
 
                 } else {
-                    //If event is not a list descriptor event, the event is a "NEARBY" query event
+                    //"Nearby" events are added here
+                        //They do not need to be added to the tableView in order since "Nearby" events are not queried in any particular order
                     //First, add the event to the allEvents list (this list is used as a cache so that events  can be re-filtered without needing to query Firebase again)
                     addEventToEventsListInOrder(event: event, eventList: &allEvents)
                     if selectedCategory == categoryAll || selectedCategory == event.category.index() {
                         //Secondly, use the current selected category to filter the events and add them to tableView
-                        //They do not need to be added to the tableView in order since "Nearby" events are not queried in any particular order
                         tableEvents.append(event)
                         reloadEventTableView()
                         if firebaseQueryType != .nearby {
@@ -145,9 +150,9 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         let eventDateDouble = Double(eventDate.timeIntervalSince1970)
         
         let paidString = (event.paid) ? "1" : "0"
-        let eventData = [
+        let eventData = [ //Data for the event-metadata in Firebase
             "name":  event.name,
-            "category": event.category.text(),
+            "category": event.category.index(),
             "date": eventDateDouble,
             "dateSort": 0 - eventDateDouble,
             "description": event.details,
@@ -166,6 +171,11 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             "price" : event.price,
             "userCount" : event.userCount
             ] as [String : Any]
+        let eventCategoryData = [ //Data to sort the event by category in Firebase
+            "date": eventDateDouble,
+            "dateSort": 0 - eventDateDouble,
+            "upvotes": event.upvoteCount,
+            ] as [String : Any]
         //Add the event to the "events" section of firebase
         //If event is being created for first time, generate an autoID
         //If event is being updated, the child will be the eventID
@@ -177,8 +187,10 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
                 return firebaseDatabaseRef.child("events").child(event.city).child(selectedEvent.id)
             }
         }()
+        
         guard let eventKey = firebaseEvent.key else { return }
         
+        //Add events-metadata to Firebase
         event.id = eventKey
         firebaseEvent.setValue(eventData, withCompletionBlock: { (error, snapshot) in
             if error != nil {
@@ -189,6 +201,19 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
                 
             }
         })
+        
+        
+        //Add events-category data to Firebase
+        let firebaseCategoryEvent : DatabaseReference = {
+            switch createOrUpdate {
+            case .creating:
+                return firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id)
+            case .editing:
+                return firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id)
+            }
+        }()
+        
+        firebaseCategoryEvent.setValue(eventCategoryData)
         
         
         //Map the firebase event to the appropriate date in the database
@@ -206,7 +231,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             }
         }
         
-        //Create the other event data needed in Firebase
+        //Add user creation data and eventsByCity data to Firebase
         
         if createOrUpdate == .creating {
             //Map the firebase event to the "created" events section of Firebase
@@ -278,7 +303,11 @@ func upvoteFirebaseEvent(event: Event){
                 guard var upvoteCount = dict["upvotes"] as? Int else { return }
                 
                 upvoteCount += 1
+               
+                //Update the upvote count in both the "events" and "events-category" sections of Firebase
                 firebaseDatabaseRef.child("events").child(event.city).child(event.id).updateChildValues(["upvotes": upvoteCount])
+                
+                firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id).updateChildValues(["upvotes": upvoteCount])
             firebaseDatabaseRef.child("upvotes").child(userID).childByAutoId().setValue(event.id)
                
             })
@@ -313,7 +342,12 @@ func removeUpvoteFromFirebaseEvent(event: Event){
                 guard var upvoteCount = dict["upvotes"] as? Int else { return }
     
                 upvoteCount -= 1
+               
+                //Update the upvote count in both the "events" and "events-category" sections of Firebase
                 firebaseDatabaseRef.child("events").child(event.city).child(event.id).updateChildValues(["upvotes": upvoteCount])
+                
+                firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id).updateChildValues(["upvotes": upvoteCount])
+                
                 
                 firebaseDatabaseRef.child("upvotes").child(userID).queryOrderedByValue().queryEqual(toValue: event.id).observeSingleEvent(of: .value) { (querySnapshot) in
                     for result in querySnapshot.children {

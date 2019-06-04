@@ -51,54 +51,33 @@ func queryUpcomingEvents(city: String, firstPage: Bool){
     
     let beforeDate = Double((Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: fromDate)?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
     let afterDate = ((Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: toDate)?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
+    let specificCategoryWasQueried = selectedCategory != categoryAll
+    let firstPageFinishedQuerying = allEvents.count >= paginationFirstPageCount
     
     if firstPage{
         //First page query
-        
         //Reset query variables and clear tableview when a new search has begun
         tableEvents.removeAll()
         allEvents.removeAll()
         mostRecentlyQueriedDate = nil
         paginationInProgress = false
         
-        //Query all events between the before and after date selected by the user
-        //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
-        firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate).queryEnding(atValue: 0 - beforeDate).queryLimited(toLast: paginationFirstPageCount).observeSingleEvent(of: .value, with: {
-            (snapshot) in
-            guard let dict = snapshot.value as? NSDictionary else { return }
-            addQueriedEventsToTableView(eventsList: dict)
-        })
+       queryUpcomingEventsFirstPage(specificCategory: specificCategoryWasQueried, city: city, beforeDate: beforeDate, afterDate: afterDate)
         
-    } else {
-        //Query for another page
-        //If the all events count is greater than the initial query amount, then more events are ready to be loaded
-        if (allEvents.count >= paginationFirstPageCount) {
+    } else if firstPageFinishedQuerying {
+             //Query an additional page
+                    queryUpcomingEventsAdditionalPage(specificCategory: specificCategoryWasQueried, city: city, afterDate: afterDate)
             
-            if let lastDateValue = mostRecentlyQueriedDate?.timeIntervalSince1970 {
-                
-                //The queryStartValue is exactly 1 second more than the last queried value's date.  This is done so that no duplicates are added to the list of queried values
-                let queryStartValue = 0 - lastDateValue - 1
-                
-                //Query all events between the most recently queried date and the after date selected by the user
-                //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
-                firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate ).queryEnding(atValue: queryStartValue).queryLimited(toLast: paginationAddlPageCount).observeSingleEvent(of: .value, with: {
-                    (snapshot) in
-                    guard let dict = snapshot.value as? NSDictionary else { return }
-                    addQueriedEventsToTableView(eventsList: dict)
-                })
-                
-            }
-        }
-        
-    }
+        }}
     
-}
 
 //Query all events by popularity (upvote count)
-func queryPopularEvents(city: String, firstPage: Bool){
+func queryPopularEvents(city: String, queryingFirstPage: Bool){
     
-    if firstPage{
-        //First page query
+    let specificCategoryWasQueried = selectedCategory != categoryAll
+    let firstPageFinishedQuerying = allEvents.count >= paginationFirstPageCount
+    
+    if queryingFirstPage{
         
         //Reset query variables and clear tableview when a new search has begun
         tableEvents.removeAll()
@@ -106,34 +85,154 @@ func queryPopularEvents(city: String, firstPage: Bool){
         mostRecentlyQueriedUpvoteCount = nil
         paginationInProgress = false
         
-        //Query all events between the before and after date selected by the user
-        //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
-        firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryLimited(toLast: paginationFirstPageCount).observeSingleEvent(of: .value, with: {
-            (snapshot) in
-            guard let dict = snapshot.value as? NSDictionary else { return }
-            addQueriedEventsToTableView(eventsList: dict)
-        })
         
-    } else {
-        //Query for another page
-        //If the all events count is greater than the initial query amount, then more events are ready to be loaded
-        if (allEvents.count >= paginationFirstPageCount) {
+     queryPopularEventsFirstPage(specificCategory: specificCategoryWasQueried, city: city)
+        
+        
+    } else if firstPageFinishedQuerying  {
+        print("QUERY ADDL PAGE")
+        print("SPECIFIC CATEGORY")
+        print(specificCategoryWasQueried)
+        //Query an additional page
+        if let lastUpvoteCount = mostRecentlyQueriedUpvoteCount{
             
-            if let lastUpvoteCount = mostRecentlyQueriedUpvoteCount {
-                //The next page of events queried will start with an upvote count of 1 less than the most recently queried event.  This will ensure events are queried in order.
+                     queryPopularEventsAdditionalPage(specificCategory: specificCategoryWasQueried, city: city, lastUpvoteCount: lastUpvoteCount)
+            
+        }
+    }
+}
+    
+func queryUpcomingEventsFirstPage(specificCategory: Bool, city: String, beforeDate: TimeInterval, afterDate: TimeInterval){
+    
+    //Query all events between the before and after date selected by the user
+    //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
+        
+        if specificCategory {
+            
+            //Query data from the "events-category" section of Firebase since we are querying a specific category
+            firebaseDatabaseRef.child("events-category").child(city).child(String(selectedCategory)).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate ).queryEnding(atValue: 0 - beforeDate).queryLimited(toLast: paginationFirstPageCount).observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                guard let dict = snapshot.value as? NSDictionary else { return }
+                for eventID in dict.allKeys {
+                    
+                    addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                }
                 
-                //Query all events between the most recently queried date and the after date selected by the user
-                //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
-                firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryEnding(atValue: lastUpvoteCount - 1).queryLimited(toLast: paginationAddlPageCount).observeSingleEvent(of: .value, with: {
-                    (snapshot) in
-                    guard let dict = snapshot.value as? NSDictionary else { return }
-                    addQueriedEventsToTableView(eventsList: dict)
-                })
-            }
+            })
+        
+        } else {
+            
+            //Since data is being queried for all events, we can query directly from the "Events" section of Firebase
+            firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate).queryEnding(atValue: 0 - beforeDate).queryLimited(toLast: paginationFirstPageCount).observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                guard let dict = snapshot.value as? NSDictionary else { return }
+                addQueriedEventsToTableViewByValue(eventsList: dict)
+            })
+        
+        }
+    }
+    
+func queryUpcomingEventsAdditionalPage(specificCategory: Bool, city: String, afterDate: TimeInterval){
+    
+    //Query all events between the last query date and the after date selected by the user
+    //Events are sorted by date in ascending order using "dateSort", which is equal to "0 - date" since Firebase can only sort in descending order
+    
+    guard  let lastDateValue = mostRecentlyQueriedDate?.timeIntervalSince1970 else {
+        return
+    }
+    
+    //The queryStartValue is exactly 1 second more than the last queried value's date.  This is done so that no duplicates are added to the list of queried values
+    let queryStartValue = 0 - lastDateValue - 1
+        
+        if specificCategory{
+            
+            //Query events for a specific category from the "events-category" section of Firebase
+            firebaseDatabaseRef.child("events-category").child(city).child(String(selectedCategory)).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate ).queryEnding(atValue: queryStartValue).queryLimited(toLast: paginationAddlPageCount).observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                guard let dict = snapshot.value as? NSDictionary else { return }
+                for eventID in dict.allKeys {
+                    
+                    print("SNAPSHOT")
+                    print(eventID)
+                    addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                }
+                
+            })
+            
+        } else {
+            
+               //Since data is being queried for all events, we can query directly from the "Events" section of Firebase
+            firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "dateSort").queryStarting(atValue: 0 - afterDate ).queryEnding(atValue: queryStartValue).queryLimited(toLast: paginationAddlPageCount).observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                guard let dict = snapshot.value as? NSDictionary else { return }
+                addQueriedEventsToTableViewByValue(eventsList: dict)
+            })
             
         }
         
     }
+
+func queryPopularEventsFirstPage(specificCategory: Bool, city: String){
+    
+    //Query events in Firebase by popularity (upvote count)
+    
+    if specificCategory {
+        
+        //Query events for a specific category from the "events-category" section of Firebase
+        firebaseDatabaseRef.child("events-category").child(city).child(String(selectedCategory)).queryOrdered(byChild: "upvotes").queryLimited(toLast: paginationFirstPageCount).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            guard let dict = snapshot.value as? NSDictionary else { return }
+            for eventID in dict.allKeys {
+                
+                print("SNAPSHOT")
+                print(eventID)
+                addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : city], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+            }
+            
+        })
+        
+    } else {
+     
+        //Since data is being queried for all events, we can query directly from the "Events" section of Firebase
+        firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryLimited(toLast: paginationFirstPageCount).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            guard let dict = snapshot.value as? NSDictionary else { return }
+            addQueriedEventsToTableViewByValue(eventsList: dict)
+        })
+        
+    }
+
+}
+
+func queryPopularEventsAdditionalPage(specificCategory: Bool, city: String, lastUpvoteCount: Int ){
+    
+        //Query events in Firebase by popularity (upvote count)
+    
+    if specificCategory{
+         //Since data is being queried for all events, we can query directly from the "Events" section of Firebase
+        firebaseDatabaseRef.child("events-category").child(city).child(String(selectedCategory)).queryOrdered(byChild: "upvotes").queryEnding(atValue: lastUpvoteCount - 1).queryLimited(toLast: paginationAddlPageCount).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            guard let dict = snapshot.value as? NSDictionary else { return }
+            for eventID in dict.allKeys {
+                
+                print("SNAPSHOT")
+                print(eventID)
+                addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+            }
+            
+        })
+        
+    } else {
+        
+       //Query events for a specific category from the "events-category" section of Firebase
+        firebaseDatabaseRef.child("events").child(city).queryOrdered(byChild: "upvotes").queryEnding(atValue: lastUpvoteCount - 1).queryLimited(toLast: paginationAddlPageCount).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            guard let dict = snapshot.value as? NSDictionary else { return }
+            addQueriedEventsToTableViewByValue(eventsList: dict)
+        })
+        
+    }
+    
     
 }
 
@@ -151,7 +250,7 @@ func queryNearbyEvents(centerLocation: CLLocation?, radius: Double){
     gQuery = geoFire.query(at: queryLocation, withRadius: searchDistanceKm)
     guard let gQ = gQuery else {return}
     gQ.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, isListDescriptorEvent: false)
+        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, addToListsInSortedOrder: false, addToAllEventsList: false)
     })
     
     //Method called when the query is finished and all keys(event IDs) are loaded
@@ -172,7 +271,7 @@ func queryFirebaseFavoriteEvents(){
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: false, isListDescriptorEvent: true)
+        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: false)
     })
     
 }
@@ -186,7 +285,7 @@ func queryFirebaseCreatedEvents(){
     firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: true, isListDescriptorEvent: true)
+        addNearbyAndListDescriptorEventsToEventTableView(eventIDMap: dict, isUserCreatedEvent: true, addToListsInSortedOrder: true, addToAllEventsList: false)
     })
     
 }
