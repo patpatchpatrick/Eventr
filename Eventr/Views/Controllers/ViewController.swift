@@ -46,6 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     enum listDescriptorType {
         case favorited
         case created
+        case attending
     }
     
     @IBOutlet var mainView: UIView!
@@ -64,6 +65,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var sideMenuMyEventsContainer: UIView!
     @IBOutlet weak var sideMenuMyEventsButton: UIButton!
     @IBOutlet weak var sideMenuMyEventsButtonLabel: UIButton!
+    
+    @IBOutlet weak var sideMenuAttendingContainer: UIView!
+    @IBOutlet weak var sideMenuAttendingButton: UIButton!
+    @IBOutlet weak var sideMenuAttendingButtonLabel: UIButton!
     
     @IBOutlet weak var sideMenuFavoritedContainer: UIView!
     @IBOutlet weak var sideMenuFavoritedButton: UIButton!
@@ -436,6 +441,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func sideMenuFavoriteLabelTapped(_ sender: UIButton) {
         loadFavoriteEvents()
     }
+    
+    
+    @IBAction func sideMenuAttendingButtonTapped(_ sender: UIButton) {
+        loadAttendingEvents()
+    }
+    
+    
+    @IBAction func sideMenuAttendingLabelTapped(_ sender: UIButton) {
+        loadAttendingEvents()
+    }
+    
     
     
     @IBAction func listDescriptorReturnButtonTapped(_ sender: Any) {

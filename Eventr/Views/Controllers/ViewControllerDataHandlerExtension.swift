@@ -135,5 +135,16 @@ extension ViewController{
         }
     }
     
+    func loadAttendingEvents(){
+        if Auth.auth().currentUser == nil {
+            displayAlertWithOKButton(text: "Must Be Logged In To Access Your Favorite Events")
+        } else {
+            hideSideMenu()
+            showListDescriptor(type: .attending)
+            queryFirebaseAttendingEvents()
+        }
+        
+    }
+    
     
 }

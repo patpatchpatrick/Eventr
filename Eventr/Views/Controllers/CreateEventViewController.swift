@@ -61,12 +61,15 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var eventTag3: UITextView!
     @IBOutlet weak var selectCategoryButton: UIButton!
     @IBOutlet weak var paidSwitch: UISwitch!
+    @IBOutlet weak var eventPrice: UITextView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var calendarContainer: UIView!
     @IBOutlet weak var selectEventDateButton: UIButton!
     @IBOutlet weak var selectEventTimeButton: UIButton!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var timePickerContainer: UIView!
+    @IBOutlet weak var eventDuration: UITextView!
+    
     @IBOutlet weak var createEventButton: RoundedButton!
     
     
@@ -188,6 +191,11 @@ class CreateEventViewController: UIViewController {
     //If error occurs, alert will fire
     @IBAction func createEvent(_ sender: UIButton) {
         
+        guard let eventDuration = getValidEventDuration() else {
+            displayAlertWithOKButton(text: "Please Enter Valid Event Duration in Numeric Format")
+            return
+        }
+        
         if requiredFieldsAreMissingData() {
             displayAlertWithOKButton(text: "Please Enter All Required Fields")
             return
@@ -210,6 +218,8 @@ class CreateEventViewController: UIViewController {
         }
         
         let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, city: "NYC", address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), venue: eventVenueName.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), phoneNumber: eventPhoneNumber.numberString, ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn, price: "")
+        newEvent.duration = eventDuration
+        newEvent.price = eventPrice.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
         //Check if the date changed.  Compare the firebaseDateFormat of new date to the previous date to determine if they are different.  If different, the dates will need to be updated in Firebase
         if selectedEventAction == .editing {

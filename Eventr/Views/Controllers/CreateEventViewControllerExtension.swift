@@ -240,6 +240,21 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         
     }
     
+    func getValidEventDuration() -> Int? {
+        
+       let durationText = eventDuration.text.trimmingCharacters(in: .whitespacesAndNewlines) 
+        
+        guard let durationDouble = Double(durationText) else {
+            return nil
+        }
+        
+        let durationInt = Int(durationDouble * 60.0)
+        
+        return durationInt
+        
+        
+    }
+    
     //Check if user surpassed daily allotted max # of events
     func checkIfUserDefaultsDailyEventMaximumReached() -> Bool {
         let prefs = UserDefaults.standard
@@ -281,6 +296,8 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
             return
         }
         eventName.text = selectedEvent.name
+        eventPrice.text = selectedEvent.price
+        eventDuration.text = String(Double(selectedEvent.duration)/60.0) //Convert to duration to hours and display
         selectedCategoryString = selectedEvent.category.text()
         selectCategoryButton.setTitle(selectedEvent.category.text(), for: .normal)
         previousDate = selectedEventDate.addingTimeInterval(0)
@@ -313,6 +330,8 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     
     func configureTextEntryFieldsDesign(){
         eventName.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventDuration.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
+        eventPrice.addBottomBorderWithColor(color: themeDark, width: 1.0, widthExtension: 0)
         eventDescription.addTopBorderWithColor(color: themeDark, width: 1.0)
         eventDescription.addLeftBorderWithColor(color: themeDark, width: 1.0)
         eventDescription.addRightBorderWithColor(color: themeDark, width: 1.0  )

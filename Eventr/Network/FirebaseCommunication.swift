@@ -433,7 +433,7 @@ func attendFirebaseEvent(event: Event){
     //Add user to list of users attending the event and add event to the list of events that the user attended
     firebaseDatabaseRef.child("attendingEvents").child(event.id).child(userID).setValue(userID)
     
-    firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).setValue(event.id)
+    firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).setValue("NYC")
     
 
    //Update the count of users attending the event.  If no one is attending, set the count to 1.

@@ -400,6 +400,7 @@ class EventViewController: UIViewController {
         } else {
             selectedEvent.userCount += 1 //Update the count immediately so the UI reflects the change
             selectedEvent.loggedInUserAttendingTheEvent = true
+            print("ATTENDING CALLED")
             attendFirebaseEvent(event: selectedEvent)
         }
         

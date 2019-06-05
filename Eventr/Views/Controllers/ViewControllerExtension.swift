@@ -176,6 +176,8 @@ extension ViewController{
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuMyEventsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuMyEventsButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuAttendingButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
+            self.sideMenuAttendingButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuSettingsButton.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
             self.sideMenuSettingsButtonLabel.transform = CGAffineTransform(translationX: -self.sideMenu.frame.width, y: 0)
         })
@@ -219,6 +221,8 @@ extension ViewController{
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.sideMenuMyEventsButton.transform = .identity
             self.sideMenuMyEventsButtonLabel.transform = .identity
+            self.sideMenuAttendingButton.transform = .identity
+            self.sideMenuAttendingButtonLabel.transform = .identity
             self.sideMenuSettingsButton.transform = .identity
             self.sideMenuSettingsButtonLabel.transform = .identity
         })
@@ -475,6 +479,9 @@ extension ViewController{
         case .created: listDescriptorLabel.text = "My Events"
          listDescriptorIcon.image = UIImage(named: "iconMyEvents")
             listDescriptorIcon.tintColor = themeDarkGray
+        case .attending: listDescriptorLabel.text = "Attending"
+        listDescriptorIcon.image = UIImage(named: "accountIcon")
+        listDescriptorIcon.tintColor = themeDarkGray
         }
         listDescriptorCover.isHidden = false
         dateAndSearchButtonStackView.isHidden = true
@@ -570,6 +577,7 @@ extension ViewController{
     
     func configureSideMenuContainers(){
         sideMenuMyEventsContainer.addBottomBorderWithColor(color: themeAccentPrimary, width: 0.5, widthExtension: 0)
+         sideMenuAttendingContainer.addBottomBorderWithColor(color: themeAccentPrimary, width: 0.5, widthExtension: 0)
         sideMenuFavoritedContainer.addBottomBorderWithColor(color: themeAccentPrimary, width: 0.5, widthExtension: 0)
         sideMenuLogOutContainer.addTopBorderWithColor(color: themeAccentPrimary, width: 0.5)
     }
