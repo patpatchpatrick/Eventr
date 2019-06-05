@@ -96,7 +96,7 @@ public struct EventCategory : Hashable {
         case .art:
             return UIImage(named: "catIconArt")
         case .social:
-            return UIImage(named: "catIconFriends")
+            return UIImage(named: "catIconSocial")
         case .food:
             return UIImage(named: "catIconFood")
         case .party:

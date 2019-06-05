@@ -36,7 +36,7 @@
         <!--Home Screen-->
         <scene sceneID="wmY-KE-Q1l">
             <objects>
-                <viewController title="homeSegue" id="ztE-UI-nvD" userLabel="Home Screen" customClass="StartViewController" customModule="Fiesta_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="homeSegue" id="ztE-UI-nvD" userLabel="Home Screen" customClass="StartViewController" customModule="Eventr_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="88I-fE-IVT"/>
                         <viewControllerLayoutGuide type="bottom" id="Uqm-oE-C8L"/>
@@ -45,7 +45,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-dE-Kjq" customClass="RoundedImage" customModule="Fiesta_" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-dE-Kjq" customClass="RoundedImage" customModule="Eventr_" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="320"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -127,7 +127,7 @@
         <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="ViewController" customModule="Fiesta_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="ViewController" customModule="Eventr_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mZz-I1-PFO"/>
                         <viewControllerLayoutGuide type="bottom" id="GO1-41-taC"/>
@@ -139,7 +139,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ly-4h-XTV" userLabel="BackgroundView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25H-xd-yYF" userLabel="CalendarAndEventsContainer" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25H-xd-yYF" userLabel="CalendarAndEventsContainer" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="232" width="320" height="316"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eof-ox-qI6" userLabel="CalendarAndEvents">
@@ -148,7 +148,7 @@
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yta-Wn-Tu0">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="325"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efm-Uk-h3J" userLabel="Calendar" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efm-Uk-h3J" userLabel="Calendar" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="0.0" width="280" height="310"/>
                                                                 <subviews>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SgA-y4-taH" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
@@ -164,7 +164,7 @@
                                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                         </collectionViewFlowLayout>
                                                                         <cells>
-                                                                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarSearchCell" id="qOB-kx-F4k" customClass="CalendarCell" customModule="Fiesta_" customModuleProvider="target">
+                                                                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarSearchCell" id="qOB-kx-F4k" customClass="CalendarCell" customModule="Eventr_" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -181,7 +181,7 @@
                                                                                             <color key="tintColor" name="AccentPrimary"/>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
-                                                                                            <rect key="frame" x="7.5" y="20" width="45" height="20"/>
+                                                                                            <rect key="frame" x="9" y="20" width="42" height="20"/>
                                                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                             <color key="textColor" name="Text"/>
                                                                                             <nil key="highlightedColor"/>
@@ -252,53 +252,53 @@
                                                                         </connections>
                                                                     </button>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Mr1-dF-0sL" userLabel="WeekDays">
-                                                                        <rect key="frame" x="10" y="47" width="260" height="18"/>
+                                                                        <rect key="frame" x="10" y="47.5" width="260" height="17.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTD-NC-73T">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="37" height="18"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="37" height="17.5"/>
                                                                                 <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spA-er-WCN">
-                                                                                <rect key="frame" x="37" y="0.0" width="37.5" height="18"/>
+                                                                                <rect key="frame" x="37" y="0.0" width="37.5" height="17.5"/>
                                                                                 <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1Y-fO-LDP">
-                                                                                <rect key="frame" x="74.5" y="0.0" width="37" height="18"/>
+                                                                                <rect key="frame" x="74.5" y="0.0" width="37" height="17.5"/>
                                                                                 <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwD-Xf-VzK">
-                                                                                <rect key="frame" x="111.5" y="0.0" width="37" height="18"/>
+                                                                                <rect key="frame" x="111.5" y="0.0" width="37" height="17.5"/>
                                                                                 <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-Ww-osM">
-                                                                                <rect key="frame" x="148.5" y="0.0" width="37" height="18"/>
+                                                                                <rect key="frame" x="148.5" y="0.0" width="37" height="17.5"/>
                                                                                 <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-0h-6td">
-                                                                                <rect key="frame" x="185.5" y="0.0" width="37.5" height="18"/>
+                                                                                <rect key="frame" x="185.5" y="0.0" width="37.5" height="17.5"/>
                                                                                 <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-O7-SE6">
-                                                                                <rect key="frame" x="223" y="0.0" width="37" height="18"/>
+                                                                                <rect key="frame" x="223" y="0.0" width="37" height="17.5"/>
                                                                                 <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssE-Am-Osy" userLabel="Confirm" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssE-Am-Osy" userLabel="Confirm" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                         <rect key="frame" x="145" y="15" width="25" height="25"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -317,7 +317,7 @@
                                                                             <action selector="confirmDate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rz9-Ve-atr"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-ns-vbu" userLabel="Discard" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-ns-vbu" userLabel="Discard" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                         <rect key="frame" x="100" y="15" width="25" height="25"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -383,14 +383,14 @@
                                                         <color key="separatorColor" name="Medium"/>
                                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellEvent" id="r5Z-ff-b4a" customClass="CustomEventCell" customModule="Fiesta_" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellEvent" id="r5Z-ff-b4a" customClass="CustomEventCell" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="320" height="113"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r5Z-ff-b4a" id="PO2-Mo-xv4">
                                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGZ-L9-ex3" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGZ-L9-ex3" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                                                             <rect key="frame" x="40" y="10" width="240" height="93"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZe-BG-Ttz" userLabel="upvoteContainer">
@@ -456,7 +456,7 @@
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5X-Tg-WLB" userLabel="favoriteIcon">
-                                                                                    <rect key="frame" x="200" y="2" width="20" height="20"/>
+                                                                                    <rect key="frame" x="210" y="2" width="20" height="20"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="20" id="k0y-21-56n"/>
                                                                                         <constraint firstAttribute="height" constant="20" id="vOx-sG-Adk"/>
@@ -467,7 +467,7 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bmb-I1-ic2">
-                                                                                    <rect key="frame" x="200" y="36" width="20" height="20"/>
+                                                                                    <rect key="frame" x="181" y="36" width="20" height="20"/>
                                                                                     <color key="tintColor" name="AccentGreen"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="20" id="6fC-HF-Yfd"/>
@@ -475,35 +475,36 @@
                                                                                     </constraints>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckh-tO-j9b">
-                                                                                    <rect key="frame" x="169" y="36" width="33" height="15.5"/>
-                                                                                    <fontDescription key="fontDescription" name="Raleway-Thin" family="Raleway Thin" pointSize="13"/>
-                                                                                    <color key="textColor" name="Text"/>
+                                                                                    <rect key="frame" x="198" y="36" width="32" height="15.5"/>
+                                                                                    <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="13"/>
+                                                                                    <color key="textColor" name="AccentGreen"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9AB-nd-6WW" userLabel="Category Icon">
-                                                                                    <rect key="frame" x="200" y="70" width="20" height="20"/>
+                                                                                    <rect key="frame" x="210" y="70" width="20" height="20"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="20" id="Pdq-PH-ftV"/>
                                                                                         <constraint firstAttribute="height" constant="20" id="Rgb-bj-kuh"/>
                                                                                     </constraints>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="fTK-xp-DYK">
-                                                                                    <rect key="frame" x="10" y="10" width="180" height="20"/>
+                                                                                    <rect key="frame" x="10" y="10" width="190" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                                                                     <color key="textColor" name="Text"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLg-AY-wSo" userLabel="eventDateAndTime">
-                                                                                    <rect key="frame" x="10" y="31" width="36.5" height="21"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZLg-AY-wSo" userLabel="eventDateAndTime">
+                                                                                    <rect key="frame" x="10" y="31" width="180" height="21"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="21" id="CrF-Yn-cbz"/>
+                                                                                        <constraint firstAttribute="width" constant="180" id="rK7-3s-P9o"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway Light" pointSize="14"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="qh7-ZB-guc">
-                                                                                    <rect key="frame" x="60" y="53" width="130" height="40"/>
+                                                                                    <rect key="frame" x="60" y="53" width="140" height="40"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="40" id="jlr-uN-Lyk"/>
                                                                                     </constraints>
@@ -515,14 +516,15 @@
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="qh7-ZB-guc" firstAttribute="leading" secondItem="1C1-nE-igI" secondAttribute="trailing" id="2hT-oQ-Cex"/>
-                                                                                <constraint firstItem="ckh-tO-j9b" firstAttribute="top" secondItem="Bmb-I1-ic2" secondAttribute="top" id="389-pS-El4"/>
-                                                                                <constraint firstAttribute="trailing" secondItem="u5X-Tg-WLB" secondAttribute="trailing" constant="20" id="3MY-rj-92n"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="u5X-Tg-WLB" secondAttribute="trailing" constant="10" id="3MY-rj-92n"/>
                                                                                 <constraint firstItem="1C1-nE-igI" firstAttribute="top" secondItem="gZe-BG-Ttz" secondAttribute="top" id="3bS-EO-PhL"/>
                                                                                 <constraint firstItem="u5X-Tg-WLB" firstAttribute="top" secondItem="MGZ-L9-ex3" secondAttribute="top" constant="2" id="9ZF-QP-egK"/>
-                                                                                <constraint firstAttribute="trailing" secondItem="Bmb-I1-ic2" secondAttribute="trailing" constant="20" id="9rP-pi-DFv"/>
                                                                                 <constraint firstItem="qh7-ZB-guc" firstAttribute="top" secondItem="1C1-nE-igI" secondAttribute="top" id="A8C-qW-Tbo"/>
-                                                                                <constraint firstAttribute="trailing" secondItem="9AB-nd-6WW" secondAttribute="trailing" constant="20" id="Fxb-Ke-doc"/>
+                                                                                <constraint firstItem="ckh-tO-j9b" firstAttribute="top" secondItem="Bmb-I1-ic2" secondAttribute="top" id="Ag6-Lf-WBp"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="9AB-nd-6WW" secondAttribute="trailing" constant="10" id="Fxb-Ke-doc"/>
                                                                                 <constraint firstItem="fTK-xp-DYK" firstAttribute="trailing" secondItem="u5X-Tg-WLB" secondAttribute="leading" constant="-10" id="Npg-sa-hlA"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="ckh-tO-j9b" secondAttribute="trailing" constant="10" id="SCR-lg-RNc"/>
+                                                                                <constraint firstItem="ckh-tO-j9b" firstAttribute="leading" secondItem="Bmb-I1-ic2" secondAttribute="trailing" constant="-3" id="T0g-1Z-KyS"/>
                                                                                 <constraint firstItem="gZe-BG-Ttz" firstAttribute="leading" secondItem="MGZ-L9-ex3" secondAttribute="leading" id="WnR-AK-Q9o"/>
                                                                                 <constraint firstItem="qh7-ZB-guc" firstAttribute="trailing" secondItem="9AB-nd-6WW" secondAttribute="leading" constant="-10" id="cjd-Ee-afj"/>
                                                                                 <constraint firstItem="ZLg-AY-wSo" firstAttribute="leading" secondItem="fTK-xp-DYK" secondAttribute="leading" id="fzt-y2-vci"/>
@@ -531,7 +533,6 @@
                                                                                 <constraint firstItem="1C1-nE-igI" firstAttribute="leading" secondItem="gZe-BG-Ttz" secondAttribute="trailing" id="kqt-cc-aMk"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="gZe-BG-Ttz" secondAttribute="bottom" id="nvp-3W-YKP"/>
                                                                                 <constraint firstItem="Bmb-I1-ic2" firstAttribute="top" secondItem="u5X-Tg-WLB" secondAttribute="bottom" constant="14" id="oQq-Gx-kSU"/>
-                                                                                <constraint firstItem="ckh-tO-j9b" firstAttribute="trailing" secondItem="Bmb-I1-ic2" secondAttribute="leading" constant="2" id="r9A-qv-pBG"/>
                                                                                 <constraint firstItem="fTK-xp-DYK" firstAttribute="top" secondItem="MGZ-L9-ex3" secondAttribute="top" constant="10" id="xlP-q5-Zxx"/>
                                                                                 <constraint firstItem="ZLg-AY-wSo" firstAttribute="top" secondItem="fTK-xp-DYK" secondAttribute="bottom" constant="1" id="zpC-qN-k7V"/>
                                                                             </constraints>
@@ -630,7 +631,7 @@
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mH-IH-KEo" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mH-IH-KEo" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                         <rect key="frame" x="143" y="6" width="30" height="30"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <constraints>
@@ -687,7 +688,7 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cis-Vy-6kZ" userLabel="dateButtonContainer">
                                         <rect key="frame" x="0.0" y="172" width="320" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-gg-50x" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-gg-50x" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="102.5" y="11" width="115" height="28"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -718,8 +719,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FIU-NR-25c" userLabel="MainButtons">
                                         <rect key="frame" x="10" y="130" width="300" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="kwn-TE-lfL"/>
@@ -744,8 +745,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="90" y="0.0" width="50" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="78" y="0.0" width="50" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="gvx-Ky-ln4"/>
@@ -772,8 +773,8 @@
                                                     <action selector="hotButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="phB-Xb-3jg"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
-                                                <rect key="frame" x="140" y="0.0" width="90" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="134" y="0.0" width="90" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="HqI-hz-QT1"/>
@@ -794,7 +795,7 @@
                                                     <action selector="upcomingButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jv7-gT-sjk"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yx-11-eFT" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yx-11-eFT" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="230" y="0.0" width="70" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
@@ -824,7 +825,7 @@
                                             <constraint firstAttribute="height" constant="42" id="r2p-j1-gKz"/>
                                         </constraints>
                                     </stackView>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBy-SI-Nzu" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBy-SI-Nzu" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="15" y="229" width="30" height="30"/>
                                         <color key="backgroundColor" name="Medium"/>
                                         <constraints>
@@ -856,7 +857,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KqC-1n-CwP">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="60"/>
                                                         <subviews>
-                                                            <button opaque="NO" alpha="0.25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qui-T5-EW7" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                            <button opaque="NO" alpha="0.25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qui-T5-EW7" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="drX-oN-Wjh"/>
@@ -880,7 +881,7 @@
                                                                     <action selector="removeCategoryButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4vh-Dp-cz6"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAH-HP-Yyu" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAH-HP-Yyu" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="70" y="0.0" width="60" height="60"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -909,7 +910,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CWj-kI-FK2">
                                                         <rect key="frame" x="140" y="0.0" width="60" height="60"/>
                                                         <subviews>
-                                                            <button opaque="NO" alpha="0.25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV1-pF-YSL" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                            <button opaque="NO" alpha="0.25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV1-pF-YSL" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="SBA-Em-CSx"/>
@@ -955,21 +956,21 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anO-4j-n8B" customClass="HairlineView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anO-4j-n8B" customClass="HairlineView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="120" width="320" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="WKk-zp-iIU"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dI4-Fy-ey3" customClass="HairlineView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dI4-Fy-ey3" customClass="HairlineView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55" width="320" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="DtB-RH-zfF"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-mT-FN5" userLabel="ListDescriptor" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-mT-FN5" userLabel="ListDescriptor" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="85" y="102" width="150" height="60"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="catIconFavorite" translatesAutoresizingMaskIntoConstraints="NO" id="f2p-Xp-o7b">
@@ -980,7 +981,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B90-l6-Puq" userLabel="ListDescriptorLabel">
-                                                <rect key="frame" x="50" y="20" width="45" height="20"/>
+                                                <rect key="frame" x="50" y="20" width="42" height="20"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                                 <color key="textColor" name="Text"/>
                                                 <nil key="highlightedColor"/>
@@ -1002,7 +1003,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zza-Cn-weC" userLabel="ListDescriptorReturnButton" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zza-Cn-weC" userLabel="ListDescriptorReturnButton" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="245" y="112" width="40" height="40"/>
                                         <color key="backgroundColor" name="Medium"/>
                                         <constraints>
@@ -1031,18 +1032,17 @@
                                                     <constraint firstAttribute="height" constant="50" id="eg0-Fh-18e"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6V-qO-qjn" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6V-qO-qjn" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="259" y="4" width="96" height="42"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lX2-UO-7ir" userLabel="createEvent">
-                                                        <rect key="frame" x="0.0" y="6" width="30" height="30"/>
+                                                        <rect key="frame" x="3" y="6" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="Jjm-Fe-KSp"/>
                                                             <constraint firstAttribute="height" constant="30" id="oNv-Ah-rWM"/>
                                                         </constraints>
                                                         <color key="tintColor" name="Text"/>
-                                                        <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
-                                                        <state key="normal" image="plusIcon"/>
+                                                        <state key="normal" image="iconNewEvent"/>
                                                         <connections>
                                                             <action selector="createEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GNK-Ur-a7g"/>
                                                             <segue destination="cy9-2J-sdg" kind="show" identifier="createEventSegue" id="8KJ-OK-Kql"/>
@@ -1052,7 +1052,7 @@
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="96" id="GFl-L9-eN6"/>
-                                                    <constraint firstItem="lX2-UO-7ir" firstAttribute="leading" secondItem="N6V-qO-qjn" secondAttribute="leading" id="H6M-bS-Wzz"/>
+                                                    <constraint firstItem="lX2-UO-7ir" firstAttribute="leading" secondItem="N6V-qO-qjn" secondAttribute="leading" constant="3" id="H6M-bS-Wzz"/>
                                                     <constraint firstAttribute="height" constant="42" id="Ydq-6P-CFT"/>
                                                     <constraint firstItem="lX2-UO-7ir" firstAttribute="centerY" secondItem="N6V-qO-qjn" secondAttribute="centerY" id="hrI-Qj-f8y"/>
                                                 </constraints>
@@ -1062,11 +1062,11 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-qX-LWT" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-qX-LWT" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="-35" y="4" width="96" height="42"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z3D-bz-Ebe" customClass="RoundedImage" customModule="Fiesta_" customModuleProvider="target">
-                                                        <rect key="frame" x="61" y="3.5" width="35" height="35"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z3D-bz-Ebe" customClass="RoundedImage" customModule="Eventr_" customModuleProvider="target">
+                                                        <rect key="frame" x="58" y="3.5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="8US-JO-qDK"/>
                                                             <constraint firstAttribute="height" constant="35" id="kPK-CH-VNK"/>
@@ -1084,7 +1084,7 @@
                                                     <constraint firstAttribute="width" constant="96" id="I3h-Ex-FtB"/>
                                                     <constraint firstAttribute="height" constant="42" id="RJ6-lG-eqK"/>
                                                     <constraint firstItem="Z3D-bz-Ebe" firstAttribute="centerY" secondItem="DvS-qX-LWT" secondAttribute="centerY" id="pfb-FS-SsS"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Z3D-bz-Ebe" secondAttribute="trailing" id="sl8-0P-zzC"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Z3D-bz-Ebe" secondAttribute="trailing" constant="3" id="sl8-0P-zzC"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1158,7 +1158,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3T-AC-mXd">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="568"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="600" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oj-Gh-uCt" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="600" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oj-Gh-uCt" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="97.5" y="30" width="55" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="OxV-7i-mTw"/>
@@ -1176,7 +1176,7 @@
                                                 <rect key="frame" x="65" y="120" width="120" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPJ-Mm-Ghc">
-                                                        <rect key="frame" x="9.5" y="17.5" width="15" height="15"/>
+                                                        <rect key="frame" x="10.5" y="17.5" width="15" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="5ni-hl-80D"/>
                                                             <constraint firstAttribute="height" constant="15" id="Zgj-rU-ozZ"/>
@@ -1187,7 +1187,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phy-P6-8jK">
-                                                        <rect key="frame" x="29.5" y="10" width="77" height="30"/>
+                                                        <rect key="frame" x="30.5" y="10" width="75" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="472-8I-YZy"/>
                                                         </constraints>
@@ -1213,7 +1213,7 @@
                                                 <rect key="frame" x="65" y="175" width="120" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6b-vw-qpz">
-                                                        <rect key="frame" x="13" y="17.5" width="15" height="15"/>
+                                                        <rect key="frame" x="14.5" y="17.5" width="15" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="dcs-bq-RpH"/>
                                                             <constraint firstAttribute="width" constant="15" id="o0G-DT-c63"/>
@@ -1224,7 +1224,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qe-Uh-yTC">
-                                                        <rect key="frame" x="33" y="10" width="70" height="30"/>
+                                                        <rect key="frame" x="34.5" y="10" width="67" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="KfB-Pc-QJk"/>
                                                         </constraints>
@@ -1250,7 +1250,7 @@
                                                 <rect key="frame" x="65" y="230" width="120" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6j-Ah-URB">
-                                                        <rect key="frame" x="17" y="17.5" width="15" height="15"/>
+                                                        <rect key="frame" x="18.5" y="17.5" width="15" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="eJj-Lx-jBl"/>
                                                             <constraint firstAttribute="height" constant="15" id="fEK-pd-3Pj"/>
@@ -1261,7 +1261,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Faw-XO-2a2">
-                                                        <rect key="frame" x="37" y="10" width="62" height="30"/>
+                                                        <rect key="frame" x="38.5" y="10" width="59" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="3Vf-ym-TZR"/>
                                                         </constraints>
@@ -1287,14 +1287,14 @@
                                                 <rect key="frame" x="65" y="518" width="120" height="50"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="745" image="iconLogOut" translatesAutoresizingMaskIntoConstraints="NO" id="Muw-pa-QyG">
-                                                        <rect key="frame" x="14.5" y="16" width="18" height="18"/>
+                                                        <rect key="frame" x="16" y="16" width="18" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="18" id="090-Ki-NaP"/>
                                                             <constraint firstAttribute="height" constant="18" id="DFi-yw-rg1"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2S8-VW-mbT">
-                                                        <rect key="frame" x="37.5" y="10" width="61" height="30"/>
+                                                        <rect key="frame" x="39" y="10" width="58" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="TOX-dJ-zkg"/>
                                                         </constraints>
@@ -1424,7 +1424,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="oTn-tI-hmK">
             <objects>
-                <viewController id="dYJ-nZ-3ys" customClass="SignUpViewController" customModule="Fiesta_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dYJ-nZ-3ys" customClass="SignUpViewController" customModule="Eventr_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4ZH-Ai-AFP"/>
                         <viewControllerLayoutGuide type="bottom" id="yqE-tM-2UJ"/>
@@ -1524,7 +1524,7 @@
         <!--Settings View Controller-->
         <scene sceneID="2yD-r7-4JU">
             <objects>
-                <viewController id="cYY-Sb-yxV" customClass="SettingsViewController" customModule="Fiesta_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cYY-Sb-yxV" customClass="SettingsViewController" customModule="Eventr_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f6o-KV-xFI"/>
                         <viewControllerLayoutGuide type="bottom" id="kom-tV-2gb"/>
@@ -1540,7 +1540,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="498"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDc-eq-hGy">
-                                                <rect key="frame" x="116" y="20" width="88.5" height="27.5"/>
+                                                <rect key="frame" x="118" y="20" width="84.5" height="27.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="27.5" id="a64-JT-fhb"/>
                                                 </constraints>
@@ -1548,7 +1548,7 @@
                                                 <color key="textColor" name="Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-pv-9Cn" customClass="RoundedImage" customModule="Fiesta_" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-pv-9Cn" customClass="RoundedImage" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="126" y="67.5" width="68" height="68"/>
                                                 <color key="tintColor" name="Text"/>
                                                 <constraints>
@@ -1589,7 +1589,7 @@
                                                         <color key="onTintColor" name="AccentPrimary"/>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svd-N8-f3y">
-                                                        <rect key="frame" x="10" y="13.5" width="126" height="18"/>
+                                                        <rect key="frame" x="10" y="13.5" width="122" height="18"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="15"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
@@ -1639,10 +1639,10 @@
                                             <constraint firstAttribute="height" constant="30" id="I0X-Xg-s2v"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itD-TV-5H2" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itD-TV-5H2" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="-35" y="4" width="96" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOh-iy-lfR" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOh-iy-lfR" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="66" y="6" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="jvF-md-IhV"/>
@@ -1710,7 +1710,7 @@
         <!--Event View Controller-->
         <scene sceneID="oPS-rM-GgE">
             <objects>
-                <viewController id="4hp-pR-aFR" customClass="EventViewController" customModule="Fiesta_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4hp-pR-aFR" customClass="EventViewController" customModule="Eventr_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1FJ-Ey-KLf"/>
                         <viewControllerLayoutGuide type="bottom" id="JKG-jd-THo"/>
@@ -1722,7 +1722,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzi-hv-t1w" userLabel="Header">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-8r-vPz" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-8r-vPz" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="-35" y="4" width="96" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdl-OL-ZKS">
@@ -1752,7 +1752,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Rx-Au-CdF" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Rx-Au-CdF" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="259" y="4" width="96" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHy-x3-gfa">
@@ -1805,10 +1805,10 @@
                                 <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzT-Qw-vmX">
-                                        <rect key="frame" x="10" y="0.0" width="300" height="791"/>
+                                        <rect key="frame" x="10" y="0.0" width="300" height="792.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jxa-Xj-4av">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="791"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="792.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-OB-igJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="110"/>
@@ -1844,23 +1844,23 @@
                                                         </constraints>
                                                     </view>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Test description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GGi-50-2Kr">
-                                                        <rect key="frame" x="0.0" y="130" width="300" height="35"/>
+                                                        <rect key="frame" x="0.0" y="130" width="300" height="35.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0X-Jm-EKn" userLabel="tagsStackView">
-                                                        <rect key="frame" x="0.0" y="185" width="300" height="20"/>
+                                                        <rect key="frame" x="0.0" y="185.5" width="300" height="20"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#tag1 #tag2 #tag3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-GK-BTz" customClass="CustomLabel" customModule="Fiesta_" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="122" height="20"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#tag1 #tag2 #tag3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-GK-BTz" customClass="CustomLabel" customModule="Eventr_" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="114.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="14"/>
                                                                 <color key="textColor" name="Text"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-CY-v0f" userLabel="emptySpace">
-                                                                <rect key="frame" x="122" y="0.0" width="178" height="20"/>
+                                                                <rect key="frame" x="114.5" y="0.0" width="185.5" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
@@ -1869,7 +1869,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeI-cs-UiY" userLabel="contactContainer">
-                                                        <rect key="frame" x="0.0" y="225" width="300" height="30"/>
+                                                        <rect key="frame" x="0.0" y="225.5" width="300" height="30"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPhone" translatesAutoresizingMaskIntoConstraints="NO" id="mN3-KX-EA4">
                                                                 <rect key="frame" x="0.0" y="7.5" width="15" height="15"/>
@@ -1879,7 +1879,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwe-GB-pC4">
-                                                                <rect key="frame" x="25" y="5" width="64" height="20.5"/>
+                                                                <rect key="frame" x="25" y="5" width="62" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="Yyo-wX-55l"/>
                                                                 </constraints>
@@ -1903,7 +1903,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXG-Yu-vK2" userLabel="locationContainer">
-                                                        <rect key="frame" x="0.0" y="275" width="300" height="50"/>
+                                                        <rect key="frame" x="0.0" y="275.5" width="300" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconLocation" translatesAutoresizingMaskIntoConstraints="NO" id="wPj-qV-2Dh">
                                                                 <rect key="frame" x="0.0" y="17.5" width="15" height="15"/>
@@ -1938,30 +1938,30 @@
                                                         </constraints>
                                                     </view>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Address:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qfj-iK-pjy">
-                                                        <rect key="frame" x="0.0" y="345" width="300" height="35"/>
+                                                        <rect key="frame" x="0.0" y="345.5" width="300" height="35.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Additional Contact Info:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JQ0-eo-rKu">
-                                                        <rect key="frame" x="0.0" y="400" width="300" height="35"/>
+                                                        <rect key="frame" x="0.0" y="401" width="300" height="35.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLv-9A-xdn">
-                                                        <rect key="frame" x="0.0" y="455" width="300" height="30"/>
+                                                        <rect key="frame" x="0.0" y="456.5" width="300" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOi-LU-STQ">
-                                                                <rect key="frame" x="127.5" y="5" width="45" height="20"/>
+                                                                <rect key="frame" x="129" y="5" width="42" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventIconDollar" translatesAutoresizingMaskIntoConstraints="NO" id="rsf-yJ-YUH">
-                                                                <rect key="frame" x="97.5" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="99" y="0.0" width="30" height="30"/>
                                                                 <color key="tintColor" name="AccentGreen"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="8DN-fP-FMd"/>
@@ -1979,12 +1979,12 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uK-9C-YWP" userLabel="Links Container">
-                                                        <rect key="frame" x="0.0" y="505" width="300" height="32"/>
+                                                        <rect key="frame" x="0.0" y="506.5" width="300" height="32"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="He1-HM-0rb">
                                                                 <rect key="frame" x="15" y="0.0" width="270" height="32"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbc-QI-oda" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbc-QI-oda" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="32"/>
                                                                         <color key="backgroundColor" name="AccentPrimary"/>
                                                                         <constraints>
@@ -2002,7 +2002,7 @@
                                                                             <action selector="ticketLinkOpened:" destination="4hp-pR-aFR" eventType="touchUpInside" id="ZdH-vd-xwt"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w92-9i-HxU" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w92-9i-HxU" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                         <rect key="frame" x="140" y="0.0" width="130" height="32"/>
                                                                         <color key="backgroundColor" name="AccentPrimary"/>
                                                                         <constraints>
@@ -2034,9 +2034,9 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-Im-A4x" userLabel="Attend Container">
-                                                        <rect key="frame" x="0.0" y="557" width="300" height="64"/>
+                                                        <rect key="frame" x="0.0" y="558.5" width="300" height="64"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbc-h4-DEy" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbc-h4-DEy" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="100" y="0.0" width="100" height="32"/>
                                                                 <color key="backgroundColor" name="AccentLightBlue"/>
                                                                 <constraints>
@@ -2086,7 +2086,7 @@
                                                         </constraints>
                                                     </view>
                                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yDY-YZ-XMc">
-                                                        <rect key="frame" x="0.0" y="641" width="300" height="150"/>
+                                                        <rect key="frame" x="0.0" y="642.5" width="300" height="150"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="150" id="0e1-EG-NuK"/>
                                                         </constraints>
@@ -2109,7 +2109,7 @@
                                     <constraint firstAttribute="trailing" secondItem="kzT-Qw-vmX" secondAttribute="trailing" id="iXy-gR-Cqu"/>
                                 </constraints>
                             </scrollView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaO-gu-exB" userLabel="EditButtonContainer" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaO-gu-exB" userLabel="EditButtonContainer" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                 <rect key="frame" x="259" y="75" width="96" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65R-Wm-nHi">
@@ -2140,7 +2140,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M2L-Yg-0Dv" userLabel="deleteButtonContainer" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M2L-Yg-0Dv" userLabel="deleteButtonContainer" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                 <rect key="frame" x="259" y="127" width="96" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lim-uA-3IX">
@@ -2221,7 +2221,7 @@
         <!--Login View Controller-->
         <scene sceneID="Ecc-XJ-moW">
             <objects>
-                <viewController id="6sm-hA-swY" customClass="LoginViewController" customModule="Fiesta_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6sm-hA-swY" customClass="LoginViewController" customModule="Eventr_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aDd-6f-VFH"/>
                         <viewControllerLayoutGuide type="bottom" id="6xK-1X-aqb"/>
@@ -2310,7 +2310,7 @@
         <!--Create Event View Controller-->
         <scene sceneID="dzT-u0-gbb">
             <objects>
-                <viewController id="cy9-2J-sdg" userLabel="Create Event View Controller" customClass="CreateEventViewController" customModule="Fiesta_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cy9-2J-sdg" userLabel="Create Event View Controller" customClass="CreateEventViewController" customModule="Eventr_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cEe-AI-x5y"/>
                         <viewControllerLayoutGuide type="bottom" id="hkl-hJ-thA"/>
@@ -2344,7 +2344,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="8pK-7M-Urp">
                                                         <rect key="frame" x="0.0" y="45.5" width="320" height="42"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzp-Rv-j0C" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzp-Rv-j0C" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="42"/>
                                                                 <color key="backgroundColor" name="AccentPrimary"/>
                                                                 <constraints>
@@ -2364,7 +2364,7 @@
                                                                     <action selector="selectEventDate:" destination="cy9-2J-sdg" eventType="touchUpInside" id="YNM-iW-OlF"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFc-4s-lpO" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFc-4s-lpO" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="200" y="0.0" width="120" height="42"/>
                                                                 <color key="backgroundColor" name="AccentPrimary"/>
                                                                 <constraints>
@@ -2392,7 +2392,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FcY-eP-cMg">
                                                         <rect key="frame" x="0.0" y="96.5" width="320" height="42"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-72-To4" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-72-To4" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="42"/>
                                                                 <color key="backgroundColor" name="AccentPrimary"/>
                                                                 <constraints>
@@ -2459,7 +2459,7 @@
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarCell" id="6XF-dg-3RY" customClass="CalendarCell" customModule="Fiesta_" customModuleProvider="target">
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarCell" id="6XF-dg-3RY" customClass="CalendarCell" customModule="Eventr_" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -2476,7 +2476,7 @@
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nu-CU-azq">
-                                                                                    <rect key="frame" x="3" y="15" width="44.5" height="20"/>
+                                                                                    <rect key="frame" x="4" y="15" width="42" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -2889,7 +2889,7 @@
                                             <constraint firstAttribute="height" constant="50" id="Vrr-t9-3ZC"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-NV-SH3" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-NV-SH3" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="-35" y="4" width="96" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcs-n2-6DN">
@@ -2932,10 +2932,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2Y-ha-9Xw" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="493" width="320" height="75"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VA-iC-5T8" customClass="RoundUIView" customModule="Fiesta_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VA-iC-5T8" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="155" y="0.0" width="200" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-ya-6gN" customClass="RoundedButton" customModule="Fiesta_" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-ya-6gN" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
@@ -3026,8 +3026,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="accountIcon" width="100" height="100"/>
-        <image name="catIconAll" width="150" height="150"/>
+        <image name="accountIcon" width="833" height="833"/>
+        <image name="catIconAll" width="833" height="833"/>
         <image name="catIconFavorite" width="100" height="100"/>
         <image name="eventIconDollar" width="52" height="52"/>
         <image name="fiestaLogo" width="1734" height="614"/>
@@ -3045,6 +3045,7 @@
         <image name="iconLogOut" width="52" height="52"/>
         <image name="iconMinus" width="52" height="52"/>
         <image name="iconMyEvents" width="109" height="108"/>
+        <image name="iconNewEvent" width="833" height="833"/>
         <image name="iconPhone" width="220" height="222"/>
         <image name="iconReturn" width="96" height="96"/>
         <image name="iconSearch" width="100" height="100"/>
@@ -3077,7 +3078,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MSv-Pn-SaB"/>
+        <segue reference="8KJ-OK-Kql"/>
         <segue reference="wqm-YJ-0hk"/>
     </inferredMetricsTieBreakers>
 </document>

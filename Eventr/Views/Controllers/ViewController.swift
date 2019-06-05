@@ -159,6 +159,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                                selector: #selector(updated_event_data),
                                                name:Notification.Name("UPDATED_EVENT_DATA"),
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(clear_table_view),
+                                               name:Notification.Name("CLEAR_TABLE_VIEW"),
+                                               object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -170,11 +174,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                                selector: #selector(updated_event_data),
                                                name:Notification.Name("UPDATED_EVENT_DATA"),
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(clear_table_view),
+                                               name:Notification.Name("CLEAR_TABLE_VIEW"),
+                                               object: nil)
 
     }
     
     @objc func updated_event_data(notification:Notification) -> Void{
       
+        eventTableView.restore()
         eventTableView.reloadData()
         if tableEvents.count > 0 {
             showTableViewSettingsContainer()
@@ -183,6 +192,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
     }
+    
+    @objc func clear_table_view(notification:Notification) -> Void{
+        
+        eventTableView.setEmptyMessage("Sorry, no events meet your search criteria. You should create one!")
+        
+    }
+    
     
     @IBAction func sideMenuShadeTouched(_ sender: UIButton) {
         hideSideMenu()
@@ -309,7 +325,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.paidEvent?.image = nil
         }
         
-        cell.eventPrice.text = event.price
+        cell.eventPrice.text = event.getPriceLabel()
         
         cell.eventDescription.text = event.details
         
@@ -321,6 +337,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             df.dateFormat = "MMM dd YYYY ' - ' h:mm a"
             let dateString = df.string(from: eventDate)
             cell.eventDateAndTime.text = dateString
+        }
+        
+        if event.duration != 0 {
+            let df = DateFormatter()
+            df.amSymbol = "AM"
+            df.pmSymbol = "PM"
+            df.dateFormat = "h:mm a"
+            let endTimeString = df.string(from: event.getDateWithDurationCurrentTimeZone())
+            cell.eventDateAndTime.text?.append(" -> " + endTimeString)
         }
         
         //Set the count of users attending the event

@@ -16,6 +16,7 @@ class Event : Comparable {
     var category: EventCategory = EventCategory(category: .misc)
     var GMTDate: Date? // Event date in GMT timezone
     var duration = 0 // Event duration in minutes
+    var dateWithDurationAdded: Date = Date()
     var previousDate: Date = Date() // Variable to store previous date if date was updated
     var city: String = ""
     var location: String = ""
@@ -84,6 +85,7 @@ class Event : Comparable {
         if let durationInt = dict["duration"] as? Int {
             self.duration = durationInt
         }
+        setUpDurationDate()
         if let cityDict = dict["city"] as? String {
             self.city = cityDict
         }
@@ -205,6 +207,28 @@ class Event : Comparable {
             return nil
         }
          return gmtDate.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0)!, timeZone: Calendar.current.timeZone)
+    }
+    
+    func getDateWithDurationCurrentTimeZone() -> Date {
+        
+        return dateWithDurationAdded.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0)!, timeZone: Calendar.current.timeZone)
+    }
+    
+    func setUpDurationDate(){
+        
+        guard let gmtDate = GMTDate else {return}
+        if duration != 0 {
+            dateWithDurationAdded = gmtDate.addingTimeInterval(TimeInterval(60*duration))
+        }
+        
+    }
+    
+    func getPriceLabel() -> String {
+        if price != "" && price.contains("$"){
+            let formattedPrice = price.replacingOccurrences(of: "$", with: "", options: .literal, range: nil)
+            return formattedPrice
+        }
+        return price
     }
     
     

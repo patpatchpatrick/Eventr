@@ -83,9 +83,21 @@ class EventViewController: UIViewController {
             df.amSymbol = "AM"
             df.pmSymbol = "PM"
             df.dateFormat = "MMM dd YYYY ' - ' h:mm a"
-            let dateString = df.string(from: eventDate)
+            var dateString = df.string(from: eventDate)
+            
+            //Add duration to the date, if it has one
+            if selectedEvent.duration != 0 {
+                let dfEnd = DateFormatter()
+                dfEnd.amSymbol = "AM"
+                dfEnd.pmSymbol = "PM"
+                dfEnd.dateFormat = "h:mm a"
+                let endTimeString = dfEnd.string(from: selectedEvent.getDateWithDurationCurrentTimeZone())
+                dateString.append(" -> " + endTimeString)
+            }
+            
             eventDateLabel.text = dateString
         }
+        
         
         eventDetails.text = selectedEvent.details
         

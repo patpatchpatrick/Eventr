@@ -20,7 +20,7 @@ let testSportData: [String] = [
 ]
 
 let testStandardData: [String] = [
-
+    
 ]
 
 //Class used to manually add data to Firebase if necessary
@@ -145,11 +145,11 @@ func addTestStandardDataToFirebase(vc: UIViewController){
             }
             let category = stringToEventCategory(string: "Food")
             let tag1 = "Food"
-            let tag2 = "Drink"
-            let tag3 = "Festival"
+            let tag2 = "Summer"
+            let tag3 = "Drink"
             
             if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
-                let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: description, contact: "", phoneNumber: phone, ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
+                let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name + " @ " + venue, contact: "", phoneNumber: phone, ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
                 if let dur = duration {
                    event.duration = dur * 60
                 }
@@ -158,7 +158,7 @@ func addTestStandardDataToFirebase(vc: UIViewController){
                 
                 //event.printEvent()
                 
-                /*
+               
                 createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
                     eventWasCreatedSuccessfully in
                     if eventWasCreatedSuccessfully {
@@ -168,7 +168,8 @@ func addTestStandardDataToFirebase(vc: UIViewController){
                     } else {
                         print("TEST DATA ADDED FAIL")
                     }})
-                */
+                
+                
                 
             }}
         

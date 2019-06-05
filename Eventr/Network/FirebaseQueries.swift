@@ -59,6 +59,7 @@ func queryUpcomingEvents(city: String, queryingFirstPage: Bool){
         //Reset query variables and clear tableview when a new search has begun
         tableEvents.removeAll()
         allEvents.removeAll()
+        clearEventTableView()
         mostRecentlyQueriedDate = nil
         paginationInProgress = false
         
@@ -82,6 +83,7 @@ func queryPopularEvents(city: String, queryingFirstPage: Bool){
         //Reset query variables and clear tableview when a new search has begun
         tableEvents.removeAll()
         allEvents.removeAll()
+        clearEventTableView()
         mostRecentlyQueriedUpvoteCount = nil
         paginationInProgress = false
         
