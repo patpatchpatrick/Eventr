@@ -319,6 +319,11 @@ class EventViewController: UIViewController {
                 eventWasDeletedSuccessfully in
                 if eventWasDeletedSuccessfully {
                     print("EVENT DELETED SUCCESSFULLY")
+                    //If event deleted, remove from tableView and reload tableview
+                    if selectedEventIndex >= 0 && selectedEventIndex < tableEvents.count {
+                        tableEvents.remove(at: selectedEventIndex)
+                        reloadEventTableView()
+                    }
                     self.performSegueToReturnBack()
                 } else {
                     print("EVENT UNABLE TO BE DELETED")

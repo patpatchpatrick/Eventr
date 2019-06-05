@@ -57,6 +57,7 @@ class Event : Comparable {
         self.category = category
         self.paid = paid
         self.price = price
+        
     }
     
     func printEvent(){

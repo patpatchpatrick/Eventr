@@ -11,9 +11,6 @@ import Firebase
 import GeoFire
 import MapKit
 
-var testEventIDArr: [String]  = []
-var countUpdated = 0
-
 //Class to handle communication with Firebase
 
 func addQueriedEventsToTableViewByValue(eventsList: NSDictionary){
@@ -46,32 +43,6 @@ func addQueriedEventsToTableViewByValue(eventsList: NSDictionary){
     
     }
     
-    
-}
-
-func updatePaginationValues(event: Event){
-    
-    //Keep track of the most recently queried values for pagination purposes.
-    //The most recently queried date is always the greatest date, since dates are queried in ascending order
-    //The most recently queried upvote count is always the lowest count since upvotes are queried in descending order
-    
-    if mostRecentlyQueriedDate == nil {
-        mostRecentlyQueriedDate = event.GMTDate
-    } else {
-        if let eventDate = event.GMTDate {
-            if eventDate > mostRecentlyQueriedDate! {
-                mostRecentlyQueriedDate = event.GMTDate
-            }
-        }
-    }
-    
-    if mostRecentlyQueriedUpvoteCount == nil {
-        mostRecentlyQueriedUpvoteCount = event.upvoteCount
-    } else {
-        if event.upvoteCount < mostRecentlyQueriedUpvoteCount! {
-            mostRecentlyQueriedUpvoteCount = event.upvoteCount
-        }
-    }
     
 }
 
@@ -129,6 +100,32 @@ func addEventsToTableViewByKey(eventIDMap: NSDictionary, isUserCreatedEvent: Boo
         }
     }
 
+}
+
+func updatePaginationValues(event: Event){
+    
+    //Keep track of the most recently queried values for pagination purposes.
+    //The most recently queried date is always the greatest date, since dates are queried in ascending order
+    //The most recently queried upvote count is always the lowest count since upvotes are queried in descending order
+    
+    if mostRecentlyQueriedDate == nil {
+        mostRecentlyQueriedDate = event.GMTDate
+    } else {
+        if let eventDate = event.GMTDate {
+            if eventDate > mostRecentlyQueriedDate! {
+                mostRecentlyQueriedDate = event.GMTDate
+            }
+        }
+    }
+    
+    if mostRecentlyQueriedUpvoteCount == nil {
+        mostRecentlyQueriedUpvoteCount = event.upvoteCount
+    } else {
+        if event.upvoteCount < mostRecentlyQueriedUpvoteCount! {
+            mostRecentlyQueriedUpvoteCount = event.upvoteCount
+        }
+    }
+    
 }
 
 //Delete events by Key(eventID)
@@ -306,10 +303,12 @@ func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
     }
     
      //If event was not created by user, do not delete it
+    /**
     if event.loggedInUserCreatedTheEvent == false {
         print("LOGGEDINUSERCREATEERRROR")
         callback!(false)
         return}
+ **/
 
     
     //Delete every reference to the event (events, created, date and geoFire)
@@ -584,7 +583,7 @@ func getFirebaseDateFormatYYYYMDD(date: Date) -> String {
 }
 
 func displayInvalidLocationAlert(viewController: UIViewController) {
-    let alertController = UIAlertController(title: "Invalid Location Entered", message: "Please enter valid location/address and try again", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Invalid Location Entered Or No Connection", message: "Please enter valid location/address and ensure phone has proper wireless connection and try again", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
     
     alertController.addAction(defaultAction)

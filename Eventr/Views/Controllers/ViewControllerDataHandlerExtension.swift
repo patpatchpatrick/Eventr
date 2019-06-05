@@ -76,11 +76,9 @@ extension ViewController{
                 nearbyEventPageCountLoaded = false
                 nearbyEventPageCount = paginationFirstPageCount
                 incrementingSearchRadius = defaultSearchIncrement
+                clearEventTableView()
                 
-                determineLocationToQuery()
-                
-                queryNearbyEvents(centerLocation: mostRecentlyQueriedLocation, radius: incrementingSearchRadius)
-                
+                determineLocationAndQueryFirstPage()
                 
             } else if nearbyEventPageCountLoaded{
                 //If you aren't loading the first page and the pageCount has been loaded, increase the page count and load more data if it exists
@@ -96,22 +94,25 @@ extension ViewController{
         }
     }
     
-    //Determine which location should be queried based on text entered by user in "Location Entry" field
-    func determineLocationToQuery(){
+    func determineLocationAndQueryFirstPage(){
+        
         guard let addressText = locationEntryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
         }
         //If user-entered address text is empty or is "Current Location", search for events using the current user's location, if not, search by address that they entered
         if addressText == "Current Location" || addressText.isEmpty || addressText == "" {
             mostRecentlyQueriedLocation = currentLocation
+            queryNearbyEvents(centerLocation: mostRecentlyQueriedLocation, radius: incrementingSearchRadius)
         } else {
             getCoordinates(forAddress: addressText) {
                 (location) in
                 guard let location = location else {return} //Handle geolocation error here if necessary
                 let addressLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
                 mostRecentlyQueriedLocation = addressLocation
+                queryNearbyEvents(centerLocation: mostRecentlyQueriedLocation, radius: incrementingSearchRadius)
             }
         }
+        
     }
     
     func loadFavoriteEvents(){

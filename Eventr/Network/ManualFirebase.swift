@@ -23,6 +23,34 @@ let testStandardData: [String] = [
     
 ]
 
+var testEventIDArr: [String]  = []
+var countUpdated = 0
+
+//Class used to manually remove events from Firebase if necessary
+func manuallyDeleteEvent(event: Event){
+    //START
+    if event.category.index() == 4 && !testEventIDArr.contains(event.id) {
+        
+        
+        //Update the upvote count in both the "events" and "events-category" sections of Firebase
+        deleteFirebaseEvent(event: event, callback: {
+            eventWasDeletedSuccessfully in
+            if eventWasDeletedSuccessfully {
+                print("EVENT DELETED SUCCESSFULLY")
+                
+            } else {
+                print("EVENT UNABLE TO BE DELETED")
+                
+            }
+            
+        })
+        testEventIDArr.append(event.id)
+        countUpdated += 1
+        print(countUpdated)
+    }
+    //END
+}
+
 //Class used to manually add data to Firebase if necessary
 
 func addTestDataToFirebase(vc: UIViewController){

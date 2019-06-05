@@ -18,6 +18,7 @@ import JTAppleCalendar
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
 var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false, price: "")
+var selectedEventIndex = 0
 enum eventAction {
     case creating
     case editing
@@ -201,6 +202,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @objc func clear_table_view(notification:Notification) -> Void{
         
         eventTableView.setEmptyMessage("Sorry, no events meet your search criteria. You should create one!")
+        eventTableView.reloadData()
         
     }
     
@@ -405,6 +407,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !tableEvents.isEmpty && indexPath.row < tableEvents.count {
             selectedEvent = tableEvents[indexPath.row]
+            selectedEventIndex = indexPath.row
             performSegue(withIdentifier: "eventSegue", sender: self)
         }
     }

@@ -26,6 +26,7 @@ class CreateEventViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         createEventStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 45).isActive = true //set max width on the main stackview container
         configureCalendarView()
         configureTimePicker()
@@ -219,6 +220,7 @@ class CreateEventViewController: UIViewController {
         
         let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, city: "NYC", address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), venue: eventVenueName.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), phoneNumber: eventPhoneNumber.numberString, ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn, price: "")
         newEvent.duration = eventDuration
+        newEvent.setUpDurationDate()
         newEvent.price = eventPrice.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
         //Check if the date changed.  Compare the firebaseDateFormat of new date to the previous date to determine if they are different.  If different, the dates will need to be updated in Firebase

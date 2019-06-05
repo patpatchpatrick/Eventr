@@ -62,7 +62,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func deleteAccountButtonTapped(_ sender: UIButton) {
         
-        let deleteAccountAlert = UIAlertController(title: "Are you sure you want to delete account?  Account deletion is permanent.  All of your created events will be deleted.", message: nil, preferredStyle: .alert)
+        let deleteAccountAlert = UIAlertController(title: "Are you sure you want to delete account?", message: "Account deletion is permanent.  All of your created events will be deleted.", preferredStyle: .alert)
         deleteAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
         }))
         deleteAccountAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in

@@ -257,6 +257,7 @@ extension ViewController{
     
     func addButtonToStackView(for eventCategory: EventCategory){
         
+        
         let button = RoundedButton()
         button.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
         button.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
@@ -267,10 +268,10 @@ extension ViewController{
         button.contentHorizontalAlignment = .right
         button.tintColor = themeAccentPrimary
         button.alpha = 0.25
-        button.setImage(eventCategory.image(), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        button.setImage(eventCategory.imageWithText(), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 9, left: 9, bottom: 9, right: 9)
         button.tag = eventCategory.index()
-        
+ 
         button.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
         
         categoriesStackView.addArrangedSubview(button)
@@ -323,10 +324,6 @@ extension ViewController{
             
         }
     
-    }
-    
-    @objc func addCategoryToToolbar(_ sender: UITapGestureRecognizer) {
-        
     }
     
     func removeCategoryFromToolbar() {
@@ -394,6 +391,9 @@ extension ViewController{
         //If the category changed, update the category and refilter the tableView
         if sender.tag != selectedCategory {
                    selectedCategory = sender.tag
+            
+             clearEventTableView()  //New category was selected, so clear the tableview
+    
             
             //If querying popular or upcoming events, reload the tableview.  If querying nearby events, simply refilter the table since "Nearby" events cannot be queried by category
             switch firebaseQueryType{
@@ -623,7 +623,13 @@ extension ViewController{
                 addEventToEventsListInOrder(event: event, eventList: &tableEvents)
             }
         }
-        reloadEventTableView()
+        
+        //Reload the tableview if there is data
+        if !tableEvents.isEmpty && tableEvents.count > 0 {
+          reloadEventTableView()
+        } else {
+            clearEventTableView()
+        }
         
     }
     

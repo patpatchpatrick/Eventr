@@ -45,6 +45,8 @@
 		F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F653688D2272618200861E0D /* LaunchScreen.storyboard */; };
 		F65368972272678C00861E0D /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368962272678C00861E0D /* UtilityViews.swift */; };
 		F67E98B8228BB16A0070E547 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67E98B7228BB16A0070E547 /* Notifications.swift */; };
+		F6A071D622A86D5C002058BF /* CustomCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A071D522A86D5C002058BF /* CustomCategoryButton.swift */; };
+		F6A071D822A86D87002058BF /* CustomCategoryButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A071D722A86D87002058BF /* CustomCategoryButton.xib */; };
 		F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* EventCategories.swift */; };
 		F6B45C1E22827CA50035BA15 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */; };
 		F6C21484229C89400066B15F /* ManualFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C21483229C89400066B15F /* ManualFirebase.swift */; };
@@ -111,6 +113,8 @@
 		F65368902272618200861E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F65368962272678C00861E0D /* UtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
 		F67E98B7228BB16A0070E547 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		F6A071D522A86D5C002058BF /* CustomCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryButton.swift; sourceTree = "<group>"; };
+		F6A071D722A86D87002058BF /* CustomCategoryButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCategoryButton.xib; sourceTree = "<group>"; };
 		F6ADA4C72273CBA000948B7D /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		F6B45C1D22827CA50035BA15 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		F6C21483229C89400066B15F /* ManualFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualFirebase.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 			children = (
 				F65368962272678C00861E0D /* UtilityViews.swift */,
 				F610306A228226D300E6D5CE /* CalendarSectionHeaderView.xib */,
+				F6A071D522A86D5C002058BF /* CustomCategoryButton.swift */,
+				F6A071D722A86D87002058BF /* CustomCategoryButton.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -411,6 +417,7 @@
 				F6C8B222228F68C500F78BB0 /* Raleway-Regular.ttf in Resources */,
 				F6174C20228C9FAC001EF6F9 /* Heebo-Medium.ttf in Resources */,
 				F610306B228226D300E6D5CE /* CalendarSectionHeaderView.xib in Resources */,
+				F6A071D822A86D87002058BF /* CustomCategoryButton.xib in Resources */,
 				F6174C22228C9FAC001EF6F9 /* Heebo-Bold.ttf in Resources */,
 				F6174C21228C9FAC001EF6F9 /* Heebo-ExtraBold.ttf in Resources */,
 				F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */,
@@ -557,6 +564,7 @@
 				F67E98B8228BB16A0070E547 /* Notifications.swift in Sources */,
 				F603C0FE2278BCD700EE8798 /* CreateEventViewController.swift in Sources */,
 				F6103065228204C800E6D5CE /* ViewControllerExtension.swift in Sources */,
+				F6A071D622A86D5C002058BF /* CustomCategoryButton.swift in Sources */,
 				F65368872272618100861E0D /* ViewController.swift in Sources */,
 				F6C21484229C89400066B15F /* ManualFirebase.swift in Sources */,
 				F65368852272618100861E0D /* AppDelegate.swift in Sources */,

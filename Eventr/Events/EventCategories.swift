@@ -106,6 +106,31 @@ public struct EventCategory : Hashable {
         }
     }
     
+    func imageWithText() -> UIImage? {
+        switch category {
+        case .all:
+            return UIImage(named: "catIconAllText")
+        case .business:
+            return UIImage(named: "catIconBusinessText")
+        case .music:
+            return UIImage(named: "catIconMusicText")
+        case .sports:
+            return UIImage(named: "catIconSportsText")
+        case .outdoors:
+            return UIImage(named: "catIconOutdoorsText")
+        case .art:
+            return UIImage(named: "catIconArtText")
+        case .social:
+            return UIImage(named: "catIconSocialText")
+        case .food:
+            return UIImage(named: "catIconFoodText")
+        case .party:
+            return UIImage(named: "catIconPartyText")
+        case .misc:
+            return UIImage(named: "catIconMiscText")
+        }
+    }
+    
     func index() -> Int {
         switch category {
         case .all:

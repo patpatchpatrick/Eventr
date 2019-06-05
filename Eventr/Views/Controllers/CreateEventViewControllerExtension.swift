@@ -242,7 +242,11 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
     
     func getValidEventDuration() -> Int? {
         
-       let durationText = eventDuration.text.trimmingCharacters(in: .whitespacesAndNewlines) 
+       let durationText = eventDuration.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if durationText.isEmpty || durationText == "" {
+            return 0
+        }
         
         guard let durationDouble = Double(durationText) else {
             return nil
@@ -264,7 +268,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         
         if Double(date.timeIntervalSinceNow) > -ONE_DAY {
             let dailyCount = prefs.object(forKey: dailyMaximumNumberKey) as? Int
-            if dailyCount != nil && dailyCount! >= 50 {
+            if dailyCount != nil && dailyCount! >= 5 {
                 return true
             }
         }
