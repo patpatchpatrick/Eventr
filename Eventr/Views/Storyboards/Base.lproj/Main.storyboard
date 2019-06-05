@@ -1646,11 +1646,32 @@
                                                     <constraint firstAttribute="trailing" secondItem="uB2-mN-EYb" secondAttribute="trailing" constant="10" id="yHw-eb-ieA"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cQ-cS-4f7" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="65" y="330.5" width="190" height="35"/>
+                                                <color key="backgroundColor" name="Medium"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="DXJ-XZ-wWQ"/>
+                                                    <constraint firstAttribute="width" constant="190" id="nnC-c8-j41"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
+                                                <state key="normal" title="DELETE ACCOUNT">
+                                                    <color key="titleColor" name="AccentPrimary"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="deleteAccountButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="oxQ-ec-pun"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="7uN-a2-zeN" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="3sw-Ti-6TS"/>
                                             <constraint firstItem="lVY-0T-ddr" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="3zG-RH-EmN"/>
+                                            <constraint firstItem="7cQ-cS-4f7" firstAttribute="top" secondItem="lVY-0T-ddr" secondAttribute="bottom" constant="20" id="5qB-Lp-GVU"/>
                                             <constraint firstItem="MDc-eq-hGy" firstAttribute="top" secondItem="NEc-jI-N3S" secondAttribute="top" constant="20" id="EKr-4p-xYA"/>
                                             <constraint firstItem="lVY-0T-ddr" firstAttribute="top" secondItem="K6f-n8-u6b" secondAttribute="bottom" constant="20" id="JWz-UU-qKl"/>
                                             <constraint firstItem="i2l-pv-9Cn" firstAttribute="top" secondItem="MDc-eq-hGy" secondAttribute="bottom" constant="20" id="Lca-50-8dh"/>
@@ -1659,6 +1680,7 @@
                                             <constraint firstItem="7uN-a2-zeN" firstAttribute="top" secondItem="i2l-pv-9Cn" secondAttribute="bottom" constant="20" id="aPM-NF-xHr"/>
                                             <constraint firstItem="i2l-pv-9Cn" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="cqW-Mx-Ygi"/>
                                             <constraint firstItem="K6f-n8-u6b" firstAttribute="top" secondItem="7uN-a2-zeN" secondAttribute="bottom" constant="20" id="oZE-i8-HMJ"/>
+                                            <constraint firstItem="7cQ-cS-4f7" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="wxQ-Y4-WCQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1739,6 +1761,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteAccountButton" destination="7cQ-cS-4f7" id="p3O-18-BwK"/>
                         <outlet property="settingsButtonContainer" destination="itD-TV-5H2" id="pNY-IR-QBU"/>
                         <outlet property="userAccountImage" destination="i2l-pv-9Cn" id="ShL-BI-qDy"/>
                         <outlet property="userEmailLabel" destination="K6f-n8-u6b" id="UWg-T0-bXX"/>
@@ -1858,13 +1881,13 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-VQ-qEh">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="110"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0i-SM-9kK">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0i-SM-9kK">
                                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="91"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="23"/>
                                                                         <color key="textColor" name="Text"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR7-jR-ANB">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR7-jR-ANB">
                                                                         <rect key="frame" x="0.0" y="91" width="300" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="19" id="HjF-45-akb"/>
@@ -1885,7 +1908,7 @@
                                                             <constraint firstAttribute="bottom" secondItem="gc8-VQ-qEh" secondAttribute="bottom" id="vfv-rj-iQu"/>
                                                         </constraints>
                                                     </view>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Test description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GGi-50-2Kr">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GGi-50-2Kr">
                                                         <rect key="frame" x="0.0" y="130" width="300" height="35.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
@@ -1895,14 +1918,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0X-Jm-EKn" userLabel="tagsStackView">
                                                         <rect key="frame" x="0.0" y="185.5" width="300" height="20"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#tag1 #tag2 #tag3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-GK-BTz" customClass="CustomLabel" customModule="Eventr_" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="114.5" height="20"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-GK-BTz" customClass="CustomLabel" customModule="Eventr_" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="122" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="14"/>
                                                                 <color key="textColor" name="Text"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-CY-v0f" userLabel="emptySpace">
-                                                                <rect key="frame" x="114.5" y="0.0" width="185.5" height="20"/>
+                                                                <rect key="frame" x="122" y="0.0" width="178" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
@@ -1921,12 +1944,12 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwe-GB-pC4">
-                                                                <rect key="frame" x="25" y="5" width="62" height="20.5"/>
+                                                                <rect key="frame" x="25" y="5" width="30" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="Yyo-wX-55l"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="16"/>
-                                                                <state key="normal" title="Contact:">
+                                                                <state key="normal">
                                                                     <color key="titleColor" name="Text"/>
                                                                 </state>
                                                                 <connections>
@@ -1961,7 +1984,7 @@
                                                                     <constraint firstAttribute="height" constant="50" id="lxK-SB-q0R"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="16"/>
-                                                                <state key="normal" title="Location">
+                                                                <state key="normal">
                                                                     <color key="titleColor" name="Text"/>
                                                                 </state>
                                                                 <connections>
@@ -1979,14 +2002,14 @@
                                                             <constraint firstItem="NFr-6c-lOA" firstAttribute="centerY" secondItem="lXG-Yu-vK2" secondAttribute="centerY" id="gZE-BN-4fh"/>
                                                         </constraints>
                                                     </view>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Address:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qfj-iK-pjy">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qfj-iK-pjy">
                                                         <rect key="frame" x="0.0" y="345.5" width="300" height="35.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Additional Contact Info:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JQ0-eo-rKu">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JQ0-eo-rKu">
                                                         <rect key="frame" x="0.0" y="401" width="300" height="35.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
@@ -1996,14 +2019,14 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLv-9A-xdn">
                                                         <rect key="frame" x="0.0" y="456.5" width="300" height="30"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOi-LU-STQ">
-                                                                <rect key="frame" x="129" y="5" width="42" height="20"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOi-LU-STQ">
+                                                                <rect key="frame" x="150" y="15" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventIconDollar" translatesAutoresizingMaskIntoConstraints="NO" id="rsf-yJ-YUH">
-                                                                <rect key="frame" x="99" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="120" y="0.0" width="30" height="30"/>
                                                                 <color key="tintColor" name="AccentGreen"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="8DN-fP-FMd"/>

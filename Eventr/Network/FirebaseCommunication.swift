@@ -131,6 +131,43 @@ func addEventsToTableViewByKey(eventIDMap: NSDictionary, isUserCreatedEvent: Boo
 
 }
 
+//Delete events by Key(eventID)
+func deleteEventsByKey(eventIDMap: NSDictionary, isUserCreatedEvent: Bool){
+    for (id, city) in eventIDMap {
+        //This method will query events using the event ids/keys and will then delete the events from Firebase
+        
+        //Get the Event ID and the City as string values
+        //The Event ID and the City are stored as Key:Value pairs in Firebase
+        guard let eventID = id as? String, let eventCity = city as? String else {
+            return
+        }
+        firebaseDatabaseRef.child("events").child(eventCity).child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get dictionary of event data by querying the event ID
+            if let value = snapshot.value as? NSDictionary {
+                let event = Event(dict: value, idKey: eventID)
+                
+                if isUserCreatedEvent {
+                    event.loggedInUserCreatedTheEvent = true //Users can only delete events that they created
+                }
+                
+                deleteFirebaseEvent(event: event, callback: {
+                    eventWasDeletedSuccessfully in
+                    if eventWasDeletedSuccessfully {
+                        print("EVENT DELETED SUCCESSFULLY")
+                    } else {
+                        print("EVENT UNABLE TO BE DELETED")
+                    }
+                    
+                })
+                
+            }
+        }) { (error) in
+            print("FB Deletion Error" + error.localizedDescription)
+        }
+    }
+    
+}
+
 //Create a firebase event
 //This method will write all necessary data to firebase for an event when a new event is created
 //First it will create an event in the Events section of the database
@@ -144,7 +181,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         (location) in
         guard let location = location else {
             //Ensure that event has a valid location before continuing and inserting event into Firebase database
-            //displayInvalidLocationAlert(viewController: viewController)
+            displayInvalidLocationAlert(viewController: viewController)
             return
         }
         
@@ -257,17 +294,20 @@ func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
     
     
     guard let userID = Auth.auth().currentUser?.uid else {
+        print("UID FAIL")
         callback!(false)
         return }
     
     
     guard let eventDate = event.GMTDate else {
+        print("DATE FAIL")
         callback!(false)
         return
     }
     
      //If event was not created by user, do not delete it
     if event.loggedInUserCreatedTheEvent == false {
+        print("LOGGEDINUSERCREATEERRROR")
         callback!(false)
         return}
 
@@ -282,6 +322,28 @@ func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
     firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).removeValue()
     //Don't delete the date of the event for now when it is deleted... this date may be used to auto-delete upvotes and favorited events in the future
     firebaseDatabaseRef.child("geofire").child(event.id).removeValue()
+    callback!(true) //Send callback viewController to let it know that event was deleted successfully
+}
+
+func deleteUserFirebaseData(callback: ((Bool) -> Void)?) {
+    
+    guard let userID = Auth.auth().currentUser?.uid else {
+        return
+    }
+   
+    //Delete all of the events that the user created
+    firebaseDatabaseRef.child("created").child(userID).observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        guard let dict = snapshot.value as? NSDictionary else { return }
+        deleteEventsByKey(eventIDMap: dict, isUserCreatedEvent: true)
+    })
+    
+    //Delete all of the user's "attending" and "favorited" data
+    firebaseDatabaseRef.child("attendingUsers").child(userID).removeValue()
+    
+    firebaseDatabaseRef.child("favorited").child(userID).removeValue()
+    
+    
     callback!(true) //Send callback viewController to let it know that event was deleted successfully
 }
 
