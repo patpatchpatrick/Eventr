@@ -343,6 +343,15 @@ func deleteUserFirebaseData(callback: ((Bool) -> Void)?) {
     
     firebaseDatabaseRef.child("favorited").child(userID).removeValue()
     
+    //Delete username if it exists
+    queryIfUserHasUsername(callback: {
+        userHasUsername, username in
+        if userHasUsername {
+            firebaseDatabaseRef.child("users").child(userID).child("username").removeValue()
+            firebaseDatabaseRef.child("active_usernames").child(username).removeValue()
+        }
+    })
+   
     
     callback!(true) //Send callback viewController to let it know that event was deleted successfully
 }
@@ -589,5 +598,31 @@ func displayInvalidLocationAlert(viewController: UIViewController) {
     
     alertController.addAction(defaultAction)
     viewController.present(alertController, animated: true, completion: nil)
+}
+
+func submitUserNameIfUnique(username: String, callback: @escaping ((Bool) -> Void)){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    //Submit a new username to Firebase if it doesn't exist
+    //If it does exist, use a callback to let user know that they need to choose a new username
+    
+    //Check if username is taken already
+    firebaseDatabaseRef.child("active_usernames").child(username).observeSingleEvent(of: .value, with: {(usernameSnap) in
+        
+        if usernameSnap.exists(){
+            //Username taken
+            callback(false)
+            
+        }else{
+            //Username available
+            //Set username as child in active usernames field of Firebase with the userID as the value
+           firebaseDatabaseRef.child("active_usernames").child(username).setValue(userID)
+            firebaseDatabaseRef.child("users").child(userID).child("username").setValue(username)
+            callback(true)
+        }
+        
+    })
+    
 }
 

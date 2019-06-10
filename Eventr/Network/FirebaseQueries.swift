@@ -387,3 +387,26 @@ func queryIfFirebaseEventIsFavorited(event: Event){
     
     
 }
+
+func queryIfUserHasUsername(callback: @escaping ((Bool,String) -> Void)) {
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    //Checking username existence
+    firebaseDatabaseRef.child("users").child(userID).child("username").observeSingleEvent(of: .value, with: {(usernameSnap) in
+        
+        print("QUERYING USERNAME")
+        print(usernameSnap)
+        //If user has username, return true/username, otherwise return false
+        if usernameSnap.exists(){
+            guard let username = usernameSnap.value as? String else {return}
+            print(username)
+            callback(true, username)
+        }else{
+            callback(false, "")
+        }
+        
+    })
+    
+}
+

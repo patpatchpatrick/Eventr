@@ -15,25 +15,26 @@ class SettingsViewController: UIViewController {
     
     
     @IBOutlet weak var userAccountImage: RoundedImage!
-    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var settingsButtonContainer: RoundUIView!
     @IBOutlet weak var deleteAccountButton: RoundedButton!
+    
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var usernameEntryContainer: UIView!
+    @IBOutlet weak var usernameTextEntry: UITextField!
+    @IBOutlet weak var usernameDiscardButton: UIButton!
+    @IBOutlet weak var usernameAcceptButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadUserData()
-        userNameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0
-        )
-        userEmailLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0)
-        configureFloatingSideButtonDesign(view: settingsButtonContainer)
-        configureFloatingSideButtonDesign(view: deleteAccountButton)
-        if userIsNotLoggedIn() {
-            deleteAccountButton.isHidden = true
-        } else {
-            deleteAccountButton.isHidden = false
-        }
+        configureViewDesign()
+        configureDeleteAccountButton()
+        configureUserNameEntryFields()
     }
     
     
@@ -55,10 +56,86 @@ class SettingsViewController: UIViewController {
             userEmailLabel.isHidden = true
         }
         if let userName = Auth.auth().currentUser?.displayName {
-            userNameLabel.text = userName
+            accountNameLabel.text = userName
         }
     }
     
+    func configureUserNameEntryFields(){
+        
+        if userIsNotLoggedIn(){
+            usernameEntryContainer.isHidden = true
+            usernameLabel.isHidden = false
+        } else {
+            //If user has a username, display the username in the username label
+            //If user doesn't have username, display the username entry container so they can create one
+            usernameEntryContainer.isHidden = true
+            usernameLabel.isHidden = true
+            queryIfUserHasUsername(callback: {
+                hasUserName, userName in
+                if hasUserName{
+                    self.usernameEntryContainer.isHidden = true
+                    self.usernameLabel.isHidden = false
+                    self.usernameLabel.text = userName
+                } else {
+                    self.usernameEntryContainer.isHidden = false
+                    self.usernameLabel.isHidden = true
+                }
+            })
+            
+        }
+        
+        
+    }
+    
+    func configureDeleteAccountButton(){
+        
+        if userIsNotLoggedIn() {
+            deleteAccountButton.isHidden = true
+        } else {
+            deleteAccountButton.isHidden = false
+        }
+        
+        
+    }
+    
+    func configureViewDesign(){
+        accountNameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0
+        )
+        userEmailLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0)
+        configureFloatingSideButtonDesign(view: settingsButtonContainer)
+        configureFloatingSideButtonDesign(view: deleteAccountButton)
+        usernameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0)
+        
+    }
+    
+    
+    @IBAction func usernameDiscardButtonTapped(_ sender: UIButton) {
+        //Clear the text in the username field
+        usernameTextEntry.text = ""
+    }
+    
+    
+    @IBAction func usernameAcceptButtonTapped(_ sender: Any) {
+        //
+        guard let requestedUsernameText = usernameTextEntry.text else {return}
+        let requestedUsername = requestedUsernameText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        submitUserNameIfUnique(username: requestedUsername, callback: {
+            userNameAccepted in
+            
+            if userNameAccepted {
+                //If user name is accepted by Firebase, show the username label instead of the username entry container
+                self.usernameLabel.text = requestedUsername
+                self.usernameLabel.isHidden = false
+                self.usernameEntryContainer.isHidden = true
+            } else {
+                self.displayAlertWithOKButton(text: "Username taken. Please try another.")
+            }
+            
+        })
+        
+        
+    }
     
     @IBAction func deleteAccountButtonTapped(_ sender: UIButton) {
         
