@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import PhoneNumberKit
+import Firebase
+import FirebaseAuth
 
 class EventViewController: UIViewController {
 
@@ -16,6 +18,7 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
 
+        reloadAttendingButton()
         // Do any additional setup after loading the view.
     }
     
@@ -54,6 +57,7 @@ class EventViewController: UIViewController {
 
         queryIfUserIsAttendingEvent(event: selectedEvent)
         reloadAttendingUserData()
+        reloadAttendingButton()
         setStackViewWidth()
         initializeMapKitView()
         configureFloatingSideButtonDesign(view: headerBackButtonContainer)
@@ -416,11 +420,15 @@ class EventViewController: UIViewController {
     
     func reloadAttendingButton(){
         
+        attendingEventButton.setTitle("ATTEND", for: .normal)
+        
         if userIsNotLoggedIn(){
             attendingEventButton.isHidden = true
         } else {
             attendingEventButton.isHidden = false
         }
+        
+        
         
         if selectedEvent.loggedInUserAttendingTheEvent == false {
             attendingEventButton.setTitle("ATTEND", for: .normal)

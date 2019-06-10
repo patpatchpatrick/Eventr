@@ -333,16 +333,24 @@ func queryIfUserIsAttendingEvent(event: Event) {
     
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
+    print("QUERYING IF USER IS ATTENDING")
+    
     //Check if event is being attended by user.  If so, reload the event view controller to reflect this
     firebaseDatabaseRef.child("attendingUsers").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         var userIsAttendingEvent = false
         let dict = snapshot.value as? NSDictionary
         if dict != nil {
-            userIsAttendingEvent = dict!.allValues.contains { element in
-                if case element as! String = event.id { return true } else { return false }
+            userIsAttendingEvent = dict!.allKeys.contains { element in
+                if case element as! String = event.id {
+                    print("USERISATTENDINGINNER")
+                    print(userIsAttendingEvent)
+                    return true } else { return false }
             }
         }
+        
+        print("USERISATTENDING")
+        print(userIsAttendingEvent)
         
         if userIsAttendingEvent {
             selectedEvent.loggedInUserAttendingTheEvent = true

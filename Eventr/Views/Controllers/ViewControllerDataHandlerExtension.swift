@@ -138,7 +138,7 @@ extension ViewController{
     
     func loadAttendingEvents(){
         if Auth.auth().currentUser == nil {
-            displayAlertWithOKButton(text: "Must Be Logged In To Access Your Favorite Events")
+            displayAlertWithOKButton(text: "Must Be Logged In To Access Your Attending Events")
         } else {
             hideSideMenu()
             showListDescriptor(type: .attending)

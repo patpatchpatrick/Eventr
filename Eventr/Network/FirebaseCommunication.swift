@@ -70,6 +70,7 @@ func addEventsToTableViewByKey(eventIDMap: NSDictionary, isUserCreatedEvent: Boo
                 //Check if event has been upvoted by user
                 queryIfFirebaseEventIsUpvoted(event: event)
                 
+                
                 if addToListsInSortedOrder{
                     //ListDescriptor events and Specific Category queries are added here
                     updatePaginationValues(event: event) //Update values used for pagination purposes

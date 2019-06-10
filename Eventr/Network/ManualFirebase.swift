@@ -29,7 +29,7 @@ var countUpdated = 0
 //Class used to manually remove events from Firebase if necessary
 func manuallyDeleteEvent(event: Event){
     //START
-    if event.category.index() == 4 && !testEventIDArr.contains(event.id) {
+    if (event.category.index() == 6 || event.category.index() == 7 || event.category.index() == 8 || event.category.index() == 9) && !testEventIDArr.contains(event.id) {
         
         
         //Update the upvote count in both the "events" and "events-category" sections of Firebase

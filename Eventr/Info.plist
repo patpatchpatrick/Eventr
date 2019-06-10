@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
@@ -38,13 +38,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>Fiesta! would like to use your location to find events near you.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Do you allow this app to always know your current location?</string>
+	<string>Fiesta! would like to use your location to find events near you.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>Fiesta! would like to use your location to find events near you.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>Fiesta! would like to use your location to find events near you.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Raleway-SemiBold.ttf</string>
