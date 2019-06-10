@@ -62,6 +62,8 @@
 		F6C8B228228F68C500F78BB0 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */; };
 		F6C8B229228F68C500F78BB0 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */; };
 		F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */; };
+		F6DB438322AF1E2000E3F159 /* FirebasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DB438222AF1E2000E3F159 /* FirebasePresenter.swift */; };
+		F6DB438522AF1E9500E3F159 /* FirebaseDeletions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DB438422AF1E9500E3F159 /* FirebaseDeletions.swift */; };
 		F6E1AC26228CEE09000D0D87 /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E1AC25228CEE09000D0D87 /* Theme.xcassets */; };
 		F6F2DAF0228B5D9100BB1F36 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */; };
 		F6F2DAF3228B6C8900BB1F36 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2DAF2228B6C8900BB1F36 /* Constants.swift */; };
@@ -125,6 +127,8 @@
 		F6C8B21E228F68C400F78BB0 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		F6C8B21F228F68C500F78BB0 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommunication.swift; sourceTree = "<group>"; };
+		F6DB438222AF1E2000E3F159 /* FirebasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePresenter.swift; sourceTree = "<group>"; };
+		F6DB438422AF1E9500E3F159 /* FirebaseDeletions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDeletions.swift; sourceTree = "<group>"; };
 		F6E1AC25228CEE09000D0D87 /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
 		F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F6F2DAF2228B6C8900BB1F36 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 				F6D13E532277BF3800104CFF /* FirebaseCommunication.swift */,
 				F6C21483229C89400066B15F /* ManualFirebase.swift */,
 				F63E6E97229DE2A9004F1657 /* FirebaseQueries.swift */,
+				F6DB438222AF1E2000E3F159 /* FirebasePresenter.swift */,
+				F6DB438422AF1E9500E3F159 /* FirebaseDeletions.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -554,11 +560,13 @@
 				F6113F4B227660A900CAD961 /* LoginViewController.swift in Sources */,
 				F6D13E542277BF3800104CFF /* FirebaseCommunication.swift in Sources */,
 				F62733042273944500FDA681 /* EventViewController.swift in Sources */,
+				F6DB438322AF1E2000E3F159 /* FirebasePresenter.swift in Sources */,
 				F61030672282141C00E6D5CE /* CreateEventViewControllerExtension.swift in Sources */,
 				F6113F47227654D200CAD961 /* StartViewController.swift in Sources */,
 				F6F2DAF0228B5D9100BB1F36 /* UserDefaultsManager.swift in Sources */,
 				F611F52E228352F400CB02DE /* ViewControllerCalendarExtension.swift in Sources */,
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,
+				F6DB438522AF1E9500E3F159 /* FirebaseDeletions.swift in Sources */,
 				F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,
 				F67E98B8228BB16A0070E547 /* Notifications.swift in Sources */,
