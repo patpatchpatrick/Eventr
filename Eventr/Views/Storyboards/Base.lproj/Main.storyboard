@@ -103,6 +103,48 @@
                                     <constraint firstAttribute="width" constant="100" id="yk6-BN-1ka"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4q-zY-I2m" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
+                                <rect key="frame" x="40" y="134" width="240" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="j8l-Zg-Ilf">
+                                        <rect key="frame" x="20" y="10" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="3DZ-lX-boa"/>
+                                            <constraint firstAttribute="width" constant="200" id="k0g-dZ-Yph"/>
+                                        </constraints>
+                                        <string key="text">Fiesta! currently only shows events in the Greater New York area.  Don't worry, we will be expanding across the United States and beyond in the near future.  </string>
+                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
+                                        <color key="textColor" name="Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3j-DV-hdr">
+                                        <rect key="frame" x="102.5" y="235" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="OuO-2y-p34"/>
+                                            <constraint firstAttribute="height" constant="35" id="wEZ-np-wgJ"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AccentGreen"/>
+                                        <state key="normal" image="iconCheckMark"/>
+                                        <connections>
+                                            <action selector="dismissMessage:" destination="ztE-UI-nvD" eventType="touchUpInside" id="3sF-Ul-W6i"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Medium"/>
+                                <constraints>
+                                    <constraint firstItem="R3j-DV-hdr" firstAttribute="centerX" secondItem="g4q-zY-I2m" secondAttribute="centerX" id="9yg-VS-x8x"/>
+                                    <constraint firstAttribute="bottom" secondItem="R3j-DV-hdr" secondAttribute="bottom" constant="30" id="CLr-hp-rhV"/>
+                                    <constraint firstAttribute="height" constant="300" id="Ops-Ga-aqm"/>
+                                    <constraint firstItem="j8l-Zg-Ilf" firstAttribute="top" secondItem="g4q-zY-I2m" secondAttribute="top" constant="10" id="cAL-LY-0Lp"/>
+                                    <constraint firstItem="j8l-Zg-Ilf" firstAttribute="leading" secondItem="g4q-zY-I2m" secondAttribute="leading" constant="20" id="z9d-oo-jhX"/>
+                                    <constraint firstAttribute="width" constant="240" id="zQl-Y2-Pxj"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="AccentPrimary"/>
                         <constraints>
@@ -113,10 +155,13 @@
                             <constraint firstItem="V8l-8w-yLf" firstAttribute="leading" secondItem="Vdz-6a-P0n" secondAttribute="leading" id="eS1-WS-9h0"/>
                             <constraint firstItem="Uqm-oE-C8L" firstAttribute="top" secondItem="V8l-8w-yLf" secondAttribute="bottom" constant="30" id="ggl-Kb-CDq"/>
                             <constraint firstItem="0xq-oF-4RZ" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="hLv-1m-UdS"/>
+                            <constraint firstItem="g4q-zY-I2m" firstAttribute="centerX" secondItem="Vdz-6a-P0n" secondAttribute="centerX" id="usb-B6-WcN"/>
+                            <constraint firstItem="g4q-zY-I2m" firstAttribute="centerY" secondItem="Vdz-6a-P0n" secondAttribute="centerY" id="xOF-7F-Zo9"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mainLogoImage" destination="Woq-dE-Kjq" id="Tbh-9b-sua"/>
+                        <outlet property="popUpMessageView" destination="g4q-zY-I2m" id="4Bi-IH-FER"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeSegue" id="S6u-EE-Q3h"/>
                     </connections>
                 </viewController>
@@ -720,7 +765,7 @@
                                         <rect key="frame" x="10" y="130" width="300" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="72" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="kwn-TE-lfL"/>
@@ -746,7 +791,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="78" y="0.0" width="50" height="42"/>
+                                                <rect key="frame" x="101" y="0.0" width="50" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="gvx-Ky-ln4"/>
@@ -774,7 +819,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="134" y="0.0" width="90" height="42"/>
+                                                <rect key="frame" x="152" y="0.0" width="77" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="HqI-hz-QT1"/>
@@ -3273,6 +3318,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8KJ-OK-Kql"/>
-        <segue reference="wqm-YJ-0hk"/>
+        <segue reference="S6u-EE-Q3h"/>
     </inferredMetricsTieBreakers>
 </document>

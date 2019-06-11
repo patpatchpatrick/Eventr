@@ -20,6 +20,7 @@ let testSportData: [String] = [
 ]
 
 let testStandardData: [String] = [
+
     
 ]
 
@@ -171,10 +172,10 @@ func addTestStandardDataToFirebase(vc: UIViewController){
                 upvoteCount = (multiplier + 1) * Int(arc4random_uniform(17) + 1)
                 userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
             }
-            let category = stringToEventCategory(string: "Food")
-            let tag1 = "Food"
+            let category = stringToEventCategory(string: "Art")
+            let tag1 = "Art"
             let tag2 = "Summer"
-            let tag3 = "Drink"
+            let tag3 = "NYC"
             
             if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
                 let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name + " @ " + venue, contact: "", phoneNumber: phone, ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
