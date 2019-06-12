@@ -14,6 +14,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var friendsTableView: UITableView!
     
+    @IBOutlet weak var friendsSearchField: UITextField!
     @IBOutlet weak var friendsSearchButton: RoundedButton!
     
     @IBOutlet weak var returnButtonContainer: RoundUIView!
@@ -42,6 +43,29 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func friendsSearchButtonTapped(_ sender: Any) {
+        
+        //Search for a friend by username
+        //If found, add the friend to the tableview so the user can add them if they wish
+        
+        guard let usernameToSearch = friendsSearchField.text else {return}
+        
+        queryFriends(username: usernameToSearch, callback: {
+            usernameFound, userResult in
+            
+            if usernameFound {
+                
+                let friend = Friend(name: userResult)
+                tableFriends.append(friend)
+                self.friendsTableView.restore()
+                self.friendsTableView.reloadData()
+            } else {
+                self.friendsTableView.setEmptyMessage("Friend Not Found")
+                tableFriends.removeAll()
+                self.friendsTableView.reloadData()
+            }
+        })
+        
+        
     }
     
     
