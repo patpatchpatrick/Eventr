@@ -67,6 +67,8 @@
 		F6E1AC26228CEE09000D0D87 /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E1AC25228CEE09000D0D87 /* Theme.xcassets */; };
 		F6F2DAF0228B5D9100BB1F36 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */; };
 		F6F2DAF3228B6C8900BB1F36 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2DAF2228B6C8900BB1F36 /* Constants.swift */; };
+		F6F6A6FE22B08E630069154D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F6A6FD22B08E630069154D /* FriendsViewController.swift */; };
+		F6F6A70122B0938E0069154D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F6A70022B0938E0069154D /* Friend.swift */; };
 		F6FD35C6228A4D1D000DF12B /* EventrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FD35C5228A4D1D000DF12B /* EventrUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +134,8 @@
 		F6E1AC25228CEE09000D0D87 /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
 		F6F2DAEF228B5D9100BB1F36 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F6F2DAF2228B6C8900BB1F36 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F6F6A6FD22B08E630069154D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		F6F6A70022B0938E0069154D /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		F6FD35C3228A4D1D000DF12B /* Eventr!UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eventr!UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FD35C5228A4D1D000DF12B /* EventrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventrUITests.swift; sourceTree = "<group>"; };
 		F6FD35C7228A4D1D000DF12B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 		F65368832272618000861E0D /* Eventr */ = {
 			isa = PBXGroup;
 			children = (
+				F6F6A6FF22B0936F0069154D /* Users */,
 				F6174C13228C9F5F001EF6F9 /* Assets */,
 				F67E98B9228BB92D0070E547 /* Events */,
 				F6F2DAF1228B6C7000BB1F36 /* Utilities */,
@@ -287,13 +292,14 @@
 				F6113F482276589400CAD961 /* SignUpViewController.swift */,
 				F603C0FD2278BCD700EE8798 /* CreateEventViewController.swift */,
 				F61030662282141C00E6D5CE /* CreateEventViewControllerExtension.swift */,
-				F6113F4A227660A900CAD961 /* LoginViewController.swift */,
 				F62733032273944500FDA681 /* EventViewController.swift */,
 				F65368862272618100861E0D /* ViewController.swift */,
 				F6103064228204C800E6D5CE /* ViewControllerExtension.swift */,
 				F6C39771229F4D1300FFFA55 /* ViewControllerDataHandlerExtension.swift */,
+				F6113F4A227660A900CAD961 /* LoginViewController.swift */,
 				F611F52D228352F400CB02DE /* ViewControllerCalendarExtension.swift */,
 				F61DE9652295C49500C3E654 /* SettingsViewController.swift */,
+				F6F6A6FD22B08E630069154D /* FriendsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -317,6 +323,14 @@
 				F64509F42292113B00D36C16 /* CustomDesign.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F6F6A6FF22B0936F0069154D /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				F6F6A70022B0938E0069154D /* Friend.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		F6FD35C4228A4D1D000DF12B /* EventrUITests */ = {
@@ -562,10 +576,12 @@
 				F62733042273944500FDA681 /* EventViewController.swift in Sources */,
 				F6DB438322AF1E2000E3F159 /* FirebasePresenter.swift in Sources */,
 				F61030672282141C00E6D5CE /* CreateEventViewControllerExtension.swift in Sources */,
+				F6F6A6FE22B08E630069154D /* FriendsViewController.swift in Sources */,
 				F6113F47227654D200CAD961 /* StartViewController.swift in Sources */,
 				F6F2DAF0228B5D9100BB1F36 /* UserDefaultsManager.swift in Sources */,
 				F611F52E228352F400CB02DE /* ViewControllerCalendarExtension.swift in Sources */,
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,
+				F6F6A70122B0938E0069154D /* Friend.swift in Sources */,
 				F6DB438522AF1E9500E3F159 /* FirebaseDeletions.swift in Sources */,
 				F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,

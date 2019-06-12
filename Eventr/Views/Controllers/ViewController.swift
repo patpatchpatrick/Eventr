@@ -58,6 +58,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var headerButtonAccountContainer: RoundUIView!
     
+    @IBOutlet weak var headerButtonFriendsContainer: RoundUIView!
+    
+    
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var sideMenuShade: UIButton!
     @IBOutlet weak var sideMenuBackground: UIView!
@@ -525,6 +528,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         showAndHideViewsBasedOnQueryType()
         updateSelectedQueryButtonStyle()
         queryFirebaseEvents(city: "NYC", firstPage: true)
+        
+    }
+    
+    
+    @IBAction func friendsButtonTapped(_ sender: Any) {
+        
+        performSegue(withIdentifier: "friendsSegue", sender: self)
         
     }
     

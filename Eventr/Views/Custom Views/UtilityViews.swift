@@ -40,6 +40,14 @@ class CustomEventCell: UITableViewCell {
     
 }
 
+//Custom cell for friends tableview
+class CustomFriendCell: UITableViewCell {
+    
+    @IBOutlet weak var friendNameLabel: UILabel!
+    @IBOutlet weak var addFriendButton: UIButton!
+    
+}
+
 //Class used for event tags
 @IBDesignable
 class CustomLabel: UILabel {
