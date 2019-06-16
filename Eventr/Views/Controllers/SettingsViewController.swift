@@ -120,6 +120,11 @@ class SettingsViewController: UIViewController {
         guard let requestedUsernameText = usernameTextEntry.text else {return}
         let requestedUsername = requestedUsernameText.trimmingCharacters(in: .whitespacesAndNewlines)
         
+        if requestedUsername.count < 4 {
+            displayAlertWithOKButton(text: "Username must be at least 4 characters long")
+            return
+        }
+        
         submitUserNameIfUnique(username: requestedUsername, callback: {
             userNameAccepted in
             
@@ -136,6 +141,16 @@ class SettingsViewController: UIViewController {
         
         
     }
+    
+    
+    
+    @IBAction func privateAccountSwitchTapped(_ sender: UISwitch) {
+        
+        setPrivateAccountStatusInFirebase(accountIsPrivate: sender.isOn)
+        
+    }
+    
+    
     
     @IBAction func deleteAccountButtonTapped(_ sender: UIButton) {
         

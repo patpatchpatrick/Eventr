@@ -11,9 +11,11 @@ import Foundation
 class Friend {
     
     var name: String = ""
+    var userID: String = ""
     
-    init(name: String){
+    init(name: String, userID: String){
         self.name = name
+        self.userID = userID
     }
     
 }

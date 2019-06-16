@@ -105,6 +105,8 @@ func deleteUserFirebaseData(callback: ((Bool) -> Void)?) {
     
     firebaseDatabaseRef.child("favorited").child(userID).removeValue()
     
+    firebaseDatabaseRef.child("user-settings").child(userID).removeValue()
+    
     //Delete username if it exists
     queryIfUserHasUsername(callback: {
         userHasUsername, username in

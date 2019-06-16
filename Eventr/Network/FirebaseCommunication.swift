@@ -311,3 +311,22 @@ func submitUserNameIfUnique(username: String, callback: @escaping ((Bool) -> Voi
     
 }
 
+func addFriendToFirebaseFollowers(friend: Friend){
+    
+    
+}
+
+func setPrivateAccountStatusInFirebase(accountIsPrivate: Bool){
+    
+     guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    var accountIsPrivateInt = 0
+    if accountIsPrivate {
+        accountIsPrivateInt = 1
+    }
+    
+    firebaseDatabaseRef.child("user-settings").child(userID).child("private").setValue(accountIsPrivateInt)
+    
+}
+
+

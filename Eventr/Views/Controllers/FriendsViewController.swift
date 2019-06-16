@@ -22,6 +22,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableFriends.removeAll()
         configureFloatingSideButtonDesign(view: returnButtonContainer)
          friendsTableView.setEmptyMessage("You do not appear to have any friends currently. Add some!")
     }
@@ -37,6 +38,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         let friend = tableFriends[indexPath.row]
         
         cell.friendNameLabel.text = friend.name
+        
+        cell.addFriendButton?.tag = indexPath.row
         
         //Configure design for the primary view
         configurePrimaryTableViewCellDesign(view: cell.primaryView)
@@ -57,7 +60,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             
             if usernameFound {
                 
-                let friend = Friend(name: userResult)
+                let friend = Friend(name: userResult, userID: userResult)
                 tableFriends.append(friend)
                 self.friendsTableView.restore()
                 self.friendsTableView.reloadData()
@@ -68,6 +71,15 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
         
+        
+    }
+    
+    
+    @IBAction func addFriendButtonTapped(_ sender: UIButton) {
+        
+        if sender.tag <= tableFriends.count {
+             addFriendToFirebaseFollowers(friend: tableFriends[sender.tag])
+        }
         
     }
     
