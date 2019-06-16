@@ -48,3 +48,19 @@ func configureStandardViewDesignWithShadow(view: UIView, xOffset: CGFloat, yOffs
     view.layer.masksToBounds = false
     
 }
+
+func configurePrimaryTableViewCellDesign(view: UIView) {
+    let shadowSize : CGFloat = 0.0
+    let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
+                                               y: -shadowSize / 2,
+                                               width: view.frame.size.width + shadowSize,
+                                               height: view.frame.size.height + shadowSize))
+    view.layer.shadowColor = themeAccentPrimary.cgColor
+    view.layer.shadowOffset = CGSize(width: 0, height: 0)
+    view.layer.shadowOpacity = 0.15
+    view.layer.shadowRadius = 10.0
+    view.layer.masksToBounds = false
+    view.layer.shadowPath = shadowPath.cgPath
+    
+    
+}

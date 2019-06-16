@@ -38,6 +38,9 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cell.friendNameLabel.text = friend.name
         
+        //Configure design for the primary view
+        configurePrimaryTableViewCellDesign(view: cell.primaryView)
+        
         return cell
         
     }
