@@ -47,7 +47,6 @@ class CustomFriendCell: UITableViewCell {
     @IBOutlet weak var addFriendButton: UIButton!
     @IBOutlet weak var primaryView: RoundUIView!
     
-    
 }
 
 //Class used for event tags

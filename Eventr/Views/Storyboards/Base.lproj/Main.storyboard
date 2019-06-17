@@ -2130,19 +2130,37 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CeH-Jx-fBF">
+                                <rect key="frame" x="110" y="20" width="100" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="2eN-4W-VTm"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="" image="iconMyEvents"/>
+                                    <segment title="" image="iconSearch"/>
+                                    <segment title="" image="addFriendIcon"/>
+                                </segments>
+                                <color key="tintColor" name="AccentPrimary"/>
+                                <connections>
+                                    <action selector="headerSegmentChanged:" destination="Knk-bw-rcM" eventType="valueChanged" id="m0f-ra-GrU"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iZz-Sj-eEz" secondAttribute="trailing" id="Bl0-tR-xWQ"/>
+                            <constraint firstItem="CeH-Jx-fBF" firstAttribute="centerX" secondItem="wBJ-dG-YbP" secondAttribute="centerX" id="DP3-VH-LFU"/>
                             <constraint firstItem="dxP-fR-2QC" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leading" constant="-35" id="Wur-of-dfk"/>
                             <constraint firstItem="qDD-nw-MfO" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="20" id="ZEz-xQ-EqZ"/>
                             <constraint firstItem="iZz-Sj-eEz" firstAttribute="top" secondItem="qDD-nw-MfO" secondAttribute="bottom" constant="20" id="ZT6-Yi-id7"/>
+                            <constraint firstItem="CeH-Jx-fBF" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" id="eif-d1-Fv1"/>
                             <constraint firstItem="qDD-nw-MfO" firstAttribute="centerX" secondItem="wBJ-dG-YbP" secondAttribute="centerX" id="k6n-zl-0ld"/>
                             <constraint firstItem="iZz-Sj-eEz" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leading" id="ppd-Wr-C2m"/>
                             <constraint firstItem="dxP-fR-2QC" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="5" id="rtK-Ud-bxW"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="findFriendsSearchContainer" destination="qDD-nw-MfO" id="fMW-GC-CSf"/>
                         <outlet property="friendsSearchButton" destination="tkd-rx-dka" id="XkI-Hl-2HJ"/>
                         <outlet property="friendsSearchField" destination="46q-kp-Ohw" id="EUm-pn-QCc"/>
                         <outlet property="friendsTableView" destination="iZz-Sj-eEz" id="QMO-W2-JqY"/>

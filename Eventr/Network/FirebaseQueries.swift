@@ -410,7 +410,7 @@ func queryIfUserHasUsername(callback: @escaping ((Bool,String) -> Void)) {
     
 }
 
-func queryFriends(username: String, callback: @escaping ((Bool,String) -> Void)) {
+func queryFriendsInFirebase(username: String, callback: @escaping ((Bool,String) -> Void)) {
     
     //Check if a particular friend (username) exists, if so, return true and the userID (via callback).
     //If it doesn't exist, return false (via callback)
@@ -430,6 +430,85 @@ func queryFriends(username: String, callback: @escaping ((Bool,String) -> Void))
             callback(true, username)
         }else{
             callback(false, "")
+        }
+        
+    })
+    
+}
+
+func queryFriendRequestsInFirebase(){
+    
+     guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    tableFriendRequests.removeAll()
+    firebaseDatabaseRef.child("follow-requests-rec").child(userID).observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        guard let dict = snapshot.value as? NSDictionary else { return }
+        for friendUserID in dict.allKeys {
+            
+            print("Friend User ID Key")
+            print(friendUserID)
+            guard let friendUserIDString = friendUserID as? String else {return}
+            let friendRequest = Friend(name: friendUserIDString, userID: friendUserIDString)
+            tableFriendRequests.append(friendRequest)
+        }
+        reloadFriendTableView()
+    })
+    
+}
+
+func queryIfAccountIsPrivate(userID: String, callback: @escaping ((Bool, Bool) -> Void)){
+    
+    //Query if an account is private
+    //The callback will be of the form: callback(accountFound, accountIsPrivate)
+    firebaseDatabaseRef.child("user-settings").child(userID).child("private").observeSingleEvent(of: .value, with: {(privateAccountSnap) in
+        
+        var accountFound = false
+        var accountIsPrivate = false
+        print("QUERYING PRIVATE ACCOUNT")
+        print(privateAccountSnap)
+        print(privateAccountSnap.exists())
+        //If user has username, return true/username, otherwise return false
+        if privateAccountSnap.exists(){
+            guard let isPrivateInt = privateAccountSnap.value as? Int else {return}
+            accountFound = true
+            if isPrivateInt == 1 {
+                accountIsPrivate = true
+                callback(accountFound, accountIsPrivate)
+            } else {
+                callback(accountFound, accountIsPrivate)
+            }
+        }else{
+            callback(accountFound, accountIsPrivate)
+        }
+        
+    })
+    
+}
+
+func queryIfFriendRequestSent(friend: Friend, callback: @escaping ((Bool, Bool) -> Void)){
+    
+    //Query if an a friend request was sent
+    //The callback will be of the form: callback(accountFound, friendRequestSent)
+    
+     guard let userID = Auth.auth().currentUser?.uid else { return}
+    firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).observeSingleEvent(of: .value, with: {(friendRequestSnap) in
+        
+        var accountFound = false
+        var friendRequestSent = false
+        print("QUERYING Friend Request")
+        print(friendRequestSnap)
+        print(friendRequestSnap.exists())
+        //If user has username, return true/username, otherwise return false
+        if friendRequestSnap.exists(){
+            guard let friendReqInt = friendRequestSnap.value as? Int else {return}
+            accountFound = true
+            if friendReqInt == 0 || friendReqInt == 1 {
+                friendRequestSent = true
+                callback(accountFound, friendRequestSent)
+            }
+        }else{
+            callback(accountFound, friendRequestSent)
         }
         
     })

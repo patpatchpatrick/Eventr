@@ -314,6 +314,19 @@ func submitUserNameIfUnique(username: String, callback: @escaping ((Bool) -> Voi
 func addFriendToFirebaseFollowers(friend: Friend){
     
     
+    
+}
+
+func sendFriendRequestInFirebase(friend: Friend){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    //Add a new friend request to both users (sending and receiving) and mark them as NOT_APPROVED by default
+    firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).setValue(FRIEND_REQUEST_NOT_APPROVED)
+    
+    firebaseDatabaseRef.child("follow-requests-rec").child(friend.userID).child(userID).setValue(FRIEND_REQUEST_NOT_APPROVED)
+    
+    
 }
 
 func setPrivateAccountStatusInFirebase(accountIsPrivate: Bool){
