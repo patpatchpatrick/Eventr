@@ -71,7 +71,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = friendsTableView.dequeueReusableCell(withIdentifier: "cellFriend", for: indexPath) as! CustomFriendCell
+        if let cell = friendsTableView.dequeueReusableCell(withIdentifier: "cellFriend", for: indexPath) as? CustomFriendCell{
         
         switch headerSelectedIndex{
         case SEARCH_INDEX:
@@ -84,7 +84,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             return cell
         }
         
-        
+        }
+        return UITableViewCell()
     }
     
     func populateSearchFriendCell(cell: CustomFriendCell, indexPath: IndexPath) -> CustomFriendCell{
@@ -102,18 +103,22 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             accountFound, friendRequestStatus in
             if accountFound {
                 if friendRequestStatus == FRIEND_REQUEST_NOT_APPROVED {
-                     friend.status = .requested
+                     friend.status = .requestSent
                      cell.addFriendButton.setImage(UIImage(named: "requestFriendIcon"), for: .normal)
+                    cell.addFriendButtonLabel.text = "Requested"
                 } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
                     friend.status = .connected
                     cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                    cell.addFriendButtonLabel.text = "Following"
                 } else {
                     friend.status = .notconnected
                     cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
+                    cell.addFriendButtonLabel.text = "Follow"
                 }
             } else {
                 friend.status = .notconnected
                 cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
+                 cell.addFriendButtonLabel.text = "Follow"
             }
         })
         
@@ -134,18 +139,40 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             accountFound, friendRequestStatus in
             if accountFound {
                 if friendRequestStatus == FRIEND_REQUEST_NOT_APPROVED {
-                    friend.status = .requested
+                    friend.status = .requestReceived
                     cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                     cell.addFriendButtonLabel.text = "Approve"
                 } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
-                    friend.status = .connected
-                    cell.addFriendButton.setImage(UIImage(named: "iconDiscard"), for: .normal)
+                    queryIfFollowingFriendInFirebase(friend: friend, callback: {
+                        userIsFollowingFriendStatus in
+                        switch userIsFollowingFriendStatus{
+                        case FRIEND_REQUEST_APPROVED:
+                            friend.status = .connected
+                            cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                            cell.addFriendButtonLabel.text = "Following"
+                        case FRIEND_REQUEST_NOT_APPROVED:
+                            friend.status = .requestSent
+                            cell.addFriendButton.setImage(UIImage(named: "requestFriendIcon"), for: .normal)
+                            cell.addFriendButtonLabel.text = "Requested"
+                        case FRIEND_REQUEST_NOT_SENT:
+                            friend.status = .notconnected
+                            cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
+                            cell.addFriendButtonLabel.text = "Follow Back"
+                        default:
+                            print("DEFAULT")
+                        }
+                        
+                    })
+                   
                 } else {
                     friend.status = .notconnected
                     cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
+                     cell.addFriendButtonLabel.text = ""
                 }
             } else {
                 friend.status = .notconnected
                 cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
+                 cell.addFriendButtonLabel.text = ""
             }
         })
         
@@ -216,6 +243,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
          friendsTableView.setEmptyMessage("You do not appear to have any friends currently. Add some!")
         
+        tableFriends.removeAll()
+        
         queryFriendsInFirebase(username: usernameToSearch, callback: {
             usernameFound, friendResult in
             
@@ -257,9 +286,12 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             selectedFriend = tableFriends[index]
             let friendshipStatus = selectedFriend.status
             switch friendshipStatus {
-            case .requested: print ("REQUESTED")
+            case .requestReceived: print ("REQUEST RECEIVED")
             case .connected: print ("CONNECTED")
             case .notconnected: sendFriendRequest()
+            case .requestSent:
+                print("REQUEST SENT")
+         
             }
             
         }
@@ -276,17 +308,35 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             selectedFriend = tableFriendRequests[index]
             let friendshipStatus = selectedFriend.status
             switch friendshipStatus {
-            case .requested:
+            case .requestReceived:
                 approveFriendRequestInFirebase(friend: selectedFriend, callback: {
                     friendRequestApproved in
                     if friendRequestApproved {
-                        selectedFriend.status = .connected
-                        print("FRIEND APPROVED!")
+                        queryIfFollowingFriendInFirebase(friend: selectedFriend, callback: {
+                            followingFriendStatus in
+                            switch followingFriendStatus {
+                            case FRIEND_REQUEST_NOT_SENT:
+                                selectedFriend.status = .notconnected
+                                reloadFriendTableView()
+                            case FRIEND_REQUEST_APPROVED:
+                                selectedFriend.status = .connected
+                                reloadFriendTableView()
+                            case FRIEND_REQUEST_NOT_APPROVED:
+                                selectedFriend.status = .requestSent
+                            default:
+                                selectedFriend.status = .notconnected
+                            }
+                        })
+                    } else {
+                        selectedFriend.status = .requestReceived
+                        reloadFriendTableView()
                     }
                 })
                 
             case .connected: print ("CONNECTED")
-            case .notconnected: print("NOT CONNECTED")
+            case .notconnected: sendFriendRequest()
+            case .requestSent:
+                print("REQUEST SENT")
             }
             
         }
@@ -303,10 +353,11 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             
             if accountIsPrivate {
+                print("SENDING PRIVATE FRIEND REQUEST")
                 sendFriendRequestInFirebase(friend: selectedFriend)
             } else {
                 print("ADDING FRIEND TO FOLLOWERS")
-                //addFriendToFirebaseFollowers(friend: tableFriends[sender.tag])
+                addFriendToFirebaseFollowers(friend: selectedFriend)
             }
         })
         

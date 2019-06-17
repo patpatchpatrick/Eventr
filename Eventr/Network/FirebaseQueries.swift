@@ -552,3 +552,25 @@ func queryFriendRequestStatusInFirebase(friend: Friend, callback: @escaping ((Bo
     
 }
 
+func queryIfFollowingFriendInFirebase(friend: Friend, callback: @escaping ((Int) -> Void)){
+    
+    //Query if a user is following a certain friend
+    
+    //Send a callback for the friend request status
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).observeSingleEvent(of: .value, with: {(followingFriendSnap) in
+        
+        if followingFriendSnap.exists(){
+            guard let followingStatus = followingFriendSnap.value as? Int else {return}
+            callback(followingStatus)
+        }else{
+            callback(FRIEND_REQUEST_NOT_SENT)
+        }
+        
+    })
+    
+    
+}
+

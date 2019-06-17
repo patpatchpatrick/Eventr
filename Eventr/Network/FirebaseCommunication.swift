@@ -316,6 +316,7 @@ func addFriendToFirebaseFollowers(friend: Friend){
     //Follow the friend in Firebase
     //Add the userID of the follower and the followee to the respective sections in Firebase
     //Increment the number of followers for the friend that is being followed
+    //Add an already approved follow request to both the user and the friend.  
     
     guard let userID = Auth.auth().currentUser?.uid else { return}
     
@@ -334,6 +335,10 @@ func addFriendToFirebaseFollowers(friend: Friend){
         }
         
     })
+    
+    firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).setValue(FRIEND_REQUEST_APPROVED)
+    
+    firebaseDatabaseRef.child("follow-requests-rec").child(friend.userID).child(userID).setValue(FRIEND_REQUEST_APPROVED)
     
     
 }
@@ -375,6 +380,7 @@ func sendFriendRequestInFirebase(friend: Friend){
     guard let userID = Auth.auth().currentUser?.uid else { return}
     
     //Add a new friend request to both users (sending and receiving) and mark them as NOT_APPROVED by default
+    //Friend request is sent if the user has a private account.. it needs to be approved by the user before they are followed
     firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).setValue(FRIEND_REQUEST_NOT_APPROVED)
     
     firebaseDatabaseRef.child("follow-requests-rec").child(friend.userID).child(userID).setValue(FRIEND_REQUEST_NOT_APPROVED)
@@ -382,9 +388,9 @@ func sendFriendRequestInFirebase(friend: Friend){
     firebaseDatabaseRef.child("request-count").child(friend.userID).child("number").observeSingleEvent(of: .value, with: {(numberOfRequestsSnap) in
         
         if numberOfRequestsSnap.exists(){
-            guard var numberOfFollowers = numberOfRequestsSnap.value as? Int else {return}
-            numberOfFollowers += 1
-            firebaseDatabaseRef.child("request-count").child(friend.userID).child("number").setValue(numberOfFollowers)
+            guard var numberOfFollowRequests = numberOfRequestsSnap.value as? Int else {return}
+            numberOfFollowRequests += 1
+            firebaseDatabaseRef.child("request-count").child(friend.userID).child("number").setValue(numberOfFollowRequests)
         }else{
             firebaseDatabaseRef.child("request-count").child(friend.userID).child("number").setValue(1)
         }

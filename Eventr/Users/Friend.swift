@@ -8,12 +8,14 @@
 
 import Foundation
 
+let FRIEND_REQUEST_NOT_SENT = -1
 let FRIEND_REQUEST_NOT_APPROVED = 0
 let FRIEND_REQUEST_APPROVED = 1
 
 enum friendStatus {
-    case requested
+    case requestReceived
     case connected
+    case requestSent
     case notconnected
 }
 
