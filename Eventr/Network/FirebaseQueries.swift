@@ -501,13 +501,38 @@ func queryIfAccountIsPrivate(userID: String, callback: @escaping ((Bool, Bool) -
     
 }
 
-func queryIfFriendRequestSent(friend: Friend, callback: @escaping ((Bool, Bool) -> Void)){
+func queryIfFriendRequestSent(friend: Friend, callback: @escaping ((Bool, Int) -> Void)){
     
     //Query if an a friend request was sent
-    //The callback will be of the form: callback(accountFound, friendRequestSent)
+    //The callback will be of the form: callback(accountFound, friendRequestStatus)
     
      guard let userID = Auth.auth().currentUser?.uid else { return}
     firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).observeSingleEvent(of: .value, with: {(friendRequestSnap) in
+        
+        var accountFound = false
+        var friendRequestSent = false
+        print("QUERYING Friend Request")
+        print(friendRequestSnap)
+        print(friendRequestSnap.exists())
+        if friendRequestSnap.exists(){
+            guard let friendReqInt = friendRequestSnap.value as? Int else {return}
+            accountFound = true
+            callback(accountFound, friendReqInt)
+        }else{
+            callback(accountFound, 0)
+        }
+        
+    })
+    
+}
+
+func queryFriendRequestStatusInFirebase(friend: Friend, callback: @escaping ((Bool, Int) -> Void)){
+    
+    //Query status of friend request
+    //The callback will be of the form: callback(accountFound, friendRequestSent)
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    firebaseDatabaseRef.child("follow-requests-rec").child(userID).child(friend.userID).observeSingleEvent(of: .value, with: {(friendRequestSnap) in
         
         var accountFound = false
         var friendRequestSent = false
@@ -518,12 +543,9 @@ func queryIfFriendRequestSent(friend: Friend, callback: @escaping ((Bool, Bool) 
         if friendRequestSnap.exists(){
             guard let friendReqInt = friendRequestSnap.value as? Int else {return}
             accountFound = true
-            if friendReqInt == 0 || friendReqInt == 1 {
-                friendRequestSent = true
-                callback(accountFound, friendRequestSent)
-            }
+            callback(accountFound, friendReqInt)
         }else{
-            callback(accountFound, friendRequestSent)
+            callback(accountFound, 0)
         }
         
     })
