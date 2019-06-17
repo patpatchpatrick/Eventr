@@ -410,7 +410,7 @@ func queryIfUserHasUsername(callback: @escaping ((Bool,String) -> Void)) {
     
 }
 
-func queryFriendsInFirebase(username: String, callback: @escaping ((Bool,String) -> Void)) {
+func queryFriendsInFirebase(username: String, callback: @escaping ((Bool,Friend?) -> Void)) {
     
     //Check if a particular friend (username) exists, if so, return true and the userID (via callback).
     //If it doesn't exist, return false (via callback)
@@ -425,11 +425,13 @@ func queryFriendsInFirebase(username: String, callback: @escaping ((Bool,String)
         print(usernameSnap.exists())
         //If user has username, return true/username, otherwise return false
         if usernameSnap.exists(){
-            guard let username = usernameSnap.value as? String else {return}
-            print(username)
-            callback(true, username)
+            guard let friendUserID = usernameSnap.value as? String else {return}
+            guard let friendUserName = usernameSnap.key as? String else {return}
+            let queriedFriend = Friend(name: friendUserName, userID: friendUserID)
+            
+            callback(true, queriedFriend)
         }else{
-            callback(false, "")
+            callback(false, nil)
         }
         
     })
@@ -449,13 +451,26 @@ func queryFriendRequestsInFirebase(){
             print("Friend User ID Key")
             print(friendUserID)
             guard let friendUserIDString = friendUserID as? String else {return}
-            let friendRequest = Friend(name: friendUserIDString, userID: friendUserIDString)
-            tableFriendRequests.append(friendRequest)
+            
+            firebaseDatabaseRef.child("users").child(friendUserIDString).child("username").observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                
+                guard let friendUserName = snapshot.value as? String else {return}
+                
+                print("FRIEND USER NAME REQUESTED")
+                print(friendUserName)
+                
+                let friendRequest = Friend(name: friendUserName, userID: friendUserIDString)
+                tableFriendRequests.append(friendRequest)
+                reloadFriendTableView()
+                
+            })
         }
-        reloadFriendTableView()
     })
     
 }
+
+
 
 func queryIfAccountIsPrivate(userID: String, callback: @escaping ((Bool, Bool) -> Void)){
     

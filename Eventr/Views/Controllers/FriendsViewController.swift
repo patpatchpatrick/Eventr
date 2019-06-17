@@ -120,9 +120,13 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let friend = tableFriendRequests[indexPath.row]
         
+        friend.status = .requested
+        
         cell.friendNameLabel.text = friend.name
         
         cell.addFriendButton?.tag = indexPath.row
+        
+        cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
         
         //Configure design for the primary view
         configurePrimaryTableViewCellDesign(view: cell.primaryView)
@@ -188,11 +192,11 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
          friendsTableView.setEmptyMessage("You do not appear to have any friends currently. Add some!")
         
         queryFriendsInFirebase(username: usernameToSearch, callback: {
-            usernameFound, userResult in
+            usernameFound, friendResult in
             
             if usernameFound {
                 
-                let friend = Friend(name: userResult, userID: userResult)
+                guard let friend = friendResult else {return}
                 tableFriends.append(friend)
                 self.friendsTableView.restore()
                 self.friendsTableView.reloadData()
@@ -215,7 +219,15 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             selectedFriend = tableFriends[sender.tag]
             let friendshipStatus = selectedFriend.status
             switch friendshipStatus {
-            case .requested: print ("REQUESTED")
+            case .requested:
+                if headerSelectedIndex == REQUESTS_INDEX {
+                    approveFriendRequestInFirebase(friend: selectedFriend, callback: {
+                        friendRequestApproved in
+                        if friendRequestApproved {
+                            selectedFriend.status = .connected
+                        }
+                    })
+                }
             case .connected: print ("CONNECTED")
             case .notconnected: sendFriendRequest()
             }
