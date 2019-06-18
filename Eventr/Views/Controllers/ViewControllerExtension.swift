@@ -59,10 +59,6 @@ extension ViewController{
     }
     
     func setUpLocationEntryField(){
-       
-        citySelectDropDown.anchorView = sortButton
-        citySelectDropDown.dataSource = ["New York"]
-        citySelectDropDown.cellConfiguration = { (index, item) in return "\(item)" }
         
 
     distanceRadiusSegmentedControl.selectedSegmentIndex = 0 //Set the default segment to (5 miles)
@@ -398,9 +394,9 @@ extension ViewController{
             //If querying popular or upcoming events, reload the tableview.  If querying nearby events, simply refilter the table since "Nearby" events cannot be queried by category
             switch firebaseQueryType{
             case .popular:
-                queryPopularEvents(city: "NYC", queryingFirstPage: true)
+                queryPopularEvents(city: selectedCity, queryingFirstPage: true)
             case .upcoming:
-                queryUpcomingEvents(city: "NYC", queryingFirstPage: true)
+                queryUpcomingEvents(city: selectedCity, queryingFirstPage: true)
             case .nearby:
                 refilterTableViewByCategory()
           
@@ -522,8 +518,17 @@ extension ViewController{
         configureMainButtonDesign(button: upcomingButton)
         configureMainButtonDesign(button: nearbyButton)
         configureMainButtonDesign(button: locationSearchButton)
+        configureMainButtonDesign(button: mainCitySelectionButton)
         dateAndLocationBackground.addBottomBorderWithColor(color: themeDark, width: 0.5, widthExtension: 100)
+        setUpMainCitySelectionButton()
         setUpLocationEntryField()
+    }
+    
+    func setUpMainCitySelectionButton(){
+        //Set up city selection dropdown menu
+        citySelectDropDown.anchorView = mainCitySelectionButton
+        citySelectDropDown.dataSource = citySelectButtonArray
+        citySelectDropDown.cellConfiguration = { (index, item) in return "\(item)" }
     }
     
     func configureHeaderButtons(){
@@ -545,7 +550,7 @@ extension ViewController{
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
             self.searchSelectionContainer.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0)
             
-           self.mainLocationButton.setTitle("New York", for: .normal)
+           self.mainCitySelectionButton.setTitle("New York", for: .normal)
             
         }){ success in
             self.searchSelectionContainer.isHidden = true

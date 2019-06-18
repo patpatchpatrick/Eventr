@@ -27,3 +27,32 @@ let themeTextColor: UIColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/2
 
 //Variable to keep track of categories.  Used for filtering the tableview based on whatever category was selected
 let categoryAll = 0
+
+//CITIES
+let NYC = "NYC"
+let SF = "SF"
+let LA = "LA"
+let NEW_YORK_CITY = "New York City"
+let SAN_FRANCISCO = "San Francisco"
+let LOS_ANGELES = "Los Angeles"
+let citySelectButtonArray : [String] = [NEW_YORK_CITY, SAN_FRANCISCO, LOS_ANGELES]
+var selectedCity : String = NYC
+func getFullCityName(city: String) -> String {
+    
+    switch city{
+    case NYC: return NEW_YORK_CITY
+    case SF: return SAN_FRANCISCO
+    case LA: return LOS_ANGELES
+    default: return NEW_YORK_CITY
+    }
+    
+}
+
+func getCityAbbreviation(fullCityName: String) -> String {
+    switch fullCityName{
+    case NEW_YORK_CITY: return NYC
+    case SAN_FRANCISCO: return SF
+    case LOS_ANGELES: return LA
+    default: return NYC
+    }
+}

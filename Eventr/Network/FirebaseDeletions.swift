@@ -77,7 +77,7 @@ func deleteFirebaseEvent(event: Event, callback: ((Bool) -> Void)?) {
     //Delete every reference to the event (events, created, date and geoFire)
     //User specific references to the event (upvotes, favorited, etc...) are not deleted when the event is deleted
     firebaseDatabaseRef.child("events").child(event.city).child(event.id).removeValue()
-    firebaseDatabaseRef.child("events-category").child("NYC").child(String(event.category.index())).child(event.id).removeValue()
+    firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id).removeValue()
     firebaseDatabaseRef.child("attendingEvents").child(event.id).removeValue()
     firebaseDatabaseRef.child("created").child(userID).child(event.id).removeValue()
     let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)

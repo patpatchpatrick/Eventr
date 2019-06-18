@@ -765,17 +765,17 @@
                                         <rect key="frame" x="10" y="130" width="300" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="kwn-TE-lfL"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="13"/>
-                                                <color key="tintColor" name="Dark"/>
+                                                <color key="tintColor" name="AccentPrimary"/>
                                                 <inset key="titleEdgeInsets" minX="-70" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="5" minY="12" maxX="75" maxY="12"/>
                                                 <state key="normal" title="New York" image="iconHome">
-                                                    <color key="titleColor" name="Dark"/>
+                                                    <color key="titleColor" name="AccentPrimary"/>
                                                     <color key="titleShadowColor" name="Dark"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -783,15 +783,18 @@
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
+                                                        <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" name="Dark"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mainCitySelectButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FE3-S9-HCj"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="90" y="0.0" width="50" height="42"/>
+                                                <rect key="frame" x="100" y="0.0" width="50" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="gvx-Ky-ln4"/>
@@ -819,7 +822,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="140" y="0.0" width="90" height="42"/>
+                                                <rect key="frame" x="150" y="0.0" width="80" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="HqI-hz-QT1"/>
@@ -1478,6 +1481,12 @@
                             <constraint firstAttribute="trailing" secondItem="9ly-4h-XTV" secondAttribute="trailing" id="x6y-Ms-xqM"/>
                             <constraint firstItem="9ly-4h-XTV" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="zpJ-jb-Ktt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="sjr-ur-GUf"/>
+                                <exclude reference="K1r-ii-eaL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="accountSettingsIcon" destination="Z3D-bz-Ebe" id="UxI-NH-7gY"/>
@@ -1507,8 +1516,8 @@
                         <outlet property="locationEntryField" destination="GWU-Ct-tSG" id="mAe-Wi-zBj"/>
                         <outlet property="locationSearchButton" destination="9mH-IH-KEo" id="5ZK-f7-xbM"/>
                         <outlet property="mainButtonsStackViewContainer" destination="FIU-NR-25c" id="JlU-pi-e2J"/>
+                        <outlet property="mainCitySelectionButton" destination="REQ-xr-Xqh" id="b8e-pE-IvC"/>
                         <outlet property="mainDateButton" destination="k9C-gg-50x" id="znT-wM-xba"/>
-                        <outlet property="mainLocationButton" destination="REQ-xr-Xqh" id="b8e-pE-IvC"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="aie-IY-bcL"/>
                         <outlet property="nearbyButton" destination="6yx-11-eFT" id="asp-M0-Yoq"/>
                         <outlet property="plusButtonStackView" destination="CWj-kI-FK2" id="WnN-4h-Hr4"/>

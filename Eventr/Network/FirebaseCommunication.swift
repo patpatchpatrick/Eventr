@@ -210,10 +210,25 @@ func attendFirebaseEvent(event: Event){
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Mark that the user is attending the event in Firebase
-    //Add user to list of users attending the event and add event to the list of events that the user attended
-    firebaseDatabaseRef.child("attendingEvents").child(event.id).child(userID).setValue(userID)
-    
-    firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).setValue("NYC")
+    //First, get the city that the event is in
+    //Then, add user to list of users attending the event and add event to the list of events that the user attended
+
+    firebaseDatabaseRef.child("event-city").child(event.id).observeSingleEvent(of: .value, with: { (snapshot) in
+              if let value = snapshot.value as? NSDictionary {
+                
+                print("ATTENDING DICTIONARY")
+                print(value)
+                var cityName : String?
+                for key in value.allKeys {
+                    cityName = key as? String
+                }
+                guard let cityString = cityName else {return}
+                
+            firebaseDatabaseRef.child("attendingEvents").child(event.id).child(userID).setValue(userID)
+                
+            firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).setValue(cityString)
+                
+            }})
     
 
    //Update the count of users attending the event.  If no one is attending, set the count to 1.

@@ -54,7 +54,7 @@ extension ViewController{
     
     func loadInitialListOfEvents(){
         
-        queryFirebaseEvents(city: "NYC", firstPage: true)
+        queryFirebaseEvents(city: selectedCity, firstPage: true)
         
     }
     

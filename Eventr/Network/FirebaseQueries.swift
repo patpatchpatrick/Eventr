@@ -117,7 +117,7 @@ func queryUpcomingEventsFirstPage(specificCategory: Bool, city: String, beforeDa
                 guard let dict = snapshot.value as? NSDictionary else { return }
                 for eventID in dict.allKeys {
                     
-                    addEventsToTableViewByKey(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                    addEventsToTableViewByKey(eventIDMap: [eventID : city], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
                 }
                 
             })
@@ -156,7 +156,7 @@ func queryUpcomingEventsAdditionalPage(specificCategory: Bool, city: String, aft
                     
                     print("SNAPSHOT")
                     print(eventID)
-                    addEventsToTableViewByKey(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                    addEventsToTableViewByKey(eventIDMap: [eventID : city], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
                 }
                 
             })
@@ -219,7 +219,7 @@ func queryPopularEventsAdditionalPage(specificCategory: Bool, city: String, last
                 
                 print("SNAPSHOT")
                 print(eventID)
-                addEventsToTableViewByKey(eventIDMap: [eventID : "NYC"], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
+                addEventsToTableViewByKey(eventIDMap: [eventID : city], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: true)
             }
             
         })
@@ -252,7 +252,7 @@ func queryNearbyEvents(centerLocation: CLLocation?, radius: Double){
     gQuery = geoFire.query(at: queryLocation, withRadius: searchDistanceKm)
     guard let gQ = gQuery else {return}
     gQ.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
-        addEventsToTableViewByKey(eventIDMap: [key as Any : "NYC"] as NSDictionary, isUserCreatedEvent: false, addToListsInSortedOrder: false, addToAllEventsList: false)
+        addEventsToTableViewByKey(eventIDMap: [key as Any : selectedCity] as NSDictionary, isUserCreatedEvent: false, addToListsInSortedOrder: false, addToAllEventsList: false)
     })
     
     //Method called when the query is finished and all keys(event IDs) are loaded

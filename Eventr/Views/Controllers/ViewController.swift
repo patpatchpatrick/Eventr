@@ -17,7 +17,7 @@ import JTAppleCalendar
 //TABLEVIEW VARIABLES
 var selectedCategory: Int = 0 //Int to represent which category was selected in the category stackview.  Events will be filtered using this category.  This category is based on the event's Index.
 //Variable to represent which event was selected in TableView
-var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: "NYC", address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false, price: "")
+var selectedEvent: Event = Event(name: "", category: EventCategory(category: .misc), date: Date(), city: selectedCity, address: "",venue: "", details: "", contact: "", phoneNumber: "", ticketURL: "", eventURL: "", tag1: "", tag2: "", tag3: "", paid: false, price: "")
 var selectedEventIndex = 0
 enum eventAction {
     case creating
@@ -99,7 +99,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var dateAndLocationBackground: UIView!
     
     @IBOutlet weak var mainDateButton: RoundedButton!
-    @IBOutlet weak var mainLocationButton: RoundedButton!
+    @IBOutlet weak var mainCitySelectionButton: RoundedButton!
     
     @IBOutlet weak var hotButton: RoundedButton!
     
@@ -280,7 +280,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         hideCalendarView()
         updateMainDateButtonDateLabels()
-        queryFirebaseEvents(city: "NYC", firstPage: true) //Search for new events when new date is chosen
+        queryFirebaseEvents(city: selectedCity, firstPage: true) //Search for new events when new date is chosen
     }
     
     
@@ -319,7 +319,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print(paginationInProgress)
             if !paginationInProgress && !listDescriptorInUse {
                 paginationInProgress = true
-                queryFirebaseEvents(city: "NYC", firstPage: false)
+                queryFirebaseEvents(city: selectedCity, firstPage: false)
             }
         }
         
@@ -496,11 +496,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    @IBAction func mainCitySelectButtonTapped(_ sender: UIButton) {
+        
+        citySelectDropDown.selectionAction = { (index: Int, item: String) in
+            let fullCityName = item
+            let cityAbbreviation = getCityAbbreviation(fullCityName: fullCityName)
+            self.mainCitySelectionButton.setTitle(cityAbbreviation, for: .normal)
+            selectedCity = cityAbbreviation
+            print("SELECTED CITY")
+            print(selectedCity)
+        }
+        citySelectDropDown.backgroundColor = themeMedium
+        citySelectDropDown.textColor = themeAccentPrimary
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
+                                     size: 14.0) {
+            citySelectDropDown.textFont = dropDownFont
+        }
+        citySelectDropDown.width = 140
+        citySelectDropDown.bottomOffset = CGPoint(x: 0, y:(citySelectDropDown.anchorView?.plainView.bounds.height)!)
+        citySelectDropDown.show()
+        
+    }
+    
+    
     @IBAction func hotButtonTapped(_ sender: UIButton) {
         firebaseQueryType = .popular
         updateSelectedQueryButtonStyle()
         showAndHideViewsBasedOnQueryType()
-        queryFirebaseEvents(city: "NYC", firstPage: true)
+        queryFirebaseEvents(city: selectedCity, firstPage: true)
     }
     
     
@@ -509,7 +532,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         firebaseQueryType = .upcoming
         updateSelectedQueryButtonStyle()
         showAndHideViewsBasedOnQueryType()
-        queryFirebaseEvents(city: "NYC", firstPage: true)
+        queryFirebaseEvents(city: selectedCity, firstPage: true)
     }
     
     
@@ -518,7 +541,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         firebaseQueryType = .nearby
         showAndHideViewsBasedOnQueryType()
         updateSelectedQueryButtonStyle()
-        queryFirebaseEvents(city: "NYC", firstPage: true)
+        queryFirebaseEvents(city: selectedCity, firstPage: true)
     }
     
     //If the user changes the location and taps the search button, the "Nearby" query will be retriggered
@@ -527,7 +550,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         firebaseQueryType = .nearby
         showAndHideViewsBasedOnQueryType()
         updateSelectedQueryButtonStyle()
-        queryFirebaseEvents(city: "NYC", firstPage: true)
+        queryFirebaseEvents(city: selectedCity, firstPage: true)
         
     }
     
