@@ -501,32 +501,29 @@ func queryIfAccountIsPrivate(userID: String, callback: @escaping ((Bool, Bool) -
     
 }
 
-func queryIfFriendRequestSent(friend: Friend, callback: @escaping ((Bool, Int) -> Void)){
+func queryIfFriendRequestSent(friend: Friend, callback: @escaping ((Int) -> Void)){
     
     //Query if an a friend request was sent
-    //The callback will be of the form: callback(accountFound, friendRequestStatus)
+    //The callback will be of the form: callback(friendRequestStatus)
     
      guard let userID = Auth.auth().currentUser?.uid else { return}
     firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).observeSingleEvent(of: .value, with: {(friendRequestSnap) in
         
-        var accountFound = false
-        var friendRequestSent = false
         print("QUERYING Friend Request")
         print(friendRequestSnap)
         print(friendRequestSnap.exists())
         if friendRequestSnap.exists(){
             guard let friendReqInt = friendRequestSnap.value as? Int else {return}
-            accountFound = true
-            callback(accountFound, friendReqInt)
+            callback(friendReqInt)
         }else{
-            callback(accountFound, 0)
+            callback(FRIEND_REQUEST_NOT_SENT)
         }
         
     })
     
 }
 
-func queryFriendRequestStatusInFirebase(friend: Friend, callback: @escaping ((Bool, Int) -> Void)){
+func queryFriendRequestStatusInFirebase(friend: Friend, callback: @escaping ((Int) -> Void)){
     
     //Query status of friend request
     //The callback will be of the form: callback(accountFound, friendRequestSent)
@@ -534,18 +531,16 @@ func queryFriendRequestStatusInFirebase(friend: Friend, callback: @escaping ((Bo
     guard let userID = Auth.auth().currentUser?.uid else { return}
     firebaseDatabaseRef.child("follow-requests-rec").child(userID).child(friend.userID).observeSingleEvent(of: .value, with: {(friendRequestSnap) in
         
-        var accountFound = false
-        var friendRequestSent = false
         print("QUERYING Friend Request")
         print(friendRequestSnap)
         print(friendRequestSnap.exists())
         //If user has username, return true/username, otherwise return false
         if friendRequestSnap.exists(){
             guard let friendReqInt = friendRequestSnap.value as? Int else {return}
-            accountFound = true
-            callback(accountFound, friendReqInt)
+        
+            callback(friendReqInt)
         }else{
-            callback(accountFound, 0)
+            callback(FRIEND_REQUEST_NOT_SENT)
         }
         
     })

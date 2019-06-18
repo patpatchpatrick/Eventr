@@ -15,6 +15,8 @@ var tableFriendRequests: [Friend] = []
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Variables to keep track of indices for header segmented control
+    //This controls the modes of the "Friends View Controller"
+    //There are 3 main modes - 1. Event mode, 2. Search Mode, 3. Request mode
     let EVENTS_INDEX = 0
     let SEARCH_INDEX = 1
     let REQUESTS_INDEX = 2
@@ -100,26 +102,22 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         //Check status of the friend request and set up the cell accordingly
         queryIfFriendRequestSent(friend: friend, callback: {
-            accountFound, friendRequestStatus in
-            if accountFound {
-                if friendRequestStatus == FRIEND_REQUEST_NOT_APPROVED {
-                     friend.status = .requestSent
-                     cell.addFriendButton.setImage(UIImage(named: "requestFriendIcon"), for: .normal)
-                    cell.addFriendButtonLabel.text = "Requested"
-                } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
-                    friend.status = .connected
-                    cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
-                    cell.addFriendButtonLabel.text = "Following"
-                } else {
-                    friend.status = .notconnected
-                    cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
-                    cell.addFriendButtonLabel.text = "Follow"
-                }
+            friendRequestStatus in
+            
+            if friendRequestStatus == FRIEND_REQUEST_NOT_APPROVED {
+                friend.status = .requestSent
+                cell.addFriendButton.setImage(UIImage(named: "requestFriendIcon"), for: .normal)
+                cell.addFriendButtonLabel.text = "Requested"
+            } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
+                friend.status = .connected
+                cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                cell.addFriendButtonLabel.text = "Following"
             } else {
                 friend.status = .notconnected
                 cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
-                 cell.addFriendButtonLabel.text = "Follow"
+                cell.addFriendButtonLabel.text = "Follow"
             }
+            
         })
         
         
@@ -132,48 +130,46 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func populateFriendRequestCell(cell: CustomFriendCell, indexPath: IndexPath) -> CustomFriendCell{
         
+        //Populate the tableViewCell for a "Friend Request"
+        
         let friend = tableFriendRequests[indexPath.row]
         
         //Check status of the friend request and set up the cell accordingly
+
         queryFriendRequestStatusInFirebase(friend: friend, callback: {
-            accountFound, friendRequestStatus in
-            if accountFound {
-                if friendRequestStatus == FRIEND_REQUEST_NOT_APPROVED {
-                    friend.status = .requestReceived
-                    cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
-                     cell.addFriendButtonLabel.text = "Approve"
-                } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
-                    queryIfFollowingFriendInFirebase(friend: friend, callback: {
-                        userIsFollowingFriendStatus in
-                        switch userIsFollowingFriendStatus{
-                        case FRIEND_REQUEST_APPROVED:
-                            friend.status = .connected
-                            cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
-                            cell.addFriendButtonLabel.text = "Following"
-                        case FRIEND_REQUEST_NOT_APPROVED:
-                            friend.status = .requestSent
-                            cell.addFriendButton.setImage(UIImage(named: "requestFriendIcon"), for: .normal)
-                            cell.addFriendButtonLabel.text = "Requested"
-                        case FRIEND_REQUEST_NOT_SENT:
-                            friend.status = .notconnected
-                            cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
-                            cell.addFriendButtonLabel.text = "Follow Back"
-                        default:
-                            print("DEFAULT")
-                        }
-                        
-                    })
-                   
-                } else {
-                    friend.status = .notconnected
-                    cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
-                     cell.addFriendButtonLabel.text = ""
-                }
+            friendRequestStatus in
+            if friendRequestStatus == FRIEND_REQUEST_NOT_APPROVED {
+                friend.status = .requestReceived
+                cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                cell.addFriendButtonLabel.text = "Approve"
+            } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
+                queryIfFollowingFriendInFirebase(friend: friend, callback: {
+                    userIsFollowingFriendStatus in
+                    switch userIsFollowingFriendStatus{
+                    case FRIEND_REQUEST_APPROVED:
+                        friend.status = .connected
+                        cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                        cell.addFriendButtonLabel.text = "Following"
+                    case FRIEND_REQUEST_NOT_APPROVED:
+                        friend.status = .requestSent
+                        cell.addFriendButton.setImage(UIImage(named: "requestFriendIcon"), for: .normal)
+                        cell.addFriendButtonLabel.text = "Requested"
+                    case FRIEND_REQUEST_NOT_SENT:
+                        friend.status = .notconnected
+                        cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
+                        cell.addFriendButtonLabel.text = "Follow Back"
+                    default:
+                        print("DEFAULT")
+                    }
+                    
+                })
+                
             } else {
                 friend.status = .notconnected
                 cell.addFriendButton.setImage(UIImage(named: "addFriendIcon"), for: .normal)
-                 cell.addFriendButtonLabel.text = ""
+                cell.addFriendButtonLabel.text = "Follow"
             }
+            
         })
         
         cell.friendNameLabel.text = friend.name
@@ -241,7 +237,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         guard let usernameToSearch = friendsSearchField.text else {return}
         
-         friendsTableView.setEmptyMessage("You do not appear to have any friends currently. Add some!")
+        friendsTableView.setEmptyMessage("You do not appear to have any friends currently. Add some!")
         
         tableFriends.removeAll()
         
@@ -269,16 +265,16 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
 
         switch headerSelectedIndex{
         case REQUESTS_INDEX:
-            handleFriendRequestAddButtonTapped(index: sender.tag)
+            handleAddButtonTappedFriendRequestMode(index: sender.tag)
         case SEARCH_INDEX:
-            handleFriendSearchAddButtonTapped(index: sender.tag)
+            handleAddButtonTappedSearchMode(index: sender.tag)
         default:
             print("DEFAULT")
         }
         
     }
     
-    func handleFriendSearchAddButtonTapped(index: Int){
+    func handleAddButtonTappedSearchMode(index: Int){
         
           //Check if the account you are adding is private, if so, send a friend request.  If not, follow the friend
         
@@ -299,7 +295,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    func handleFriendRequestAddButtonTapped(index: Int){
+    func handleAddButtonTappedFriendRequestMode(index: Int){
         
         //This method is called when user is viewing list of friend requests
         //If the add friend button is clicked from within this list, the friend request will be approved if the status of the friendship is ".requested"
@@ -323,6 +319,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                                 reloadFriendTableView()
                             case FRIEND_REQUEST_NOT_APPROVED:
                                 selectedFriend.status = .requestSent
+                                reloadFriendTableView()
                             default:
                                 selectedFriend.status = .notconnected
                             }
@@ -338,6 +335,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             case .requestSent:
                 print("REQUEST SENT")
             }
+            reloadFriendTableView()
             
         }
         

@@ -341,6 +341,7 @@ func addFriendToFirebaseFollowers(friend: Friend){
     firebaseDatabaseRef.child("follow-requests-rec").child(friend.userID).child(userID).setValue(FRIEND_REQUEST_APPROVED)
     
     
+    reloadFriendTableView()
 }
 
 func approveFriendRequestInFirebase(friend: Friend, callback: @escaping ((Bool) -> Void)){
@@ -396,6 +397,8 @@ func sendFriendRequestInFirebase(friend: Friend){
         }
         
     })
+    
+    reloadFriendTableView()
     
 }
 
