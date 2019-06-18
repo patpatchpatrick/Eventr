@@ -268,7 +268,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         
         if Double(date.timeIntervalSinceNow) > -ONE_DAY {
             let dailyCount = prefs.object(forKey: dailyMaximumNumberKey) as? Int
-            if dailyCount != nil && dailyCount! >= 5 {
+            if dailyCount != nil && dailyCount! >= 100 {
                 return true
             }
         }
@@ -299,12 +299,12 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         guard let selectedEventDate = selectedEvent.getDateCurrentTimeZone() else {
             return
         }
+        previousEvent = selectedEvent.copy()
         eventName.text = selectedEvent.name
         eventPrice.text = selectedEvent.price
         eventDuration.text = String(Double(selectedEvent.duration)/60.0) //Convert to duration to hours and display
         selectedCategoryString = selectedEvent.category.text()
         selectCategoryButton.setTitle(selectedEvent.category.text(), for: .normal)
-        previousDate = selectedEventDate.addingTimeInterval(0)
         eventDate = selectedEventDate
         let df = DateFormatter()
         df.dateFormat = "MMM dd YYYY"

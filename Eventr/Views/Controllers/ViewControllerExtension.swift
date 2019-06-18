@@ -526,9 +526,21 @@ extension ViewController{
     
     func setUpMainCitySelectionButton(){
         //Set up city selection dropdown menu
+        setCitySelectionIfSetInPrefs()
         citySelectDropDown.anchorView = mainCitySelectionButton
         citySelectDropDown.dataSource = citySelectButtonArray
         citySelectDropDown.cellConfiguration = { (index, item) in return "\(item)" }
+    }
+    
+    func setCitySelectionIfSetInPrefs(){
+        //If user has a city saved in UserDefaults, set it as the selected city and the button label
+        if let cityAbbreviation = UserDefaults.standard.object(forKey: selectedCityPrefKey) as? String {
+            mainCitySelectionButton.setTitle(cityAbbreviation, for: .normal)
+            print("SELECTED CITY PREFS")
+            print(selectedCity)
+            selectedCity = cityAbbreviation
+        }
+        
     }
     
     func configureHeaderButtons(){
@@ -717,6 +729,7 @@ extension ViewController{
             hideSearchCollectionContainer()
             showDateAndLocationBackground()
         }
+        setCitySelectionIfSetInPrefs()
         
     }
     

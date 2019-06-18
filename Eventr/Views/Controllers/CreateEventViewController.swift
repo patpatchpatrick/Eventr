@@ -24,7 +24,7 @@ class CreateEventViewController: UIViewController {
     var selectedCategoryString = "Misc"
     var eventDate = Date()
     var eventTime = Date()
-    var previousDate = Date() //Variable to store previous date if editing an event.  This variable is used to determine if the date changed and needs to be updated in Firebase
+    var previousEvent: Event?  //Variable to keep track of previous event so that it can be deleted when an event is changed
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -240,11 +240,7 @@ class CreateEventViewController: UIViewController {
         
         //Selected Category String keeps track of which category was selected using the dropdown menu
         let category = stringToEventCategory(string: selectedCategoryString)
-        
-        print(selectedCategoryString)
-        print(category.text())
-        
-        var dateChanged = false
+    
         guard let eventDate = getFirebaseGMTDate(date: eventDate, time: eventTime) else {
             displayDateErrorNotification()
             return
@@ -257,34 +253,58 @@ class CreateEventViewController: UIViewController {
         newEvent.setUpDurationDate()
         newEvent.price = eventPrice.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        //Check if the date changed.  Compare the firebaseDateFormat of new date to the previous date to determine if they are different.  If different, the dates will need to be updated in Firebase
-        if selectedEventAction == .editing {
-            if let eventPreviousDate = getFirebaseGMTDate(date: previousDate) {
-                if getFirebaseDateFormatYYYYMDD(date: eventDate) != getFirebaseDateFormatYYYYMDD(date: eventPreviousDate){
-                    dateChanged = true
-                    newEvent.previousDate = eventPreviousDate
-                }
-            }
-        }
-        
         let dailyMaxEventsReached = checkIfUserDefaultsDailyEventMaximumReached()
         if dailyMaxEventsReached {
             displayMaxDailyEventsReachedAlert()
             return
         }
-        createOrUpdateFirebaseEvent(viewController: self, event: newEvent, createOrUpdate: selectedEventAction, dateChanged: dateChanged, callback: {
-            eventWasCreatedSuccessfully in
-            if eventWasCreatedSuccessfully {
-                switch selectedEventAction {
-                case .creating: print("EVENT CREATED SUCCESSFULLY")
-                case .editing: print("EVENT UPDATED SUCCESSFULLY")
-                    selectedEvent = newEvent //Update the selected event to be the new event so that data reloads properly on the EventViewController screen
+        
+        //If the event is being updated, delete the old event and create a new event.
+        //Otherwise, create a new event.
+        
+        if selectedEventAction == .editing {
+            guard let prevEvent = previousEvent else {return}
+            deleteFirebaseEvent(event: prevEvent, callback: {
+                eventDeletedSuccessfully in
+                
+                if eventDeletedSuccessfully {
+                    
+                    createOrUpdateFirebaseEvent(viewController: self, event: newEvent, createOrUpdate: selectedEventAction, callback: {
+                        eventWasCreatedSuccessfully in
+                        if eventWasCreatedSuccessfully {
+                            switch selectedEventAction {
+                            case .creating: print("EVENT CREATED SUCCESSFULLY")
+                            case .editing: print("EVENT UPDATED SUCCESSFULLY")
+                            selectedEvent = newEvent //Update the selected event to be the new event so that data reloads properly on the EventViewController screen
+                            }
+                            self.incrementUserDefaultsDailyEventCount()
+                            self.performSegueToReturnBack()
+                        } else {
+                            self.displayCreateEventFailAlert()
+                        }})
+                    
                 }
-                self.incrementUserDefaultsDailyEventCount()
-                self.performSegueToReturnBack()
-            } else {
-                self.displayCreateEventFailAlert()
-            }})
+                
+            })
+            
+        } else {
+            
+            createOrUpdateFirebaseEvent(viewController: self, event: newEvent, createOrUpdate: selectedEventAction, callback: {
+                eventWasCreatedSuccessfully in
+                if eventWasCreatedSuccessfully {
+                    switch selectedEventAction {
+                    case .creating: print("EVENT CREATED SUCCESSFULLY")
+                    case .editing: print("EVENT UPDATED SUCCESSFULLY")
+                    selectedEvent = newEvent //Update the selected event to be the new event so that data reloads properly on the EventViewController screen
+                    }
+                    self.incrementUserDefaultsDailyEventCount()
+                    self.performSegueToReturnBack()
+                } else {
+                    self.displayCreateEventFailAlert()
+                }})
+            
+        }
+    
         
     }
     

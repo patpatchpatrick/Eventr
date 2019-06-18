@@ -164,6 +164,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidAppear(_ animated: Bool) {
         //Add notification observer to reload tableview whenever event data is changed
         eventTableView.reloadData()
+        setCitySelectionIfSetInPrefs()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updated_event_data),
                                                name:Notification.Name("UPDATED_EVENT_DATA"),
@@ -463,6 +464,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func listDescriptorReturnButtonTapped(_ sender: Any) {
         
         hideListDescriptor()
+        setCitySelectionIfSetInPrefs()
         
     }
     
@@ -503,6 +505,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let cityAbbreviation = getCityAbbreviation(fullCityName: fullCityName)
             self.mainCitySelectionButton.setTitle(cityAbbreviation, for: .normal)
             selectedCity = cityAbbreviation
+            //Set the user defaults so the selected city is saved and used as the default the next time the app is launched
+            UserDefaults.standard.set(selectedCity, forKey: selectedCityPrefKey)
             print("SELECTED CITY")
             print(selectedCity)
         }

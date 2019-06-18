@@ -17,7 +17,6 @@ class Event : Comparable {
     var GMTDate: Date? // Event date in GMT timezone
     var duration = 0 // Event duration in minutes
     var dateWithDurationAdded: Date = Date()
-    var previousDate: Date = Date() // Variable to store previous date if date was updated
     var city: String = ""
     var location: String = ""
     var venue: String = ""
@@ -58,6 +57,38 @@ class Event : Comparable {
         self.paid = paid
         self.price = price
         
+    }
+    
+    init(otherEvent:Event) {
+        self.name = otherEvent.name
+        self.id = otherEvent.id
+        self.category = otherEvent.category
+        self.GMTDate = otherEvent.GMTDate
+        self.duration = otherEvent.duration
+        self.dateWithDurationAdded = otherEvent.dateWithDurationAdded
+        self.city = otherEvent.city
+        self.location = otherEvent.location
+        self.venue = otherEvent.venue
+        self.details = otherEvent.details
+        self.contact = otherEvent.contact
+        self.phoneNumber = otherEvent.phoneNumber
+        self.ticketURL = otherEvent.ticketURL
+        self.eventURL = otherEvent.eventURL
+        self.tag1 = otherEvent.tag1
+        self.tag2 = otherEvent.tag2
+        self.tag3 = otherEvent.tag3
+        self.favorite = otherEvent.favorite
+        self.paid = otherEvent.paid
+        self.price = otherEvent.price
+        self.upvoteCount = otherEvent.upvoteCount
+        self.upvoted = otherEvent.upvoted
+        self.userCount = otherEvent.userCount
+        
+    }
+    
+    //Returns a copy of the event
+    func copy() -> Event {
+        return Event(otherEvent: self)
     }
     
     func printEvent(){

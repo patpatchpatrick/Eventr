@@ -29,6 +29,7 @@ let themeTextColor: UIColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/2
 let categoryAll = 0
 
 //CITIES
+let selectedCityPrefKey = "selcity"
 let NYC = "NYC"
 let SF = "SF"
 let LA = "LA"

@@ -18,7 +18,7 @@ import MapKit
 //First it will create an event in the Events section of the database
 //Then, it will create an event in the GeoFire section of the database so the event can be searched by location
 //Then, it will create an event in the Dates section of the database so the event can be searched by date (and removed from database when the date has passed)
-func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event, createOrUpdate: eventAction, dateChanged: Bool, callback: ((Bool) -> Void)?){
+func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event, createOrUpdate: eventAction, callback: ((Bool) -> Void)?){
     if userIsNotLoggedIn() {return}
     guard let userID = Auth.auth().currentUser?.uid else { return }
     guard let eventDate = event.GMTDate else {return}
@@ -26,7 +26,7 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         (location) in
         guard let location = location else {
             //Ensure that event has a valid location before continuing and inserting event into Firebase database
-            //displayInvalidLocationAlert(viewController: viewController)
+            displayInvalidLocationAlert(viewController: viewController)
             return
         }
         
@@ -63,6 +63,8 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             "dateSort": 0 - eventDateDouble,
             "upvotes": event.upvoteCount,
             ] as [String : Any]
+        
+        
         //Add the event to the "events" section of firebase
         //If event is being created for first time, generate an autoID
         //If event is being updated, the child will be the eventID
@@ -91,47 +93,23 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
         
         
         //Add events-category data to Firebase
-        let firebaseCategoryEvent : DatabaseReference = {
-            switch createOrUpdate {
-            case .creating:
-                return firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id)
-            case .editing:
-                return firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id)
-            }
-        }()
+        let firebaseCategoryEvent : DatabaseReference = firebaseDatabaseRef.child("events-category").child(event.city).child(String(event.category.index())).child(event.id)
         
         firebaseCategoryEvent.setValue(eventCategoryData)
-        
         
         //Map the firebase event to the appropriate date in the database
         let firebaseDate = getFirebaseDateFormatYYYYMDD(date: eventDate)
         
-        switch createOrUpdate {
-        case .creating: firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).setValue(event.id)
-        case .editing:
-            if dateChanged {
-                //If you are editing an event and the date changed, remove the old date and add the new date
-                 let previousDate = getFirebaseDateFormatYYYYMDD(date: event.previousDate)
-                firebaseDatabaseRef.child("date").child(previousDate).child(event.id).removeValue()
-                firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).setValue(event.id)
-                
-            }
-        }
+    firebaseDatabaseRef.child("date").child(firebaseDate).child(event.id).setValue(event.id)
         
-        //Add user creation data and event-city data to Firebase
         
-        if createOrUpdate == .creating {
-            //Map the firebase event to the "created" events section of Firebase
-            firebaseDatabaseRef.child("created").child(userID).child(event.id).setValue(event.city)
-            
-            //Add the event to the event-city section of firebase used to find events based on the city
-            firebaseDatabaseRef.child("event-city").child(event.id).child(event.city).setValue(event.city)
-        }
+        //Map the firebase event to the "created" events section of Firebase
+        firebaseDatabaseRef.child("created").child(userID).child(event.id).setValue(event.city)
+        
+        //Add the event to the event-city section of firebase used to find events based on the city
+        firebaseDatabaseRef.child("event-city").child(event.id).child(event.city).setValue(event.city)
        
     
-    
-        
-        
     }
 }
 

@@ -84,7 +84,7 @@ func addTestDataToFirebase(vc: UIViewController){
             event.upvoteCount = upvoteCount
             event.userCount = userCount
             
-            createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
+            createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, callback: {
                 eventWasCreatedSuccessfully in
                 if eventWasCreatedSuccessfully {
                     count += 1
@@ -132,7 +132,7 @@ func addTestSportDataToFirebase(vc: UIViewController){
             event.upvoteCount = upvoteCount
             event.userCount = userCount
             
-            createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
+            createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, callback: {
                 eventWasCreatedSuccessfully in
                 if eventWasCreatedSuccessfully {
                     count += 1
@@ -188,7 +188,7 @@ func addTestStandardDataToFirebase(vc: UIViewController){
                 //event.printEvent()
                 
                
-                createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, dateChanged: false, callback: {
+                createOrUpdateFirebaseEvent(viewController: vc, event: event, createOrUpdate: .creating, callback: {
                     eventWasCreatedSuccessfully in
                     if eventWasCreatedSuccessfully {
                         count += 1
