@@ -765,7 +765,7 @@
                                         <rect key="frame" x="10" y="130" width="300" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="kwn-TE-lfL"/>
@@ -794,7 +794,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="100" y="0.0" width="50" height="42"/>
+                                                <rect key="frame" x="90" y="0.0" width="50" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="gvx-Ky-ln4"/>
@@ -822,7 +822,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="150" y="0.0" width="80" height="42"/>
+                                                <rect key="frame" x="140" y="0.0" width="90" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="HqI-hz-QT1"/>
@@ -1481,12 +1481,6 @@
                             <constraint firstAttribute="trailing" secondItem="9ly-4h-XTV" secondAttribute="trailing" id="x6y-Ms-xqM"/>
                             <constraint firstItem="9ly-4h-XTV" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="zpJ-jb-Ktt"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="sjr-ur-GUf"/>
-                                <exclude reference="K1r-ii-eaL"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="accountSettingsIcon" destination="Z3D-bz-Ebe" id="UxI-NH-7gY"/>
@@ -3235,15 +3229,27 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Event Description*"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" City: New York (Greater New York City Area)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="r8L-hu-TV9">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-lg-T9o" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="507" width="320" height="24"/>
+                                                        <color key="backgroundColor" name="AccentPrimary"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="YfL-Vh-rax"/>
+                                                            <constraint firstAttribute="height" constant="24" id="GxX-w2-hLE"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway Light" pointSize="14"/>
-                                                        <color key="textColor" name="Text"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                                        <color key="tintColor" name="Medium"/>
+                                                        <inset key="imageEdgeInsets" minX="180" minY="16" maxX="16" maxY="16"/>
+                                                        <state key="normal" title="Select City">
+                                                            <color key="titleColor" name="Medium"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="selectCityButtonTapped:" destination="cy9-2J-sdg" eventType="touchUpInside" id="DAx-AE-Hfo"/>
+                                                        </connections>
+                                                    </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-g7-EtX" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                         <rect key="frame" x="0.0" y="540" width="320" height="36"/>
                                                         <color key="backgroundColor" name="Medium"/>
@@ -3529,7 +3535,6 @@
                         <outlet property="createEventButton" destination="JdC-ya-6gN" id="u3v-WE-dcm"/>
                         <outlet property="createEventButtonContainer" destination="5VA-iC-5T8" id="9t7-Zx-Aw0"/>
                         <outlet property="createEventStackView" destination="NTe-d8-JBS" id="pdb-jP-i4d"/>
-                        <outlet property="eventCityLabel" destination="r8L-hu-TV9" id="8Sc-Z9-JdE"/>
                         <outlet property="eventContactInfo" destination="dwq-yQ-BWN" id="OJN-mz-FNj"/>
                         <outlet property="eventDescription" destination="d8G-QA-bbR" id="HIO-22-gGm"/>
                         <outlet property="eventDuration" destination="XqI-A3-osO" id="IJS-uO-l6t"/>
@@ -3546,6 +3551,7 @@
                         <outlet property="headerBackButtonContainer" destination="8BQ-NV-SH3" id="tVM-Zc-rSM"/>
                         <outlet property="paidSwitch" destination="rmz-v0-rvR" id="joV-7f-tG1"/>
                         <outlet property="selectCategoryButton" destination="1Xu-72-To4" id="veA-JU-S5R"/>
+                        <outlet property="selectCityButton" destination="6fz-lg-T9o" id="8Uc-4r-Ly3"/>
                         <outlet property="selectEventDateButton" destination="fzp-Rv-j0C" id="Dye-hq-u28"/>
                         <outlet property="selectEventTimeButton" destination="xFc-4s-lpO" id="han-M6-PAf"/>
                         <outlet property="timePicker" destination="rb2-OM-jeN" id="Mov-O7-mMa"/>

@@ -17,7 +17,9 @@ class CreateEventViewController: UIViewController {
     
     
     var ref: DatabaseReference!
+    var selectedCityForCreation = "" //the city selected by the user when creating an event
     let categoryDropDown = DropDown()
+    let creationSelectCityDropDown = DropDown()
     let formatter = DateFormatter()
     var selectedCategoryString = "Misc"
     var eventDate = Date()
@@ -51,7 +53,7 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var eventName: UITextView!
     @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var eventLocation: UITextView!
-    @IBOutlet weak var eventCityLabel: UILabel!
+    @IBOutlet weak var selectCityButton: UIButton!
     @IBOutlet weak var eventVenueName: UITextView!
     @IBOutlet weak var eventTicketURL: UITextView!
     @IBOutlet weak var eventURL: UITextView!
@@ -163,6 +165,32 @@ class CreateEventViewController: UIViewController {
     }
     
     
+    @IBAction func selectCityButtonTapped(_ sender: Any) {
+        
+        //Set up category selection dropdown menu
+        creationSelectCityDropDown.anchorView = selectCityButton
+        creationSelectCityDropDown.dataSource = citySelectButtonArray
+        creationSelectCityDropDown.cellConfiguration = { (index, item) in return "\(item)" }
+        
+        creationSelectCityDropDown.selectionAction = { (index: Int, item: String) in
+            let fullCityName = item
+            let cityAbbreviation = getCityAbbreviation(fullCityName: fullCityName)
+            self.selectCityButton.setTitle("City: Greater " + fullCityName + " Area", for: .normal)
+            self.selectedCityForCreation = cityAbbreviation
+        }
+        creationSelectCityDropDown.width = 140
+        creationSelectCityDropDown.backgroundColor = themeMedium
+        creationSelectCityDropDown.textColor = themeDarkGray
+        if let dropDownFont = UIFont(name: "Raleway-Regular",
+                                     size: 14.0) {
+            categoryDropDown.textFont = dropDownFont
+        }
+        creationSelectCityDropDown.bottomOffset = CGPoint(x: 0, y:(creationSelectCityDropDown.anchorView?.plainView.bounds.height)!)
+        creationSelectCityDropDown.show()
+        
+    }
+    
+    
     //If previous screen button is pushed, show discard data alert
     @IBAction func previousScreen(_ sender: UIButton) {
         
@@ -197,6 +225,10 @@ class CreateEventViewController: UIViewController {
             return
         }
         
+        if selectedCityForCreation == "" {
+            displayAlertWithOKButton(text: "Please Select a City")
+        }
+        
         if requiredFieldsAreMissingData() {
             displayAlertWithOKButton(text: "Please Enter All Required Fields")
             return
@@ -218,7 +250,7 @@ class CreateEventViewController: UIViewController {
             return
         }
         
-        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, city: "NYC", address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), venue: eventVenueName.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), phoneNumber: eventPhoneNumber.numberString, ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn, price: "")
+        let newEvent = Event(name: eventName.text.trimmingCharacters(in: .whitespacesAndNewlines), category: category, date: eventDate, city: selectedCityForCreation, address: eventLocation.text.trimmingCharacters(in: .whitespacesAndNewlines), venue: eventVenueName.text.trimmingCharacters(in: .whitespacesAndNewlines), details: eventDescription.text.trimmingCharacters(in: .whitespacesAndNewlines), contact: eventContactInfo.text.trimmingCharacters(in: .whitespacesAndNewlines), phoneNumber: eventPhoneNumber.numberString, ticketURL: eventTicketURL.text.trimmingCharacters(in: .whitespacesAndNewlines), eventURL: eventURL.text.trimmingCharacters(in: .whitespacesAndNewlines), tag1: eventTag1.text.trimmingCharacters(in: .whitespacesAndNewlines), tag2: eventTag2.text.trimmingCharacters(in: .whitespacesAndNewlines), tag3: eventTag3.text.trimmingCharacters(in: .whitespacesAndNewlines), paid: paidSwitch.isOn, price: "")
         newEvent.duration = eventDuration
         newEvent.upvoteCount = selectedEvent.upvoteCount
         newEvent.userCount = selectedEvent.userCount

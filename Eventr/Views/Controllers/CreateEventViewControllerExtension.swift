@@ -310,6 +310,10 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         df.dateFormat = "MMM dd YYYY"
         let dateString = df.string(from: selectedEventDate)
         selectEventDateButton.setTitle(dateString, for: .normal)
+        let cityAbbreviation = selectedEvent.city
+        let fullCityName = getFullCityName(city: selectedEvent.city)
+        selectCityButton.setTitle("City: Greater " + fullCityName + " Area" , for: .normal)
+        selectedCityForCreation = cityAbbreviation
         eventLocation.text = selectedEvent.location
         eventVenueName.text = selectedEvent.venue
         eventDescription.text = selectedEvent.details
