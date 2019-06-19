@@ -66,6 +66,26 @@ class EventSnippet : Comparable {
         
     }
     
+    func getPriceLabel() -> String {
+        if price != "" && price.contains("$"){
+            let formattedPrice = price.replacingOccurrences(of: "$", with: "", options: .literal, range: nil)
+            return formattedPrice
+        }
+        return price
+    }
+    
+    func getDateCurrentTimeZone() -> Date? {
+        guard let gmtDate = self.GMTDate else {
+            return nil
+        }
+        return gmtDate.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0)!, timeZone: Calendar.current.timeZone)
+    }
+    
+    func getDateWithDurationCurrentTimeZone() -> Date {
+        
+        return dateWithDurationAdded.convertToTimeZone(initTimeZone: TimeZone(secondsFromGMT: 0)!, timeZone: Calendar.current.timeZone)
+    }
+    
     static func < (lhs: EventSnippet, rhs: EventSnippet) -> Bool {
         print("ADD COMPARABLE CODE")
         return true

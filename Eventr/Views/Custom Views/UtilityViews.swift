@@ -50,6 +50,21 @@ class CustomFriendCell: UITableViewCell {
     
 }
 
+//Custom cell for events that friends are attending within the tableview
+class CustomFriendEventCell: UITableViewCell {
+    
+    @IBOutlet weak var friendNameLabel: UILabel!
+    @IBOutlet weak var eventNameLabel: UILabel!
+    @IBOutlet weak var primaryView: RoundUIView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var paidIcon: UIImageView!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var categoryIcon: UIImageView!
+    
+    
+}
+
+
 //Class used for event tags
 @IBDesignable
 class CustomLabel: UILabel {

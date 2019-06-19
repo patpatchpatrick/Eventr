@@ -27,8 +27,9 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var friendsSearchField: UITextField!
     @IBOutlet weak var friendsSearchButton: RoundedButton!
-    
     @IBOutlet weak var findFriendsSearchContainer: UIView!
+    
+    @IBOutlet weak var tableViewListDescriptorButton: RoundedButton!
     
     @IBOutlet weak var returnButtonContainer: RoundUIView!
     
@@ -41,10 +42,9 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                                                object: nil)
         
         setUpViewsBasedOnSelectedHeaderSegment()
-        tableFriends.removeAll()
-        tableFriendRequests.removeAll()
-        tableFriendEvents.removeAll()
-        configureFloatingSideButtonDesign(view: returnButtonContainer)
+        clearAllTables()
+        configureButtons()
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -73,20 +73,23 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = friendsTableView.dequeueReusableCell(withIdentifier: "cellFriend", for: indexPath) as? CustomFriendCell{
         
         switch headerSelectedIndex{
         case SEARCH_INDEX:
-            return populateSearchFriendCell(cell: cell, indexPath: indexPath)
+            if let cell = friendsTableView.dequeueReusableCell(withIdentifier: "cellFriend", for: indexPath) as? CustomFriendCell{
+                return populateSearchFriendCell(cell: cell, indexPath: indexPath)}
         case REQUESTS_INDEX:
-            return populateFriendRequestCell(cell: cell, indexPath: indexPath)
+            if let cell = friendsTableView.dequeueReusableCell(withIdentifier: "cellFriend", for: indexPath) as? CustomFriendCell{
+                return populateFriendRequestCell(cell: cell, indexPath: indexPath)}
         case EVENTS_INDEX:
-            return populateFriendEventCell(cell: cell, indexPath: indexPath)
+            if let cell = friendsTableView.dequeueReusableCell(withIdentifier: "cellFriendEvent", for: indexPath) as? CustomFriendEventCell{
+                return populateFriendEventCell(cell: cell, indexPath: indexPath)}
         default:
-            return cell
+            if let cell = friendsTableView.dequeueReusableCell(withIdentifier: "cellFriend", for: indexPath) as? CustomFriendCell{
+                return cell}
         }
         
-        }
+        
         return UITableViewCell()
     }
     
@@ -183,13 +186,41 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    func populateFriendEventCell(cell: CustomFriendCell, indexPath: IndexPath) -> CustomFriendCell{
+    func populateFriendEventCell(cell: CustomFriendEventCell, indexPath: IndexPath) -> CustomFriendEventCell{
         
         let eventSnippet = tableFriendEvents[indexPath.row]
         
-        cell.friendNameLabel.text = eventSnippet.friendWhoIsAttending + " is attending " + eventSnippet.name
+        cell.friendNameLabel.text = eventSnippet.friendWhoIsAttending + " is attending..."
+        cell.eventNameLabel.text = eventSnippet.name
+        if eventSnippet.paid {
+            cell.paidIcon.image = UIImage(named: "eventIconDollar")
+        } else {
+            cell.paidIcon.image = nil
+        }
+         cell.priceLabel.text = eventSnippet.getPriceLabel()
+        
+        cell.categoryIcon.image = eventSnippet.category.image()
 
-        cell.addFriendButton?.tag = indexPath.row
+        //Set the date and time of the event
+        if let eventDate = eventSnippet.getDateCurrentTimeZone() {
+            let df = DateFormatter()
+            df.amSymbol = "AM"
+            df.pmSymbol = "PM"
+            df.dateFormat = "MMM dd YYYY ' - ' h:mm a"
+            let dateString = df.string(from: eventDate)
+            cell.dateLabel.text = dateString
+        }
+        
+        if eventSnippet.duration != 0 {
+            let df = DateFormatter()
+            df.amSymbol = "AM"
+            df.pmSymbol = "PM"
+            df.dateFormat = "h:mm a"
+            let endTimeString = df.string(from: eventSnippet.getDateWithDurationCurrentTimeZone())
+            cell.dateLabel.text?.append(" -> " + endTimeString)
+        }
+        
+        //cell.addFriendButton?.tag = indexPath.row
     
         //Configure design for the primary view
         configurePrimaryTableViewCellDesign(view: cell.primaryView)
@@ -233,11 +264,14 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch headerSelectedIndex{
         case SEARCH_INDEX:
-            findFriendsSearchContainer.isHidden = false
+            showSearchContainer()
+            hideListDescriptor()
         case REQUESTS_INDEX:
-            findFriendsSearchContainer.isHidden = true
+            showListDescriptor(textToDisplay: "Friend Requests")
+            hideSearchContainer()
         case EVENTS_INDEX:
-            findFriendsSearchContainer.isHidden = true
+            showListDescriptor(textToDisplay: "My Friends Activity")
+            hideSearchContainer()
         default:
             print("Default")
         }
