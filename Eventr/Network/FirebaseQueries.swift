@@ -267,13 +267,35 @@ func queryNearbyEvents(centerLocation: CLLocation?, radius: Double){
 //Query list of Firebase events that were favorited by the user and add them to the eventsTableView
 func queryFirebaseFavoriteEvents(){
     
+     //Query the ID of the event, then query the city of the event, then load the event and add it to the table view 
+    
     guard let userID = Auth.auth().currentUser?.uid else { return }
     tableEvents.removeAll()
     reloadEventTableView()
     firebaseDatabaseRef.child("favorited").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addEventsToTableViewByKey(eventIDMap: dict, isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: false)
+        for eventID in dict.allKeys {
+            
+            guard let eventIDString = eventID as? String else {return}
+            
+            firebaseDatabaseRef.child("event-city").child(eventIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let value = snapshot.value as? NSDictionary {
+                    
+                    print("FAVORITE DICTIONARY")
+                    print(value)
+                    var cityName : String?
+                    for key in value.allKeys {
+                        cityName = key as? String
+                    }
+                    guard let cityString = cityName else {return}
+                    
+                     addEventsToTableViewByKey(eventIDMap: [eventID : cityString], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: false)
+                    
+                }})
+            
+        }
+
     })
     
 }
@@ -281,13 +303,34 @@ func queryFirebaseFavoriteEvents(){
 //Query list of Firebase events that the user is attending and add them to the eventsTableView
 func queryFirebaseAttendingEvents(){
     
+    //Query the ID of the event, then query the city of the event, then load the event and add it to the table view
+    
     guard let userID = Auth.auth().currentUser?.uid else { return }
     tableEvents.removeAll()
     reloadEventTableView()
     firebaseDatabaseRef.child("attendingUsers").child(userID).observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
-        addEventsToTableViewByKey(eventIDMap: dict, isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: false)
+        for eventID in dict.allKeys {
+            
+            guard let eventIDString = eventID as? String else {return}
+            
+            firebaseDatabaseRef.child("event-city").child(eventIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let value = snapshot.value as? NSDictionary {
+                    
+                    print("ATTENDING DICTIONARY")
+                    print(value)
+                    var cityName : String?
+                    for key in value.allKeys {
+                        cityName = key as? String
+                    }
+                    guard let cityString = cityName else {return}
+                    
+                    addEventsToTableViewByKey(eventIDMap: [eventID : cityString], isUserCreatedEvent: false, addToListsInSortedOrder: true, addToAllEventsList: false)
+                    
+                }})
+            
+        }
     })
     
 }
