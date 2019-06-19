@@ -226,7 +226,7 @@
                                                                                             <color key="tintColor" name="AccentPrimary"/>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
-                                                                                            <rect key="frame" x="8" y="20" width="44.5" height="20"/>
+                                                                                            <rect key="frame" x="9" y="20" width="42" height="20"/>
                                                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                             <color key="textColor" name="Text"/>
                                                                                             <nil key="highlightedColor"/>
@@ -3000,7 +3000,7 @@
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nu-CU-azq">
-                                                                                    <rect key="frame" x="3" y="15" width="44.5" height="20"/>
+                                                                                    <rect key="frame" x="4" y="15" width="42" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>

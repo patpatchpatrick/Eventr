@@ -187,7 +187,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let eventSnippet = tableFriendEvents[indexPath.row]
         
-        cell.friendNameLabel.text = eventSnippet.name
+        cell.friendNameLabel.text = eventSnippet.friendWhoIsAttending + " is attending " + eventSnippet.name
 
         cell.addFriendButton?.tag = indexPath.row
     

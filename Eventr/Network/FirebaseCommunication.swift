@@ -312,9 +312,9 @@ func addFriendToFirebaseFollowers(friend: Friend){
     
     guard let userID = Auth.auth().currentUser?.uid else { return}
     
-    firebaseDatabaseRef.child("following").child(userID).child(friend.userID).setValue(friend.userID)
+    firebaseDatabaseRef.child("following").child(userID).child(friend.userID).setValue(friend.name)
     
-    firebaseDatabaseRef.child("followers").child(friend.userID).child(userID).setValue(userID)
+    firebaseDatabaseRef.child("followers").child(friend.userID).child(userID).setValue(friend.name)
     
     firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").observeSingleEvent(of: .value, with: {(numberOfFollowersSnap) in
 
@@ -346,9 +346,9 @@ func approveFriendRequestInFirebase(friend: Friend, callback: @escaping ((Bool) 
     
     guard let userID = Auth.auth().currentUser?.uid else { return}
     
-    firebaseDatabaseRef.child("following").child(friend.userID).child(userID).setValue(userID)
+    firebaseDatabaseRef.child("following").child(friend.userID).child(userID).setValue(friend.name)
     
-    firebaseDatabaseRef.child("followers").child(userID).child(friend.userID).setValue(friend.userID)
+    firebaseDatabaseRef.child("followers").child(userID).child(friend.userID).setValue(friend.name)
     
     firebaseDatabaseRef.child("follow-count").child(userID).child("number").observeSingleEvent(of: .value, with: {(numberOfFollowersSnap) in
         

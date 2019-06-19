@@ -14,6 +14,7 @@ import Foundation
 class EventSnippet : Comparable {
     
     var name: String = ""
+    var friendWhoIsAttending: String = "" //friend who is attending this particular event
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
     var GMTDate: Date? // Event date in GMT timezone
@@ -22,6 +23,48 @@ class EventSnippet : Comparable {
     var city: String = ""
     var paid: Bool = false
     var price: String = ""
+    
+    init(dict: NSDictionary, eventID: String, friendName: String){
+        
+        if let nameDict = dict["name"] as? String {
+            self.name = nameDict
+        }
+        if let categoryInt = dict["category"] as? Int {
+            self.category = intToEventCategory(integer: categoryInt)
+        }
+        if let dateDouble = dict["date"] as? Double {
+            
+            //Date is stored in Firebase in GMT time (unix time)
+            self.GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
+            
+        }
+        if let durationInt = dict["duration"] as? Int {
+            self.duration = durationInt
+        }
+        setUpDurationDate()
+        if let cityDict = dict["city"] as? String {
+            self.city = cityDict
+        }
+        if let stringPaid = dict["paid"] as? String {
+            self.paid = (stringPaid == "1") ? true : false
+        }
+        if let stringPrice = dict["price"] as? String {
+            self.price = stringPrice
+        }
+        
+        self.id = eventID
+        self.friendWhoIsAttending = friendName
+        
+    }
+    
+    func setUpDurationDate(){
+        
+        guard let gmtDate = GMTDate else {return}
+        if duration != 0 {
+            dateWithDurationAdded = gmtDate.addingTimeInterval(TimeInterval(60*duration))
+        }
+        
+    }
     
     static func < (lhs: EventSnippet, rhs: EventSnippet) -> Bool {
         print("ADD COMPARABLE CODE")
