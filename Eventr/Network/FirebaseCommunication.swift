@@ -188,27 +188,26 @@ func attendFirebaseEvent(event: Event){
     guard let userID = Auth.auth().currentUser?.uid else { return }
     
     //Mark that the user is attending the event in Firebase
-    //First, get the city that the event is in
-    //Then, add user to list of users attending the event and add event to the list of events that the user attended
-
-    firebaseDatabaseRef.child("event-city").child(event.id).observeSingleEvent(of: .value, with: { (snapshot) in
-              if let value = snapshot.value as? NSDictionary {
-                
-                print("ATTENDING DICTIONARY")
-                print(value)
-                var cityName : String?
-                for key in value.allKeys {
-                    cityName = key as? String
-                }
-                guard let cityString = cityName else {return}
-                
-            firebaseDatabaseRef.child("attendingEvents").child(event.id).child(userID).setValue(userID)
-                
-            firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).setValue(cityString)
-                
-            }})
+    //Add user to list of users attending the event and add event to the list of events that the user attended
+    //Gather data that will be stored under the list of events the user is attending in firebase
+    //This data is used when querying events that other users are attending in the "Friends" view controller
+    guard let eventDate = event.GMTDate else {return}
+    let eventDateDouble = Double(eventDate.timeIntervalSince1970)
+    let paidString = (event.paid) ? "1" : "0"
+    let eventAttendingData = [
+        "name":  event.name,
+        "category": event.category.index(),
+        "date": eventDateDouble,
+        "dateSort": 0 - eventDateDouble,
+        "duration": event.duration,
+        "city": event.city,
+        "paid" : paidString,
+        "price" : event.price,
+        ] as [String : Any]
     
-
+    firebaseDatabaseRef.child("attendingEvents").child(event.id).child(userID).setValue(userID)
+    firebaseDatabaseRef.child("attendingUsers").child(userID).child(event.id).setValue(eventAttendingData)
+    
    //Update the count of users attending the event.  If no one is attending, set the count to 1.
     firebaseDatabaseRef.child("events").child(event.city).child(event.id).child("userCount").observeSingleEvent(of: .value, with: { snapshot in
         if !snapshot.exists() {

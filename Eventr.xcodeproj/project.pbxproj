@@ -44,6 +44,7 @@
 		F653688C2272618200861E0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F653688B2272618200861E0D /* Assets.xcassets */; };
 		F653688F2272618200861E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F653688D2272618200861E0D /* LaunchScreen.storyboard */; };
 		F65368972272678C00861E0D /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368962272678C00861E0D /* UtilityViews.swift */; };
+		F675F4C222BABC07006F7827 /* EventSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F675F4C122BABC07006F7827 /* EventSnippet.swift */; };
 		F67E98B8228BB16A0070E547 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67E98B7228BB16A0070E547 /* Notifications.swift */; };
 		F6A071D622A86D5C002058BF /* CustomCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A071D522A86D5C002058BF /* CustomCategoryButton.swift */; };
 		F6A071D822A86D87002058BF /* CustomCategoryButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A071D722A86D87002058BF /* CustomCategoryButton.xib */; };
@@ -116,6 +117,7 @@
 		F653688E2272618200861E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F65368902272618200861E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F65368962272678C00861E0D /* UtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
+		F675F4C122BABC07006F7827 /* EventSnippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSnippet.swift; sourceTree = "<group>"; };
 		F67E98B7228BB16A0070E547 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		F6A071D522A86D5C002058BF /* CustomCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryButton.swift; sourceTree = "<group>"; };
 		F6A071D722A86D87002058BF /* CustomCategoryButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCategoryButton.xib; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				F6ADA4C72273CBA000948B7D /* EventCategories.swift */,
 				F62733012273873D00FDA681 /* Event.swift */,
+				F675F4C122BABC07006F7827 /* EventSnippet.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				F61030672282141C00E6D5CE /* CreateEventViewControllerExtension.swift in Sources */,
 				F6F6A6FE22B08E630069154D /* FriendsViewController.swift in Sources */,
 				F6113F47227654D200CAD961 /* StartViewController.swift in Sources */,
+				F675F4C222BABC07006F7827 /* EventSnippet.swift in Sources */,
 				F6F2DAF0228B5D9100BB1F36 /* UserDefaultsManager.swift in Sources */,
 				F611F52E228352F400CB02DE /* ViewControllerCalendarExtension.swift in Sources */,
 				F6113F492276589400CAD961 /* SignUpViewController.swift in Sources */,

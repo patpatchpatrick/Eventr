@@ -11,6 +11,7 @@ import UIKit
 var selectedFriend: Friend = Friend(name: "", userID: "")
 var tableFriends: [Friend] = []
 var tableFriendRequests: [Friend] = []
+var tableFriendEvents: [EventSnippet] = []
 
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -42,6 +43,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         setUpViewsBasedOnSelectedHeaderSegment()
         tableFriends.removeAll()
         tableFriendRequests.removeAll()
+        tableFriendEvents.removeAll()
         configureFloatingSideButtonDesign(view: returnButtonContainer)
     }
     
@@ -64,12 +66,10 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         case REQUESTS_INDEX:
             return tableFriendRequests.count
         case EVENTS_INDEX:
-            print("EVENTS TABLE")
+            return tableFriendEvents.count
         default:
             return tableFriends.count
-
         }
-        return tableFriends.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,7 +81,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         case REQUESTS_INDEX:
             return populateFriendRequestCell(cell: cell, indexPath: indexPath)
         case EVENTS_INDEX:
-            return cell
+            return populateFriendEventCell(cell: cell, indexPath: indexPath)
         default:
             return cell
         }
@@ -183,6 +183,21 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    func populateFriendEventCell(cell: CustomFriendCell, indexPath: IndexPath) -> CustomFriendCell{
+        
+        let eventSnippet = tableFriendEvents[indexPath.row]
+        
+        cell.friendNameLabel.text = eventSnippet.name
+
+        cell.addFriendButton?.tag = indexPath.row
+    
+        //Configure design for the primary view
+        configurePrimaryTableViewCellDesign(view: cell.primaryView)
+        
+        return cell
+        
+    }
+    
     
     @IBAction func headerSegmentChanged(_ sender: UISegmentedControl) {
         
@@ -206,7 +221,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             friendsTableView.setEmptyMessage("You do not have any new friend requests")
             queryFriendRequestsInFirebase()
         case EVENTS_INDEX:
-            print("POPULATE EVENTS IN TABLE VIEW")
+            friendsTableView.setEmptyMessage("It appears that none of your friends are attending events in the near future")
+            queryEventsFriendsAreAttendingInFirebase()
         default:
             print("Default")
         }

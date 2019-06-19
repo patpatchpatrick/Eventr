@@ -513,6 +513,53 @@ func queryFriendRequestsInFirebase(){
     
 }
 
+func queryEventsFriendsAreAttendingInFirebase(){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    tableFriendEvents.removeAll()
+    firebaseDatabaseRef.child("following").child(userID).observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        guard let dict = snapshot.value as? NSDictionary else { return }
+        for friendsUserIsFollowing in dict.allKeys {
+            
+            print("Friends User Is Following")
+            print(friendsUserIsFollowing)
+            guard let friendUserIDString = friendsUserIsFollowing as? String else {return}
+            
+            //beforeDate is equal to today's date converted to GMT time zone so that it can be compared to other dates (since dates are stored in GMT time in Firebase
+            let beforeDate = Double((Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
+            firebaseDatabaseRef.child("attendingUsers").child(friendUserIDString).queryOrdered(byChild: "dateSort").queryEnding(atValue: 0 - beforeDate).observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                guard let dict = snapshot.value as? NSDictionary else { return }
+                for eventID in dict.allKeys {
+                    let eventValues = snapshot.childSnapshot(forPath: eventID as! String).value
+                    print(eventValues)
+                    if let eventValuesDict = eventValues as? NSDictionary {
+                        
+                        let eventSnippet = EventSnippet()
+                        
+                        if let nameDict = eventValuesDict["name"] as? String {
+                            eventSnippet.name = nameDict
+                        }
+                        
+                        print("FRIENDS EVENTS DICT")
+                        print(dict)
+                        print("FRIENDS EVENTS NAME")
+                        print(eventSnippet.name)
+                        
+                        tableFriendEvents.append(eventSnippet)
+                        reloadFriendTableView()
+                        
+                    }
+                }
+                
+            })
+        }
+    })
+    
+}
+
 
 
 func queryIfAccountIsPrivate(userID: String, callback: @escaping ((Bool, Bool) -> Void)){
