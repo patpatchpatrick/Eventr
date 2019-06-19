@@ -482,7 +482,7 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Idu-z7-1jJ">
-                                                                                            <rect key="frame" x="5" y="0.0" width="20.000000000000227" height="20.000000000000227"/>
+                                                                                            <rect key="frame" x="5" y="0.0" width="20" height="20"/>
                                                                                             <color key="tintColor" name="Dark"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="20" id="0US-6l-6k9"/>

@@ -504,11 +504,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let fullCityName = item
             let cityAbbreviation = getCityAbbreviation(fullCityName: fullCityName)
             self.mainCitySelectionButton.setTitle(cityAbbreviation, for: .normal)
+            var cityChanged = false
+            if cityAbbreviation != selectedCity {cityChanged = true}
             selectedCity = cityAbbreviation
             //Set the user defaults so the selected city is saved and used as the default the next time the app is launched
             UserDefaults.standard.set(selectedCity, forKey: selectedCityPrefKey)
-            print("SELECTED CITY")
-            print(selectedCity)
+            
+            if cityChanged {
+                clearEventTableView()  //New city was selected, so clear the tableview
+                self.queryFirebaseEvents(city: selectedCity, firstPage: true)
+            }
+            
         }
         citySelectDropDown.backgroundColor = themeMedium
         citySelectDropDown.textColor = themeAccentPrimary
