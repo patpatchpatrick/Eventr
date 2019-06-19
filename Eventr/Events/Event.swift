@@ -262,7 +262,5 @@ class Event : Comparable {
         }
         return price
     }
-    
-    
-    
+
 }
