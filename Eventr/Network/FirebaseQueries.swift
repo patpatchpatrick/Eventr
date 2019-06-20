@@ -666,3 +666,22 @@ func queryIfFollowingFriendInFirebase(friend: Friend, callback: @escaping ((Int)
     
 }
 
+func queryNotificationTotalsInFirebase(callback: @escaping ((Int) -> Void)){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    firebaseDatabaseRef.child("request-count").child(userID).child("number").observeSingleEvent(of: .value, with: {(notificationSnap) in
+        
+        print("SNAP")
+        print(notificationSnap)
+        
+         guard let notificationCount = notificationSnap.value as? Int else {return}
+        
+        print("COUNT")
+        print(notificationCount)
+         callback(notificationCount)
+        
+    })
+    
+}
+

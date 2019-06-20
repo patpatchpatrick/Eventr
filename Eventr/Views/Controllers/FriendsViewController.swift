@@ -28,6 +28,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var searchHeaderButton: RoundedButton!
     @IBOutlet weak var requestHeaderButton: RoundedButton!
     
+    @IBOutlet weak var notificationCountLabel: UILabel!
+    
     @IBOutlet weak var friendsTableView: UITableView!
     
     @IBOutlet weak var friendsSearchField: UITextField!
@@ -46,6 +48,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                                                name:Notification.Name("UPDATED_FRIEND_DATA"),
                                                object: nil)
         
+        queryAndUpdateNotificationLabels()
         setUpViewsBasedOnSelectedHeaderSegment()
         clearAllTables()
         configureButtons()

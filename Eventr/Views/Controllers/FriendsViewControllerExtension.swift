@@ -59,4 +59,29 @@ extension FriendsViewController{
         tableFriendEvents.removeAll()
     }
     
+    func queryAndUpdateNotificationLabels(){
+    
+        //Query Firebase for the count of notifications that the user has
+        //Update the header button and associated label to show the count of notifications
+        //If count is greater than 0, the button should be red, otherwise it should be green
+        
+        queryNotificationTotalsInFirebase(callback: {
+            notificationCount in
+            
+            if notificationCount > 0 {
+                
+                self.notificationCountLabel.isHidden = false
+                self.notificationCountLabel.text = String(notificationCount)
+                self.requestHeaderButton.setImage(UIImage(named: "friendRequestNotificationRed"), for: .normal)
+                
+            } else {
+                
+                self.notificationCountLabel.isHidden = true
+                self.requestHeaderButton.setImage(UIImage(named: "friendRequestNotificationGreen"), for: .normal)
+            }
+        
+        })
+        
+    }
+    
 }

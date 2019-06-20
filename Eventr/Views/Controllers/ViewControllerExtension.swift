@@ -547,7 +547,7 @@ extension ViewController{
         setUpAccountSettingsImage()
         configureFloatingSideButtonDesign(view: headerButtonAccountContainer)
         configureFloatingSideButtonDesign(view: headerButtonCreateEventContainer)
-        configureFloatingSideButtonDesign(view: headerButtonFriendsContainer)
+        configureFloatingSideButtonDesign(view: headerFriendsButton)
         
     }
     

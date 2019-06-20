@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var headerButtonAccountContainer: RoundUIView!
     
-    @IBOutlet weak var headerButtonFriendsContainer: RoundUIView!
+    @IBOutlet weak var headerFriendsButton: RoundedButton!
     
     
     @IBOutlet weak var sideMenu: UIView!
