@@ -12,7 +12,8 @@ import UIKit
 var count = 0
 
 let testMusicData: [String] = [
-   
+    "Empire of the Sun|1561413600.0||1300 Van Ness Avenue. San Francisco, CA, US|The Regency Ballroom|The Regency Ballroom||||0",
+    "Judas Priest|1561413600.0||982 Market Street. San Francisco, CA, US|The Warfield|The Warfield|https://websterhall.com/|$35||1"
 ]
 
 let testSportData: [String] = [
@@ -54,18 +55,18 @@ func manuallyDeleteEvent(event: Event){
 
 //Class used to manually add data to Firebase if necessary
 
-func addTestDataToFirebase(vc: UIViewController){
+func addTestMusicDataToFirebase(vc: UIViewController){
     
     for eventString in testMusicData {
         
         let eventStringArr = eventString.components(separatedBy: "|")
-        let dateString = eventStringArr[2]
+        let dateString = eventStringArr[1]
         let dateDouble = Double(dateString)!
         let GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
-        let city = "NYC"
+        let city = SF
         let address = eventStringArr[3]
         let venue = eventStringArr[4]
-        let name = eventStringArr[1] + " at " + venue
+        let name = eventStringArr[0] + " at " + venue
         var upvoteCount = 0
         var userCount = 0
         let eventLink = eventStringArr[6]
@@ -75,8 +76,8 @@ func addTestDataToFirebase(vc: UIViewController){
             userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
         }
         let category = stringToEventCategory(string: "Music")
-        let tag1 = "Concert"
-        let tag2 = "NY"
+        let tag1 = "San Francisco"
+        let tag2 = "Concert"
         let tag3 = "Show"
         
         if name != nil && GMTDate != nil && address != nil && venue != nil {
@@ -149,16 +150,21 @@ func addTestSportDataToFirebase(vc: UIViewController){
     
 }
 
-func addTestStandardDataToFirebase(vc: UIViewController){
+func addTestStandardDataToFirebase(vc: UIViewController, categoryString: String, city: String, arrayToParse: [String], addDurationToTime: Bool, durationHoursToAdd: Double, tag1: String, tag2: String, tag3: String){
     
-    for eventString in testStandardData {
+    //DEFAULT DURATION HOURS TO ADD FOR SPORTS is 7
+    
+    for eventString in arrayToParse {
         
         let eventStringArr = eventString.components(separatedBy: "|")
         let dateString = eventStringArr[1]
         let duration = Int(eventStringArr[2])
         if let dateDouble = Double(dateString){
-        let GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble + 25200))
-        let city = "NYC"
+             var GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble))
+            if addDurationToTime{
+                GMTDate = Date(timeIntervalSince1970: TimeInterval(dateDouble + durationHoursToAdd*60.0*60.0))
+            }
+        let city = city
         let name = eventStringArr[0]
         let address = eventStringArr[3]
         let venue = eventStringArr[4]
@@ -172,10 +178,10 @@ func addTestStandardDataToFirebase(vc: UIViewController){
                 upvoteCount = (multiplier + 1) * Int(arc4random_uniform(17) + 1)
                 userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
             }
-            let category = stringToEventCategory(string: "Food")
-            let tag1 = "Food"
-            let tag2 = "Summer"
-            let tag3 = "Drink"
+            let category = stringToEventCategory(string: categoryString)
+            let tag1 = tag1
+            let tag2 = tag2
+            let tag3 = tag3
             
             if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
                 let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name + " @ " + venue, contact: "", phoneNumber: phone, ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)

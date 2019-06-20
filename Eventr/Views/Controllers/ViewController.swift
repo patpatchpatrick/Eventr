@@ -157,7 +157,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         updateSelectedQueryButtonStyle()
         loadInitialListOfEvents()
         
-        //addTestStandardDataToFirebase(vc: self)
+        //addTestStandardDataToFirebase(vc: self, categoryString: "Music", city: SF, arrayToParse: testMusicData, addDurationToTime: true, durationHoursToAdd: 12.0, tag1: "Bay Area", tag2: "Concerts", tag3: "Show")
   
     }
     
