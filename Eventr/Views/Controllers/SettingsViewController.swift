@@ -11,14 +11,19 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
+var accountNotConfigured = false
+
 class SettingsViewController: UIViewController {
     
     
-    @IBOutlet weak var userAccountImage: RoundedImage!
-    @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var settingsScreenTitle: UILabel!
+    
+    @IBOutlet weak var userAccountImageButton: RoundedButton!
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var settingsButtonContainer: RoundUIView!
     @IBOutlet weak var deleteAccountButton: RoundedButton!
+    
+    @IBOutlet weak var createAccountButton: RoundedButton!
     
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -27,14 +32,41 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var usernameDiscardButton: UIButton!
     @IBOutlet weak var usernameAcceptButton: UIButton!
     
+    @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var nameEntryContainer: UIView!
+    @IBOutlet weak var nameEntryTextField: UITextField!
+    @IBOutlet weak var nameDiscardButton: UIButton!
+    @IBOutlet weak var nameAcceptButton: UIButton!
+    
+    @IBOutlet weak var privateAccountSwitch: UISwitch!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadUserData()
+        configureViewsBasedOnIfUserIsCreatingAccount()
         configureViewDesign()
-        configureDeleteAccountButton()
         configureUserNameEntryFields()
+        configureNameEntryFields()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+         configureViewsBasedOnIfUserIsCreatingAccount()
+    }
+    
+    func configureViewsBasedOnIfUserIsCreatingAccount(){
+        if accountNotConfigured {
+            settingsScreenTitle.text = "Create Account"
+            deleteAccountButton.isHidden = true
+            createAccountButton.isHidden = false
+            settingsButtonContainer.isHidden = true
+        } else {
+            settingsScreenTitle.text = "Settings"
+            deleteAccountButton.isHidden = false
+            createAccountButton.isHidden = true
+            settingsButtonContainer.isHidden = false
+        }
     }
     
     
@@ -44,7 +76,7 @@ class SettingsViewController: UIViewController {
             let data = try? Data(contentsOf: pic)
             if let imageData = data {
                 let image = UIImage(data: imageData)
-                userAccountImage.image = image
+                userAccountImageButton.setImage(image, for: .normal)
                 
             }
             
@@ -87,16 +119,34 @@ class SettingsViewController: UIViewController {
         
     }
     
-    func configureDeleteAccountButton(){
+    func configureNameEntryFields(){
         
-        if userIsNotLoggedIn() {
-            deleteAccountButton.isHidden = true
+        if userIsNotLoggedIn(){
+            nameEntryContainer.isHidden = true
+            accountNameLabel.isHidden = false
         } else {
-            deleteAccountButton.isHidden = false
+            //If user has a name, display the name in the name label
+            //If user doesn't have name, display the name entry container so they can create one
+            nameEntryContainer.isHidden = true
+            accountNameLabel.isHidden = true
+            queryIfUserHasName(callback: {
+                hasName, name in
+                if hasName{
+                    self.nameEntryContainer.isHidden = true
+                    self.accountNameLabel.isHidden = false
+                    self.accountNameLabel.text = name
+                } else {
+                    self.nameEntryContainer.isHidden = false
+                    self.accountNameLabel.isHidden = true
+                }
+            })
+            
         }
         
         
+        
     }
+    
     
     func configureViewDesign(){
         accountNameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0
@@ -104,6 +154,7 @@ class SettingsViewController: UIViewController {
         userEmailLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0)
         configureFloatingSideButtonDesign(view: settingsButtonContainer)
         configureFloatingSideButtonDesign(view: deleteAccountButton)
+        configureFloatingSideButtonDesign(view: createAccountButton)
         usernameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0)
         
     }
@@ -137,6 +188,7 @@ class SettingsViewController: UIViewController {
                 self.usernameLabel.text = requestedUsername
                 self.usernameLabel.isHidden = false
                 self.usernameEntryContainer.isHidden = true
+                setPrivateAccountStatusInFirebase(accountIsPrivate: self.privateAccountSwitch.isOn) //The private status on the account is set when the username is created because the username is required, and we want to ensure that the user has their private status set
             } else {
                 self.displayAlertWithOKButton(text: "Username taken. Please try another.")
             }
@@ -147,11 +199,46 @@ class SettingsViewController: UIViewController {
     }
     
     
+    @IBAction func nameDiscardButtonTapped(_ sender: UIButton) {
+        //Clear the text in the name field
+        nameEntryTextField.text = ""
+    }
+    
+    
+    @IBAction func nameAcceptButtonTapped(_ sender: UIButton) {
+        
+        guard let nameText = nameEntryTextField.text else {return}
+        let selectedName = nameText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if selectedName.count < 2 {
+            displayAlertWithOKButton(text: "Name must be at least 2 characters long")
+            return
+        }
+        if selectedName.count > 27 {
+            displayAlertWithOKButton(text: "Name exceeds maximum length")
+            return
+        }
+        
+        submitNameToFirebase(name: selectedName)
+        self.accountNameLabel.text = selectedName
+        self.accountNameLabel.isHidden = false
+        self.nameEntryContainer.isHidden = true
+        
+    }
+    
+    
     
     @IBAction func privateAccountSwitchTapped(_ sender: UISwitch) {
         
         setPrivateAccountStatusInFirebase(accountIsPrivate: sender.isOn)
         
+    }
+    
+    
+    @IBAction func createAccountButtonTapped(_ sender: RoundedButton) {
+        
+            accountNotConfigured = false
+            self.performSegueToReturnBack()
     }
     
     

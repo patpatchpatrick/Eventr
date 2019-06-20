@@ -157,6 +157,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         updateSelectedQueryButtonStyle()
         loadInitialListOfEvents()
         
+        queryIfUserHasUsername(callback: {
+            hasUserName, userName in
+            if !hasUserName{
+                accountNotConfigured = true
+                self.performSegue(withIdentifier: "settingsSegue", sender: self)
+            }
+        })
+        
+        
         //addTestStandardDataToFirebase(vc: self, categoryString: "Sports", city: SF, arrayToParse: testSportData, addDurationToTime: true, durationHoursToAdd: 0.0, tag1: "Bay Area", tag2: "Sports", tag3: "Event")
   
     }

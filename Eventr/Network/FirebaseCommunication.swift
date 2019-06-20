@@ -303,6 +303,14 @@ func submitUserNameIfUnique(username: String, callback: @escaping ((Bool) -> Voi
     
 }
 
+func submitNameToFirebase(name: String){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    firebaseDatabaseRef.child("user-settings").child(userID).child("name").setValue(name)
+    
+}
+
 func addFriendToFirebaseFollowers(friend: Friend){
     
     //Follow the friend in Firebase

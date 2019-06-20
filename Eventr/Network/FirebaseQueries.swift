@@ -468,6 +468,30 @@ func queryIfUserHasUsername(callback: @escaping ((Bool,String) -> Void)) {
     
 }
 
+func queryIfUserHasName(callback: @escaping ((Bool,String) -> Void)) {
+    
+    //Returns user's nameif they set one
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    //Checking username existence
+    firebaseDatabaseRef.child("user-settings").child(userID).child("name").observeSingleEvent(of: .value, with: {(nameSnap) in
+        
+        print("QUERYING NAME")
+        print(nameSnap)
+        //If user has username, return true/username, otherwise return false
+        if nameSnap.exists(){
+            guard let name = nameSnap.value as? String else {return}
+            print(name)
+            callback(true, name)
+        }else{
+            callback(false, "")
+        }
+        
+    })
+    
+}
+
 func queryFriendsInFirebase(username: String, callback: @escaping ((Bool,Friend?) -> Void)) {
     
     //Check if a particular friend (username) exists, if so, return true and the userID (via callback).
