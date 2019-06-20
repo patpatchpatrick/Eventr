@@ -268,7 +268,7 @@ extension CreateEventViewController: JTAppleCalendarViewDelegate, JTAppleCalenda
         
         if Double(date.timeIntervalSinceNow) > -ONE_DAY {
             let dailyCount = prefs.object(forKey: dailyMaximumNumberKey) as? Int
-            if dailyCount != nil && dailyCount! >= 100 {
+            if dailyCount != nil && dailyCount! >= 5 {
                 return true
             }
         }
