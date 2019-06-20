@@ -570,7 +570,7 @@ extension ViewController{
     }
     
     func configureSideMenu(){
-        configureStandardViewDesignWithShadow(view: sideMenu, xOffset: 0.0, yOffset: 100, opacity: 0.7)
+        configureStandardViewDesignWithShadow(view: sideMenu, xOffset: 0.0, yOffset: 100, radius: 5.0, opacity: 0.7)
         configureSideMenuContainers()
         configureBackgroundViewBlur()
         setUpLogOutIcon()

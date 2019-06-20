@@ -33,12 +33,12 @@ func configureMainButtonDesign(button: RoundedButton){
 }
 
 //Design used for any view that needs custom shadow settings
-func configureStandardViewDesignWithShadow(view: UIView, xOffset: CGFloat, yOffset: CGFloat, opacity: Float) {
+func configureStandardViewDesignWithShadow(view: UIView, xOffset: CGFloat, yOffset: CGFloat, radius: CGFloat, opacity: Float) {
     
     view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
     view.layer.shadowOffset = CGSize(width: xOffset, height: yOffset)
     view.layer.shadowOpacity = opacity
-    view.layer.shadowRadius = 5.0
+    view.layer.shadowRadius = radius
     view.layer.masksToBounds = false
     
 }

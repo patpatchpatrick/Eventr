@@ -23,6 +23,11 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     let REQUESTS_INDEX = 2
     var headerSelectedIndex = 0 //Variable to keep track of which index is selected in the header
     
+    
+    @IBOutlet weak var eventHeaderButton: RoundedButton!
+    @IBOutlet weak var searchHeaderButton: RoundedButton!
+    @IBOutlet weak var requestHeaderButton: RoundedButton!
+    
     @IBOutlet weak var friendsTableView: UITableView!
     
     @IBOutlet weak var friendsSearchField: UITextField!
@@ -253,18 +258,6 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    @IBAction func headerSegmentChanged(_ sender: UISegmentedControl) {
-        
-        headerSelectedIndex = sender.selectedSegmentIndex
-        
-        setUpViewsBasedOnSelectedHeaderSegment()
-        
-        populateTableViewWithDataBasedOnHeader()
-        
-        reloadFriendTableView()
-        
-        
-    }
     
     func populateTableViewWithDataBasedOnHeader(){
         
@@ -287,12 +280,27 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch headerSelectedIndex{
         case SEARCH_INDEX:
+            UIView.animate(withDuration: 0.5){
+                self.eventHeaderButton.alpha = 0.25
+                self.searchHeaderButton.alpha = 1
+                self.requestHeaderButton.alpha = 0.25
+            }
             showSearchContainer()
             hideListDescriptor()
         case REQUESTS_INDEX:
+            UIView.animate(withDuration: 0.5){
+                self.eventHeaderButton.alpha = 0.25
+                self.searchHeaderButton.alpha = 0.25
+                self.requestHeaderButton.alpha = 1
+            }
             showListDescriptor(textToDisplay: "Friend Requests")
             hideSearchContainer()
         case EVENTS_INDEX:
+            UIView.animate(withDuration: 0.5){
+                self.eventHeaderButton.alpha = 1
+                self.searchHeaderButton.alpha = 0.25
+                self.requestHeaderButton.alpha = 0.25
+            }
             showListDescriptor(textToDisplay: "My Friends Activity")
             hideSearchContainer()
         default:
@@ -449,5 +457,56 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-
+    
+    @IBAction func eventHeaderButtonTapped(_ sender: UIButton) {
+        
+        if headerSelectedIndex != EVENTS_INDEX {
+            
+            headerSelectedIndex = EVENTS_INDEX
+            
+            setUpViewsBasedOnSelectedHeaderSegment()
+            
+            populateTableViewWithDataBasedOnHeader()
+            
+            reloadFriendTableView()
+            
+        }
+        
+    }
+    
+    
+    @IBAction func searchHeaderButtonTapped(_ sender: RoundedButton) {
+        
+        if headerSelectedIndex != SEARCH_INDEX {
+            
+            headerSelectedIndex = SEARCH_INDEX
+            
+            setUpViewsBasedOnSelectedHeaderSegment()
+            
+            populateTableViewWithDataBasedOnHeader()
+            
+            reloadFriendTableView()
+            
+        }
+        
+    }
+    
+    
+    @IBAction func requestHeaderButtonTapped(_ sender: UIButton) {
+        
+        if headerSelectedIndex != REQUESTS_INDEX {
+            
+            headerSelectedIndex = REQUESTS_INDEX
+            
+            setUpViewsBasedOnSelectedHeaderSegment()
+            
+            populateTableViewWithDataBasedOnHeader()
+            
+            reloadFriendTableView()
+            
+        }
+        
+    }
+    
+    
 }

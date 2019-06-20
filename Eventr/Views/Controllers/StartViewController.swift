@@ -45,7 +45,7 @@ class StartViewController: UIViewController, GIDSignInUIDelegate {
         let initialPopUpKey = "initpop1"
         
         if preferences.object(forKey: initialPopUpKey) == nil {
-              configureStandardViewDesignWithShadow(view: popUpMessageView, xOffset: 0, yOffset: 0, opacity: 1.0)
+            configureStandardViewDesignWithShadow(view: popUpMessageView, xOffset: 0, yOffset: 0, radius: 5.0, opacity: 1.0)
             popUpMessageView.layer.borderColor = themeTextColor.cgColor
             popUpMessageView.layer.borderWidth = 1.0
             popUpMessageView.isHidden = false

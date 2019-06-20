@@ -1976,7 +1976,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDD-nw-MfO">
-                                <rect key="frame" x="20" y="60" width="280" height="60"/>
+                                <rect key="frame" x="20" y="80" width="280" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Find Friends..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="46q-kp-Ohw">
                                         <rect key="frame" x="23" y="15" width="200" height="30"/>
@@ -2024,7 +2024,7 @@
                                 </constraints>
                             </view>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iZz-Sj-eEz">
-                                <rect key="frame" x="0.0" y="140" width="320" height="428"/>
+                                <rect key="frame" x="0.0" y="153" width="320" height="415"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" name="Medium"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2214,24 +2214,111 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cS-zo-Ure" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                <rect key="frame" x="60" y="75" width="200" height="60"/>
+                                <rect key="frame" x="60" y="95" width="200" height="40"/>
                                 <color key="backgroundColor" name="Medium"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="KlD-eo-TYy"/>
+                                    <constraint firstAttribute="height" constant="40" id="KlD-eo-TYy"/>
                                     <constraint firstAttribute="width" constant="200" id="yC2-FM-3TT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                 <state key="normal" title="My Friends Activity">
-                                    <color key="titleColor" name="AccentPrimary"/>
+                                    <color key="titleColor" name="Text"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="30"/>
+                                        <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9Y-87-vpN">
+                                <rect key="frame" x="16" y="20" width="288" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjd-q6-1qA" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                        <rect key="frame" x="44" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="KNZ-zb-lPO"/>
+                                            <constraint firstAttribute="width" constant="60" id="XBT-8t-vFG"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AccentPrimary"/>
+                                        <inset key="imageEdgeInsets" minX="9" minY="9" maxX="9" maxY="9"/>
+                                        <state key="normal" image="iconNewEvent"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="AccentPrimary"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="eventHeaderButtonTapped:" destination="Knk-bw-rcM" eventType="touchUpInside" id="ED8-rE-aWy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAn-2x-dR5" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                        <rect key="frame" x="114" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Y4N-4W-ZP6"/>
+                                            <constraint firstAttribute="width" constant="60" id="gEP-3G-pyC"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AccentPrimary"/>
+                                        <inset key="imageEdgeInsets" minX="9" minY="9" maxX="9" maxY="9"/>
+                                        <state key="normal" image="searchIconColored"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="AccentPrimary"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="searchHeaderButtonTapped:" destination="Knk-bw-rcM" eventType="touchUpInside" id="Lwc-Np-fsr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxj-Hf-vb8" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                        <rect key="frame" x="184" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="sxu-aj-fYY"/>
+                                            <constraint firstAttribute="width" constant="60" id="zpn-zd-LgF"/>
+                                        </constraints>
+                                        <color key="tintColor" name="AccentPrimary"/>
+                                        <inset key="imageEdgeInsets" minX="9" minY="9" maxX="9" maxY="9"/>
+                                        <state key="normal" image="addFriendIcon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="AccentPrimary"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="requestHeaderButtonTapped:" destination="Knk-bw-rcM" eventType="touchUpInside" id="mSn-PM-QtO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="UXw-za-wnk"/>
+                                    <constraint firstItem="rjd-q6-1qA" firstAttribute="trailing" secondItem="NAn-2x-dR5" secondAttribute="leading" constant="-10" id="b4a-P0-q0O"/>
+                                    <constraint firstItem="NAn-2x-dR5" firstAttribute="centerY" secondItem="I9Y-87-vpN" secondAttribute="centerY" id="c3j-RE-a6V"/>
+                                    <constraint firstItem="Uxj-Hf-vb8" firstAttribute="leading" secondItem="NAn-2x-dR5" secondAttribute="trailing" constant="10" id="cdl-XA-3mP"/>
+                                    <constraint firstItem="rjd-q6-1qA" firstAttribute="centerY" secondItem="I9Y-87-vpN" secondAttribute="centerY" id="oI8-Ou-N3W"/>
+                                    <constraint firstItem="NAn-2x-dR5" firstAttribute="centerX" secondItem="I9Y-87-vpN" secondAttribute="centerX" id="uXb-ua-xXI"/>
+                                    <constraint firstItem="Uxj-Hf-vb8" firstAttribute="centerY" secondItem="I9Y-87-vpN" secondAttribute="centerY" id="xPA-A6-ufB"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxP-fR-2QC" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
-                                <rect key="frame" x="-35" y="25" width="96" height="42"/>
+                                <rect key="frame" x="-45" y="25" width="96" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D42-bq-Ws0" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                         <rect key="frame" x="66" y="6" width="30" height="30"/>
@@ -2265,33 +2352,18 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CeH-Jx-fBF">
-                                <rect key="frame" x="85" y="20" width="150" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="0to-VM-CsV"/>
-                                    <constraint firstAttribute="width" constant="150" id="2eN-4W-VTm"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="" image="iconMyEvents"/>
-                                    <segment title="" image="iconSearch"/>
-                                    <segment title="" image="addFriendIcon"/>
-                                </segments>
-                                <color key="tintColor" name="AccentPrimary"/>
-                                <connections>
-                                    <action selector="headerSegmentChanged:" destination="Knk-bw-rcM" eventType="valueChanged" id="m0f-ra-GrU"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7cS-zo-Ure" firstAttribute="centerX" secondItem="wBJ-dG-YbP" secondAttribute="centerX" id="Abi-bF-JCs"/>
                             <constraint firstAttribute="trailing" secondItem="iZz-Sj-eEz" secondAttribute="trailing" id="Bl0-tR-xWQ"/>
-                            <constraint firstItem="CeH-Jx-fBF" firstAttribute="centerX" secondItem="wBJ-dG-YbP" secondAttribute="centerX" id="DP3-VH-LFU"/>
-                            <constraint firstItem="7cS-zo-Ure" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="55" id="U5Z-6Z-RY0"/>
-                            <constraint firstItem="dxP-fR-2QC" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leading" constant="-35" id="Wur-of-dfk"/>
-                            <constraint firstItem="qDD-nw-MfO" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="40" id="ZEz-xQ-EqZ"/>
-                            <constraint firstItem="iZz-Sj-eEz" firstAttribute="top" secondItem="qDD-nw-MfO" secondAttribute="bottom" constant="20" id="ZT6-Yi-id7"/>
-                            <constraint firstItem="CeH-Jx-fBF" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" id="eif-d1-Fv1"/>
+                            <constraint firstItem="I9Y-87-vpN" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leadingMargin" id="KHE-Tr-3te"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I9Y-87-vpN" secondAttribute="trailing" id="Kv7-B5-cmy"/>
+                            <constraint firstItem="7cS-zo-Ure" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="75" id="U5Z-6Z-RY0"/>
+                            <constraint firstItem="dxP-fR-2QC" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leading" constant="-45" id="Wur-of-dfk"/>
+                            <constraint firstItem="qDD-nw-MfO" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="60" id="ZEz-xQ-EqZ"/>
+                            <constraint firstItem="iZz-Sj-eEz" firstAttribute="top" secondItem="qDD-nw-MfO" secondAttribute="bottom" constant="13" id="ZT6-Yi-id7"/>
+                            <constraint firstItem="I9Y-87-vpN" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" id="aDb-6a-Q9W"/>
                             <constraint firstItem="qDD-nw-MfO" firstAttribute="centerX" secondItem="wBJ-dG-YbP" secondAttribute="centerX" id="k6n-zl-0ld"/>
                             <constraint firstItem="iZz-Sj-eEz" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leading" id="ppd-Wr-C2m"/>
                             <constraint firstItem="dxP-fR-2QC" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="5" id="rtK-Ud-bxW"/>
@@ -2299,11 +2371,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="eventHeaderButton" destination="rjd-q6-1qA" id="4Xb-zy-QN5"/>
                         <outlet property="findFriendsSearchContainer" destination="qDD-nw-MfO" id="fMW-GC-CSf"/>
                         <outlet property="friendsSearchButton" destination="tkd-rx-dka" id="XkI-Hl-2HJ"/>
                         <outlet property="friendsSearchField" destination="46q-kp-Ohw" id="EUm-pn-QCc"/>
                         <outlet property="friendsTableView" destination="iZz-Sj-eEz" id="QMO-W2-JqY"/>
+                        <outlet property="requestHeaderButton" destination="Uxj-Hf-vb8" id="ngR-Ia-Wh5"/>
                         <outlet property="returnButtonContainer" destination="dxP-fR-2QC" id="NLK-rF-nCD"/>
+                        <outlet property="searchHeaderButton" destination="NAn-2x-dR5" id="Qwf-qt-add"/>
                         <outlet property="tableViewListDescriptorButton" destination="7cS-zo-Ure" id="tSL-5d-EqF"/>
                         <segue destination="4hp-pR-aFR" kind="show" identifier="friendEventSegue" id="1KL-n7-P1R"/>
                     </connections>
@@ -3719,6 +3794,7 @@
         <image name="iconSort" width="52" height="52"/>
         <image name="iconUnselectedStar" width="100" height="100"/>
         <image name="plusIcon" width="52" height="52"/>
+        <image name="searchIconColored" width="900" height="900"/>
         <image name="upvoteArrow" width="90" height="90"/>
         <namedColor name="AccentGreen">
             <color red="0.062745098039215685" green="0.81960784313725488" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3744,7 +3820,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8KJ-OK-Kql"/>
-        <segue reference="1KL-n7-P1R"/>
+        <segue reference="dut-gU-axl"/>
         <segue reference="oJe-6P-JTU"/>
     </inferredMetricsTieBreakers>
 </document>

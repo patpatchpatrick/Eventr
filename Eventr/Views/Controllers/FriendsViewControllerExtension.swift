@@ -49,7 +49,7 @@ extension FriendsViewController{
     }
     
     func configureButtons(){
-        configureFloatingSideButtonDesign(view: tableViewListDescriptorButton)
+        configureStandardViewDesignWithShadow(view: tableViewListDescriptorButton, xOffset: 0, yOffset: 0, radius: 7.0, opacity: 0.5)
         configureFloatingSideButtonDesign(view: returnButtonContainer)
     }
     
