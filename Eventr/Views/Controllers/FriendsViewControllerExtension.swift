@@ -50,7 +50,6 @@ extension FriendsViewController{
     
     func configureButtons(){
         configureStandardViewDesignWithShadow(view: tableViewListDescriptorButton, xOffset: 0, yOffset: 0, radius: 7.0, opacity: 0.5)
-        configureFloatingSideButtonDesign(view: returnButtonContainer)
     }
     
     func clearAllTables(){

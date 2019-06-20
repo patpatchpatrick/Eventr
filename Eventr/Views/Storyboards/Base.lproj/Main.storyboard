@@ -1083,25 +1083,6 @@
                                                     <constraint firstAttribute="height" constant="50" id="eg0-Fh-18e"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIU-FB-5EB" userLabel="createEvent" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="224" y="5" width="40" height="40"/>
-                                                <color key="backgroundColor" name="Medium"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="Qt6-d0-Fi3"/>
-                                                    <constraint firstAttribute="height" constant="40" id="TaC-vh-xCy"/>
-                                                </constraints>
-                                                <color key="tintColor" name="Text"/>
-                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
-                                                <state key="normal" image="accountIconTemplate"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="friendsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VkM-jE-H0f"/>
-                                                </connections>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6V-qO-qjn" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="269" y="4" width="96" height="42"/>
                                                 <subviews>
@@ -1170,10 +1151,69 @@
                                             <constraint firstItem="tLb-mw-xKu" firstAttribute="centerX" secondItem="SKV-0R-RbT" secondAttribute="centerX" id="cYO-CB-qic"/>
                                             <constraint firstItem="DvS-qX-LWT" firstAttribute="centerY" secondItem="SKV-0R-RbT" secondAttribute="centerY" id="cpC-dL-EHU"/>
                                             <constraint firstItem="DvS-qX-LWT" firstAttribute="leading" secondItem="SKV-0R-RbT" secondAttribute="leading" constant="-45" id="hQL-IZ-Wk1"/>
-                                            <constraint firstItem="eIU-FB-5EB" firstAttribute="trailing" secondItem="N6V-qO-qjn" secondAttribute="leading" constant="-5" id="pIb-iD-ijq"/>
                                             <constraint firstItem="N6V-qO-qjn" firstAttribute="centerY" secondItem="SKV-0R-RbT" secondAttribute="centerY" id="rR1-i1-psf"/>
-                                            <constraint firstItem="eIU-FB-5EB" firstAttribute="centerY" secondItem="SKV-0R-RbT" secondAttribute="centerY" id="swF-QN-57W"/>
                                             <constraint firstItem="tLb-mw-xKu" firstAttribute="centerY" secondItem="SKV-0R-RbT" secondAttribute="centerY" id="t1H-Cm-Zp2"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Kw-FR-uw6">
+                                        <rect key="frame" x="119.5" y="508" width="81" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIU-FB-5EB" userLabel="createEvent" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="41" y="0.0" width="40" height="80"/>
+                                                <color key="backgroundColor" name="Medium"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="Qt6-d0-Fi3"/>
+                                                    <constraint firstAttribute="height" constant="80" id="TaC-vh-xCy"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Text"/>
+                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
+                                                <state key="normal" image="accountIconTemplate"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="AccentPrimary"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="friendsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VkM-jE-H0f"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReK-rd-Oqp" userLabel="createEvent" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
+                                                <color key="backgroundColor" name="Medium"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="Wo2-ah-AaZ"/>
+                                                    <constraint firstAttribute="width" constant="40" id="zMe-Xa-u7z"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Text"/>
+                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
+                                                <state key="normal" image="iconHomeColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="AccentPrimary"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Medium"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="81" id="Iq1-Tx-zie"/>
+                                            <constraint firstAttribute="height" constant="40" id="SAN-bL-bMx"/>
+                                            <constraint firstAttribute="trailing" secondItem="eIU-FB-5EB" secondAttribute="trailing" id="W8N-Wi-Lks"/>
+                                            <constraint firstItem="eIU-FB-5EB" firstAttribute="top" secondItem="0Kw-FR-uw6" secondAttribute="top" id="uRD-1k-LnF"/>
+                                            <constraint firstItem="ReK-rd-Oqp" firstAttribute="top" secondItem="0Kw-FR-uw6" secondAttribute="top" id="wHi-uL-i8H"/>
+                                            <constraint firstItem="ReK-rd-Oqp" firstAttribute="leading" secondItem="0Kw-FR-uw6" secondAttribute="leading" id="xru-rR-1fE"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1188,6 +1228,7 @@
                                     <constraint firstItem="0Ne-PT-ftd" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="HTk-nO-cEx"/>
                                     <constraint firstItem="0Ne-PT-ftd" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" constant="-25" id="Jhy-gZ-4Eg"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="top" secondItem="SKV-0R-RbT" secondAttribute="bottom" id="RaW-Gg-NOr"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Kw-FR-uw6" secondAttribute="bottom" id="VUb-28-VJY"/>
                                     <constraint firstItem="25H-xd-yYF" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="WGE-5g-E6f"/>
                                     <constraint firstItem="anO-4j-n8B" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" id="Xb0-zy-JoW"/>
                                     <constraint firstItem="cis-Vy-6kZ" firstAttribute="top" secondItem="FIU-NR-25c" secondAttribute="bottom" id="YCu-OV-Z2f"/>
@@ -1198,6 +1239,7 @@
                                     <constraint firstAttribute="trailing" secondItem="25H-xd-yYF" secondAttribute="trailing" id="eCm-tv-wZK"/>
                                     <constraint firstItem="Ktv-mT-FN5" firstAttribute="bottom" secondItem="FIU-NR-25c" secondAttribute="bottom" constant="-10" id="gAz-pK-S2V"/>
                                     <constraint firstItem="FIU-NR-25c" firstAttribute="top" secondItem="1es-1h-yhM" secondAttribute="bottom" constant="10" id="hF0-aJ-LvM"/>
+                                    <constraint firstItem="0Kw-FR-uw6" firstAttribute="centerX" secondItem="9ly-4h-XTV" secondAttribute="centerX" id="kvi-ok-7gL"/>
                                     <constraint firstAttribute="trailing" secondItem="0Ne-PT-ftd" secondAttribute="trailing" id="lVV-ZL-G3H"/>
                                     <constraint firstItem="7x5-R6-dey" firstAttribute="leading" secondItem="9ly-4h-XTV" secondAttribute="leading" id="lYs-9s-or0"/>
                                     <constraint firstItem="Zza-Cn-weC" firstAttribute="leading" secondItem="Ktv-mT-FN5" secondAttribute="trailing" constant="10" id="mVY-Ju-dIa"/>
@@ -1471,6 +1513,12 @@
                             <constraint firstAttribute="trailing" secondItem="9ly-4h-XTV" secondAttribute="trailing" id="x6y-Ms-xqM"/>
                             <constraint firstItem="9ly-4h-XTV" firstAttribute="top" secondItem="mZz-I1-PFO" secondAttribute="bottom" id="zpJ-jb-Ktt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="sjr-ur-GUf"/>
+                                <exclude reference="K1r-ii-eaL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="accountSettingsIcon" destination="Z3D-bz-Ebe" id="UxI-NH-7gY"/>
@@ -1490,7 +1538,7 @@
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
                         <outlet property="headerButtonAccountContainer" destination="DvS-qX-LWT" id="3lj-ef-NqQ"/>
                         <outlet property="headerButtonCreateEventContainer" destination="N6V-qO-qjn" id="Q6Q-HH-H1Z"/>
-                        <outlet property="headerFriendsButton" destination="eIU-FB-5EB" id="6FM-F8-BuM"/>
+                        <outlet property="headerFriendsButton" destination="eIU-FB-5EB" id="k9C-dk-Aie"/>
                         <outlet property="hotButton" destination="gWy-b7-IHZ" id="4EO-Vh-PjC"/>
                         <outlet property="listDescriptor" destination="Ktv-mT-FN5" id="366-bW-15F"/>
                         <outlet property="listDescriptorCover" destination="7x5-R6-dey" id="7VW-OE-2A7"/>
@@ -2315,40 +2363,64 @@
                                     <constraint firstItem="Uxj-Hf-vb8" firstAttribute="centerY" secondItem="I9Y-87-vpN" secondAttribute="centerY" id="xPA-A6-ufB"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxP-fR-2QC" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
-                                <rect key="frame" x="-45" y="25" width="96" height="42"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEn-LB-GZS">
+                                <rect key="frame" x="119.5" y="528" width="81" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D42-bq-Ws0" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                        <rect key="frame" x="66" y="6" width="30" height="30"/>
+                                    <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D42-bq-Ws0" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="NPv-py-hwf"/>
-                                            <constraint firstAttribute="height" constant="30" id="fWg-9d-1fe"/>
+                                            <constraint firstAttribute="width" constant="40" id="NPv-py-hwf"/>
+                                            <constraint firstAttribute="height" constant="80" id="fWg-9d-1fe"/>
                                         </constraints>
                                         <color key="tintColor" name="Text"/>
-                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                        <state key="normal" image="iconBack"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
+                                        <state key="normal" image="iconHomeColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="20"/>
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="AccentPrimary"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="returnButtonTapped:" destination="Knk-bw-rcM" eventType="touchUpInside" id="Mvb-gn-a4w"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbk-bJ-4I2" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                        <rect key="frame" x="41" y="0.0" width="40" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Lim-Zy-0Vz"/>
+                                            <constraint firstAttribute="height" constant="80" id="wRk-Aw-ctn"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Text"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
+                                        <state key="normal" image="accountIconTemplate"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="AccentPrimary"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="Medium"/>
                                 <constraints>
-                                    <constraint firstItem="D42-bq-Ws0" firstAttribute="centerY" secondItem="dxP-fR-2QC" secondAttribute="centerY" id="CNH-NH-UWK"/>
-                                    <constraint firstAttribute="trailing" secondItem="D42-bq-Ws0" secondAttribute="trailing" id="Ruj-hC-tU8"/>
-                                    <constraint firstAttribute="height" constant="42" id="sjA-ui-GTU"/>
-                                    <constraint firstAttribute="width" constant="96" id="sxN-AS-SOV"/>
+                                    <constraint firstAttribute="trailing" secondItem="dbk-bJ-4I2" secondAttribute="trailing" id="2S4-Ki-k0F"/>
+                                    <constraint firstAttribute="height" constant="40" id="6RB-5R-mLl"/>
+                                    <constraint firstItem="dbk-bJ-4I2" firstAttribute="top" secondItem="dEn-LB-GZS" secondAttribute="top" id="K6D-s2-ouT"/>
+                                    <constraint firstItem="D42-bq-Ws0" firstAttribute="leading" secondItem="dEn-LB-GZS" secondAttribute="leading" id="WKM-3r-ctT"/>
+                                    <constraint firstAttribute="width" constant="81" id="dIE-yf-us6"/>
+                                    <constraint firstItem="D42-bq-Ws0" firstAttribute="top" secondItem="dEn-LB-GZS" secondAttribute="top" id="e0m-MV-I7C"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2358,13 +2430,13 @@
                             <constraint firstItem="I9Y-87-vpN" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leadingMargin" id="KHE-Tr-3te"/>
                             <constraint firstAttribute="trailingMargin" secondItem="I9Y-87-vpN" secondAttribute="trailing" id="Kv7-B5-cmy"/>
                             <constraint firstItem="7cS-zo-Ure" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="75" id="U5Z-6Z-RY0"/>
-                            <constraint firstItem="dxP-fR-2QC" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leading" constant="-45" id="Wur-of-dfk"/>
                             <constraint firstItem="qDD-nw-MfO" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="60" id="ZEz-xQ-EqZ"/>
                             <constraint firstItem="iZz-Sj-eEz" firstAttribute="top" secondItem="qDD-nw-MfO" secondAttribute="bottom" constant="13" id="ZT6-Yi-id7"/>
                             <constraint firstItem="I9Y-87-vpN" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" id="aDb-6a-Q9W"/>
                             <constraint firstItem="qDD-nw-MfO" firstAttribute="centerX" secondItem="wBJ-dG-YbP" secondAttribute="centerX" id="k6n-zl-0ld"/>
+                            <constraint firstItem="dEn-LB-GZS" firstAttribute="centerX" secondItem="wBJ-dG-YbP" secondAttribute="centerX" id="kX0-Bb-FFt"/>
+                            <constraint firstItem="91S-3l-I1L" firstAttribute="top" secondItem="dEn-LB-GZS" secondAttribute="bottom" id="kmh-Bh-u93"/>
                             <constraint firstItem="iZz-Sj-eEz" firstAttribute="leading" secondItem="wBJ-dG-YbP" secondAttribute="leading" id="ppd-Wr-C2m"/>
-                            <constraint firstItem="dxP-fR-2QC" firstAttribute="top" secondItem="ziL-w8-GnK" secondAttribute="bottom" constant="5" id="rtK-Ud-bxW"/>
                             <constraint firstItem="91S-3l-I1L" firstAttribute="top" secondItem="iZz-Sj-eEz" secondAttribute="bottom" id="ufO-Mg-7Cn"/>
                         </constraints>
                     </view>
@@ -2376,7 +2448,6 @@
                         <outlet property="friendsTableView" destination="iZz-Sj-eEz" id="QMO-W2-JqY"/>
                         <outlet property="notificationCountLabel" destination="p7a-m1-JSp" id="mK1-bg-xdc"/>
                         <outlet property="requestHeaderButton" destination="Uxj-Hf-vb8" id="ngR-Ia-Wh5"/>
-                        <outlet property="returnButtonContainer" destination="dxP-fR-2QC" id="NLK-rF-nCD"/>
                         <outlet property="searchHeaderButton" destination="NAn-2x-dR5" id="Qwf-qt-add"/>
                         <outlet property="tableViewListDescriptorButton" destination="7cS-zo-Ure" id="tSL-5d-EqF"/>
                         <segue destination="4hp-pR-aFR" kind="show" identifier="friendEventSegue" id="1KL-n7-P1R"/>
@@ -3781,6 +3852,7 @@
         <image name="iconFlame" width="90" height="90"/>
         <image name="iconForward" width="52" height="52"/>
         <image name="iconHome" width="90" height="90"/>
+        <image name="iconHomeColor" width="900" height="900"/>
         <image name="iconLocation" width="113" height="114"/>
         <image name="iconLogOut" width="52" height="52"/>
         <image name="iconMinus" width="52" height="52"/>

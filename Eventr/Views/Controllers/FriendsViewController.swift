@@ -38,7 +38,6 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var tableViewListDescriptorButton: RoundedButton!
     
-    @IBOutlet weak var returnButtonContainer: RoundUIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
