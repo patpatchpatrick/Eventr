@@ -12,11 +12,12 @@ import UIKit
 var count = 0
 
 let testMusicData: [String] = [
-    "Empire of the Sun|1561413600.0||1300 Van Ness Avenue. San Francisco, CA, US|The Regency Ballroom|The Regency Ballroom||||0",
-    "Judas Priest|1561413600.0||982 Market Street. San Francisco, CA, US|The Warfield|The Warfield|https://websterhall.com/|$35||1"
+ 
 ]
 
 let testSportData: [String] = [
+    "San Jose Earthquakes vs. Houston Dynamo |1561626900.0||1123 Coleman Avenue.San Jose, California.95110| Avaya Stadium, San Jose, California| Avaya Stadium, San Jose, California|||1234567890|0",
+    "Visalia Rawhide at Modesto Nuts |1561712700.0||601 Neece Drive.Modesto, California.95351| John Thurman Field, Modesto, California| John Thurman Field, Modesto, California|https://websterhall.com/|$35||1",
     
 ]
 

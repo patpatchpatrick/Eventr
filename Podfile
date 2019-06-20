@@ -8,6 +8,8 @@ target 'Eventr' do
 pod 'DropDown'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
+pod 'Firebase/Analytics'
+pod 'Firebase/Storage'
 pod 'GoogleSignIn'
 pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 pod 'JTAppleCalendar', '~> 7.0'
