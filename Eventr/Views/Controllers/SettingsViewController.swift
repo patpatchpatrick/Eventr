@@ -124,6 +124,10 @@ class SettingsViewController: UIViewController {
             displayAlertWithOKButton(text: "Username must be at least 4 characters long")
             return
         }
+        if requestedUsername.count > 27 {
+            displayAlertWithOKButton(text: "Username exceeds maximum length")
+            return
+        }
         
         submitUserNameIfUnique(username: requestedUsername, callback: {
             userNameAccepted in

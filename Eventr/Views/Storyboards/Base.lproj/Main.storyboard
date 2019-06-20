@@ -2039,45 +2039,47 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yO1-ND-Ljh" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
                                                     <rect key="frame" x="40" y="10" width="240" height="60"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhj-gP-hXk">
-                                                            <rect key="frame" x="183" y="33" width="53" height="0.0"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="04V-Ap-1dh">
+                                                            <rect key="frame" x="10" y="20" width="200" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="53" id="oLD-9e-50F"/>
+                                                                <constraint firstAttribute="width" constant="200" id="nd6-uT-wUn"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
+                                                            <color key="textColor" name="Text"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhj-gP-hXk">
+                                                            <rect key="frame" x="136" y="40" width="100" height="0.0"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="oLD-9e-50F"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway Light" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67Z-JS-ZCW" userLabel="addFriend">
-                                                            <rect key="frame" x="190" y="3" width="30" height="30"/>
+                                                            <rect key="frame" x="171" y="10" width="30" height="30"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="gLb-k7-YF0"/>
                                                                 <constraint firstAttribute="height" constant="30" id="zBI-oG-hxh"/>
                                                             </constraints>
-                                                            <color key="tintColor" name="AccentPrimary"/>
+                                                            <color key="tintColor" name="AccentGreen"/>
                                                             <state key="normal" image="addFriendIcon"/>
                                                             <connections>
                                                                 <action selector="addFriendButtonTapped:" destination="Knk-bw-rcM" eventType="touchUpInside" id="hR7-ka-Bf8"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="04V-Ap-1dh">
-                                                            <rect key="frame" x="10" y="10" width="170" height="20"/>
-                                                            <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
-                                                            <color key="textColor" name="Text"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Yhj-gP-hXk" firstAttribute="top" secondItem="67Z-JS-ZCW" secondAttribute="bottom" id="4zK-u9-FTg"/>
-                                                        <constraint firstItem="04V-Ap-1dh" firstAttribute="top" secondItem="yO1-ND-Ljh" secondAttribute="top" constant="10" id="AVc-PK-zII"/>
+                                                        <constraint firstItem="04V-Ap-1dh" firstAttribute="centerY" secondItem="yO1-ND-Ljh" secondAttribute="centerY" id="FUL-Ht-UNX"/>
                                                         <constraint firstAttribute="height" constant="60" id="HVY-Yz-sOv"/>
-                                                        <constraint firstItem="67Z-JS-ZCW" firstAttribute="top" secondItem="yO1-ND-Ljh" secondAttribute="top" constant="3" id="Ibl-Rd-S3O"/>
-                                                        <constraint firstAttribute="trailing" secondItem="67Z-JS-ZCW" secondAttribute="trailing" constant="20" id="Y7Q-uF-CXa"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Yhj-gP-hXk" secondAttribute="trailing" constant="4" id="UKW-mg-bsE"/>
+                                                        <constraint firstItem="67Z-JS-ZCW" firstAttribute="centerY" secondItem="yO1-ND-Ljh" secondAttribute="centerY" constant="-5" id="aqg-ih-dbg"/>
                                                         <constraint firstItem="04V-Ap-1dh" firstAttribute="leading" secondItem="yO1-ND-Ljh" secondAttribute="leading" constant="10" id="hwb-Iv-7c1"/>
-                                                        <constraint firstItem="04V-Ap-1dh" firstAttribute="trailing" secondItem="67Z-JS-ZCW" secondAttribute="leading" constant="-10" id="sxV-fN-TJ6"/>
-                                                        <constraint firstItem="Yhj-gP-hXk" firstAttribute="leading" secondItem="67Z-JS-ZCW" secondAttribute="leading" constant="-7" id="yqt-5n-0Ex"/>
+                                                        <constraint firstItem="67Z-JS-ZCW" firstAttribute="centerX" secondItem="Yhj-gP-hXk" secondAttribute="centerX" id="kY4-aT-ZMR"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2303,6 +2305,7 @@
                         <outlet property="friendsTableView" destination="iZz-Sj-eEz" id="QMO-W2-JqY"/>
                         <outlet property="returnButtonContainer" destination="dxP-fR-2QC" id="NLK-rF-nCD"/>
                         <outlet property="tableViewListDescriptorButton" destination="7cS-zo-Ure" id="tSL-5d-EqF"/>
+                        <segue destination="4hp-pR-aFR" kind="show" identifier="friendEventSegue" id="1KL-n7-P1R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7q-uI-xee" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3741,6 +3744,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8KJ-OK-Kql"/>
+        <segue reference="1KL-n7-P1R"/>
         <segue reference="oJe-6P-JTU"/>
     </inferredMetricsTieBreakers>
 </document>

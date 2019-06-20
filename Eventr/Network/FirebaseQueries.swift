@@ -36,7 +36,6 @@ var mostRecentlyQueriedUpvoteCount: Int?
 let paginationFirstPageCount: UInt = 7
 let paginationAddlPageCount: UInt = 10
 
-
 //NEARBY EVENT QUERY VARIABLES
 var nearbyEventPageCount: UInt = 0
 var incrementingSearchRadius:Double = 0 //search radius (in miles) that increments until it reaches the user selected search radius.  This is used for pagination purposes (the search radius is slowly increased to ensure large queries aren't performed)
@@ -45,6 +44,9 @@ var defaultSearchIncrement:Double = 0.5 //default search increment amount (in mi
 var nearbyEventPageCountLoaded: Bool = false //Bool to represent if the full count of nearby events has loaded.  This is used for Geofire pagination
 var mostRecentlyQueriedLocation: CLLocation?
 var currentLocation: CLLocation? //User's current location
+
+//FRIEND QUERY VARIABLES
+var friendMaxEventsToShow: UInt = 100
 
 //Query all upcoming events using the dates input by the user
 func queryUpcomingEvents(city: String, queryingFirstPage: Bool){
@@ -133,6 +135,17 @@ func queryUpcomingEventsFirstPage(specificCategory: Bool, city: String, beforeDa
         
         }
     }
+
+func querySingleEventInFirebase(eventID: String, eventCity: String, callback: @escaping ((Event) -> Void)){
+    
+    firebaseDatabaseRef.child("events").child(eventCity).child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in
+        // Get dictionary of event data by querying the event ID
+        if let value = snapshot.value as? NSDictionary {
+            let event = Event(dict: value, idKey: eventID)
+            callback(event)
+        }
+    })
+}
     
 func queryUpcomingEventsAdditionalPage(specificCategory: Bool, city: String, afterDate: TimeInterval){
     
@@ -433,6 +446,8 @@ func queryIfFirebaseEventIsFavorited(event: Event){
 
 func queryIfUserHasUsername(callback: @escaping ((Bool,String) -> Void)) {
     
+    //Returns username of user if they set one
+    
     guard let userID = Auth.auth().currentUser?.uid else { return}
     
     //Checking username existence
@@ -532,7 +547,7 @@ func queryEventsFriendsAreAttendingInFirebase(){
             
             //beforeDate is equal to today's date converted to GMT time zone so that it can be compared to other dates (since dates are stored in GMT time in Firebase
             let beforeDate = Double((Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
-            firebaseDatabaseRef.child("attendingUsers").child(friendUserIDString).queryOrdered(byChild: "dateSort").queryEnding(atValue: 0 - beforeDate).observeSingleEvent(of: .value, with: {
+            firebaseDatabaseRef.child("attendingUsers").child(friendUserIDString).queryOrdered(byChild: "dateSort").queryEnding(atValue: 0 - beforeDate).queryLimited(toLast: friendMaxEventsToShow).observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 guard let dict = snapshot.value as? NSDictionary else { return }
                 for eventID in dict.allKeys {
@@ -542,7 +557,7 @@ func queryEventsFriendsAreAttendingInFirebase(){
                         
                         let eventSnippet = EventSnippet(dict: eventValuesDict, eventID: eventIDString, friendName: friendUserNameString)
                         
-                        tableFriendEvents.append(eventSnippet)
+                        addEventSnipToFriendsEventsListInOrder(eventSnip: eventSnippet, eventSnipList: &tableFriendEvents)
                         reloadFriendTableView()
                         
                     }
@@ -553,8 +568,6 @@ func queryEventsFriendsAreAttendingInFirebase(){
     })
     
 }
-
-
 
 func queryIfAccountIsPrivate(userID: String, callback: @escaping ((Bool, Bool) -> Void)){
     

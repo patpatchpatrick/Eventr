@@ -58,6 +58,28 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
  
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //If user selects a cell of the table view for an event that a friend is attending, query the event and load the event in the events view controller
+        
+        switch headerSelectedIndex {
+        case EVENTS_INDEX:
+            if !tableFriendEvents.isEmpty && indexPath.row < tableFriendEvents.count {
+                let selectedEventSnippet = tableFriendEvents[indexPath.row]
+                querySingleEventInFirebase(eventID: selectedEventSnippet.id, eventCity: selectedEventSnippet.city, callback: {
+                    event in
+                    
+                    selectedEvent = event
+                    self.performSegue(withIdentifier: "friendEventSegue", sender: self)
+                    
+                })
+            }
+        default:
+            return print("DO NOTHING")
+        }
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch headerSelectedIndex {
@@ -113,7 +135,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.addFriendButtonLabel.text = "Requested"
             } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
                 friend.status = .connected
-                cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                cell.addFriendButton.setImage(UIImage(named: "followingFriendIcon"), for: .normal)
                 cell.addFriendButtonLabel.text = "Following"
             } else {
                 friend.status = .notconnected
@@ -144,6 +166,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             if friendRequestStatus == FRIEND_REQUEST_NOT_APPROVED {
                 friend.status = .requestReceived
                 cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                cell.addFriendButton.tintColor = themeAccentGreen
                 cell.addFriendButtonLabel.text = "Approve"
             } else if friendRequestStatus == FRIEND_REQUEST_APPROVED {
                 queryIfFollowingFriendInFirebase(friend: friend, callback: {
@@ -151,7 +174,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                     switch userIsFollowingFriendStatus{
                     case FRIEND_REQUEST_APPROVED:
                         friend.status = .connected
-                        cell.addFriendButton.setImage(UIImage(named: "iconCheckMark"), for: .normal)
+                        cell.addFriendButton.setImage(UIImage(named: "followingFriendIcon"), for: .normal)
                         cell.addFriendButtonLabel.text = "Following"
                     case FRIEND_REQUEST_NOT_APPROVED:
                         friend.status = .requestSent

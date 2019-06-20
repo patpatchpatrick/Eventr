@@ -87,13 +87,17 @@ class EventSnippet : Comparable {
     }
     
     static func < (lhs: EventSnippet, rhs: EventSnippet) -> Bool {
-        print("ADD COMPARABLE CODE")
-        return true
+        guard let lhsEventDate = lhs.GMTDate, let rhsEventDate = rhs.GMTDate else {
+            return true
+        }
+        return lhsEventDate < rhsEventDate
     }
     
     static func == (lhs: EventSnippet, rhs: EventSnippet) -> Bool {
-        print("ADD COMPARABLE CODE")
-        return true
+        guard let lhsEventDate = lhs.GMTDate, let rhsEventDate = rhs.GMTDate else {
+            return true
+        }
+        return lhsEventDate == rhsEventDate
     }
 
     

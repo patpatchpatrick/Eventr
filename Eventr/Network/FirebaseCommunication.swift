@@ -306,66 +306,83 @@ func submitUserNameIfUnique(username: String, callback: @escaping ((Bool) -> Voi
 func addFriendToFirebaseFollowers(friend: Friend){
     
     //Follow the friend in Firebase
-    //Add the userID of the follower and the followee to the respective sections in Firebase
+    //Add the userID of the follower and the followee to the respective sections in Firebase as the key
+    //Also add both usernames to the same section as the value (used for displaying username in friendsEventTableView)
     //Increment the number of followers for the friend that is being followed
     //Add an already approved follow request to both the user and the friend.  
     
     guard let userID = Auth.auth().currentUser?.uid else { return}
     
-    firebaseDatabaseRef.child("following").child(userID).child(friend.userID).setValue(friend.name)
-    
-    firebaseDatabaseRef.child("followers").child(friend.userID).child(userID).setValue(friend.name)
-    
-    firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").observeSingleEvent(of: .value, with: {(numberOfFollowersSnap) in
-
-        if numberOfFollowersSnap.exists(){
-            guard var numberOfFollowers = numberOfFollowersSnap.value as? Int else {return}
-            numberOfFollowers += 1
-            firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(numberOfFollowers)
-        }else{
-            firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(1)
+    queryIfUserHasUsername(callback: {
+        userHasUsername, username in
+        if userHasUsername {
+         
+            firebaseDatabaseRef.child("following").child(userID).child(friend.userID).setValue(friend.name)
+            
+            firebaseDatabaseRef.child("followers").child(friend.userID).child(userID).setValue(username)
+            
+            firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").observeSingleEvent(of: .value, with: {(numberOfFollowersSnap) in
+                
+                if numberOfFollowersSnap.exists(){
+                    guard var numberOfFollowers = numberOfFollowersSnap.value as? Int else {return}
+                    numberOfFollowers += 1
+                    firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(numberOfFollowers)
+                }else{
+                    firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(1)
+                }
+                
+            })
+            
+            firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).setValue(FRIEND_REQUEST_APPROVED)
+            
+            firebaseDatabaseRef.child("follow-requests-rec").child(friend.userID).child(userID).setValue(FRIEND_REQUEST_APPROVED)
+            
+            
+            reloadFriendTableView()
+            
+            
         }
-        
     })
     
-    firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).setValue(FRIEND_REQUEST_APPROVED)
-    
-    firebaseDatabaseRef.child("follow-requests-rec").child(friend.userID).child(userID).setValue(FRIEND_REQUEST_APPROVED)
-    
-    
-    reloadFriendTableView()
 }
 
 func approveFriendRequestInFirebase(friend: Friend, callback: @escaping ((Bool) -> Void)){
     
     //Approve a friend request in Firebase
-    //Add the userID of the follower and the followee to the respective sections in Firebase
+    //Add the userID of the follower and the followee to the respective sections in Firebase as the key
+    //Also add both usernames to the same section as the value (used for displaying username in friendsEventTableView)
     //Increment the number of followers for the user that is being followed
     //Set the follow request status to "APPROVED"
     
     
     guard let userID = Auth.auth().currentUser?.uid else { return}
     
-    firebaseDatabaseRef.child("following").child(friend.userID).child(userID).setValue(friend.name)
-    
-    firebaseDatabaseRef.child("followers").child(userID).child(friend.userID).setValue(friend.name)
-    
-    firebaseDatabaseRef.child("follow-count").child(userID).child("number").observeSingleEvent(of: .value, with: {(numberOfFollowersSnap) in
-        
-        if numberOfFollowersSnap.exists(){
-            guard var numberOfFollowers = numberOfFollowersSnap.value as? Int else {return}
-            numberOfFollowers += 1
-            firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(numberOfFollowers)
-        }else{
-            firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(1)
+    queryIfUserHasUsername(callback: {
+        userHasUsername, username in
+        if userHasUsername {
+            
+            firebaseDatabaseRef.child("following").child(friend.userID).child(userID).setValue(username)
+            
+            firebaseDatabaseRef.child("followers").child(userID).child(friend.userID).setValue(friend.name)
+            
+            firebaseDatabaseRef.child("follow-count").child(userID).child("number").observeSingleEvent(of: .value, with: {(numberOfFollowersSnap) in
+                
+                if numberOfFollowersSnap.exists(){
+                    guard var numberOfFollowers = numberOfFollowersSnap.value as? Int else {return}
+                    numberOfFollowers += 1
+                    firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(numberOfFollowers)
+                }else{
+                    firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(1)
+                }
+                
+            })
+            
+            approveFollowRequestInFirebase(friend: friend, callback: callback)
+            
+            
         }
-        
     })
-    
-    approveFollowRequestInFirebase(friend: friend, callback: callback)
-    
-    
-    
+
 }
 
 func sendFriendRequestInFirebase(friend: Friend){

@@ -129,3 +129,10 @@ func updatePaginationValues(event: Event){
     }
     
 }
+
+//Method to add event snippets to friends event lists in sorted order
+func addEventSnipToFriendsEventsListInOrder(eventSnip: EventSnippet, eventSnipList: inout [EventSnippet]){
+    var index = 0
+    index = eventSnipList.insertionIndexOf(elem: eventSnip, isOrderedBefore: <)
+    eventSnipList.insert(eventSnip, at: index)
+}
