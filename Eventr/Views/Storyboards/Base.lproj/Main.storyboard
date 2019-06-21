@@ -1736,6 +1736,24 @@
                                                     <action selector="userImageButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="k60-ty-GdN"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="en6-K8-Bpd" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="174" y="57.5" width="30" height="30"/>
+                                                <color key="backgroundColor" name="AccentLightBlue"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="8nK-Ma-WVG"/>
+                                                    <constraint firstAttribute="width" constant="30" id="pEb-mg-xO7"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Medium"/>
+                                                <state key="normal" image="plusIcon"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="addProfileImagePlusButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="fSg-lg-5qz"/>
+                                                </connections>
+                                            </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-xd-hWG" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
                                                 <rect key="frame" x="174" y="115.5" width="30" height="30"/>
                                                 <color key="backgroundColor" name="AccentGreen"/>
@@ -1769,7 +1787,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="acceptImageButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="yQX-7i-Ocy"/>
                                                     <action selector="discardImageButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="27j-Sh-Ofg"/>
                                                 </connections>
                                             </button>
@@ -2001,11 +2018,13 @@
                                         <constraints>
                                             <constraint firstItem="7uN-a2-zeN" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="3sw-Ti-6TS"/>
                                             <constraint firstItem="lVY-0T-ddr" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="3zG-RH-EmN"/>
+                                            <constraint firstItem="en6-K8-Bpd" firstAttribute="trailing" secondItem="VFU-4e-H2u" secondAttribute="trailing" constant="10" id="4sd-f1-MWM"/>
                                             <constraint firstItem="7cQ-cS-4f7" firstAttribute="top" secondItem="lVY-0T-ddr" secondAttribute="bottom" constant="20" id="5qB-Lp-GVU"/>
                                             <constraint firstItem="bWj-GL-bsL" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="AOA-Qh-FFu"/>
                                             <constraint firstItem="EgE-xd-hWG" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="-20" id="BAB-vt-10k"/>
                                             <constraint firstItem="MDc-eq-hGy" firstAttribute="top" secondItem="NEc-jI-N3S" secondAttribute="top" constant="20" id="EKr-4p-xYA"/>
                                             <constraint firstItem="I9L-fB-mIW" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="20" id="Etq-lA-Vwl"/>
+                                            <constraint firstItem="en6-K8-Bpd" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="top" constant="-10" id="GNh-rT-wqT"/>
                                             <constraint firstItem="ls2-6H-0Uu" firstAttribute="leading" secondItem="VFU-4e-H2u" secondAttribute="leading" constant="-10" id="KpL-Mb-KO3"/>
                                             <constraint firstItem="K6f-n8-u6b" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="LiC-z6-g7f"/>
                                             <constraint firstItem="VFU-4e-H2u" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="Ng8-Ia-v63"/>
@@ -2107,6 +2126,7 @@
                     <connections>
                         <outlet property="acceptImageButton" destination="EgE-xd-hWG" id="2L6-b6-hgf"/>
                         <outlet property="accountNameLabel" destination="7uN-a2-zeN" id="7ws-A3-ZTc"/>
+                        <outlet property="addProfileImagePlusButton" destination="en6-K8-Bpd" id="rmY-Vj-oPP"/>
                         <outlet property="createAccountButton" destination="bWj-GL-bsL" id="6Wa-2E-vq2"/>
                         <outlet property="deleteAccountButton" destination="7cQ-cS-4f7" id="p3O-18-BwK"/>
                         <outlet property="discardImageButton" destination="ls2-6H-0Uu" id="yO9-7v-jWT"/>

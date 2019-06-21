@@ -30,6 +30,8 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var acceptImageButton: RoundedButton!
     @IBOutlet weak var discardImageButton: RoundedButton!
     
+    @IBOutlet weak var addProfileImagePlusButton: RoundedButton!
+    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameEntryContainer: UIView!
     @IBOutlet weak var usernameTextEntry: UITextField!
@@ -99,8 +101,10 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
     func reloadUserImage(){
         
         if let userImage = userAccountImage{
+            addProfileImagePlusButton.isHidden = true
             userAccountImageButton.setImage(userImage, for: .normal)
         } else {
+            addProfileImagePlusButton.isHidden = false
             userAccountImageButton.setImage(UIImage(named: "accountIcon"), for: .normal)}
             
         
@@ -250,6 +254,12 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBAction func userImageButtonTapped(_ sender: RoundedButton) {
         
+        selectProfilePicture()
+    
+    }
+    
+    func selectProfilePicture(){
+        
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
             print("Button capture")
             
@@ -259,7 +269,7 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
             
             present(imagePicker, animated: true, completion: nil)
         }
-    
+        
     }
     
     
@@ -281,6 +291,7 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
                 
             } else {
                 self.displayAlertWithOKButton(text: "Image Failed to Upload.  Max Image Size is 8MB.  Please try a different image.")
+                self.reloadUserImage() //Reload the old image if the image fails 
             }
             
         })
@@ -311,7 +322,15 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
         //After new image is chosen, show the accept and discard buttons so the user can choose to set new image as their profile image if they wish
         acceptImageButton.isHidden = false
         discardImageButton.isHidden = false
+        addProfileImagePlusButton.isHidden = true
+        
+    }
     
+    
+    @IBAction func addProfileImagePlusButtonTapped(_ sender: RoundedButton) {
+        
+        selectProfilePicture()
+        
     }
     
     
