@@ -12,12 +12,12 @@ import UIKit
 var count = 0
 
 let testMusicData: [String] = [
- 
+
 ]
 
 let testSportData: [String] = [
-    "San Jose Earthquakes vs. Houston Dynamo |1561626900.0||1123 Coleman Avenue.San Jose, California.95110| Avaya Stadium, San Jose, California| Avaya Stadium, San Jose, California|||1234567890|0",
-    "Visalia Rawhide at Modesto Nuts |1561712700.0||601 Neece Drive.Modesto, California.95351| John Thurman Field, Modesto, California| John Thurman Field, Modesto, California|https://websterhall.com/|$35||1",
+    "Lancaster JetHawks at Inland Empire 66ers |1561453500.0||280 South E Street.San Bernardino, California.92401| San Manuel Stadium, San Bernardino, California| San Manuel Stadium, San Bernardino, California|||1234567890|0",
+    "CONCACAF Gold Cup Group C - VIP Packages |1561471200.0||3939 S. Figueroa St.Los Angeles, California.90037| Banc of California Stadium, Los Angeles, California| Banc of California Stadium, Los Angeles, California|https://websterhall.com/|$35||1",
     
 ]
 
@@ -211,6 +211,39 @@ func addTestStandardDataToFirebase(vc: UIViewController, categoryString: String,
         
         
     }
+    
+    
+}
+
+func manuallyDeleteEventsForADateRange(dateStringFormat: String){
+    
+    //2019m6d18
+    //Delete all of the events that the user created
+    
+    firebaseDatabaseRef.child("date").child("2019m6d20").observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        guard let dict = snapshot.value as? NSDictionary else { return }
+        for eventID in dict.allKeys {
+            
+            guard let eventIDString = eventID as? String else {return}
+            
+            firebaseDatabaseRef.child("event-city").child(eventIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let value = snapshot.value as? NSDictionary {
+                    
+                    print("MANUALLY DELETING EVENT")
+                    var cityName : String?
+                    for key in value.allKeys {
+                        cityName = key as? String
+                    }
+                    guard let cityString = cityName else {return}
+                    
+                    deleteEventsByKey(eventIDMap:  [eventID : cityString], isUserCreatedEvent: true)
+                    
+                }})
+            
+        }
+        
+    })
     
     
 }
