@@ -60,6 +60,7 @@ class CustomFriendEventCell: UITableViewCell {
     @IBOutlet weak var paidIcon: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var categoryIcon: UIImageView!
+    @IBOutlet weak var friendProfileImage: RoundedImage!
     
     
 }

@@ -166,5 +166,34 @@ extension ViewController{
         self.sideMenuAccountButton.setImage(loadedImage, for: .normal)
     }
     
+    func queryAndUpdateNotificationLabels(){
+        
+        //Query Firebase for the count of notifications that the user has
+        //Query this every time the main view appears
+        //Update the header button and associated label to show the count of notifications
+        //If count is greater than 0, the button should be red, otherwise it should be green
+        
+        queryNotificationTotalsInFirebase(callback: {
+            fbNotificationCount in
+            
+            //Set the global notification count veriable
+            notificationCount = fbNotificationCount
+            
+            if fbNotificationCount > 0 {
+                
+                self.footerFriendsNotificationLabel.isHidden = false
+                self.footerFriendsNotificationLabel.text = String(notificationCount)
+                self.footerFriendsButton.setImage(UIImage(named: "friendRequestNotificationRed"), for: .normal)
+                
+            } else {
+                
+                self.footerFriendsNotificationLabel.isHidden = true
+                self.footerFriendsButton.setImage(UIImage(named: "friendRequestNotificationGreen"), for: .normal)
+            }
+            
+        })
+        
+    }
+    
     
 }

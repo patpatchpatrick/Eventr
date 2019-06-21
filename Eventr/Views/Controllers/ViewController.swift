@@ -34,6 +34,7 @@ enum sortBy {
 }
 var sortByPreference : sortBy = .popularity //Variable to track user's sorting preferences
 var userAccountImage: UIImage?
+var notificationCount = 0
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
@@ -58,7 +59,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var headerButtonAccountContainer: RoundUIView!
     
-    @IBOutlet weak var headerFriendsButton: UIButton!
+    @IBOutlet weak var footerFriendsButton: UIButton!
+    @IBOutlet weak var footerFriendsNotificationLabel: UILabel!
     
     
     @IBOutlet weak var sideMenu: UIView!
@@ -175,6 +177,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Add notification observer to reload tableview whenever event data is changed
         eventTableView.reloadData()
         setCitySelectionIfSetInPrefs()
+        queryAndUpdateNotificationLabels()
         reloadAccountImage()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updated_event_data),

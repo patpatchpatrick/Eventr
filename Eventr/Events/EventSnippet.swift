@@ -14,7 +14,8 @@ import Foundation
 class EventSnippet : Comparable {
     
     var name: String = ""
-    var friendWhoIsAttending: String = "" //friend who is attending this particular event
+    var friendWhoIsAttendingName: String = "" //friend who is attending this particular event
+    var friendWhoIsAttendingID: String = ""
     var id: String = ""
     var category: EventCategory = EventCategory(category: .misc)
     var GMTDate: Date? // Event date in GMT timezone
@@ -24,7 +25,7 @@ class EventSnippet : Comparable {
     var paid: Bool = false
     var price: String = ""
     
-    init(dict: NSDictionary, eventID: String, friendName: String){
+    init(dict: NSDictionary, eventID: String, friendName: String, friendID: String){
         
         if let nameDict = dict["name"] as? String {
             self.name = nameDict
@@ -53,7 +54,8 @@ class EventSnippet : Comparable {
         }
         
         self.id = eventID
-        self.friendWhoIsAttending = friendName
+        self.friendWhoIsAttendingName = friendName
+        self.friendWhoIsAttendingID = friendID
         
     }
     

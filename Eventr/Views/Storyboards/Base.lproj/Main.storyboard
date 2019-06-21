@@ -226,7 +226,7 @@
                                                                                             <color key="tintColor" name="AccentPrimary"/>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
-                                                                                            <rect key="frame" x="9" y="20" width="42" height="20"/>
+                                                                                            <rect key="frame" x="8" y="20" width="44.5" height="20"/>
                                                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                             <color key="textColor" name="Text"/>
                                                                                             <nil key="highlightedColor"/>
@@ -482,7 +482,7 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Idu-z7-1jJ">
-                                                                                            <rect key="frame" x="5" y="0.0" width="20.000000000000227" height="20.000000000000227"/>
+                                                                                            <rect key="frame" x="5" y="0.0" width="20" height="20"/>
                                                                                             <color key="tintColor" name="Dark"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="20" id="0US-6l-6k9"/>
@@ -1156,18 +1156,18 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Kw-FR-uw6">
-                                        <rect key="frame" x="119.5" y="508" width="81" height="40"/>
+                                        <rect key="frame" x="109.5" y="498" width="101" height="50"/>
                                         <subviews>
                                             <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIU-FB-5EB" userLabel="createEvent" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="41" y="0.0" width="40" height="80"/>
+                                                <rect key="frame" x="51" y="0.0" width="50" height="80"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="Qt6-d0-Fi3"/>
+                                                    <constraint firstAttribute="width" constant="50" id="Qt6-d0-Fi3"/>
                                                     <constraint firstAttribute="height" constant="80" id="TaC-vh-xCy"/>
                                                 </constraints>
                                                 <color key="tintColor" name="Text"/>
-                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
-                                                <state key="normal" image="accountIconTemplate"/>
+                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
+                                                <state key="normal" image="friendRequestNotificationGreen"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="10"/>
@@ -1184,14 +1184,14 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReK-rd-Oqp" userLabel="createEvent" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="Wo2-ah-AaZ"/>
-                                                    <constraint firstAttribute="width" constant="40" id="zMe-Xa-u7z"/>
+                                                    <constraint firstAttribute="width" constant="50" id="zMe-Xa-u7z"/>
                                                 </constraints>
                                                 <color key="tintColor" name="Text"/>
-                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
+                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
                                                 <state key="normal" image="iconHomeColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1205,12 +1205,23 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="dC1-ft-JvK">
+                                                <rect key="frame" x="78" y="26" width="18" height="0.0"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="18" id="14h-kb-nd5"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="15"/>
+                                                <color key="textColor" name="Medium"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="Medium"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="81" id="Iq1-Tx-zie"/>
-                                            <constraint firstAttribute="height" constant="40" id="SAN-bL-bMx"/>
+                                            <constraint firstAttribute="width" constant="101" id="Iq1-Tx-zie"/>
+                                            <constraint firstItem="dC1-ft-JvK" firstAttribute="top" secondItem="eIU-FB-5EB" secondAttribute="top" constant="26" id="Lrb-rF-sji"/>
+                                            <constraint firstAttribute="height" constant="50" id="SAN-bL-bMx"/>
                                             <constraint firstAttribute="trailing" secondItem="eIU-FB-5EB" secondAttribute="trailing" id="W8N-Wi-Lks"/>
+                                            <constraint firstItem="dC1-ft-JvK" firstAttribute="trailing" secondItem="eIU-FB-5EB" secondAttribute="trailing" constant="-5" id="Wfv-xy-YOJ"/>
                                             <constraint firstItem="eIU-FB-5EB" firstAttribute="top" secondItem="0Kw-FR-uw6" secondAttribute="top" id="uRD-1k-LnF"/>
                                             <constraint firstItem="ReK-rd-Oqp" firstAttribute="top" secondItem="0Kw-FR-uw6" secondAttribute="top" id="wHi-uL-i8H"/>
                                             <constraint firstItem="ReK-rd-Oqp" firstAttribute="leading" secondItem="0Kw-FR-uw6" secondAttribute="leading" id="xru-rR-1fE"/>
@@ -1530,9 +1541,10 @@
                         <outlet property="dateButtonContainer" destination="cis-Vy-6kZ" id="LwX-XD-oA2"/>
                         <outlet property="distanceRadiusSegmentedControl" destination="sqj-r5-NPC" id="23q-9X-VKt"/>
                         <outlet property="eventTableView" destination="3Rh-7E-hkr" id="El7-fU-PFT"/>
+                        <outlet property="footerFriendsButton" destination="eIU-FB-5EB" id="k9C-dk-Aie"/>
+                        <outlet property="footerFriendsNotificationLabel" destination="dC1-ft-JvK" id="4JR-CN-HiD"/>
                         <outlet property="headerButtonAccountContainer" destination="DvS-qX-LWT" id="3lj-ef-NqQ"/>
                         <outlet property="headerButtonCreateEventContainer" destination="N6V-qO-qjn" id="Q6Q-HH-H1Z"/>
-                        <outlet property="headerFriendsButton" destination="eIU-FB-5EB" id="k9C-dk-Aie"/>
                         <outlet property="hotButton" destination="gWy-b7-IHZ" id="4EO-Vh-PjC"/>
                         <outlet property="listDescriptor" destination="Ktv-mT-FN5" id="366-bW-15F"/>
                         <outlet property="listDescriptorCover" destination="7x5-R6-dey" id="7VW-OE-2A7"/>
@@ -2303,7 +2315,7 @@
                                                     <rect key="frame" x="40" y="10" width="240" height="90"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cool Guy is attending..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="RXF-xC-sXn">
-                                                            <rect key="frame" x="10" y="2" width="200" height="17.5"/>
+                                                            <rect key="frame" x="30" y="10" width="200" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="200" id="Bln-ch-A7I"/>
                                                             </constraints>
@@ -2312,7 +2324,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jim Morrison @ Radio Hall" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="XNY-Gi-bYR">
-                                                            <rect key="frame" x="10" y="19.5" width="230" height="20"/>
+                                                            <rect key="frame" x="5" y="33" width="230" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="230" id="ccX-h3-YcU"/>
                                                             </constraints>
@@ -2328,20 +2340,20 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfW-QV-HlU">
-                                                            <rect key="frame" x="198" y="69.5" width="32" height="15.5"/>
+                                                            <rect key="frame" x="195" y="69.5" width="35" height="15.5"/>
                                                             <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="13"/>
                                                             <color key="textColor" name="AccentGreen"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-qa-g01">
-                                                            <rect key="frame" x="173" y="67.5" width="20" height="20"/>
+                                                            <rect key="frame" x="170" y="67.5" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="dEw-nV-mgG"/>
                                                                 <constraint firstAttribute="width" constant="20" id="jc9-s3-fxg"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVR-bz-SLQ">
-                                                            <rect key="frame" x="10" y="42.5" width="180" height="21"/>
+                                                            <rect key="frame" x="5" y="56" width="180" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="JxT-GB-AHQ"/>
                                                                 <constraint firstAttribute="width" constant="180" id="b3b-Kh-Tml"/>
@@ -2350,21 +2362,35 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fgO-Pm-1ex" customClass="RoundedImage" customModule="Eventr_" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="8" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="MTf-iA-DxF"/>
+                                                                <constraint firstAttribute="height" constant="25" id="zwt-sh-TYZ"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="XNY-Gi-bYR" firstAttribute="leading" secondItem="RXF-xC-sXn" secondAttribute="leading" id="1LW-Y8-MZf"/>
+                                                        <constraint firstItem="XNY-Gi-bYR" firstAttribute="leading" secondItem="RXF-xC-sXn" secondAttribute="leading" constant="-25" id="1LW-Y8-MZf"/>
                                                         <constraint firstAttribute="trailing" secondItem="JqZ-Yy-ZyS" secondAttribute="trailing" constant="5" id="3xU-3D-2l9"/>
                                                         <constraint firstAttribute="trailing" secondItem="ZfW-QV-HlU" secondAttribute="trailing" constant="10" id="BJv-fM-zej"/>
                                                         <constraint firstItem="KVR-bz-SLQ" firstAttribute="top" secondItem="XNY-Gi-bYR" secondAttribute="bottom" constant="3" id="Dwx-Ac-NGD"/>
-                                                        <constraint firstItem="RXF-xC-sXn" firstAttribute="top" secondItem="VpB-MX-Oaq" secondAttribute="top" constant="2" id="Fq2-nQ-M0U"/>
+                                                        <constraint firstItem="RXF-xC-sXn" firstAttribute="top" secondItem="VpB-MX-Oaq" secondAttribute="top" constant="10" id="Fq2-nQ-M0U"/>
                                                         <constraint firstAttribute="height" constant="90" id="Gia-gg-G83"/>
-                                                        <constraint firstItem="XNY-Gi-bYR" firstAttribute="top" secondItem="RXF-xC-sXn" secondAttribute="bottom" id="Mn2-QT-S4i"/>
+                                                        <constraint firstItem="XNY-Gi-bYR" firstAttribute="top" secondItem="RXF-xC-sXn" secondAttribute="bottom" constant="5" id="Mn2-QT-S4i"/>
                                                         <constraint firstItem="KVR-bz-SLQ" firstAttribute="leading" secondItem="XNY-Gi-bYR" secondAttribute="leading" id="Nzi-Jb-5ih"/>
                                                         <constraint firstItem="o2e-qa-g01" firstAttribute="trailing" secondItem="ZfW-QV-HlU" secondAttribute="leading" constant="-5" id="OY6-ra-ntQ"/>
                                                         <constraint firstItem="o2e-qa-g01" firstAttribute="centerY" secondItem="ZfW-QV-HlU" secondAttribute="centerY" id="QZ9-GE-dl9"/>
+                                                        <constraint firstItem="RXF-xC-sXn" firstAttribute="leading" secondItem="fgO-Pm-1ex" secondAttribute="trailing" constant="5" id="U4R-yK-tWv"/>
                                                         <constraint firstItem="JqZ-Yy-ZyS" firstAttribute="top" secondItem="VpB-MX-Oaq" secondAttribute="top" constant="5" id="VSb-po-UQ3"/>
-                                                        <constraint firstItem="RXF-xC-sXn" firstAttribute="leading" secondItem="VpB-MX-Oaq" secondAttribute="leading" constant="10" id="hB6-UO-YPm"/>
+                                                        <constraint firstItem="fgO-Pm-1ex" firstAttribute="leading" secondItem="VpB-MX-Oaq" secondAttribute="leading" id="ZfO-UG-eGC"/>
+                                                        <constraint firstItem="fgO-Pm-1ex" firstAttribute="top" secondItem="VpB-MX-Oaq" secondAttribute="top" constant="8" id="bwj-yh-SPN"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZfW-QV-HlU" secondAttribute="bottom" constant="5" id="wHz-ZD-huF"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -2389,6 +2415,7 @@
                                             <outlet property="dateLabel" destination="KVR-bz-SLQ" id="BnG-ZR-sF4"/>
                                             <outlet property="eventNameLabel" destination="XNY-Gi-bYR" id="RcP-kR-mnh"/>
                                             <outlet property="friendNameLabel" destination="RXF-xC-sXn" id="irc-oS-nQx"/>
+                                            <outlet property="friendProfileImage" destination="fgO-Pm-1ex" id="Jom-hj-3nz"/>
                                             <outlet property="paidIcon" destination="o2e-qa-g01" id="CL4-Fj-JrS"/>
                                             <outlet property="priceLabel" destination="ZfW-QV-HlU" id="3j0-KJ-ZYv"/>
                                             <outlet property="primaryView" destination="VpB-MX-Oaq" id="OfT-PC-Ld1"/>
@@ -2476,7 +2503,7 @@
                                         </constraints>
                                         <color key="tintColor" name="AccentPrimary"/>
                                         <inset key="imageEdgeInsets" minX="9" minY="9" maxX="9" maxY="9"/>
-                                        <state key="normal" image="friendRequestNotificationRed"/>
+                                        <state key="normal" image="friendRequestNotificationGreen"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="30"/>
@@ -2492,37 +2519,40 @@
                                             <action selector="requestHeaderButtonTapped:" destination="Knk-bw-rcM" eventType="touchUpInside" id="mSn-PM-QtO"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7a-m1-JSp">
-                                        <rect key="frame" x="222.5" y="33" width="10.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="p7a-m1-JSp">
+                                        <rect key="frame" x="216" y="50" width="20" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="KcI-DS-bcj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="15"/>
                                         <color key="textColor" name="Medium"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="p7a-m1-JSp" firstAttribute="bottom" secondItem="Uxj-Hf-vb8" secondAttribute="bottom" constant="-7" id="2Di-po-zT0"/>
+                                    <constraint firstItem="p7a-m1-JSp" firstAttribute="bottom" secondItem="Uxj-Hf-vb8" secondAttribute="bottom" constant="-10" id="2Di-po-zT0"/>
                                     <constraint firstAttribute="height" constant="60" id="UXw-za-wnk"/>
                                     <constraint firstItem="rjd-q6-1qA" firstAttribute="trailing" secondItem="NAn-2x-dR5" secondAttribute="leading" constant="-10" id="b4a-P0-q0O"/>
                                     <constraint firstItem="NAn-2x-dR5" firstAttribute="centerY" secondItem="I9Y-87-vpN" secondAttribute="centerY" id="c3j-RE-a6V"/>
                                     <constraint firstItem="Uxj-Hf-vb8" firstAttribute="leading" secondItem="NAn-2x-dR5" secondAttribute="trailing" constant="10" id="cdl-XA-3mP"/>
                                     <constraint firstItem="rjd-q6-1qA" firstAttribute="centerY" secondItem="I9Y-87-vpN" secondAttribute="centerY" id="oI8-Ou-N3W"/>
-                                    <constraint firstItem="p7a-m1-JSp" firstAttribute="trailing" secondItem="Uxj-Hf-vb8" secondAttribute="trailing" constant="-11" id="qX2-11-Tgv"/>
+                                    <constraint firstItem="p7a-m1-JSp" firstAttribute="trailing" secondItem="Uxj-Hf-vb8" secondAttribute="trailing" constant="-8" id="qX2-11-Tgv"/>
                                     <constraint firstItem="NAn-2x-dR5" firstAttribute="centerX" secondItem="I9Y-87-vpN" secondAttribute="centerX" id="uXb-ua-xXI"/>
                                     <constraint firstItem="Uxj-Hf-vb8" firstAttribute="centerY" secondItem="I9Y-87-vpN" secondAttribute="centerY" id="xPA-A6-ufB"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEn-LB-GZS">
-                                <rect key="frame" x="119.5" y="528" width="81" height="40"/>
+                                <rect key="frame" x="109.5" y="518" width="101" height="50"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D42-bq-Ws0" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="NPv-py-hwf"/>
+                                            <constraint firstAttribute="width" constant="50" id="NPv-py-hwf"/>
                                             <constraint firstAttribute="height" constant="80" id="fWg-9d-1fe"/>
                                         </constraints>
                                         <color key="tintColor" name="Text"/>
-                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
                                         <state key="normal" image="iconHomeColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2540,14 +2570,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbk-bJ-4I2" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                        <rect key="frame" x="41" y="0.0" width="40" height="80"/>
+                                        <rect key="frame" x="51" y="0.0" width="50" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="Lim-Zy-0Vz"/>
+                                            <constraint firstAttribute="width" constant="50" id="Lim-Zy-0Vz"/>
                                             <constraint firstAttribute="height" constant="80" id="wRk-Aw-ctn"/>
                                         </constraints>
                                         <color key="tintColor" name="Text"/>
-                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="45"/>
-                                        <state key="normal" image="accountIconTemplate"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
+                                        <state key="normal" image="friendRequestNotificationGreen"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -2560,15 +2590,26 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="lmJ-OB-cmV">
+                                        <rect key="frame" x="78" y="26" width="18" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="0Po-bs-U8n"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="15"/>
+                                        <color key="textColor" name="Medium"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="Medium"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="dbk-bJ-4I2" secondAttribute="trailing" id="2S4-Ki-k0F"/>
-                                    <constraint firstAttribute="height" constant="40" id="6RB-5R-mLl"/>
+                                    <constraint firstAttribute="height" constant="50" id="6RB-5R-mLl"/>
+                                    <constraint firstItem="lmJ-OB-cmV" firstAttribute="top" secondItem="dbk-bJ-4I2" secondAttribute="top" constant="26" id="H9w-gi-dCs"/>
                                     <constraint firstItem="dbk-bJ-4I2" firstAttribute="top" secondItem="dEn-LB-GZS" secondAttribute="top" id="K6D-s2-ouT"/>
                                     <constraint firstItem="D42-bq-Ws0" firstAttribute="leading" secondItem="dEn-LB-GZS" secondAttribute="leading" id="WKM-3r-ctT"/>
-                                    <constraint firstAttribute="width" constant="81" id="dIE-yf-us6"/>
+                                    <constraint firstAttribute="width" constant="101" id="dIE-yf-us6"/>
                                     <constraint firstItem="D42-bq-Ws0" firstAttribute="top" secondItem="dEn-LB-GZS" secondAttribute="top" id="e0m-MV-I7C"/>
+                                    <constraint firstItem="lmJ-OB-cmV" firstAttribute="trailing" secondItem="dbk-bJ-4I2" secondAttribute="trailing" constant="-5" id="pmE-cz-Fj5"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -2592,6 +2633,8 @@
                     <connections>
                         <outlet property="eventHeaderButton" destination="rjd-q6-1qA" id="4Xb-zy-QN5"/>
                         <outlet property="findFriendsSearchContainer" destination="qDD-nw-MfO" id="fMW-GC-CSf"/>
+                        <outlet property="friendNotificationFooterButton" destination="dbk-bJ-4I2" id="3Ro-qT-sij"/>
+                        <outlet property="friendNotificationFooterLabel" destination="lmJ-OB-cmV" id="VYU-0W-lJ7"/>
                         <outlet property="friendsSearchButton" destination="tkd-rx-dka" id="XkI-Hl-2HJ"/>
                         <outlet property="friendsSearchField" destination="46q-kp-Ohw" id="EUm-pn-QCc"/>
                         <outlet property="friendsTableView" destination="iZz-Sj-eEz" id="QMO-W2-JqY"/>
@@ -3419,7 +3462,7 @@
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nu-CU-azq">
-                                                                                    <rect key="frame" x="4" y="15" width="42" height="20"/>
+                                                                                    <rect key="frame" x="3" y="15" width="44.5" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -3990,7 +4033,7 @@
         <image name="catIconFavorite" width="100" height="100"/>
         <image name="eventIconDollar" width="52" height="52"/>
         <image name="fiestaLogo" width="1734" height="614"/>
-        <image name="friendRequestNotificationRed" width="900" height="900"/>
+        <image name="friendRequestNotificationGreen" width="900" height="900"/>
         <image name="homeScreenLogo" width="4167" height="4168"/>
         <image name="iconBack" width="52" height="52"/>
         <image name="iconCheckMark" width="104" height="104"/>
@@ -4040,7 +4083,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MSv-Pn-SaB"/>
+        <segue reference="8KJ-OK-Kql"/>
         <segue reference="1KL-n7-P1R"/>
         <segue reference="oJe-6P-JTU"/>
     </inferredMetricsTieBreakers>

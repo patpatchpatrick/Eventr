@@ -68,6 +68,25 @@ func loadUserImageFromFirebase(callback: @escaping ((UIImage?) -> Void)) {
         }
     }
     
+}
+
+func loadFriendImageFromFirebase(friendID: String, callback: @escaping ((UIImage?) -> Void) ){
     
+    // Reference to the user account image file to download
+    let storage = Storage.storage()
+    let storageRef = storage.reference()
+    let imageRef = storageRef.child(friendID).child("account.png")
+    
+    // Download in memory with a maximum allowed size of 8MB (1 * 1024 * 1024 bytes)
+    imageRef.getData(maxSize: 8 * 1024 * 1024) { data, error in
+        if let error = error {
+            // Uh-oh, an error occurred!
+            callback(nil)
+        } else {
+            // Data for "images/island.jpg" is returned
+            let image = UIImage(data: data!)
+            callback(image)
+        }
+    }
     
 }

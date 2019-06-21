@@ -12,6 +12,7 @@ var selectedFriend: Friend = Friend(name: "", userID: "")
 var tableFriends: [Friend] = []
 var tableFriendRequests: [Friend] = []
 var tableFriendEvents: [EventSnippet] = []
+var friendImageDict: [String: UIImage] = [:]
 
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -27,6 +28,10 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var eventHeaderButton: RoundedButton!
     @IBOutlet weak var searchHeaderButton: RoundedButton!
     @IBOutlet weak var requestHeaderButton: RoundedButton!
+    
+    
+    @IBOutlet weak var friendNotificationFooterButton: RoundedButton!
+    @IBOutlet weak var friendNotificationFooterLabel: UILabel!
     
     @IBOutlet weak var notificationCountLabel: UILabel!
     
@@ -47,11 +52,15 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                                                name:Notification.Name("UPDATED_FRIEND_DATA"),
                                                object: nil)
         
-        queryAndUpdateNotificationLabels()
+        updateNotificationLabels()
         setUpViewsBasedOnSelectedHeaderSegment()
         clearAllTables()
         configureButtons()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateNotificationLabels() //Update notification labels every time the friends view controller appears
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -220,7 +229,10 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let eventSnippet = tableFriendEvents[indexPath.row]
         
-        cell.friendNameLabel.text = eventSnippet.friendWhoIsAttending + " is attending..."
+        let friendName = eventSnippet.friendWhoIsAttendingName
+        let friendID = eventSnippet.friendWhoIsAttendingID
+        
+        cell.friendNameLabel.text = friendName + " is attending..."
         cell.eventNameLabel.text = eventSnippet.name
         if eventSnippet.paid {
             cell.paidIcon.image = UIImage(named: "eventIconDollar")
@@ -248,6 +260,24 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             df.dateFormat = "h:mm a"
             let endTimeString = df.string(from: eventSnippet.getDateWithDurationCurrentTimeZone())
             cell.dateLabel.text?.append(" -> " + endTimeString)
+        }
+        
+        //Load the friends profile image
+        //First, attempt to load if from a map/cache
+        //If fails, load from Firebase and save returned image in cache/map
+        if let profileImage = friendImageDict[friendName] {
+            print("IMAGE FOUND IN MAP")
+            cell.friendProfileImage.image = profileImage
+        } else {
+            loadFriendImageFromFirebase(friendID: friendID, callback: {
+                friendProfileImage in
+                if let profileImage = friendProfileImage {
+                    cell.friendProfileImage.image = profileImage
+                    friendImageDict[friendName] = profileImage
+                } else {
+                    cell.friendProfileImage.image = UIImage(named: "accountIcon")
+                }
+            })
         }
         
         //cell.addFriendButton?.tag = indexPath.row
@@ -499,6 +529,9 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         if headerSelectedIndex != REQUESTS_INDEX {
             
             headerSelectedIndex = REQUESTS_INDEX
+            
+            //When request button is clicked, the notification count in Firebase is cleared because the notifications have been viewed
+            clearNotificationCountInFirebase()
             
             setUpViewsBasedOnSelectedHeaderSegment()
             

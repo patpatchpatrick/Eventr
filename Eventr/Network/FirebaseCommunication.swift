@@ -443,4 +443,11 @@ func approveFollowRequestInFirebase(friend: Friend, callback: @escaping ((Bool) 
     
 }
 
+func clearNotificationCountInFirebase() {
+    
+         guard let userID = Auth.auth().currentUser?.uid else { return}
+    firebaseDatabaseRef.child("request-count").child(userID).child("number").setValue(0)
+    
+}
+
 

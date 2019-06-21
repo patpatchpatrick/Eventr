@@ -579,7 +579,7 @@ func queryEventsFriendsAreAttendingInFirebase(){
                     let eventValues = snapshot.childSnapshot(forPath: eventIDString).value
                     if let eventValuesDict = eventValues as? NSDictionary {
                         
-                        let eventSnippet = EventSnippet(dict: eventValuesDict, eventID: eventIDString, friendName: friendUserNameString)
+                        let eventSnippet = EventSnippet(dict: eventValuesDict, eventID: eventIDString, friendName: friendUserNameString, friendID: friendUserIDString)
                         
                         addEventSnipToFriendsEventsListInOrder(eventSnip: eventSnippet, eventSnipList: &tableFriendEvents)
                         reloadFriendTableView()

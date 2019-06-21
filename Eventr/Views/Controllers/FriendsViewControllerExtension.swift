@@ -58,29 +58,28 @@ extension FriendsViewController{
         tableFriendEvents.removeAll()
     }
     
-    func queryAndUpdateNotificationLabels(){
+    func updateNotificationLabels(){
     
-        //Query Firebase for the count of notifications that the user has
-        //Update the header button and associated label to show the count of notifications
-        //If count is greater than 0, the button should be red, otherwise it should be green
+        //Update the notification labels based on the notification count (this is count is always queried in the main view controller)
         
-        queryNotificationTotalsInFirebase(callback: {
-            notificationCount in
+        if notificationCount > 0 {
             
-            if notificationCount > 0 {
-                
-                self.notificationCountLabel.isHidden = false
-                self.notificationCountLabel.text = String(notificationCount)
-                self.requestHeaderButton.setImage(UIImage(named: "friendRequestNotificationRed"), for: .normal)
-                
-            } else {
-                
-                self.notificationCountLabel.isHidden = true
-                self.requestHeaderButton.setImage(UIImage(named: "friendRequestNotificationGreen"), for: .normal)
-            }
-        
-        })
-        
+            self.notificationCountLabel.isHidden = false
+            self.notificationCountLabel.text = String(notificationCount)
+            self.requestHeaderButton.setImage(UIImage(named: "friendRequestNotificationRed"), for: .normal)
+            
+            self.friendNotificationFooterLabel.isHidden = false
+            self.friendNotificationFooterLabel.text = String(notificationCount)
+            self.friendNotificationFooterButton.setImage(UIImage(named: "friendRequestNotificationRed"), for: .normal)
+            
+        } else {
+            
+            self.notificationCountLabel.isHidden = true
+            self.requestHeaderButton.setImage(UIImage(named: "friendRequestNotificationGreen"), for: .normal)
+            
+            self.friendNotificationFooterLabel.isHidden = true
+            self.friendNotificationFooterButton.setImage(UIImage(named: "friendRequestNotificationGreen"), for: .normal)
+        }
     }
     
 }
