@@ -60,13 +60,6 @@ class StartViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     
-    @IBAction func continueAsGuest(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "homeSegue", sender: self)
-        
-    }
-    
-    
     @IBAction func logIn(_ sender: UIButton) {
         
         performSegue(withIdentifier: "loginSegue", sender: self)

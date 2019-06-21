@@ -59,7 +59,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V8l-8w-yLf">
-                                <rect key="frame" x="0.0" y="430" width="320" height="108"/>
+                                <rect key="frame" x="0.0" y="466" width="320" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOc-O0-fBI">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
@@ -83,20 +83,10 @@
                                             <segue destination="dYJ-nZ-3ys" kind="show" identifier="signupSegue" id="H2M-Ef-LHb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xz-be-9Yu">
-                                        <rect key="frame" x="0.0" y="72" width="320" height="36"/>
-                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="20"/>
-                                        <state key="normal" title="CONTINUE AS GUEST">
-                                            <color key="titleColor" name="Medium"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="continueAsGuest:" destination="ztE-UI-nvD" eventType="touchUpInside" id="qgZ-1o-uq9"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xq-oF-4RZ" customClass="GIDSignInButton">
-                                <rect key="frame" x="110" y="385" width="100" height="35"/>
+                                <rect key="frame" x="110" y="421" width="100" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="oW3-qY-nap"/>
@@ -112,7 +102,7 @@
                                             <constraint firstAttribute="height" constant="200" id="3DZ-lX-boa"/>
                                             <constraint firstAttribute="width" constant="200" id="k0g-dZ-Yph"/>
                                         </constraints>
-                                        <string key="text">Fiesta! currently only shows events in the Greater New York area.  Don't worry, we will be expanding across the United States and beyond in the near future.  </string>
+                                        <string key="text">Fiesta! currently only shows events in the Greater New York, Greater San Francisco and Greater Los Angeles areas.  Don't worry, we will be expanding across the United States and beyond in the near future.  </string>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                         <color key="textColor" name="Text"/>
                                         <nil key="highlightedColor"/>
@@ -765,7 +755,7 @@
                                         <rect key="frame" x="10" y="130" width="300" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-xr-Xqh" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="kwn-TE-lfL"/>
@@ -794,7 +784,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWy-b7-IHZ" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="90" y="0.0" width="50" height="42"/>
+                                                <rect key="frame" x="100" y="0.0" width="50" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="gvx-Ky-ln4"/>
@@ -822,7 +812,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98e-JN-cwi" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="140" y="0.0" width="90" height="42"/>
+                                                <rect key="frame" x="150" y="0.0" width="80" height="42"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="HqI-hz-QT1"/>
@@ -2304,15 +2294,15 @@
                                             <outlet property="primaryView" destination="yO1-ND-Ljh" id="jpd-Ac-MIH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellFriendEvent" rowHeight="113" id="jdc-HQ-vWs" customClass="CustomFriendEventCell" customModule="Eventr_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="111" width="320" height="113"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellFriendEvent" rowHeight="123" id="jdc-HQ-vWs" customClass="CustomFriendEventCell" customModule="Eventr_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="111" width="320" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jdc-HQ-vWs" id="TbZ-9I-XSj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpB-MX-Oaq" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="10" width="240" height="90"/>
+                                                    <rect key="frame" x="40" y="10" width="240" height="100"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cool Guy is attending..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="RXF-xC-sXn">
                                                             <rect key="frame" x="30" y="10" width="200" height="18"/>
@@ -2340,13 +2330,14 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfW-QV-HlU">
-                                                            <rect key="frame" x="195" y="69.5" width="35" height="15.5"/>
+                                                            <rect key="frame" x="195" y="79.5" width="35" height="15.5"/>
                                                             <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway SemiBold" pointSize="13"/>
                                                             <color key="textColor" name="AccentGreen"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-qa-g01">
-                                                            <rect key="frame" x="170" y="67.5" width="20" height="20"/>
+                                                            <rect key="frame" x="170" y="77.5" width="20" height="20"/>
+                                                            <color key="tintColor" name="AccentGreen"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="dEw-nV-mgG"/>
                                                                 <constraint firstAttribute="width" constant="20" id="jc9-s3-fxg"/>
@@ -2363,7 +2354,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fgO-Pm-1ex" customClass="RoundedImage" customModule="Eventr_" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="8" width="25" height="25"/>
+                                                            <rect key="frame" x="0.0" y="8" width="25.000000000000227" height="25.000000000000227"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="MTf-iA-DxF"/>
                                                                 <constraint firstAttribute="height" constant="25" id="zwt-sh-TYZ"/>
@@ -2382,7 +2373,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="ZfW-QV-HlU" secondAttribute="trailing" constant="10" id="BJv-fM-zej"/>
                                                         <constraint firstItem="KVR-bz-SLQ" firstAttribute="top" secondItem="XNY-Gi-bYR" secondAttribute="bottom" constant="3" id="Dwx-Ac-NGD"/>
                                                         <constraint firstItem="RXF-xC-sXn" firstAttribute="top" secondItem="VpB-MX-Oaq" secondAttribute="top" constant="10" id="Fq2-nQ-M0U"/>
-                                                        <constraint firstAttribute="height" constant="90" id="Gia-gg-G83"/>
+                                                        <constraint firstAttribute="height" constant="100" id="Gia-gg-G83"/>
                                                         <constraint firstItem="XNY-Gi-bYR" firstAttribute="top" secondItem="RXF-xC-sXn" secondAttribute="bottom" constant="5" id="Mn2-QT-S4i"/>
                                                         <constraint firstItem="KVR-bz-SLQ" firstAttribute="leading" secondItem="XNY-Gi-bYR" secondAttribute="leading" id="Nzi-Jb-5ih"/>
                                                         <constraint firstItem="o2e-qa-g01" firstAttribute="trailing" secondItem="ZfW-QV-HlU" secondAttribute="leading" constant="-5" id="OY6-ra-ntQ"/>
@@ -4084,7 +4075,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8KJ-OK-Kql"/>
-        <segue reference="1KL-n7-P1R"/>
-        <segue reference="oJe-6P-JTU"/>
+        <segue reference="dut-gU-axl"/>
+        <segue reference="S6u-EE-Q3h"/>
     </inferredMetricsTieBreakers>
 </document>

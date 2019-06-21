@@ -53,9 +53,9 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                                                object: nil)
         
         updateNotificationLabels()
-        setUpViewsBasedOnSelectedHeaderSegment()
         clearAllTables()
         configureButtons()
+        loadInitialData()
 
     }
     
@@ -94,6 +94,14 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             return print("DO NOTHING")
         }
         
+    }
+    
+    func loadInitialData(){
+        setUpViewsBasedOnSelectedHeaderSegment()
+        
+        populateTableViewWithDataBasedOnHeader()
+        
+        reloadFriendTableView()
     }
     
     
