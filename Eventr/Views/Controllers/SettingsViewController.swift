@@ -13,18 +13,22 @@ import GoogleSignIn
 
 var accountNotConfigured = false
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     
     @IBOutlet weak var settingsScreenTitle: UILabel!
     
     @IBOutlet weak var userAccountImageButton: RoundedButton!
+    var imagePicker = UIImagePickerController()
+    
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var settingsButtonContainer: RoundUIView!
     @IBOutlet weak var deleteAccountButton: RoundedButton!
     
     @IBOutlet weak var createAccountButton: RoundedButton!
     
+    @IBOutlet weak var acceptImageButton: RoundedButton!
+    @IBOutlet weak var discardImageButton: RoundedButton!
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameEntryContainer: UIView!
@@ -46,6 +50,7 @@ class SettingsViewController: UIViewController {
 
         loadUserData()
         configureViewsBasedOnIfUserIsCreatingAccount()
+        resetViews()
         configureViewDesign()
         configureUserNameEntryFields()
         configureNameEntryFields()
@@ -69,18 +74,17 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    func resetViews(){
+        discardImageButton.isHidden = true
+        acceptImageButton.isHidden = true
+        
+    }
+    
     
     func loadUserData(){
         //Set the profile photo, name and email of the logged in user if they are logged in
-        if let pic = Auth.auth().currentUser?.photoURL {
-            let data = try? Data(contentsOf: pic)
-            if let imageData = data {
-                let image = UIImage(data: imageData)
-                userAccountImageButton.setImage(image, for: .normal)
-                
-            }
-            
-        }
+        reloadUserImage()
+        
         if let userEmail = Auth.auth().currentUser?.email {
             userEmailLabel.isHidden = false
             userEmailLabel.text = userEmail
@@ -90,6 +94,16 @@ class SettingsViewController: UIViewController {
         if let userName = Auth.auth().currentUser?.displayName {
             accountNameLabel.text = userName
         }
+    }
+    
+    func reloadUserImage(){
+        
+        if let userImage = userAccountImage{
+            userAccountImageButton.setImage(userImage, for: .normal)
+        } else {
+            userAccountImageButton.setImage(UIImage(named: "accountIcon"), for: .normal)}
+            
+        
     }
     
     func configureUserNameEntryFields(){
@@ -227,11 +241,77 @@ class SettingsViewController: UIViewController {
     }
     
     
-    
     @IBAction func privateAccountSwitchTapped(_ sender: UISwitch) {
         
         setPrivateAccountStatusInFirebase(accountIsPrivate: sender.isOn)
         
+    }
+    
+    
+    @IBAction func userImageButtonTapped(_ sender: RoundedButton) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            print("Button capture")
+            
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = false
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    
+    }
+    
+    
+    @IBAction func acceptImageButtonTapped(_ sender: RoundedButton) {
+        
+        //If image is accepted, upload it to Firebase Storage for the user's profile image
+        
+        guard let accountImage = userAccountImageButton.image(for: .normal) else {return}
+        
+        submitImageToFirebase(image: accountImage, callback: {
+            imageUploadedSuccessfully in
+            
+            if imageUploadedSuccessfully{
+                
+                self.acceptImageButton.isHidden = true
+                self.discardImageButton.isHidden = true
+                userAccountImage = accountImage
+             
+                
+            } else {
+                self.displayAlertWithOKButton(text: "Image Failed to Upload.  Max Image Size is 8MB.  Please try a different image.")
+            }
+            
+        })
+        
+    }
+    
+    
+    @IBAction func discardImageButtonTapped(_ sender: RoundedButton) {
+        reloadUserImage()
+        self.acceptImageButton.isHidden = true
+        self.discardImageButton.isHidden = true
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage else {
+                    fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+                 }
+        let size = CGSize(width: 200, height: 200)
+        let croppedImage = image.crop(to: size)
+        userAccountImageButton.setImage(croppedImage, for: .normal)
+        
+        //After new image is chosen, show the accept and discard buttons so the user can choose to set new image as their profile image if they wish
+        acceptImageButton.isHidden = false
+        discardImageButton.isHidden = false
+    
     }
     
     

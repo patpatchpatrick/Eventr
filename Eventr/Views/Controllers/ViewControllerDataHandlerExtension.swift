@@ -147,5 +147,24 @@ extension ViewController{
         
     }
     
+    func loadUserAccountImage(){
+        
+        loadUserImageFromFirebase(callback: {
+            userImage in
+            userAccountImage = userImage
+            guard let loadedImage = userAccountImage else {return}
+            self.accountSettingsIcon.image = loadedImage
+            self.sideMenuAccountButton.setImage(loadedImage, for: .normal)
+        })
+        
+        
+    }
+    
+    func reloadAccountImage(){
+        guard let loadedImage = userAccountImage else {return}
+        self.accountSettingsIcon.image = loadedImage
+        self.sideMenuAccountButton.setImage(loadedImage, for: .normal)
+    }
+    
     
 }

@@ -1732,6 +1732,46 @@
                                                         <color key="value" name="AccentPrimary"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="userImageButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="k60-ty-GdN"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-xd-hWG" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="174" y="115.5" width="30" height="30"/>
+                                                <color key="backgroundColor" name="AccentGreen"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="UY3-yq-erV"/>
+                                                    <constraint firstAttribute="height" constant="30" id="oFP-Gy-fUM"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Medium"/>
+                                                <state key="normal" image="iconCheckMark"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="acceptImageButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="h8c-nM-Bam"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ls2-6H-0Uu" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="116" y="115.5" width="30" height="30"/>
+                                                <color key="backgroundColor" name="AccentSecondary"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="jFT-Ze-gyT"/>
+                                                    <constraint firstAttribute="width" constant="30" id="vX5-L1-DsQ"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Medium"/>
+                                                <state key="normal" image="iconDiscard"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="acceptImageButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="yQX-7i-Ocy"/>
+                                                    <action selector="discardImageButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="27j-Sh-Ofg"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9L-fB-mIW">
                                                 <rect key="frame" x="20" y="155.5" width="280" height="35"/>
@@ -1963,11 +2003,14 @@
                                             <constraint firstItem="lVY-0T-ddr" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="3zG-RH-EmN"/>
                                             <constraint firstItem="7cQ-cS-4f7" firstAttribute="top" secondItem="lVY-0T-ddr" secondAttribute="bottom" constant="20" id="5qB-Lp-GVU"/>
                                             <constraint firstItem="bWj-GL-bsL" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="AOA-Qh-FFu"/>
+                                            <constraint firstItem="EgE-xd-hWG" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="-20" id="BAB-vt-10k"/>
                                             <constraint firstItem="MDc-eq-hGy" firstAttribute="top" secondItem="NEc-jI-N3S" secondAttribute="top" constant="20" id="EKr-4p-xYA"/>
                                             <constraint firstItem="I9L-fB-mIW" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="20" id="Etq-lA-Vwl"/>
+                                            <constraint firstItem="ls2-6H-0Uu" firstAttribute="leading" secondItem="VFU-4e-H2u" secondAttribute="leading" constant="-10" id="KpL-Mb-KO3"/>
                                             <constraint firstItem="K6f-n8-u6b" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="LiC-z6-g7f"/>
                                             <constraint firstItem="VFU-4e-H2u" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="Ng8-Ia-v63"/>
                                             <constraint firstItem="I9L-fB-mIW" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="Qhz-U7-pid"/>
+                                            <constraint firstItem="EgE-xd-hWG" firstAttribute="trailing" secondItem="VFU-4e-H2u" secondAttribute="trailing" constant="10" id="Rwl-sS-2G4"/>
                                             <constraint firstItem="MDc-eq-hGy" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="UnB-5k-ohE"/>
                                             <constraint firstItem="bWj-GL-bsL" firstAttribute="top" secondItem="7cQ-cS-4f7" secondAttribute="top" id="YA4-b3-3zK"/>
                                             <constraint firstItem="1WH-iJ-kLx" firstAttribute="top" secondItem="K6f-n8-u6b" secondAttribute="bottom" constant="20" id="Ygb-Jo-Vhl"/>
@@ -1981,6 +2024,7 @@
                                             <constraint firstItem="1WH-iJ-kLx" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="rcJ-uB-Hzk"/>
                                             <constraint firstItem="AZD-kf-fbk" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="75" id="vnn-P7-8xk"/>
                                             <constraint firstItem="7cQ-cS-4f7" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="wxQ-Y4-WCQ"/>
+                                            <constraint firstItem="ls2-6H-0Uu" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="-20" id="zLD-Qc-26H"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2061,9 +2105,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="acceptImageButton" destination="EgE-xd-hWG" id="2L6-b6-hgf"/>
                         <outlet property="accountNameLabel" destination="7uN-a2-zeN" id="7ws-A3-ZTc"/>
                         <outlet property="createAccountButton" destination="bWj-GL-bsL" id="6Wa-2E-vq2"/>
                         <outlet property="deleteAccountButton" destination="7cQ-cS-4f7" id="p3O-18-BwK"/>
+                        <outlet property="discardImageButton" destination="ls2-6H-0Uu" id="yO9-7v-jWT"/>
                         <outlet property="nameAcceptButton" destination="12L-zk-fWX" id="0wP-l5-AF1"/>
                         <outlet property="nameDiscardButton" destination="l3c-4X-Cdg" id="Aoy-bc-U3A"/>
                         <outlet property="nameEntryContainer" destination="AZD-kf-fbk" id="gPr-Pa-DEf"/>
@@ -3974,8 +4020,8 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8KJ-OK-Kql"/>
-        <segue reference="dut-gU-axl"/>
+        <segue reference="MSv-Pn-SaB"/>
+        <segue reference="1KL-n7-P1R"/>
         <segue reference="oJe-6P-JTU"/>
     </inferredMetricsTieBreakers>
 </document>

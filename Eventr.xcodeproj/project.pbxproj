@@ -46,6 +46,7 @@
 		F65368972272678C00861E0D /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65368962272678C00861E0D /* UtilityViews.swift */; };
 		F675F4C222BABC07006F7827 /* EventSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F675F4C122BABC07006F7827 /* EventSnippet.swift */; };
 		F67E98B8228BB16A0070E547 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67E98B7228BB16A0070E547 /* Notifications.swift */; };
+		F688012822BC474B005EA8D3 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688012722BC474B005EA8D3 /* FirebaseStorage.swift */; };
 		F6A071D622A86D5C002058BF /* CustomCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A071D522A86D5C002058BF /* CustomCategoryButton.swift */; };
 		F6A071D822A86D87002058BF /* CustomCategoryButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A071D722A86D87002058BF /* CustomCategoryButton.xib */; };
 		F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ADA4C72273CBA000948B7D /* EventCategories.swift */; };
@@ -120,6 +121,7 @@
 		F65368962272678C00861E0D /* UtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
 		F675F4C122BABC07006F7827 /* EventSnippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSnippet.swift; sourceTree = "<group>"; };
 		F67E98B7228BB16A0070E547 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		F688012722BC474B005EA8D3 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		F6A071D522A86D5C002058BF /* CustomCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryButton.swift; sourceTree = "<group>"; };
 		F6A071D722A86D87002058BF /* CustomCategoryButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCategoryButton.xib; sourceTree = "<group>"; };
 		F6ADA4C72273CBA000948B7D /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				F63E6E97229DE2A9004F1657 /* FirebaseQueries.swift */,
 				F6DB438222AF1E2000E3F159 /* FirebasePresenter.swift */,
 				F6DB438422AF1E9500E3F159 /* FirebaseDeletions.swift */,
+				F688012722BC474B005EA8D3 /* FirebaseStorage.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				F6F6A70122B0938E0069154D /* Friend.swift in Sources */,
 				F6DB438522AF1E9500E3F159 /* FirebaseDeletions.swift in Sources */,
 				F6ADA4C82273CBA000948B7D /* EventCategories.swift in Sources */,
+				F688012822BC474B005EA8D3 /* FirebaseStorage.swift in Sources */,
 				F62733022273873D00FDA681 /* Event.swift in Sources */,
 				F67E98B8228BB16A0070E547 /* Notifications.swift in Sources */,
 				F603C0FE2278BCD700EE8798 /* CreateEventViewController.swift in Sources */,

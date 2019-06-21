@@ -20,20 +20,6 @@ extension ViewController{
     
     func setUpAccountSettingsImage(){
         
-        //Set the profile photo of the logged in user if they have one
-        if let pic = Auth.auth().currentUser?.photoURL {
-            let data = try? Data(contentsOf: pic)
-            if let imageData = data {
-                let image = UIImage(data: imageData)
-                accountSettingsIcon.image = image
-                sideMenuAccountButton.setImage(image, for: .normal)
-                
-            }
-            
-        } else {
-            sideMenuAccountButton.setImage(UIImage(named: "accountIcon"), for: .normal)
-        }
-    
         accountSettingsIcon.clipsToBounds = true
         sideMenuAccountButton.clipsToBounds = true
         

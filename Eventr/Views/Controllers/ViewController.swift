@@ -33,7 +33,7 @@ enum sortBy {
     case datedesc
 }
 var sortByPreference : sortBy = .popularity //Variable to track user's sorting preferences
-
+var userAccountImage: UIImage?
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
@@ -155,6 +155,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         hideViews()
         configureCalendarView()
         updateSelectedQueryButtonStyle()
+        loadUserAccountImage()
         loadInitialListOfEvents()
         
         queryIfUserHasUsername(callback: {
@@ -174,6 +175,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Add notification observer to reload tableview whenever event data is changed
         eventTableView.reloadData()
         setCitySelectionIfSetInPrefs()
+        reloadAccountImage()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updated_event_data),
                                                name:Notification.Name("UPDATED_EVENT_DATA"),
