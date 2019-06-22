@@ -552,6 +552,35 @@ func queryFriendRequestsInFirebase(){
     
 }
 
+func queryFriendsUserIsFollowingInFirebase(){
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return}
+    
+    tableFriendSearch.removeAll()
+    firebaseDatabaseRef.child("following").child(userID).observeSingleEvent(of: .value, with: {
+        (snapshot) in
+        guard let dict = snapshot.value as? NSDictionary else { return }
+        for friendUserID in dict.allKeys {
+            
+            print("Friend User ID Key")
+            print(friendUserID)
+            guard let friendUserIDString = friendUserID as? String else {return}
+            
+            firebaseDatabaseRef.child("users").child(friendUserIDString).child("username").observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                
+                guard let friendUserName = snapshot.value as? String else {return}
+                
+                let friendUserIsFollowing = Friend(name: friendUserName, userID: friendUserIDString)
+                tableFriendSearch.append(friendUserIsFollowing)
+                reloadFriendTableView()
+                
+            })
+        }
+    })
+    
+}
+
 func queryEventsFriendsAreAttendingInFirebase(){
     
     //Query the list of friends (IDs and names) who the user is following

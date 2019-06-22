@@ -9,9 +9,9 @@
 import UIKit
 
 var selectedFriend: Friend = Friend(name: "", userID: "")
-var tableFriends: [Friend] = []
-var tableFriendRequests: [Friend] = []
-var tableFriendEvents: [EventSnippet] = []
+var tableFriendSearch: [Friend] = [] //Table used for search button/search mode
+var tableFriendRequests: [Friend] = [] //Table used for requests / request mode
+var tableFriendEvents: [EventSnippet] = [] //Table used for events/ event mode
 var friendImageDict: [String: UIImage] = [:]
 
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -60,7 +60,12 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updated_friend_data),
+                                               name:Notification.Name("UPDATED_FRIEND_DATA"),
+                                               object: nil)
         updateNotificationLabels() //Update notification labels every time the friends view controller appears
+        reloadFriendTableView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -86,13 +91,15 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                     event in
                     
                     selectedEvent = event
+                    self.friendsTableView.deselectRow(at: indexPath, animated: true)
                     self.performSegue(withIdentifier: "friendEventSegue", sender: self)
                     
                 })
             }
         default:
-            return print("DO NOTHING")
+            self.friendsTableView.deselectRow(at: indexPath, animated: true)
         }
+        
         
     }
     
@@ -108,13 +115,13 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch headerSelectedIndex {
         case SEARCH_INDEX:
-            return tableFriends.count
+            return tableFriendSearch.count
         case REQUESTS_INDEX:
             return tableFriendRequests.count
         case EVENTS_INDEX:
             return tableFriendEvents.count
         default:
-            return tableFriends.count
+            return tableFriendSearch.count
         }
     }
     
@@ -141,7 +148,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func populateSearchFriendCell(cell: CustomFriendCell, indexPath: IndexPath) -> CustomFriendCell{
         
-        let friend = tableFriends[indexPath.row]
+        let friend = tableFriendSearch[indexPath.row]
         
         cell.friendNameLabel.text = friend.name
         
@@ -304,6 +311,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         switch headerSelectedIndex{
         case SEARCH_INDEX:
             print("POPULATE SEARCH DATA IN TABLE VIEW")
+            queryFriendsUserIsFollowingInFirebase() //By default, show the friends that the user is following when the search button is tapped
         case REQUESTS_INDEX:
             friendsTableView.setEmptyMessage("You do not have any new friend requests")
             queryFriendRequestsInFirebase()
@@ -360,7 +368,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         friendsTableView.setEmptyMessage("You do not appear to have any friends currently. Add some!")
         
-        tableFriends.removeAll()
+        tableFriendSearch.removeAll()
         
         queryFriendsInFirebase(username: usernameToSearch, callback: {
             usernameFound, friendResult in
@@ -368,12 +376,12 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             if usernameFound {
                 
                 guard let friend = friendResult else {return}
-                tableFriends.append(friend)
+                tableFriendSearch.append(friend)
                 self.friendsTableView.restore()
                 self.friendsTableView.reloadData()
             } else {
                 self.friendsTableView.setEmptyMessage("Friend Not Found")
-                tableFriends.removeAll()
+                tableFriendSearch.removeAll()
                 self.friendsTableView.reloadData()
             }
         })
@@ -399,12 +407,12 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
           //Check if the account you are adding is private, if so, send a friend request.  If not, follow the friend
         
-        if index <= tableFriends.count && index >= 0 {
-            selectedFriend = tableFriends[index]
+        if index <= tableFriendSearch.count && index >= 0 {
+            selectedFriend = tableFriendSearch[index]
             let friendshipStatus = selectedFriend.status
             switch friendshipStatus {
             case .requestReceived: print ("REQUEST RECEIVED")
-            case .connected: print ("CONNECTED")
+            case .connected: displayAlertToUnfollowFriend(friend: selectedFriend)
             case .notconnected: sendFriendRequest()
             case .requestSent:
                 print("REQUEST SENT")
@@ -451,7 +459,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                     }
                 })
                 
-            case .connected: print ("CONNECTED")
+            case .connected: displayAlertToUnfollowFriend(friend: selectedFriend)
             case .notconnected: sendFriendRequest()
             case .requestSent:
                 print("REQUEST SENT")
@@ -460,6 +468,25 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
         
+    }
+    
+    func displayAlertToUnfollowFriend(friend: Friend){
+        //Prompt/confirm that the user wants to unfollow a specific friend in Firebase
+        let unfollowAlert = UIAlertController(title: "Unfollow " + friend.name + "?", message: nil, preferredStyle: .alert)
+        unfollowAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
+        }))
+        unfollowAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            unfollowFriendInFirebase(friend: friend, callback: {
+                unfollowedSuccessfully in
+                if unfollowedSuccessfully {
+                    reloadFriendTableView()
+                }
+            })
+        }))
+        
+        self.present(unfollowAlert, animated: true)
+    
+    
     }
     
     func sendFriendRequest(){

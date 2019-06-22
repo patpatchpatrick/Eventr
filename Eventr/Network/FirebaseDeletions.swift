@@ -108,6 +108,9 @@ func deleteUserFirebaseData(callback: ((Bool) -> Void)?) {
     
     firebaseDatabaseRef.child("user-settings").child(userID).removeValue()
     
+    //Delete user's profile image from storage
+    deleteUserImageFromFirebase()
+    
     //Delete username if it exists
     queryIfUserHasUsername(callback: {
         userHasUsername, username in
@@ -214,6 +217,39 @@ func unattendFirebaseEvent(event: Event){
         }
         
     })
+    
+}
+
+func unfollowFriendInFirebase(friend: Friend, callback: @escaping ((Bool) -> Void)){
+    
+    //Unfollow the friend in Firebase and send a completion callback
+    //Remove from appropriate user's followers and following lists
+    //Decrement follow count for the friend
+    //Remove the follow requests as well
+    guard let userID = Auth.auth().currentUser?.uid else { callback(false); return}
+    
+    firebaseDatabaseRef.child("following").child(userID).child(friend.userID).removeValue()
+    
+    firebaseDatabaseRef.child("followers").child(friend.userID).child(userID).removeValue()
+    
+    firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").observeSingleEvent(of: .value, with: {(numberOfFollowersSnap) in
+        
+        if numberOfFollowersSnap.exists(){
+            guard var numberOfFollowers = numberOfFollowersSnap.value as? Int else {return}
+            numberOfFollowers -= 1
+            firebaseDatabaseRef.child("follow-count").child(friend.userID).child("number").setValue(numberOfFollowers)
+        }
+        
+    })
+    
+    firebaseDatabaseRef.child("follow-requests-sent").child(userID).child(friend.userID).removeValue()
+    
+    firebaseDatabaseRef.child("follow-requests-rec").child(friend.userID).child(userID).removeValue()
+    
+        callback(true)
+     
+    
+    
     
 }
 

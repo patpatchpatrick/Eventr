@@ -90,3 +90,18 @@ func loadFriendImageFromFirebase(friendID: String, callback: @escaping ((UIImage
     }
     
 }
+
+func deleteUserImageFromFirebase(){
+    
+    //Deletes a user's image from firebase
+    
+    guard let userID = Auth.auth().currentUser?.uid else { return }
+    
+    let storage = Storage.storage()
+    let storageRef = storage.reference()
+    let imageRef = storageRef.child(userID).child("account.png")
+    imageRef.delete(completion: {
+        error in
+        print(error.debugDescription)
+    })
+}

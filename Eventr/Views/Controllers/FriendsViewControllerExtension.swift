@@ -53,7 +53,7 @@ extension FriendsViewController{
     }
     
     func clearAllTables(){
-        tableFriends.removeAll()
+        tableFriendSearch.removeAll()
         tableFriendRequests.removeAll()
         tableFriendEvents.removeAll()
     }
