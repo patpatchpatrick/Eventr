@@ -108,6 +108,16 @@ func deleteUserFirebaseData(callback: ((Bool) -> Void)?) {
     
     firebaseDatabaseRef.child("user-settings").child(userID).removeValue()
     
+    firebaseDatabaseRef.child("following").child(userID).removeValue()
+    
+    firebaseDatabaseRef.child("followers").child(userID).removeValue()
+    
+    firebaseDatabaseRef.child("follow-count").child(userID).removeValue()
+    
+    firebaseDatabaseRef.child("follow-requests-sent").child(userID).removeValue()
+    
+    firebaseDatabaseRef.child("follow-requests-rec").child(userID).removeValue()
+    
     //Delete user's profile image from storage
     deleteUserImageFromFirebase()
     

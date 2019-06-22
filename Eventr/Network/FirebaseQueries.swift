@@ -537,15 +537,16 @@ func queryFriendRequestsInFirebase(){
             firebaseDatabaseRef.child("users").child(friendUserIDString).child("username").observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 
-                guard let friendUserName = snapshot.value as? String else {return}
-                
-                print("FRIEND USER NAME REQUESTED")
-                print(friendUserName)
-                
-                let friendRequest = Friend(name: friendUserName, userID: friendUserIDString)
-                tableFriendRequests.append(friendRequest)
-                reloadFriendTableView()
-                
+                if let friendUserName = snapshot.value as? String {
+                    
+                    print("FRIEND USER NAME REQUESTED")
+                    print(friendUserName)
+                    
+                    let friendRequest = Friend(name: friendUserName, userID: friendUserIDString)
+                    tableFriendRequests.append(friendRequest)
+                    reloadFriendTableView()
+                    
+                }
             })
         }
     })
@@ -569,11 +570,14 @@ func queryFriendsUserIsFollowingInFirebase(){
             firebaseDatabaseRef.child("users").child(friendUserIDString).child("username").observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 
-                guard let friendUserName = snapshot.value as? String else {return}
-                
-                let friendUserIsFollowing = Friend(name: friendUserName, userID: friendUserIDString)
-                tableFriendSearch.append(friendUserIsFollowing)
-                reloadFriendTableView()
+                if let friendUserName = snapshot.value as? String {
+                    
+                    let friendUserIsFollowing = Friend(name: friendUserName, userID: friendUserIDString)
+                    tableFriendSearch.append(friendUserIsFollowing)
+                    reloadFriendTableView()
+                    
+                    
+                }
                 
             })
         }
@@ -596,27 +600,33 @@ func queryEventsFriendsAreAttendingInFirebase(){
         for friendsUserIsFollowing in dict.allKeys {
       
             guard let friendUserIDString = friendsUserIsFollowing as? String else {return}
-            guard let friendUserNameString = snapshot.childSnapshot(forPath: friendUserIDString).value as? String else {return}
-            
-            //beforeDate is equal to today's date converted to GMT time zone so that it can be compared to other dates (since dates are stored in GMT time in Firebase
-            let beforeDate = Double((Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
-            firebaseDatabaseRef.child("attendingUsers").child(friendUserIDString).queryOrdered(byChild: "dateSort").queryEnding(atValue: 0 - beforeDate).queryLimited(toLast: friendMaxEventsToShow).observeSingleEvent(of: .value, with: {
-                (snapshot) in
-                guard let dict = snapshot.value as? NSDictionary else { return }
-                for eventID in dict.allKeys {
-                    guard let eventIDString = eventID as? String else {return}
-                    let eventValues = snapshot.childSnapshot(forPath: eventIDString).value
-                    if let eventValuesDict = eventValues as? NSDictionary {
-                        
-                        let eventSnippet = EventSnippet(dict: eventValuesDict, eventID: eventIDString, friendName: friendUserNameString, friendID: friendUserIDString)
-                        
-                        addEventSnipToFriendsEventsListInOrder(eventSnip: eventSnippet, eventSnipList: &tableFriendEvents)
-                        reloadFriendTableView()
-                        
-                    }
-                }
+            if let friendUserNameString = snapshot.childSnapshot(forPath: friendUserIDString).value as? String {
                 
-            })
+                
+                //beforeDate is equal to today's date converted to GMT time zone so that it can be compared to other dates (since dates are stored in GMT time in Firebase
+                let beforeDate = Double((Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())?.convertToTimeZone(initTimeZone: Calendar.current.timeZone, timeZone: TimeZone(secondsFromGMT: 0)!).timeIntervalSince1970)!)
+                firebaseDatabaseRef.child("attendingUsers").child(friendUserIDString).queryOrdered(byChild: "dateSort").queryEnding(atValue: 0 - beforeDate).queryLimited(toLast: friendMaxEventsToShow).observeSingleEvent(of: .value, with: {
+                    (snapshot) in
+                    guard let dict = snapshot.value as? NSDictionary else { return }
+                    for eventID in dict.allKeys {
+                        guard let eventIDString = eventID as? String else {return}
+                        let eventValues = snapshot.childSnapshot(forPath: eventIDString).value
+                        if let eventValuesDict = eventValues as? NSDictionary {
+                            
+                            let eventSnippet = EventSnippet(dict: eventValuesDict, eventID: eventIDString, friendName: friendUserNameString, friendID: friendUserIDString)
+                            
+                            addEventSnipToFriendsEventsListInOrder(eventSnip: eventSnippet, eventSnipList: &tableFriendEvents)
+                            reloadFriendTableView()
+                            
+                        }
+                    }
+                    
+                })
+                
+                
+            }
+            
+            
         }
     })
     
