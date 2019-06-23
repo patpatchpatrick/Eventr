@@ -49,8 +49,13 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var privateAccountSwitch: UISwitch!
     
     
+    @IBOutlet weak var infoMessageContainer: RoundUIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         self.hideKeyboardWhenTappedAround()
 
         loadUserData()
         configureViewsBasedOnIfUserIsCreatingAccount()
@@ -177,6 +182,7 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
         configureFloatingSideButtonDesign(view: settingsButtonContainer)
         configureFloatingSideButtonDesign(view: deleteAccountButton)
         configureFloatingSideButtonDesign(view: createAccountButton)
+        configureFloatingSideButtonDesign(view: infoMessageContainer)
         usernameLabel.addBottomBorderWithColor(color: themeTextColor, width: 1, widthExtension: 0)
         
     }
@@ -262,6 +268,20 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
     @IBAction func privateAccountSwitchTapped(_ sender: UISwitch) {
         
         setPrivateAccountStatusInFirebase(accountIsPrivate: sender.isOn)
+        
+    }
+    
+    
+    @IBAction func privateAccountInfoButtonTapped(_ sender: UIButton) {
+        
+        infoMessageContainer.isHidden = false
+        
+    }
+    
+    
+    @IBAction func dismissInfoMessage(_ sender: UIButton) {
+        
+        infoMessageContainer.isHidden = true
         
     }
     

@@ -1708,7 +1708,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="498"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDc-eq-hGy">
-                                                <rect key="frame" x="116" y="20" width="88.5" height="27.5"/>
+                                                <rect key="frame" x="118" y="20" width="84.5" height="27.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="27.5" id="a64-JT-fhb"/>
                                                 </constraints>
@@ -1950,11 +1950,24 @@
                                                         </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buT-D7-or1">
-                                                        <rect key="frame" x="10" y="13.5" width="110.5" height="18"/>
+                                                        <rect key="frame" x="10" y="13.5" width="106.5" height="18"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="15"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkA-mQ-IOl">
+                                                        <rect key="frame" x="121.5" y="7.5" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="MpX-A6-djD"/>
+                                                            <constraint firstAttribute="height" constant="30" id="cX8-dD-noC"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="AccentPrimary"/>
+                                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                        <state key="normal" image="iconInfo"/>
+                                                        <connections>
+                                                            <action selector="privateAccountInfoButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="3SU-7Q-NPZ"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="DDS-m0-tbq"/>
@@ -1962,6 +1975,8 @@
                                                     <constraint firstAttribute="width" constant="250" id="aQQ-Di-KLf"/>
                                                     <constraint firstAttribute="trailing" secondItem="5JZ-dA-xog" secondAttribute="trailing" constant="10" id="esE-ui-GcQ"/>
                                                     <constraint firstItem="buT-D7-or1" firstAttribute="centerY" secondItem="1WH-iJ-kLx" secondAttribute="centerY" id="fRP-Y9-hdh"/>
+                                                    <constraint firstItem="fkA-mQ-IOl" firstAttribute="centerY" secondItem="1WH-iJ-kLx" secondAttribute="centerY" id="j9o-tC-G8U"/>
+                                                    <constraint firstItem="fkA-mQ-IOl" firstAttribute="leading" secondItem="buT-D7-or1" secondAttribute="trailing" constant="5" id="r2Z-f9-7l3"/>
                                                     <constraint firstItem="buT-D7-or1" firstAttribute="leading" secondItem="1WH-iJ-kLx" secondAttribute="leading" constant="10" id="uoc-O4-zJ4"/>
                                                 </constraints>
                                             </view>
@@ -1973,7 +1988,7 @@
                                                         <color key="onTintColor" name="AccentPrimary"/>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svd-N8-f3y">
-                                                        <rect key="frame" x="10" y="13.5" width="126" height="18"/>
+                                                        <rect key="frame" x="10" y="13.5" width="122" height="18"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="15"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
@@ -2028,6 +2043,48 @@
                                                     <action selector="deleteAccountButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="oxQ-ec-pun"/>
                                                 </connections>
                                             </button>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDw-ud-VuH" customClass="RoundUIView" customModule="Eventr_" customModuleProvider="target">
+                                                <rect key="frame" x="40" y="99" width="240" height="300"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="cMS-oN-F33">
+                                                        <rect key="frame" x="20" y="10" width="200" height="200"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="Vch-LX-VYK"/>
+                                                            <constraint firstAttribute="width" constant="200" id="vIw-hJ-31U"/>
+                                                        </constraints>
+                                                        <string key="text">If an account is private, you must manually approve follow requests from others.  If an account is not private, others can automatically follow you and see the events you are attending.</string>
+                                                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
+                                                        <color key="textColor" name="Text"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4j-M4-gSt">
+                                                        <rect key="frame" x="102.5" y="235" width="35" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="lKR-uh-6hn"/>
+                                                            <constraint firstAttribute="width" constant="35" id="sDl-2U-7i4"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="AccentGreen"/>
+                                                        <state key="normal" image="iconCheckMark"/>
+                                                        <connections>
+                                                            <action selector="dismissInfoMessage:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="QP9-be-PdR"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="Medium"/>
+                                                <constraints>
+                                                    <constraint firstItem="cMS-oN-F33" firstAttribute="leading" secondItem="BDw-ud-VuH" secondAttribute="leading" constant="20" id="7dp-VF-4AT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="t4j-M4-gSt" secondAttribute="bottom" constant="30" id="Ff0-7O-eCG"/>
+                                                    <constraint firstItem="t4j-M4-gSt" firstAttribute="centerX" secondItem="BDw-ud-VuH" secondAttribute="centerX" id="Hjt-zy-bQB"/>
+                                                    <constraint firstAttribute="width" constant="240" id="LLo-EQ-n2X"/>
+                                                    <constraint firstItem="cMS-oN-F33" firstAttribute="top" secondItem="BDw-ud-VuH" secondAttribute="top" constant="10" id="cao-HE-mrr"/>
+                                                    <constraint firstAttribute="height" constant="300" id="dWn-Nd-0HI"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -2040,10 +2097,12 @@
                                             <constraint firstItem="MDc-eq-hGy" firstAttribute="top" secondItem="NEc-jI-N3S" secondAttribute="top" constant="20" id="EKr-4p-xYA"/>
                                             <constraint firstItem="I9L-fB-mIW" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="20" id="Etq-lA-Vwl"/>
                                             <constraint firstItem="en6-K8-Bpd" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="top" constant="-10" id="GNh-rT-wqT"/>
+                                            <constraint firstItem="BDw-ud-VuH" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="KJm-85-mra"/>
                                             <constraint firstItem="EIV-vG-fJP" firstAttribute="top" secondItem="7uN-a2-zeN" secondAttribute="top" id="KQa-SV-mt0"/>
                                             <constraint firstItem="ls2-6H-0Uu" firstAttribute="leading" secondItem="VFU-4e-H2u" secondAttribute="leading" constant="-10" id="KpL-Mb-KO3"/>
                                             <constraint firstItem="K6f-n8-u6b" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="LiC-z6-g7f"/>
                                             <constraint firstItem="VFU-4e-H2u" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="Ng8-Ia-v63"/>
+                                            <constraint firstItem="BDw-ud-VuH" firstAttribute="centerY" secondItem="NEc-jI-N3S" secondAttribute="centerY" id="Nz3-Xc-Bxl"/>
                                             <constraint firstItem="I9L-fB-mIW" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="Qhz-U7-pid"/>
                                             <constraint firstItem="EgE-xd-hWG" firstAttribute="trailing" secondItem="VFU-4e-H2u" secondAttribute="trailing" constant="10" id="Rwl-sS-2G4"/>
                                             <constraint firstItem="MDc-eq-hGy" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="UnB-5k-ohE"/>
@@ -2147,6 +2206,7 @@
                         <outlet property="createAccountButton" destination="bWj-GL-bsL" id="6Wa-2E-vq2"/>
                         <outlet property="deleteAccountButton" destination="7cQ-cS-4f7" id="p3O-18-BwK"/>
                         <outlet property="discardImageButton" destination="ls2-6H-0Uu" id="yO9-7v-jWT"/>
+                        <outlet property="infoMessageContainer" destination="BDw-ud-VuH" id="YML-uJ-Xbj"/>
                         <outlet property="nameAcceptButton" destination="12L-zk-fWX" id="0wP-l5-AF1"/>
                         <outlet property="nameDiscardButton" destination="l3c-4X-Cdg" id="Aoy-bc-U3A"/>
                         <outlet property="nameEntryContainer" destination="AZD-kf-fbk" id="gPr-Pa-DEf"/>
@@ -2183,17 +2243,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDD-nw-MfO">
                                 <rect key="frame" x="20" y="80" width="280" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Find Friends..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="46q-kp-Ohw">
-                                        <rect key="frame" x="23" y="15" width="200" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Find Friends by Username..." textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="46q-kp-Ohw">
+                                        <rect key="frame" x="3" y="15" width="240" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="63r-32-wUG"/>
+                                            <constraint firstAttribute="width" constant="240" id="63r-32-wUG"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkd-rx-dka" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                        <rect key="frame" x="228" y="15" width="30" height="30"/>
+                                        <rect key="frame" x="248" y="15" width="30" height="30"/>
                                         <color key="backgroundColor" name="Medium"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="JMv-Ag-Aie"/>
@@ -2370,7 +2430,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fgO-Pm-1ex" customClass="RoundedImage" customModule="Eventr_" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="8" width="25.000000000000227" height="25.000000000000227"/>
+                                                            <rect key="frame" x="0.0" y="8" width="25" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="MTf-iA-DxF"/>
                                                                 <constraint firstAttribute="height" constant="25" id="zwt-sh-TYZ"/>
@@ -4052,6 +4112,7 @@
         <image name="iconForward" width="52" height="52"/>
         <image name="iconHome" width="90" height="90"/>
         <image name="iconHomeColor" width="900" height="900"/>
+        <image name="iconInfo" width="104" height="104"/>
         <image name="iconLocation" width="113" height="114"/>
         <image name="iconLogOut" width="52" height="52"/>
         <image name="iconMinus" width="52" height="52"/>

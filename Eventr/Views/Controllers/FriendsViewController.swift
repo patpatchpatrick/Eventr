@@ -46,6 +46,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.hideKeyboardWhenTappedAround()
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updated_friend_data),
