@@ -38,6 +38,8 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var usernameDiscardButton: UIButton!
     @IBOutlet weak var usernameAcceptButton: UIButton!
     
+    @IBOutlet weak var userNameEditButton: UIButton!
+    
     @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var nameEntryContainer: UIView!
     @IBOutlet weak var nameEntryTextField: UITextField!
@@ -153,9 +155,11 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
                     self.nameEntryContainer.isHidden = true
                     self.accountNameLabel.isHidden = false
                     self.accountNameLabel.text = name
+                    self.userNameEditButton.isHidden = false
                 } else {
                     self.nameEntryContainer.isHidden = false
                     self.accountNameLabel.isHidden = true
+                    self.userNameEditButton.isHidden = true
                 }
             })
             
@@ -187,7 +191,7 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
     @IBAction func usernameAcceptButtonTapped(_ sender: Any) {
         //
         guard let requestedUsernameText = usernameTextEntry.text else {return}
-        let requestedUsername = requestedUsernameText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let requestedUsername = requestedUsernameText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
         if requestedUsername.count < 4 {
             displayAlertWithOKButton(text: "Username must be at least 4 characters long")
@@ -241,6 +245,16 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate, 
         self.accountNameLabel.text = selectedName
         self.accountNameLabel.isHidden = false
         self.nameEntryContainer.isHidden = true
+        self.userNameEditButton.isHidden = false
+        
+    }
+    
+    
+    @IBAction func nameEditButtonTapped(_ sender: UIButton) {
+        
+        self.nameEntryContainer.isHidden = false
+        self.accountNameLabel.isHidden = true
+        self.userNameEditButton.isHidden = true
         
     }
     

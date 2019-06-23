@@ -216,7 +216,7 @@
                                                                                             <color key="tintColor" name="AccentPrimary"/>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-0u-RfN">
-                                                                                            <rect key="frame" x="9" y="20" width="42" height="20"/>
+                                                                                            <rect key="frame" x="8" y="20" width="44.5" height="20"/>
                                                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                             <color key="textColor" name="Text"/>
                                                                                             <nil key="highlightedColor"/>
@@ -472,7 +472,7 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accountIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Idu-z7-1jJ">
-                                                                                            <rect key="frame" x="5" y="0.0" width="20.000000000000227" height="20.000000000000227"/>
+                                                                                            <rect key="frame" x="5" y="0.0" width="20" height="20"/>
                                                                                             <color key="tintColor" name="Dark"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="20" id="0US-6l-6k9"/>
@@ -1149,14 +1149,14 @@
                                         <rect key="frame" x="109.5" y="498" width="101" height="50"/>
                                         <subviews>
                                             <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIU-FB-5EB" userLabel="createEvent" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="51" y="0.0" width="50" height="80"/>
+                                                <rect key="frame" x="51" y="0.0" width="50" height="200"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="Qt6-d0-Fi3"/>
-                                                    <constraint firstAttribute="height" constant="80" id="TaC-vh-xCy"/>
+                                                    <constraint firstAttribute="height" constant="200" id="TaC-vh-xCy"/>
                                                 </constraints>
                                                 <color key="tintColor" name="Text"/>
-                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
+                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="155"/>
                                                 <state key="normal" image="friendRequestNotificationGreen"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1174,14 +1174,14 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReK-rd-Oqp" userLabel="createEvent" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="200"/>
                                                 <color key="backgroundColor" name="Medium"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="Wo2-ah-AaZ"/>
+                                                    <constraint firstAttribute="height" constant="200" id="Wo2-ah-AaZ"/>
                                                     <constraint firstAttribute="width" constant="50" id="zMe-Xa-u7z"/>
                                                 </constraints>
                                                 <color key="tintColor" name="Text"/>
-                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
+                                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="155"/>
                                                 <state key="normal" image="iconHomeColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1916,6 +1916,19 @@
                                                 <color key="textColor" name="Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIV-vG-fJP">
+                                                <rect key="frame" x="265" y="210.5" width="35" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="J69-lY-pXZ"/>
+                                                    <constraint firstAttribute="height" constant="35" id="gim-yI-W9h"/>
+                                                </constraints>
+                                                <color key="tintColor" name="AccentPrimary"/>
+                                                <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" image="iconEdit"/>
+                                                <connections>
+                                                    <action selector="nameEditButtonTapped:" destination="cYY-Sb-yxV" eventType="touchUpInside" id="UgK-be-JXJ"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="guest@guest.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="K6f-n8-u6b">
                                                 <rect key="frame" x="35" y="265.5" width="250" height="35"/>
                                                 <constraints>
@@ -2027,6 +2040,7 @@
                                             <constraint firstItem="MDc-eq-hGy" firstAttribute="top" secondItem="NEc-jI-N3S" secondAttribute="top" constant="20" id="EKr-4p-xYA"/>
                                             <constraint firstItem="I9L-fB-mIW" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="20" id="Etq-lA-Vwl"/>
                                             <constraint firstItem="en6-K8-Bpd" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="top" constant="-10" id="GNh-rT-wqT"/>
+                                            <constraint firstItem="EIV-vG-fJP" firstAttribute="top" secondItem="7uN-a2-zeN" secondAttribute="top" id="KQa-SV-mt0"/>
                                             <constraint firstItem="ls2-6H-0Uu" firstAttribute="leading" secondItem="VFU-4e-H2u" secondAttribute="leading" constant="-10" id="KpL-Mb-KO3"/>
                                             <constraint firstItem="K6f-n8-u6b" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="LiC-z6-g7f"/>
                                             <constraint firstItem="VFU-4e-H2u" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="Ng8-Ia-v63"/>
@@ -2045,6 +2059,7 @@
                                             <constraint firstItem="1WH-iJ-kLx" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="rcJ-uB-Hzk"/>
                                             <constraint firstItem="AZD-kf-fbk" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="75" id="vnn-P7-8xk"/>
                                             <constraint firstItem="7cQ-cS-4f7" firstAttribute="centerX" secondItem="NEc-jI-N3S" secondAttribute="centerX" id="wxQ-Y4-WCQ"/>
+                                            <constraint firstItem="EIV-vG-fJP" firstAttribute="leading" secondItem="7uN-a2-zeN" secondAttribute="trailing" constant="-20" id="yix-lF-hoK"/>
                                             <constraint firstItem="ls2-6H-0Uu" firstAttribute="top" secondItem="VFU-4e-H2u" secondAttribute="bottom" constant="-20" id="zLD-Qc-26H"/>
                                         </constraints>
                                     </view>
@@ -2141,6 +2156,7 @@
                         <outlet property="settingsScreenTitle" destination="MDc-eq-hGy" id="GCy-ic-NwN"/>
                         <outlet property="userAccountImageButton" destination="VFU-4e-H2u" id="sMJ-ZV-Cje"/>
                         <outlet property="userEmailLabel" destination="K6f-n8-u6b" id="UWg-T0-bXX"/>
+                        <outlet property="userNameEditButton" destination="EIV-vG-fJP" id="RLB-TJ-dof"/>
                         <outlet property="usernameAcceptButton" destination="tmy-E7-ghC" id="UFR-XX-b4C"/>
                         <outlet property="usernameDiscardButton" destination="CDp-Tf-YCO" id="raJ-Q1-Ecw"/>
                         <outlet property="usernameEntryContainer" destination="I9L-fB-mIW" id="178-je-XeY"/>
@@ -2150,7 +2166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4C-Jg-V04" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="296" y="1020"/>
+            <point key="canvasLocation" x="294.375" y="1019.3661971830986"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="edW-Ps-rXc">
@@ -2343,11 +2359,11 @@
                                                                 <constraint firstAttribute="width" constant="20" id="jc9-s3-fxg"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVR-bz-SLQ">
-                                                            <rect key="frame" x="5" y="56" width="180" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="KVR-bz-SLQ">
+                                                            <rect key="frame" x="5" y="56" width="200" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="JxT-GB-AHQ"/>
-                                                                <constraint firstAttribute="width" constant="180" id="b3b-Kh-Tml"/>
+                                                                <constraint firstAttribute="width" constant="200" id="b3b-Kh-Tml"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway Light" pointSize="14"/>
                                                             <nil key="textColor"/>
@@ -2537,13 +2553,13 @@
                                 <rect key="frame" x="109.5" y="518" width="101" height="50"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D42-bq-Ws0" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="NPv-py-hwf"/>
-                                            <constraint firstAttribute="height" constant="80" id="fWg-9d-1fe"/>
+                                            <constraint firstAttribute="height" constant="200" id="fWg-9d-1fe"/>
                                         </constraints>
                                         <color key="tintColor" name="Text"/>
-                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="155"/>
                                         <state key="normal" image="iconHomeColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2561,13 +2577,13 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbk-bJ-4I2" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                        <rect key="frame" x="51" y="0.0" width="50" height="80"/>
+                                        <rect key="frame" x="51" y="0.0" width="50" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Lim-Zy-0Vz"/>
-                                            <constraint firstAttribute="height" constant="80" id="wRk-Aw-ctn"/>
+                                            <constraint firstAttribute="height" constant="200" id="wRk-Aw-ctn"/>
                                         </constraints>
                                         <color key="tintColor" name="Text"/>
-                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="35"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="155"/>
                                         <state key="normal" image="friendRequestNotificationGreen"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3266,10 +3282,10 @@
                                 <rect key="frame" x="16" y="70" width="288" height="428"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFA-VQ-esL">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1172.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1190.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="NTe-d8-JBS">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1172.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1190.5"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-3j-RYP" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
@@ -3453,7 +3469,7 @@
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nu-CU-azq">
-                                                                                    <rect key="frame" x="4" y="15" width="42" height="20"/>
+                                                                                    <rect key="frame" x="3" y="15" width="44.5" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -3683,10 +3699,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-lg-T9o" customClass="RoundedButton" customModule="Eventr_" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="507" width="320" height="24"/>
+                                                        <rect key="frame" x="0.0" y="507" width="320" height="42"/>
                                                         <color key="backgroundColor" name="AccentPrimary"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="GxX-w2-hLE"/>
+                                                            <constraint firstAttribute="height" constant="42" id="GxX-w2-hLE"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                         <color key="tintColor" name="Medium"/>
@@ -3696,7 +3712,7 @@
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="12"/>
+                                                                <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -3704,7 +3720,7 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-g7-EtX" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="540" width="320" height="36"/>
+                                                        <rect key="frame" x="0.0" y="558" width="320" height="36"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -3718,7 +3734,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1Wu-Hw-q40" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="585" width="320" height="36"/>
+                                                        <rect key="frame" x="0.0" y="603" width="320" height="36"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -3731,7 +3747,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RKs-T8-3EI" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="630" width="320" height="36"/>
+                                                        <rect key="frame" x="0.0" y="648" width="320" height="36"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -3745,7 +3761,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GLy-IO-trK" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="675" width="320" height="36"/>
+                                                        <rect key="frame" x="0.0" y="693" width="320" height="36"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -3759,7 +3775,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Enter Phone Number*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-Xe-pKs" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
-                                                        <rect key="frame" x="0.0" y="720" width="320" height="28"/>
+                                                        <rect key="frame" x="0.0" y="738" width="320" height="28"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="urc-U4-OYY"/>
@@ -3774,7 +3790,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dwq-yQ-BWN" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                                        <rect key="frame" x="0.0" y="757" width="320" height="36"/>
+                                                        <rect key="frame" x="0.0" y="775" width="320" height="36"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <color key="textColor" name="Text"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway Medium" pointSize="17"/>
@@ -3787,7 +3803,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RS7-M6-4Wu">
-                                                        <rect key="frame" x="0.0" y="802" width="320" height="36"/>
+                                                        <rect key="frame" x="0.0" y="820" width="320" height="36"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-9N-b2h" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="105.5" height="36"/>
@@ -3831,13 +3847,13 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ta1-Ru-Q21">
-                                                        <rect key="frame" x="0.0" y="847" width="320" height="16.5"/>
+                                                        <rect key="frame" x="0.0" y="865" width="320" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYO-iy-rns" userLabel="Extra Space">
-                                                        <rect key="frame" x="0.0" y="872.5" width="320" height="300"/>
+                                                        <rect key="frame" x="0.0" y="890.5" width="320" height="300"/>
                                                         <color key="backgroundColor" name="Medium"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="300" id="6Bu-GI-j5u"/>

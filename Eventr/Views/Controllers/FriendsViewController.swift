@@ -288,7 +288,9 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                 friendProfileImage in
                 if let profileImage = friendProfileImage {
                     cell.friendProfileImage.image = profileImage
-                    friendImageDict[friendName] = profileImage
+                    if friendImageDict[friendName] != nil {
+                          friendImageDict[friendName] = profileImage
+                    }
                 } else {
                     cell.friendProfileImage.image = UIImage(named: "accountIcon")
                 }
@@ -366,11 +368,13 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         guard let usernameToSearch = friendsSearchField.text else {return}
         
+        let usernameToSearchFormatted = usernameToSearch.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        
         friendsTableView.setEmptyMessage("You do not appear to have any friends currently. Add some!")
         
         tableFriendSearch.removeAll()
         
-        queryFriendsInFirebase(username: usernameToSearch, callback: {
+        queryFriendsInFirebase(username: usernameToSearchFormatted, callback: {
             usernameFound, friendResult in
             
             if usernameFound {

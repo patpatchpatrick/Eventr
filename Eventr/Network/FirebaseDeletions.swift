@@ -121,6 +121,8 @@ func deleteUserFirebaseData(callback: ((Bool) -> Void)?) {
     //Delete user's profile image from storage
     deleteUserImageFromFirebase()
     
+    firebaseDatabaseRef.child("created").child(userID).removeValue()
+    
     //Delete username if it exists
     queryIfUserHasUsername(callback: {
         userHasUsername, username in
