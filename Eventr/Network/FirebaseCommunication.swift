@@ -30,7 +30,8 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
             return
         }
         
-
+      
+  
         let initialLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
     
         let eventDateDouble = Double(eventDate.timeIntervalSince1970)
@@ -86,7 +87,8 @@ func createOrUpdateFirebaseEvent(viewController: UIViewController, event: Event,
                 print("Error writing event to Firebase")
             } else {
                 //If event was successfully added to Firebase, add GeoFire event location to firebase
-                     insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
+                    insertGeofireEvent(location: initialLocation, eventID: eventKey, callback: callback)
+                
                 
             }
         })

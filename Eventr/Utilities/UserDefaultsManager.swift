@@ -11,3 +11,5 @@ import Foundation
 //Key for storing daily maximum # of events a user can create (5)
 let dailyMaximumDateKey = "dailyMaxDate"
 let dailyMaximumNumberKey = "dailyMaxNumber"
+let dailyMaximumSignUpDateKey = "dailySignMaxDate"
+let dailyMaximumSignUpNumberKey = "dailySignMaxNum"

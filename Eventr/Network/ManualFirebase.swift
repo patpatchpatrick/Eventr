@@ -12,12 +12,13 @@ import UIKit
 var count = 0
 
 let testMusicData: [String] = [
+    
+    
 
 ]
 
 let testSportData: [String] = [
-    "Lancaster JetHawks at Inland Empire 66ers |1561453500.0||280 South E Street.San Bernardino, California.92401| San Manuel Stadium, San Bernardino, California| San Manuel Stadium, San Bernardino, California|||1234567890|0",
-    "CONCACAF Gold Cup Group C - VIP Packages |1561471200.0||3939 S. Figueroa St.Los Angeles, California.90037| Banc of California Stadium, Los Angeles, California| Banc of California Stadium, Los Angeles, California|https://websterhall.com/|$35||1",
+   
     
 ]
 
@@ -32,7 +33,7 @@ var countUpdated = 0
 //Class used to manually remove events from Firebase if necessary
 func manuallyDeleteEvent(event: Event){
     //START
-    if (event.category.index() == 6 || event.category.index() == 7 || event.category.index() == 8 || event.category.index() == 9) && !testEventIDArr.contains(event.id) {
+    if (event.category.index() == 2 || event.category.index() == 7 || event.category.index() == 8 || event.category.index() == 9) && event.city == SF && !testEventIDArr.contains(event.id) {
         
         
         //Update the upvote count in both the "events" and "events-category" sections of Firebase

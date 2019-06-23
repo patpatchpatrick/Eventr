@@ -62,6 +62,8 @@ func addEventsToTableViewByKey(eventIDMap: NSDictionary, isUserCreatedEvent: Boo
             if let value = snapshot.value as? NSDictionary {
                 let event = Event(dict: value, idKey: eventID)
                 
+             // manuallyDeleteEvent(event: event)
+                
                 if isUserCreatedEvent {
                     event.loggedInUserCreatedTheEvent = true //Mark if the user created the event
                     //This will currently only be triggered if the user clicks the "My Events" button
