@@ -168,9 +168,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         })
         
-        //manuallyDeleteEventsForADateRange(dateStringFormat: "")
+       // manuallyDeleteEventsForADateRange(dateStringFormat: "")
         
-       //addTestStandardDataToFirebase(vc: self, categoryString: "Music", city: SF, arrayToParse: testMusicData, addDurationToTime: true, durationHoursToAdd: 12.0, tag1: "Music", tag2: "Concerts", tag3: "Shows")
+    // addTestStandardDataToFirebase(vc: self, categoryString: "Outdoors", city: NYC, arrayToParse: testStandardData, addDurationToTime: true, durationHoursToAdd: -3.0, tag1: "Outdoors", tag2: "Nature", tag3: "Outside")
   
     }
     

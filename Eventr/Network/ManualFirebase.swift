@@ -13,8 +13,6 @@ var count = 0
 
 let testMusicData: [String] = [
     
-    
-
 ]
 
 let testSportData: [String] = [
@@ -23,17 +21,16 @@ let testSportData: [String] = [
 ]
 
 let testStandardData: [String] = [
-
    
 ]
 
 var testEventIDArr: [String]  = []
 var countUpdated = 0
 
-//Class used to manually remove events from Firebase if necessary
+//Class used to manually add and remove events from Firebase if necessary
 func manuallyDeleteEvent(event: Event){
     //START
-    if (event.category.index() == 2 || event.category.index() == 7 || event.category.index() == 8 || event.category.index() == 9) && event.city == SF && !testEventIDArr.contains(event.id) {
+    if (event.category.index() == 8 || event.category.index() == 8 || event.category.index() == 8 || event.category.index() == 8) && (event.city == LA) && !testEventIDArr.contains(event.id) {
         
         
         //Update the upvote count in both the "events" and "events-category" sections of Firebase
@@ -118,9 +115,13 @@ func addTestSportDataToFirebase(vc: UIViewController){
         let venue = eventStringArr[4]
         let name = eventStringArr[1] + " at " + venue
         let eventLink = eventStringArr[7]
-        let eventPrice = eventStringArr[8]
-        var upvoteCount = 0
-        var userCount = 0
+                let eventPrice = eventStringArr[8]
+                var isPaid = true
+                if eventPrice == "0" {
+                    isPaid = false
+                }
+                var upvoteCount = 0
+                var userCount = 0
         if let multiplier = Int(eventStringArr[6] ){
             upvoteCount = (multiplier + 1) * Int(arc4random_uniform(17) + 1)
             userCount = (multiplier + 1) * Int(arc4random_uniform(4) + 1)
@@ -131,7 +132,7 @@ func addTestSportDataToFirebase(vc: UIViewController){
         let tag3 = "Athletics"
         
         if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
-            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
+            let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name, contact: "", phoneNumber: "", ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: isPaid, price: eventPrice)
             event.upvoteCount = upvoteCount
             event.userCount = userCount
             
@@ -171,9 +172,13 @@ func addTestStandardDataToFirebase(vc: UIViewController, categoryString: String,
         let address = eventStringArr[3]
         let venue = eventStringArr[4]
         let description = eventStringArr[5]
-        let eventLink = eventStringArr[6]
-        let eventPrice = eventStringArr[7]
-        var upvoteCount = 0
+            let eventLink = eventStringArr[6]
+            let eventPrice = eventStringArr[7]
+            var isPaid = true
+            if eventPrice == "0" {
+                isPaid = false
+            }
+            var upvoteCount = 0
         var userCount = 0
         let phone = eventStringArr[8]
         if let multiplier = Int(eventStringArr[9] ){
@@ -186,7 +191,7 @@ func addTestStandardDataToFirebase(vc: UIViewController, categoryString: String,
             let tag3 = tag3
             
             if name != nil && !name.contains("XXXX") && GMTDate != nil && address != nil && venue != nil {
-                let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: name + " @ " + venue, contact: "", phoneNumber: phone, ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: true, price: eventPrice)
+                let event = Event(name: name, category: category, date: GMTDate, city: city, address: address, venue: venue, details: description, contact: "", phoneNumber: phone, ticketURL: eventLink, eventURL: eventLink, tag1: tag1, tag2: tag2, tag3: tag3, paid: isPaid, price: eventPrice)
                 if let dur = duration {
                    event.duration = dur * 60
                 }
@@ -221,7 +226,7 @@ func manuallyDeleteEventsForADateRange(dateStringFormat: String){
     //2019m6d18
     //Delete all of the events that the user created
     
-    firebaseDatabaseRef.child("date").child("2019m6d20").observeSingleEvent(of: .value, with: {
+    firebaseDatabaseRef.child("date").child("2019m6d23").observeSingleEvent(of: .value, with: {
         (snapshot) in
         guard let dict = snapshot.value as? NSDictionary else { return }
         for eventID in dict.allKeys {
