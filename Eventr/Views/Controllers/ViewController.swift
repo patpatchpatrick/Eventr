@@ -160,6 +160,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         loadUserAccountImage()
         loadInitialListOfEvents()
         
+        //If user doesn't have username, take them to the Settings Screen by default to fill in their account info
         queryIfUserHasUsername(callback: {
             hasUserName, userName in
             if !hasUserName{
@@ -168,9 +169,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         })
         
+        //METHODS to manually modify Firebase if necessary
        // manuallyDeleteEventsForADateRange(dateStringFormat: "")
-        
-    // addTestStandardDataToFirebase(vc: self, categoryString: "Outdoors", city: NYC, arrayToParse: testStandardData, addDurationToTime: true, durationHoursToAdd: -3.0, tag1: "Outdoors", tag2: "Nature", tag3: "Outside")
+    //addTestStandardDataToFirebase(vc: self, categoryString: "Outdoors", city: NYC, arrayToParse: testStandardData, addDurationToTime: true, durationHoursToAdd: -3.0, tag1: "Outdoors", tag2: "Nature", tag3: "Outside")
   
     }
     
